@@ -44,3 +44,8 @@ Text colour gotcha: the grey detail line imports as black; set format_text color
 - Partner players: https://tnballers.com/players/<key>.png (best quality).
 - Bundesliga players: the official cut-out from the bundesliga.com player page, e.g. https://assets.bundesliga.com/player/<id>-body.png (find the URL in the page's og:image:secure_url; drop the query string). Credit "📸 BUNDESLIGA / @CLUB".
 - Club and league sites often block Canva's downloader (fcbayern.com did). FotMob images are only 192px: avoid unless nothing else exists.
+
+## Metricool (Instagram/TikTok drafts and metrics)
+- Brand "tnballers", blogId 7610718 (Instagram @tnballers, TikTok @truenorthballers), timezone Europe/London.
+- Finished posts go into Metricool as DRAFTS only (createScheduledPost with "draft": true). Never publish or un-draft; Baller reviews and posts himself.
+- Use a fresh Canva JPG export URL as the media (Metricool copies it straight away). Metrics are read-only.
