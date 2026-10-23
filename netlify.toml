@@ -1,0 +1,5 @@
+# Netlify publishes only the finished site. The build is done before each commit (src/build.sh),
+# so Netlify has nothing to build.
+[build]
+  publish = "site"
+  command = ""

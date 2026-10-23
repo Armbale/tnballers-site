@@ -1,0 +1,4 @@
+.netlify
+src/work*.html
+src/work-check.js
+__pycache__/

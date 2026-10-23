@@ -1,0 +1,70 @@
+<section id="book" class="book-sec" aria-labelledby="book-h">
+  <div class="max-width">
+    <p class="section-eyebrow">TNB Studios · Videography</p>
+    <h2 class="section-title view-title" id="book-h" tabindex="-1">BOOK A <span class="accent">SHOOT.</span></h2>
+    <p class="section-subtitle">Highlight reels, matchday coverage, player profiles and brand content, filmed by the crew behind TNB. Tell us what you need and we'll get back to you within two working days.</p>
+    <div class="book-grid reveal">
+      <div class="recruit-form-wrapper">
+        <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="bookForm" novalidate>
+          <input type="hidden" name="form-name" value="booking">
+          <p class="visually-hidden"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <h3 class="form-title">Shoot Request</h3>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="b-name">Your Name *</label><input type="text" id="b-name" name="name" class="form-input" autocomplete="name" required></div>
+            <div class="form-group"><label class="form-label" for="b-email">Email *</label><input type="email" id="b-email" name="email" class="form-input" autocomplete="email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="b-phone">Phone</label><input type="tel" id="b-phone" name="phone" class="form-input" autocomplete="tel" placeholder="Optional"></div>
+            <div class="form-group"><label class="form-label" for="b-who">I'm a *</label>
+              <select id="b-who" name="who" class="form-select" required>
+                <option value="">Select one</option><option>Player</option><option>Parent / guardian</option><option>Club or academy</option><option>Brand or business</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <legend class="form-label">What do you need? *</legend>
+            <div class="form-radio-row book-checks">
+              <label><input type="checkbox" name="service" value="Highlight reel"> Highlight reel</label>
+              <label><input type="checkbox" name="service" value="Matchday coverage"> Matchday coverage</label>
+              <label><input type="checkbox" name="service" value="Training session"> Training session</label>
+              <label><input type="checkbox" name="service" value="Player profile"> Player profile</label>
+              <label><input type="checkbox" name="service" value="Brand or club campaign"> Brand / club campaign</label>
+              <label><input type="checkbox" name="service" value="Other"> Something else</label>
+            </div>
+          </fieldset>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="b-date">Preferred Date</label><input type="date" id="b-date" name="date" class="form-input"></div>
+            <div class="form-group"><label class="form-label" for="b-loc">Location *</label><input type="text" id="b-loc" name="location" class="form-input" placeholder="City or venue" required></div>
+          </div>
+          <div class="form-group"><label class="form-label" for="b-budget">Budget</label>
+            <select id="b-budget" name="budget" class="form-select">
+              <option value="">Not sure yet</option><option>Under $250</option><option>$250 to $500</option><option>$500 to $1,000</option><option>$1,000+</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label" for="b-details">Tell Us About It *</label><textarea id="b-details" name="details" class="form-textarea" placeholder="Who's being filmed, the occasion, how you'll use the video..." required></textarea></div>
+          <div class="form-group"><label class="form-check"><input type="checkbox" id="b-consent" name="consent" value="yes" required> <span>I agree to the <a href="#privacy">Privacy Policy</a>. If the shoot involves anyone under 18, a parent or guardian will need to approve it. *</span></label></div>
+          <button type="submit" class="btn-primary" id="bookSubmit" style="width:100%;text-align:center">Send Request</button>
+          <div class="form-error" id="bookError" role="alert" hidden></div>
+          <div class="form-success" id="bookSuccess" role="status" hidden></div>
+        </form>
+      </div>
+      <aside class="book-side">
+        <div class="book-card">
+          <h3>How it works</h3>
+          <ol class="book-steps">
+            <li><b>Send the request.</b> A few details is all we need.</li>
+            <li><b>We reply within two working days</b> with ideas and a quote.</li>
+            <li><b>We shoot.</b> Matchday, training or a dedicated session.</li>
+            <li><b>You get your edit,</b> cut vertical-first for social, plus a widescreen version if you want one.</li>
+          </ol>
+        </div>
+        <div class="book-card book-card-dark">
+          <p class="book-k">Prefer email?</p>
+          <a href="mailto:contact@tnballers.com?subject=Videography%20enquiry" class="book-mail">contact@tnballers.com</a>
+          <p class="book-k" style="margin-top:18px">Videographer?</p>
+          <a href="mailto:contact@tnballers.com?subject=Joining%20the%20TNB%20crew" class="book-mail">Join the crew →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
