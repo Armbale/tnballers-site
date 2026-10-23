@@ -31,4 +31,16 @@ Live site: https://tnballers.com (Netlify project "tnballers", publishes the `si
 - Look: black background, red diagonal stripe, gold accents, white condensed uppercase type (Bebas Neue / Barlow Condensed), maple leaf accent, "@tnballers" footer.
 
 ## Canva master templates
-(design IDs added below)
+Copy these (never edit the masters themselves):
+- Goal / big moment: DAHY1r2A_UA. Elements: headline "GOAL.", player name, red match line, grey detail line, red badge (text inside a shape: use find_and_replace_text on the shape), photo slot (shape with image fill: update_fill), "📸 PHOTO CREDIT" line.
+- Matchday: DAHY1goGMmQ
+- Canada's Best ranking (5 rows, no photo): DAHY1hX-TJs
+- News / trophy / transfer: DAHY1v1jl9Y
+- Example finished post: "TNB Post – Davies scores vs Arsenal (21 Oct 2026)", DAHY15t_Y8I.
+Workflow: copy-design → read-design (open_transaction: true, fields design_content) to get locator_ids → edit-design keep_open with replace_text / find_and_replace_text / update_fill / format_text / update_title → check the returned thumbnail → edit-design commit → export-design PNG 1080x1350. Title copies "TNB Post – <what> (<date>)".
+Text colour gotcha: the grey detail line imports as black; set format_text color #E6E6E6 when you replace it.
+
+## Photo sources that work with Canva upload-asset-from-url
+- Partner players: https://tnballers.com/players/<key>.png (best quality).
+- Bundesliga players: the official cut-out from the bundesliga.com player page, e.g. https://assets.bundesliga.com/player/<id>-body.png (find the URL in the page's og:image:secure_url; drop the query string). Credit "📸 BUNDESLIGA / @CLUB".
+- Club and league sites often block Canva's downloader (fcbayern.com did). FotMob images are only 192px: avoid unless nothing else exists.
