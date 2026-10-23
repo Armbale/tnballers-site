@@ -1955,6 +1955,22 @@ body.motion-paused .leg-tag::before{animation:none}
 .news-banner strong{color:#F3D27A}
 .news-banner-link{color:#fff;font-family:var(--f-condensed);font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:.78rem;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .news-banner-link:hover{color:#F3D27A}
+/* Live Tracker */
+.feed-live{display:inline-block;width:9px;height:9px;border-radius:50%;background:#CC0000;margin-right:6px;box-shadow:0 0 0 0 rgba(204,0,0,.6);animation:feedPulse 1.8s infinite;vertical-align:middle}
+@keyframes feedPulse{70%{box-shadow:0 0 0 10px rgba(204,0,0,0)}100%{box-shadow:0 0 0 0 rgba(204,0,0,0)}}
+body.motion-paused .feed-live{animation:none}
+.feed-list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.feed-item{background:#fff;border:1px solid rgba(18,18,18,.1);border-left:4px solid #CC0000;border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.feed-item:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(18,18,18,.08)}
+.feed-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.feed-tag{font-family:var(--f-condensed);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.66rem;padding:3px 9px;border-radius:999px;background:#FDECEC;color:#B00000}
+.feed-meta time{font-family:var(--f-condensed);font-weight:700;letter-spacing:1px;font-size:.78rem;color:#5E5E5E}
+.feed-h{font-family:var(--f-display);font-weight:400;font-size:1.65rem;line-height:1;margin:0 0 8px;color:#121212;letter-spacing:.5px}
+.feed-d{font-size:.88rem;line-height:1.5;color:#3A3A3A;margin:0 0 10px}
+.feed-src{margin-top:auto;align-self:flex-start;font-family:var(--f-condensed);font-weight:700;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#B00000}
+.feed-trophy{border-left-color:#E9B949}.feed-trophy .feed-tag{background:#FBF1D6;color:#7A5C00}
+.feed-injury{border-left-color:#E0A100}.feed-injury .feed-tag{background:#FFF4DB;color:#8A5A00}
+.feed-tnb{border-left-color:#121212}.feed-tnb .feed-tag{background:#121212;color:#fff}
 
 </style>
 </head>
@@ -2158,6 +2174,54 @@ body.motion-paused .leg-tag::before{animation:none}
     <p class="section-subtitle">The eight Canadian pros we've partnered with. We're covering every one of them, on and off the pitch, until the final whistle of the 2026 season. Tap a card for their stats.</p>
     <div class="nine-slider" data-nine-slider></div>
     <div class="nine-more"><a href="#nine" class="btn-primary">Full stats table</a><a href="#book" class="btn-ghost">Book a shoot</a></div>
+  </div>
+</section>
+
+<div class="section-sep" aria-hidden="true"></div>
+<section id="tracker" class="feed-sec" aria-labelledby="tracker-h">
+  <div class="max-width">
+    <p class="section-eyebrow"><span class="feed-live" aria-hidden="true"></span> Live Tracker</p>
+    <h2 class="section-title" id="tracker-h">CANADIAN FOOTBALL, <span class="accent">AS IT HAPPENS.</span></h2>
+    <p class="section-subtitle">Goals, trophies, injuries and big moments for our players and every Canadian worth watching, updated through the day.</p>
+    <ol class="feed-list reveal">
+        <li class="feed-item feed-trophy">
+          <div class="feed-meta"><span class="feed-tag">Trophy</span><time datetime="2026-10-21">21 Oct</time></div>
+          <h3 class="feed-h">Forge FC are Canadian Champions</h3>
+          <p class="feed-d">1–1 at Stade Saputo, then 4–2 on penalties vs CF Montréal. The first CPL club ever to win it, and a 2027 CONCACAF Champions Cup place. TNB partners Tavernier and Bruno are in the squad.</p>
+          <a class="feed-src" href="https://www.cplsoccer.com/news/forge-make-history-as-first-canadian-champions-from-cpl-highlights" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Forge FC are Canadian Champions (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-goal">
+          <div class="feed-meta"><span class="feed-tag">Goal</span><time datetime="2026-10-21">21 Oct</time></div>
+          <h3 class="feed-h">Davies scores vs Arsenal</h3>
+          <p class="feed-d">Alphonso Davies equalised in the 35th minute, set up by Harry Kane, in Bayern&#x27;s 2–2 Champions League draw. His second UCL goal this season.</p>
+          <a class="feed-src" href="https://canadiansoccerdaily.com/2026/10/21/watch-alphonso-davies-scores-for-bayern-munich-in-champions-league-draw-vs-arsenal/" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Davies scores vs Arsenal (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-award">
+          <div class="feed-meta"><span class="feed-tag">Award</span><time datetime="2026-10-21">21 Oct</time></div>
+          <h3 class="feed-h">Badwal named Best Young Player</h3>
+          <p class="feed-d">Vancouver Whitecaps&#x27; Jeevan Badwal picked up the 2026 Canadian Championship&#x27;s Best Young Player award.</p>
+          <a class="feed-src" href="https://canadiansoccerdaily.com/2026/10/21/watch-alphonso-davies-scores-for-bayern-munich-in-champions-league-draw-vs-arsenal/" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Badwal named Best Young Player (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-goal">
+          <div class="feed-meta"><span class="feed-tag">Goal</span><time datetime="2026-10-20">20 Oct</time></div>
+          <h3 class="feed-h">Oluwaseyi scores at Anfield</h3>
+          <p class="feed-d">Tani Oluwaseyi scored, assisted by Nathan Saliba, in Villarreal&#x27;s 4–3 Champions League loss at Liverpool. Tajon Buchanan also played on his return from injury.</p>
+          <a class="feed-src" href="https://canadiansoccerdaily.com/2026/10/21/watch-alphonso-davies-scores-for-bayern-munich-in-champions-league-draw-vs-arsenal/" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Oluwaseyi scores at Anfield (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-goal">
+          <div class="feed-meta"><span class="feed-tag">Goal</span><time datetime="2026-10-17">17 Oct</time></div>
+          <h3 class="feed-h">Millar brace vs QPR</h3>
+          <p class="feed-d">Liam Millar scored twice in 71 minutes as Birmingham beat QPR 3–0. Three goals in two games.</p>
+          <a class="feed-src" href="https://www.fotmob.com/players/932308/liam-millar" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Millar brace vs QPR (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-injury">
+          <div class="feed-meta"><span class="feed-tag">Injury</span><time datetime="2026-10-17">17 Oct</time></div>
+          <h3 class="feed-h">Larin off injured vs Bolton</h3>
+          <p class="feed-d">Cyle Larin left Southampton&#x27;s 0–0 draw with Bolton in the 41st minute with a muscle problem. Return date unknown.</p>
+          <a class="feed-src" href="https://www.fotmob.com/players/544312/cyle-larin" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Larin off injured vs Bolton (opens in a new tab)</span> ↗</a>
+        </li>
+    </ol>
+    <p class="can-note">Last updated 21 Oct. Sources linked on each item.</p>
   </div>
 </section>
 
@@ -2489,6 +2553,66 @@ body.motion-paused .leg-tag::before{animation:none}
       </aside>
     </div>
     <p class="can-note">Club stats for 2026–27 and Canada caps as of 23 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+  </div>
+</section>
+
+<div class="section-sep" aria-hidden="true"></div>
+<section id="tracker-view" class="feed-sec" aria-labelledby="tracker-h-view">
+  <div class="max-width">
+    <p class="section-eyebrow"><span class="feed-live" aria-hidden="true"></span> Live Tracker</p>
+    <h2 class="section-title" id="tracker-h-view">CANADIAN FOOTBALL, <span class="accent">AS IT HAPPENS.</span></h2>
+    <p class="section-subtitle">Goals, trophies, injuries and big moments for our players and every Canadian worth watching, updated through the day.</p>
+    <ol class="feed-list reveal">
+        <li class="feed-item feed-trophy">
+          <div class="feed-meta"><span class="feed-tag">Trophy</span><time datetime="2026-10-21">21 Oct</time></div>
+          <h3 class="feed-h">Forge FC are Canadian Champions</h3>
+          <p class="feed-d">1–1 at Stade Saputo, then 4–2 on penalties vs CF Montréal. The first CPL club ever to win it, and a 2027 CONCACAF Champions Cup place. TNB partners Tavernier and Bruno are in the squad.</p>
+          <a class="feed-src" href="https://www.cplsoccer.com/news/forge-make-history-as-first-canadian-champions-from-cpl-highlights" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Forge FC are Canadian Champions (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-goal">
+          <div class="feed-meta"><span class="feed-tag">Goal</span><time datetime="2026-10-21">21 Oct</time></div>
+          <h3 class="feed-h">Davies scores vs Arsenal</h3>
+          <p class="feed-d">Alphonso Davies equalised in the 35th minute, set up by Harry Kane, in Bayern&#x27;s 2–2 Champions League draw. His second UCL goal this season.</p>
+          <a class="feed-src" href="https://canadiansoccerdaily.com/2026/10/21/watch-alphonso-davies-scores-for-bayern-munich-in-champions-league-draw-vs-arsenal/" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Davies scores vs Arsenal (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-award">
+          <div class="feed-meta"><span class="feed-tag">Award</span><time datetime="2026-10-21">21 Oct</time></div>
+          <h3 class="feed-h">Badwal named Best Young Player</h3>
+          <p class="feed-d">Vancouver Whitecaps&#x27; Jeevan Badwal picked up the 2026 Canadian Championship&#x27;s Best Young Player award.</p>
+          <a class="feed-src" href="https://canadiansoccerdaily.com/2026/10/21/watch-alphonso-davies-scores-for-bayern-munich-in-champions-league-draw-vs-arsenal/" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Badwal named Best Young Player (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-goal">
+          <div class="feed-meta"><span class="feed-tag">Goal</span><time datetime="2026-10-20">20 Oct</time></div>
+          <h3 class="feed-h">Oluwaseyi scores at Anfield</h3>
+          <p class="feed-d">Tani Oluwaseyi scored, assisted by Nathan Saliba, in Villarreal&#x27;s 4–3 Champions League loss at Liverpool. Tajon Buchanan also played on his return from injury.</p>
+          <a class="feed-src" href="https://canadiansoccerdaily.com/2026/10/21/watch-alphonso-davies-scores-for-bayern-munich-in-champions-league-draw-vs-arsenal/" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Oluwaseyi scores at Anfield (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-goal">
+          <div class="feed-meta"><span class="feed-tag">Goal</span><time datetime="2026-10-17">17 Oct</time></div>
+          <h3 class="feed-h">Millar brace vs QPR</h3>
+          <p class="feed-d">Liam Millar scored twice in 71 minutes as Birmingham beat QPR 3–0. Three goals in two games.</p>
+          <a class="feed-src" href="https://www.fotmob.com/players/932308/liam-millar" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Millar brace vs QPR (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-injury">
+          <div class="feed-meta"><span class="feed-tag">Injury</span><time datetime="2026-10-17">17 Oct</time></div>
+          <h3 class="feed-h">Larin off injured vs Bolton</h3>
+          <p class="feed-d">Cyle Larin left Southampton&#x27;s 0–0 draw with Bolton in the 41st minute with a muscle problem. Return date unknown.</p>
+          <a class="feed-src" href="https://www.fotmob.com/players/544312/cyle-larin" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Larin off injured vs Bolton (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-tnb">
+          <div class="feed-meta"><span class="feed-tag">TNB</span><time datetime="2026-10-16">16 Oct</time></div>
+          <h3 class="feed-h">Olguin&#x27;s first pro goal</h3>
+          <p class="feed-d">TNB partner Lucas Olguin equalised in the 44th minute at Vancouver FC. HFX went on to lose 2–1.</p>
+          <a class="feed-src" href="https://www.fotmob.com/players/1780465/lucas-olguin" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Olguin&#x27;s first pro goal (opens in a new tab)</span> ↗</a>
+        </li>
+        <li class="feed-item feed-goal">
+          <div class="feed-meta"><span class="feed-tag">Goal</span><time datetime="2026-10-13">13 Oct</time></div>
+          <h3 class="feed-h">Oluwaseyi scores at Napoli</h3>
+          <p class="feed-d">Off the bench to score in Villarreal&#x27;s 3–1 Champions League win in Naples.</p>
+          <a class="feed-src" href="https://www.fotmob.com/players/1338740/tani-oluwaseyi" target="_blank" rel="noopener noreferrer">Source<span class="visually-hidden"> for Oluwaseyi scores at Napoli (opens in a new tab)</span> ↗</a>
+        </li>
+    </ol>
+    <p class="can-note">Last updated 21 Oct. Sources linked on each item.</p>
   </div>
 </section>
 
@@ -3774,7 +3898,7 @@ window.ninePlayers = ninePlayers;
    ══════════════════════════════════════════ */
 (function(){
   var VIEWS = {home:'Home', nine:'The Players', canada:'Canada & Legends', book:'Book a Shoot', studios:'Studios', scouted:'Get Scouted', about:'About', privacy:'Privacy Policy', terms:'Terms of Use', cookies:'Cookie Statement', accessibility:'Accessibility'};
-  var ALIAS = {hero:'home', metrics:'home', services:'home', main:'home', xi:'nine', 'starting-xi':'nine', players:'nine', culture:'home', sponsors:'home', booking:'book', legends:'canada', 'media-engine':'studios', 'social-metrics':'studios', recruit:'scouted'};
+  var ALIAS = {hero:'home', metrics:'home', services:'home', main:'home', xi:'nine', 'starting-xi':'nine', players:'nine', culture:'home', sponsors:'home', booking:'book', legends:'canada', tracker:'canada', 'media-engine':'studios', 'social-metrics':'studios', recruit:'scouted'};
   var current = null;
   function resolve(id){ return VIEWS[id] ? id : (ALIAS[id] || null); }
   window.tnbGo = function(v, opts){

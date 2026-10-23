@@ -290,9 +290,9 @@ def sec(f, sfx, view_title, after=''):
     return h.replace('{{TITLECLS}}', ' view-title' if view_title else '').replace('{{TITLEATTR}}', ' tabindex="-1"' if view_title else '')
 TEASER = '<div class="leg-teaser"><p>Messi, Ronaldo, Müller, Sánchez: <span>the greats who\'ve played in Canada.</span></p><a href="#legends" class="btn-primary">See the legends</a></div>'
 more = '<div class="nine-more"><a href="#nine" class="btn-primary">Full stats table</a><a href="#book" class="btn-ghost">Book a shoot</a></div>'
-views += '\n<div class="view" data-view="home">\n' + hero_block + sec('sponsors.html','-home',False) + SEP + sec('nine_sec.html','-home',False,more) + SEP + P('services.html') + SEP + P('canada.html').replace('<p class="can-note">', TEASER + '<p class="can-note">',1) + SEP + metrics + '</div>\n'
+views += '\n<div class="view" data-view="home">\n' + hero_block + sec('sponsors.html','-home',False) + SEP + sec('nine_sec.html','-home',False,more) + SEP + P('feed.html') + SEP + P('services.html') + SEP + P('canada.html').replace('<p class="can-note">', TEASER + '<p class="can-note">',1) + SEP + metrics + '</div>\n'
 views += '\n<div class="view" data-view="nine" hidden>\n' + sec('nine_sec.html','',True,P('nine_table.html')) + '</div>\n'
-views += '\n<div class="view" data-view="canada" hidden>\n' + P('canada_view.html') + SEP + P('legends.html') + '</div>\n'
+views += '\n<div class="view" data-view="canada" hidden>\n' + P('canada_view.html') + SEP + P('feed_view.html') + SEP + P('legends.html') + '</div>\n'
 views += '\n<div class="view" data-view="book" hidden>\n' + P('book.html') + '</div>\n'
 views += '\n<div class="view" data-view="studios" hidden>\n' + media + SEP + social + '</div>\n'
 views += '\n<div class="view" data-view="scouted" hidden>\n' + recruit + '</div>\n'

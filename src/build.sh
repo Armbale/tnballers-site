@@ -3,6 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 python3 parts/make_canada.py
+python3 parts/make_feed.py
 python3 retheme.py
 python3 structure.py
 python3 script_fix.py

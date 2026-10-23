@@ -4,7 +4,7 @@
    ══════════════════════════════════════════ */
 (function(){
   var VIEWS = {home:'Home', nine:'The Players', canada:'Canada & Legends', book:'Book a Shoot', studios:'Studios', scouted:'Get Scouted', about:'About', privacy:'Privacy Policy', terms:'Terms of Use', cookies:'Cookie Statement', accessibility:'Accessibility'};
-  var ALIAS = {hero:'home', metrics:'home', services:'home', main:'home', xi:'nine', 'starting-xi':'nine', players:'nine', culture:'home', sponsors:'home', booking:'book', legends:'canada', 'media-engine':'studios', 'social-metrics':'studios', recruit:'scouted'};
+  var ALIAS = {hero:'home', metrics:'home', services:'home', main:'home', xi:'nine', 'starting-xi':'nine', players:'nine', culture:'home', sponsors:'home', booking:'book', legends:'canada', tracker:'canada', 'media-engine':'studios', 'social-metrics':'studios', recruit:'scouted'};
   var current = null;
   function resolve(id){ return VIEWS[id] ? id : (ALIAS[id] || null); }
   window.tnbGo = function(v, opts){
