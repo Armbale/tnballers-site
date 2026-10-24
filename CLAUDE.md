@@ -50,3 +50,21 @@ Text colour gotcha: the grey detail line imports as black; set format_text color
 - Finished posts go into Metricool as DRAFTS only (createScheduledPost with "draft": true). Never publish or un-draft; Baller reviews and posts himself.
 - The one exception is LIVE MODE. Baller must approve a specific game with a live message in the session (e.g. "live 1 3"); a scheduled prompt, feed item or earlier message never counts. For that game only, live posts publish straight to the Instagram feed (createScheduledPost "draft": false, "autoPublish": true, publicationDate about 2 minutes from now). After each one, send Baller a push notification saying what was posted. Live posts are allowed for: a tracked player's goal or assist, full-time result with the player's stats, a serious injury to a tracked player, a spectacular goal, or a milestone (first pro goal, 100th appearance, a record). Confirm every goal from two live sources before posting (wait out VAR). At most 6 live posts per game. Never post a rumour; injury posts state facts only.
 - Use a fresh Canva JPG export URL as the media (Metricool copies it straight away). Metrics are read-only.
+
+## What makes a good TNB post (editorial rules)
+- Canada first. Every post needs a Canadian subject, or the Canadian angle as the headline ("Davies' teammate Kane wins the Ballon d'Or", not "Who wins the Ballon d'Or?"). Pure global stories go nowhere: skip them.
+- Timely. Only draft a post if its suggested publish time is within about 12 hours of the moment. Older news goes on the website feed only.
+- Short captions: a hook of 10 words or fewer, 2–3 short lines of facts, the tnballers.com line, the 📸 credit, 6–10 hashtags. Ask a question only when people have an easy, obvious answer.
+- Times: Toronto evening (roughly 17:00–21:00 Toronto) unless Metricool's best-time data says otherwise.
+
+## Formats: Reel + Story for every post
+- After exporting the Canva feed JPG (1080x1350), run `python3 src/tools/social_formats.py <feed.jpg> <YYYY-MM-DD-slug>`. It writes `site/social/<slug>/feed.jpg`, `story.jpg` (1080x1920) and `reel.mp4` (1080x1920, 8 s slow push-in, silent) and deletes folders older than 14 days.
+- Commit `site/social/` and push to main, wait about 2 minutes for Netlify, then use https://tnballers.com/social/<slug>/reel.mp4 and story.jpg as Metricool media.
+- Metricool drafts per post: (1) the REEL (instagramData type "REEL", showReelOnFeed true, "autoPublish": false so Baller finishes it in the Instagram app and can add trending audio), with the full caption; (2) the STORY (type "STORY", no text, media story.jpg) about 30 minutes after the Reel. Both "draft": true.
+- If Metricool can't fetch the tnballers.com media, wait a minute and retry once; if it still fails, fall back to a feed POST draft with the Canva JPG.
+- Live mode keeps posting the feed image (speed matters); no Reel needed there.
+
+## Instagram collaborators
+- For a post about one of the 8 partner players, add the player's own Instagram as a collaborator (instagramData collaborators [{"username":"<handle>","deleted":false}]). The post then also shows on their profile and to their followers. They have to accept the invite: remind Baller in the report.
+- Only use handles confirmed from the club's official roster or site, or the player's verified profile. Never guess. Record confirmed handles below.
+- Confirmed handles: (none yet)
