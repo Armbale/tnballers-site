@@ -56,6 +56,7 @@ Text colour gotcha: the grey detail line imports as black; set format_text color
 - Timely. Only draft a post if its suggested publish time is within about 12 hours of the moment. Older news goes on the website feed only.
 - Short captions: a hook of 10 words or fewer, 2–3 short lines of facts, the tnballers.com line, the 📸 credit, 6–10 hashtags. Ask a question only when people have an easy, obvious answer.
 - Times: Toronto evening (roughly 17:00–21:00 Toronto) unless Metricool's best-time data says otherwise.
+- Canadian MLS clubs (Toronto FC, Vancouver Whitecaps, CF Montréal): every result gets a full-time post (Matchday template, "🍁 FULL TIME", score as the headline), win, draw or loss, as long as it's within the 12-hour window. These count towards the 2-posts-per-run limit; if there are more candidates than slots, a partner player's moment comes first. If there's no usable real photo, use the TNB crest in the photo slot (fitted, not cropped) and "📸 TNB graphic" in the caption.
 
 ## Formats: Reel + Story for every post
 - After exporting the Canva feed JPG (1080x1350), run `python3 src/tools/social_formats.py <feed.jpg> <YYYY-MM-DD-slug>`. It writes `site/social/<slug>/feed.jpg`, `story.jpg` (1080x1920) and `reel.mp4` (1080x1920, 8 s slow push-in, silent) and deletes folders older than 14 days.
