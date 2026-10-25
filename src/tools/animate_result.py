@@ -29,7 +29,8 @@ LAYERS = [
     ("divider",  533, 690, 547,  860, 1.80, 2.20, "wipe"),
     ("homesc",   20,  690, 532,  870, 2.00, 2.90, "wipe"),
     ("awaysc",   548, 690, 1060, 870, 2.20, 3.10, "wipe"),
-    ("info",     0,   900, 1080, 1060, 3.20, 3.80, "rise"),
+    ("info",     0,   865, 1080, 1261, 3.00, 3.80, "rise"),   # date, context line and optional faded player photo
+    ("footer",   0,   1261, 1080, 1350, 0.00, 0.01, "rise"),  # footer text/credit (static)
 ]
 
 
