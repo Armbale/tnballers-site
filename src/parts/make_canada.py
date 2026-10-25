@@ -3,17 +3,17 @@ def esc(s): return s.replace('&', '&amp;')
 
 # name, pos, club, comp label, apps, goals, assists, caps, intl goals, shirt, highlight, fotmob id
 BEST = [
- ('Liam Millar','Winger','Birmingham City (loan, Hull City)','All comps',9,5,4,47,1,'11','5 goals and 4 assists in 9 club games, with 3 goals in his last 2 (Preston, then a brace vs QPR).','932308/liam-millar'),
+ ('Liam Millar','Winger','Birmingham City (loan, Hull City)','All comps',10,5,4,47,1,'11','5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1–0 loss at Cardiff (24 Oct).','932308/liam-millar'),
  ('Alphonso Davies','Left Back / Winger','Bayern Munich','All comps',10,2,2,59,15,'19','Captain. Scored vs Arsenal in the Champions League (21 Oct, 2–2): his second UCL goal this season.','751202/alphonso-davies'),
  ('Jonathan David','Striker','Atlético Madrid (loan, Juventus)','LaLiga',5,3,2,85,43,'10','3 goals and 2 assists in five LaLiga games. Canada\'s all-time top scorer.','939569/jonathan-david'),
  ('Tani Oluwaseyi','Striker','Villarreal','LaLiga',5,0,0,31,2,'12','Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct).','1338740/tani-oluwaseyi'),
- ('Nathan Saliba','Central Midfield','Villarreal','LaLiga',5,0,0,19,3,'25','Set up Oluwaseyi\'s goal at Anfield in the Champions League (20 Oct).','1216798/nathan-saliba'),
- ('Stephen Eustáquio','Central Midfield','Swansea City','Championship',7,1,1,63,5,'7','Vice-captain. Back from a shoulder knock; scored in the 2–1 win at Lincoln.','816223/stephen-eustaquio'),
- ('Tajon Buchanan','Winger','Villarreal','LaLiga',7,0,0,67,8,'17','Back from his hamstring injury in time for the Champions League trip to Liverpool (20 Oct).','1026135/tajon-buchanan'),
+ ('Stephen Eustáquio','Central Midfield','Swansea City','Championship',8,1,1,63,5,'7','Vice-captain. Back from a shoulder knock; scored in the 2–1 win at Lincoln.','816223/stephen-eustaquio'),
+ ('Tajon Buchanan','Winger','Villarreal','LaLiga',8,0,0,67,8,'17','Back from his hamstring injury: started and played 87 minutes of the 2–1 derby win over Valencia (24 Oct).','1026135/tajon-buchanan'),
 ]
 # name, club, reason, expected back
 SIDE = [
  ('Cyle Larin','Southampton','Muscle injury (17 Oct)','TBC'),
+ ('Nathan Saliba','Villarreal','Muscle injury (missed 24 Oct derby)','TBC'),
  ('Ismaël Koné','Sassuolo','Broken leg','Late Oct'),
  ('Alistair Johnston','Celtic','Hamstring','Late Oct'),
  ('Moïse Bombito','OGC Nice','Tibia surgery','TBC'),
@@ -65,7 +65,7 @@ def best_section(sfx, view_title):
         </ul>
       </aside>
     </div>
-    <p class="can-note">Club stats for 2026–27 and Canada caps as of 23 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+    <p class="can-note">Club stats for 2026–27 and Canada caps as of 25 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
   </div>
 </section>
 '''
