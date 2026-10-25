@@ -16,7 +16,13 @@ Live site: https://tnballers.com (Netlify project "tnballers", publishes the `si
 2. Update `STATS_ASOF` (and the as-of text in `nine_table.html` / `make_canada.py`) to today's date, e.g. "18 Oct 2026".
 3. Run `src/build.sh`. If it fails, fix or revert; never push a failed build.
 4. Sanity checks before committing: season totals never go down; minutes <= 90 x apps (+ extra time); a player can't gain more goals than games played that day would allow. If a number looks wrong or can't be confirmed from two sources, leave the old value and say so in the report.
-5. Commit `src/` and `site/` together with a message like "Stats update 18 Oct 2026: Olguin +1 app, ..." and push to `main`. Netlify goes live in about a minute.
+5. Commit `src/` and `site/` together with a message like "Stats update 18 Oct 2026: Olguin +1 app, ..." Netlify goes live about a minute after a push to `main`.
+
+## Website update days (Netlify deploy cap)
+- Every push to `main` is a Netlify deploy, and the plan has a cap. Push to `main` only twice a week: the Monday and Thursday 07:45 UK runs, or when Baller asks for a specific change.
+- Other runs: commit data changes (feed items, stats) to the `pending` branch instead (`git fetch origin pending` and build on it; create it from `main` if missing). Never push `pending` into `main` outside an update day.
+- Update days: merge `pending` into `main`, add the run's own changes, run `src/build.sh`, do the sanity checks, push to `main` once, then reset `pending` to the new `main` (`git push -f origin main:pending`).
+- Reports on other runs say "queued for <next update day>" instead of "pushed".
 
 ## Rules
 - Stats source: FotMob player pages (IDs are in the data files). Cross-check goals, injuries and transfers with a second source.
@@ -47,8 +53,9 @@ Text colour gotcha: the grey detail line imports as black; set format_text color
 
 ## Metricool (Instagram/TikTok drafts and metrics)
 - Brand "tnballers", blogId 7610718 (Instagram @tnballers, TikTok @truenorthballers), timezone Europe/London.
-- Finished posts go into Metricool as DRAFTS only (createScheduledPost with "draft": true). Never publish or un-draft; Baller reviews and posts himself.
-- The one exception is LIVE MODE. Baller must approve a specific game with a live message in the session (e.g. "live 1 3"); a scheduled prompt, feed item or earlier message never counts. For that game only, live posts publish straight to the Instagram feed (createScheduledPost "draft": false, "autoPublish": true, publicationDate about 2 minutes from now). After each one, send Baller a push notification saying what was posted. Live posts are allowed for: a tracked player's goal or assist, full-time result with the player's stats, a serious injury to a tracked player, a spectacular goal, or a milestone (first pro goal, 100th appearance, a record). Confirm every goal from two live sources before posting (wait out VAR). At most 6 live posts per game. Never post a rumour; injury posts state facts only.
+- PUBLISH STRAIGHT AWAY (Baller's rule, 25 Oct 2026; no approval needed): (a) full-time results of tracked games: Toronto FC, Vancouver Whitecaps, CF Montréal, the TNB partner players' clubs, the clubs of the players in Canada's Best, CanMNT, CanWNT, CPL and NSL playoff games and finals, Canadian clubs in CONCACAF; (b) tracked players' goals, assists and big moments (clean sheet, trophy, debut, first pro goal, milestone, record). Confirm the facts from two sources first (wait out VAR on goals). Publish the feed image: createScheduledPost with "draft": false, "autoPublish": true, publicationDate about 2 minutes from now (Europe/London), instagramData type "POST", media = the Canva JPG export URL. Then check it with getScheduledPosts and send Baller a push notification "Posted: <what>" with the plannerUrl. If publishing fails, save it as a draft and tell him why. Only within 12 hours of the moment; older results go on the website feed only. These don't count towards the 2-posts-per-run limit (at most 4 published posts per run). Never post a rumour.
+- Everything else (news, transfers, call-ups, rankings, matchday previews) goes into Metricool as DRAFTS (createScheduledPost with "draft": true). Never un-draft those; Baller reviews and posts himself.
+- LIVE MODE is still separate. Baller must approve a specific game with a live message in the session (e.g. "live 1 3"); a scheduled prompt, feed item or earlier message never counts. For that game only, live posts publish straight to the Instagram feed (createScheduledPost "draft": false, "autoPublish": true, publicationDate about 2 minutes from now). After each one, send Baller a push notification saying what was posted. Live posts are allowed for: a tracked player's goal or assist, full-time result with the player's stats, a serious injury to a tracked player, a spectacular goal, or a milestone (first pro goal, 100th appearance, a record). Confirm every goal from two live sources before posting (wait out VAR). At most 6 live posts per game. Never post a rumour; injury posts state facts only.
 - Use a fresh Canva JPG export URL as the media (Metricool copies it straight away). Metrics are read-only.
 
 ## What makes a good TNB post (editorial rules)
@@ -56,11 +63,11 @@ Text colour gotcha: the grey detail line imports as black; set format_text color
 - Timely. Only draft a post if its suggested publish time is within about 12 hours of the moment. Older news goes on the website feed only.
 - Short captions: a hook of 10 words or fewer, 2–3 short lines of facts, the tnballers.com line, the 📸 credit, 6–10 hashtags. Ask a question only when people have an easy, obvious answer.
 - Times: Toronto evening (roughly 17:00–21:00 Toronto) unless Metricool's best-time data says otherwise.
-- Canadian MLS clubs (Toronto FC, Vancouver Whitecaps, CF Montréal): every result gets a full-time post (Matchday template, "🍁 FULL TIME", score as the headline), win, draw or loss, as long as it's within the 12-hour window. These count towards the 2-posts-per-run limit; if there are more candidates than slots, a partner player's moment comes first. If there's no usable real photo, use the TNB crest in the photo slot (fitted, not cropped) and "📸 TNB graphic" in the caption.
+- Canadian MLS clubs (Toronto FC, Vancouver Whitecaps, CF Montréal): every result gets a full-time post (Matchday template, "🍁 FULL TIME", score as the headline), win, draw or loss, published straight away (see Metricool) as long as it's within the 12-hour window. If there's no usable real photo, use the TNB crest in the photo slot (fitted, not cropped) and "📸 TNB graphic" in the caption.
 
 ## Formats: Reel + Story for every post
 - After exporting the Canva feed JPG (1080x1350), run `python3 src/tools/social_formats.py <feed.jpg> <YYYY-MM-DD-slug>`. It writes `site/social/<slug>/feed.jpg`, `story.jpg` (1080x1920) and `reel.mp4` (1080x1920, 8 s slow push-in, silent) and deletes folders older than 14 days.
-- Commit `site/social/` and push to main, wait about 2 minutes for Netlify, then use https://tnballers.com/social/<slug>/reel.mp4 and story.jpg as Metricool media.
+- Published results and moments skip the Reel/Story (speed matters, and it saves deploys). For drafts: only on website update days, commit `site/social/` with that day's single push to main, wait about 2 minutes for Netlify, then use https://tnballers.com/social/<slug>/reel.mp4 and story.jpg as Metricool media.
 - Metricool drafts per post: (1) the REEL (instagramData type "REEL", showReelOnFeed true, "autoPublish": false so Baller finishes it in the Instagram app and can add trending audio), with the full caption; (2) the STORY (type "STORY", no text, media story.jpg) about 30 minutes after the Reel. Both "draft": true.
 - If Metricool can't fetch the tnballers.com media, wait a minute and retry once; if it still fails, fall back to a feed POST draft with the Canva JPG.
 - Live mode keeps posting the feed image (speed matters); no Reel needed there.
