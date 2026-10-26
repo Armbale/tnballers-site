@@ -2,7 +2,7 @@
    THE NINE: player data. Edit numbers here; cards, pop-ups and the stats table all update.
    comps: one row per competition in 2026. Use null when a number isn't published.
    ══════════════════════════════════════════ */
-var STATS_ASOF = '23 Oct 2026';
+var STATS_ASOF = '26 Oct 2026';
 var ninePlayers = [
   {
     name:'Marsel Bibishkov', first:'Marsel', last:'Bibishkov', src:[{t:'FotMob',u:'https://www.fotmob.com/players/1417560/marsel-bibishkov'},{t:'Wikipedia (Langley United loan)',u:'https://en.wikipedia.org/wiki/Marsel_Bibishkov'}], pos:'Striker / Left Wing', short:'ST', jersey:'19',
@@ -97,7 +97,7 @@ var ninePlayers = [
     club:'Pacific FC', clubCode:'PFC', league:'CPL',
     ig:'https://www.instagram.com/keshavarz___sam', igHandle:'@keshavarz___sam',
     photo:IMG.keshavarz, alt:'Sami Keshavarz in a purple Pacific FC kit',
-    comps:[{c:'CPL', apps:11, starts:6, mins:554, g:0, a:0}],
+    comps:[{c:'CPL', apps:12, starts:6, mins:561, g:0, a:0}],
     stats:[{l:'Stamina',v:85},{l:'Passing',v:82},{l:'Dribbling',v:79},{l:'Vision',v:80},{l:'Tackling',v:77}],
     highlights:[
       '🔥 Full 90s in Pacific’s 4–3 and 5–0 wins (Sep–Oct)',
@@ -110,10 +110,10 @@ var ninePlayers = [
     club:'Pacific FC', clubCode:'PFC', league:'CPL', from:'Calgary, AB',
     ig:'https://www.instagram.com/cgrecotaylorr/', igHandle:'@cgrecotaylorr',
     photo:IMG.greco, alt:'Christian Greco-Taylor in a purple Pacific FC kit',
-    comps:[{c:'CPL', apps:24, starts:18, mins:1733, g:0, a:2}],
+    comps:[{c:'CPL', apps:25, starts:19, mins:1823, g:0, a:2}],
     stats:[{l:'Defending',v:83},{l:'Pace',v:81},{l:'Stamina',v:85},{l:'Passing',v:76},{l:'Tackling',v:82}],
     highlights:[
-      '⭐ 24 CPL appearances, 18 starts and 2 assists in 2026',
+      '⭐ 25 CPL appearances, 19 starts and 2 assists in 2026',
       '🇨🇦 Canada U-20 international',
       '📺 Featured in the CPL Next Gen series'
     ]

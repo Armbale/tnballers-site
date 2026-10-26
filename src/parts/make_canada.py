@@ -65,7 +65,7 @@ def best_section(sfx, view_title):
         </ul>
       </aside>
     </div>
-    <p class="can-note">Club stats for 2026–27 and Canada caps as of 25 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+    <p class="can-note">Club stats for 2026–27 and Canada caps as of 26 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
   </div>
 </section>
 '''
