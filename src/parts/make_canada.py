@@ -22,6 +22,16 @@ SIDE = [
  ('Promise David','Brighton (loan)','Few Premier League minutes so far','TBC'),
 ]
 
+# Official Instagram handles (no @). Only add handles confirmed as the player's own account:
+# the blue verified tick on Instagram, or listed on their Canada Soccer / club profile. Never guess.
+IG = {
+ 'Alphonso Davies':'alphonsodavies', 'Jonathan David':'jodavid', 'Liam Millar':'liammillar11',
+ 'Stephen Eustáquio':'stepheustaquio', 'Tajon Buchanan':'tajonbuchanan', 'Cyle Larin':'cylelarin',
+ 'Nathan Saliba':'nathansaliba_', 'Alistair Johnston':'alistairjohnston', 'Moïse Bombito':'m.bombito_',
+ 'Derek Cornelius':'dcornelius13', 'Promise David':'txby.72',
+ 'Thomas Müller':'esmuellert', 'Alexis Sánchez':'alexis_officia1',
+}
+
 def best_section(sfx, view_title):
     cards = ''
     for i, (n, pos, club, comp, apps, g, a, caps, ig, no, hl, fm) in enumerate(BEST):

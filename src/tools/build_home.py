@@ -149,7 +149,8 @@ def canada_js_data():
     out = []
     for n, pos, club, comp, apps, g, a, caps, intlg, no, hl, fm in mc.BEST:
         out.append({'name':n, 'pos':pos, 'club':club, 'apps':apps, 'g':g, 'a':a,
-                    'caps':caps, 'intl':intlg, 'no':no, 'form':hl.replace('–','-'), 'fm':fm})
+                    'caps':caps, 'intl':intlg, 'no':no, 'form':hl.replace('–','-'), 'fm':fm,
+                    'ig':getattr(mc,'IG',{}).get(n,'')})
     return json.dumps(out, ensure_ascii=False)
 
 def sidelined_rows():
@@ -165,7 +166,8 @@ def sidelined_js_data():
     out = []
     for n, club, reason, back in mc.SIDE:
         out.append({'name':n, 'club':club, 'reason':reason, 'date':STATS_ASOF, 'back':back,
-                    'note':f'{reason}. Expected back: {back}.'})
+                    'note':f'{reason}. Expected back: {back}.',
+                    'ig':getattr(mc,'IG',{}).get(n,'')})
     return json.dumps(out, ensure_ascii=False)
 
 # Legends teaser (NOW)
@@ -189,7 +191,8 @@ def legend_now_cards():
             f'<h3>{esc(n)}</h3>'
             f'<p class="club">{esc(c)} · {esc(y)}</p>'
             f'<p class="desc">{esc(d)}</p>'
-            f'</article>')
+            + (f'<a class="leg-ig" href="https://www.instagram.com/{esc(getattr(mc,"IG",{})[n])}/" target="_blank" rel="noopener noreferrer">Follow @{esc(getattr(mc,"IG",{})[n])}</a>' if getattr(mc,'IG',{}).get(n) else '')
+            + f'</article>')
     return '\n      '.join(cards)
 
 def legend_full():
@@ -285,7 +288,7 @@ tpl = ticker_block_re.sub(
 
 # 6. Replace Canada's Best scoreboard rows (after the scoreboard-head div, before the closing scoreboard </div>)
 scoreboard_re = re.compile(
-    r'(<div class="scoreboard" role="table" aria-label="Canada\'s in-form players, ranked" id="canScoreboard">\s*<div class="scoreboard-head" role="row">\s*<div>#</div><div>Pos</div><div>Player / Club</div><div>Form</div>\s*<div class="r-stat">Apps</div><div class="r-stat">G</div><div class="r-stat">A</div>\s*</div>)(.*?)(</div>)',
+    r'(<div class="scoreboard" role="table" aria-label="Canada\'s in-form players, ranked" id="canScoreboard">\s*<div class="scoreboard-head" role="row">\s*<div>#</div><div>Pos</div><div>Player / Club</div><div>Form</div>\s*<div class="r-stat">Apps</div><div class="r-stat">G</div><div class="r-stat">A</div>\s*</div>)(.*?)(</div>\s*(?=<aside class="sidelined"))',
     re.DOTALL)
 tpl = scoreboard_re.sub(
     lambda m: m.group(1) + '\n        ' + canada_rows() + '\n      ' + m.group(3),

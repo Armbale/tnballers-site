@@ -6,11 +6,11 @@
 <title>True North Ballers · Canadian football, unfiltered.</title>
 <meta name="theme-color" content="#0b0b0b">
 <link rel="icon" href="/players/badge.png" type="image/png">
-<meta name="description" content="True North Ballers: independent Canadian soccer platform. Partner-player tracker, Canada's Best right now, videography and scouting in Brampton.">
+<meta name="description" content="True North Ballers: independent Canadian soccer platform. Partner-player tracker, Canada's Best right now, videography and scouting in Canada.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="True North Ballers">
 <meta property="og:title" content="True North Ballers · Canadian football, unfiltered.">
-<meta property="og:description" content="The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Brampton.">
+<meta property="og:description" content="The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Canada.">
 <meta property="og:url" content="https://tnballers.com/">
 <meta property="og:image" content="https://tnballers.com/players/badge.png">
 <meta property="og:image:alt" content="True North Ballers crest">
@@ -847,7 +847,7 @@ html.nine-lock{overflow:hidden}
 :root[data-theme="light"] .collab .collab-cta:hover{background:var(--c-red);color:#fff}
 
 /* Modal, scoreboard content stays white in light mode */
-:root[data-theme="light"] .nine-dialog *,
+:root[data-theme="light"] .nine-dialog *:not(.fut-card *):not(.fut-card),
 :root[data-theme="light"] .pm-dialog *{color:inherit}
 :root[data-theme="light"] .nine-mname,
 :root[data-theme="light"] .nine-msub,
@@ -910,6 +910,31 @@ html.nine-lock{overflow:hidden}
 :root[data-theme="light"] .scout-step{color:#5a5a5a}
 :root[data-theme="light"] .scout-step.active{background:#0b0b0b;color:#fff}
 :root[data-theme="light"] .form-check label{color:#2a2a2a}
+
+/* --- Light theme v2: scoreboard, sidelined and pop-ups go light (no black boxes) --- */
+:root[data-theme="light"] .scoreboard,:root[data-theme="light"] .score-row{background:#fff;border-color:rgba(0,0,0,.1);color:#0b0b0b}
+:root[data-theme="light"] .scoreboard-head{background:#F0ECE2;color:#5a5a5a}
+:root[data-theme="light"] .score-row .n,:root[data-theme="light"] .score-row .rank,:root[data-theme="light"] .score-row .n-stat{color:#0b0b0b}
+:root[data-theme="light"] .score-row .c,:root[data-theme="light"] .score-row .hl,:root[data-theme="light"] .score-row .n-stat .u{color:#5a5a5a}
+:root[data-theme="light"] .score-row .pos{color:#8A6B00}
+:root[data-theme="light"] .score-row:hover,:root[data-theme="light"] .score-row:focus-within,:root[data-theme="light"] .score-row.is-hover{background:linear-gradient(90deg,rgba(204,0,0,.08),#fff 70%);color:#0b0b0b}
+:root[data-theme="light"] .sidelined{background:#fff;color:#0b0b0b;border-color:rgba(0,0,0,.1)}
+:root[data-theme="light"] .sidelined h3{background:#F0ECE2;color:#0b0b0b;border-color:rgba(0,0,0,.1)}
+:root[data-theme="light"] .sidelined .pname{color:#0b0b0b}
+:root[data-theme="light"] .sidelined .pclub,:root[data-theme="light"] .sidelined .why{color:#5a5a5a}
+:root[data-theme="light"] .nine-dialog,:root[data-theme="light"] .pm-dialog{background:#fff;color:#0b0b0b;border-color:rgba(0,0,0,.12)}
+:root[data-theme="light"] .nine-mtop{background:#fff;color:#0b0b0b}
+:root[data-theme="light"] .nine-mname,:root[data-theme="light"] .nine-tile b,:root[data-theme="light"] .nine-comps table,:root[data-theme="light"] .nine-comps th,:root[data-theme="light"] .nine-comps td,:root[data-theme="light"] .nine-hl li,:root[data-theme="light"] .nine-bar-row,:root[data-theme="light"] .nine-bar-row b{color:#0b0b0b}
+:root[data-theme="light"] .nine-msub,:root[data-theme="light"] .nine-mcount,:root[data-theme="light"] .nine-tile span,:root[data-theme="light"] .nine-src,:root[data-theme="light"] .nine-asof,:root[data-theme="light"] .nine-bar-row span{color:#5a5a5a}
+:root[data-theme="light"] .nine-tile,:root[data-theme="light"] .nine-hl li,:root[data-theme="light"] .pm-grid > div{background:#F4F0E8;color:#0b0b0b;border-color:rgba(0,0,0,.08)}
+:root[data-theme="light"] .nine-chip{background:#F4F0E8;color:#0b0b0b;border-color:rgba(0,0,0,.12)}
+:root[data-theme="light"] .nine-ig-btn{background:#0b0b0b;color:#fff}
+:root[data-theme="light"] .nine-ig-btn:hover{background:var(--c-red);color:#fff}
+:root[data-theme="light"] .pm-form{color:#2a2a2a}
+:root[data-theme="light"] .pm-note{color:#5a5a5a}
+:root[data-theme="light"] .pm-pic{background:#F4F0E8}
+.leg-ig{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--c-gold);border-bottom:1px solid currentColor}
+.leg-ig:hover{color:var(--c-red)}
 
 /* --- SVC link cards (whole card is a link) --- */
 .svc-link{display:flex;flex-direction:column;cursor:pointer;transition:transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, box-shadow .22s ease}
@@ -1008,7 +1033,7 @@ html.nine-lock{overflow:hidden}
   <div class="wrap topbar-row">
     <a class="brand" href="#home" aria-label="True North Ballers home">
       <img class="logo" src="/players/badge.png" alt="TNB crest">
-      <span class="word">True North Ballers<small>Independent · Brampton</small></span>
+      <span class="word">True North Ballers</span>
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="#tracker"><span class="live-dot" aria-hidden="true"></span>Live</a>
@@ -1057,14 +1082,12 @@ html.nine-lock{overflow:hidden}
     <div class="hero-text">
       <div class="hero-meta" data-h="meta">
         <span class="chip live">LIVE</span>
-        <span>Issue 02</span><span class="dot">·</span>
-        <span>Saturday 25 Oct 2026</span><span class="dot">·</span>
-        <span>Brampton, Ontario</span>
+        <span>Canada</span>
       </div>
 
       <h1 class="hero-headline" data-h="headline">Canadian football, <em>unfiltered.</em></h1>
 
-      <p class="hero-sub" data-h="sub">The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Brampton.</p>
+      <p class="hero-sub" data-h="sub">The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Canada.</p>
 
       <div class="hero-cta" data-h="cta">
         <a class="btn" href="#players">Meet the players <span class="arrow">→</span></a>
@@ -1097,7 +1120,6 @@ html.nine-lock{overflow:hidden}
       <div class="rot-caption" id="heroRotCap" aria-live="polite"><span class="pip" aria-hidden="true"></span><b id="heroRotName">Bibishkov</b><span id="heroRotClub">Vancouver FC</span></div>
     </div>
 
-    <span class="hero-issue">Issue 02 · 25 Oct 2026</span>
   </div>
 </section>
 
@@ -1227,40 +1249,6 @@ html.nine-lock{overflow:hidden}
         <button type="button" class="score-row" role="row" data-can-i="4" data-form="Vice-captain. Back from a shoulder knock; scored in the 2-1 win at Lincoln."><span class="rank">5</span><span class="pos">CM</span><div class="name"><span class="n">Stephen Eustáquio</span><span class="c">Swansea City</span></div><span class="hl">Vice-captain</span><span class="n-stat">8<span class="u">GP</span></span><span class="n-stat">1<span class="u">G</span></span><span class="n-stat">1<span class="u">A</span></span></button>
         <button type="button" class="score-row" role="row" data-can-i="5" data-form="Back from his hamstring injury: started and played 87 minutes of the 2-1 derby win over Valencia (24 Oct)."><span class="rank">6</span><span class="pos">WG</span><div class="name"><span class="n">Tajon Buchanan</span><span class="c">Villarreal</span></div><span class="hl">Back from his hamstring injury: started and played 87 minu…</span><span class="n-stat">8<span class="u">GP</span></span><span class="n-stat">0<span class="u">G</span></span><span class="n-stat">0<span class="u">A</span></span></button>
       </div>
-          <span class="hl">Brace vs QPR (17 Oct)</span>
-          <span class="n-stat">10<span class="u">GP</span></span><span class="n-stat">5<span class="u">G</span></span><span class="n-stat">4<span class="u">A</span></span>
-        </button>
-        <button type="button" class="score-row" role="row" data-can-i="1" data-form="Captain. Scored vs Arsenal in the Champions League (21 Oct, 2 to 2): his second UCL goal this season.">
-          <span class="rank">2</span><span class="pos">LB</span>
-          <div class="name"><span class="n">Alphonso Davies</span><span class="c">Bayern Munich · Captain</span></div>
-          <span class="hl">UCL goal vs Arsenal (21 Oct)</span>
-          <span class="n-stat">10<span class="u">GP</span></span><span class="n-stat">2<span class="u">G</span></span><span class="n-stat">2<span class="u">A</span></span>
-        </button>
-        <button type="button" class="score-row" role="row" data-can-i="2" data-form="3 goals and 2 assists in five LaLiga games. Canada's all-time top scorer (43).">
-          <span class="rank">3</span><span class="pos">ST</span>
-          <div class="name"><span class="n">Jonathan David</span><span class="c">Atlético Madrid (loan, Juventus)</span></div>
-          <span class="hl">Canada's all-time top scorer, 43</span>
-          <span class="n-stat">5<span class="u">GP</span></span><span class="n-stat">3<span class="u">G</span></span><span class="n-stat">2<span class="u">A</span></span>
-        </button>
-        <button type="button" class="score-row" role="row" data-can-i="3" data-form="Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct).">
-          <span class="rank">4</span><span class="pos">ST</span>
-          <div class="name"><span class="n">Tani Oluwaseyi</span><span class="c">Villarreal</span></div>
-          <span class="hl">Two UCL goals in a week, at Napoli and Anfield</span>
-          <span class="n-stat">5<span class="u">GP</span></span><span class="n-stat">0<span class="u">G</span></span><span class="n-stat">0<span class="u">A</span></span>
-        </button>
-        <button type="button" class="score-row" role="row" data-can-i="4" data-form="Vice-captain. Back from a shoulder knock; scored in the 2 to 1 win at Lincoln.">
-          <span class="rank">5</span><span class="pos">CM</span>
-          <div class="name"><span class="n">Stephen Eustáquio</span><span class="c">Swansea City · Vice-captain</span></div>
-          <span class="hl">Scored in the 2 to 1 win at Lincoln</span>
-          <span class="n-stat">8<span class="u">GP</span></span><span class="n-stat">1<span class="u">G</span></span><span class="n-stat">1<span class="u">A</span></span>
-        </button>
-        <button type="button" class="score-row" role="row" data-can-i="5" data-form="Back from his hamstring injury: started and played 87 minutes of the 2 to 1 derby win over Valencia (24 Oct).">
-          <span class="rank">6</span><span class="pos">WG</span>
-          <div class="name"><span class="n">Tajon Buchanan</span><span class="c">Villarreal</span></div>
-          <span class="hl">87 mins of the 2 to 1 derby win over Valencia</span>
-          <span class="n-stat">8<span class="u">GP</span></span><span class="n-stat">0<span class="u">G</span></span><span class="n-stat">0<span class="u">A</span></span>
-        </button>
-      </div>
 
       <aside class="sidelined" aria-label="Sidelined players">
         <h3>On the sidelines</h3>
@@ -1380,8 +1368,8 @@ html.nine-lock{overflow:hidden}
     </div>
 
     <div class="leg-grid reveal">
-      <article class="leg-card" tabindex="0"><div class="leg-pic"><img src="/img/people/muller.jpg" alt="Thomas Müller" loading="lazy"><span class="leg-credit">Photo: Werner100359, <a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0 / Wikimedia</a></span></div><span class="flag" aria-hidden="true">🇩🇪</span><span class="tag">Playing here now</span><h3>Thomas Müller</h3><p class="club">Vancouver Whitecaps · Since Aug 2025</p><p class="desc">2014 World Cup winner. 13 Bundesliga titles with Bayern. Now in Vancouver: 9 goals and 6 assists in MLS this season (currently out with a hamstring injury).</p></article>
-      <article class="leg-card" tabindex="0"><div class="leg-pic"><img src="/img/people/sanchez.jpg" alt="Alexis Sánchez" loading="lazy"><span class="leg-credit">Photo: Кирилл Венедиктов, <a href="https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 / Wikimedia</a></span></div><span class="flag" aria-hidden="true">🇨🇱</span><span class="tag">Playing here now</span><h3>Alexis Sánchez</h3><p class="club">CF Montréal · Since Aug 2026</p><p class="desc">Chile&#39;s all-time top scorer (51) and most-capped player (168). Two Copa Américas, and title winner at Barcelona and Inter.</p></article>
+      <article class="leg-card" tabindex="0"><div class="leg-pic"><img src="/img/people/muller.jpg" alt="Thomas Müller" loading="lazy"><span class="leg-credit">Photo: Werner100359, <a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0 / Wikimedia</a></span></div><span class="flag" aria-hidden="true">🇩🇪</span><span class="tag">Playing here now</span><h3>Thomas Müller</h3><p class="club">Vancouver Whitecaps · Since Aug 2025</p><p class="desc">2014 World Cup winner. 13 Bundesliga titles with Bayern. Now in Vancouver: 9 goals and 6 assists in MLS this season (currently out with a hamstring injury).</p><a class="leg-ig" href="https://www.instagram.com/esmuellert/" target="_blank" rel="noopener noreferrer">Follow @esmuellert</a></article>
+      <article class="leg-card" tabindex="0"><div class="leg-pic"><img src="/img/people/sanchez.jpg" alt="Alexis Sánchez" loading="lazy"><span class="leg-credit">Photo: Кирилл Венедиктов, <a href="https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 / Wikimedia</a></span></div><span class="flag" aria-hidden="true">🇨🇱</span><span class="tag">Playing here now</span><h3>Alexis Sánchez</h3><p class="club">CF Montréal · Since Aug 2026</p><p class="desc">Chile&#39;s all-time top scorer (51) and most-capped player (168). Two Copa Américas, and title winner at Barcelona and Inter.</p><a class="leg-ig" href="https://www.instagram.com/alexis_officia1/" target="_blank" rel="noopener noreferrer">Follow @alexis_officia1</a></article>
     </div>
 
     <div class="leg-foot">
@@ -1400,15 +1388,15 @@ html.nine-lock{overflow:hidden}
     <div class="about-grid">
       <div class="about-copy reveal">
         <span class="eyebrow">08 / About TNB</span>
-        <h2 class="sec-title">Built in <em>Brampton.</em></h2>
-        <p>True North Ballers is independent Canadian soccer media. We're based in Brampton, Ontario, and we build around eight partner players, tracking their matches, telling their stories, and helping the next ones get seen.</p>
+        <h2 class="sec-title">Built in <em>Canada.</em></h2>
+        <p>True North Ballers is independent Canadian soccer media. We're based in Canada, and we build around eight partner players, tracking their matches, telling their stories, and helping the next ones get seen.</p>
         <p>Independent. Not affiliated with Canada Soccer or any club.</p>
       </div>
       <aside class="about-contact reveal">
         <h4>Say hello</h4>
         <p>contact@tnballers.com</p>
         <p><a href="https://instagram.com/tnballers" target="_blank" rel="noopener noreferrer">@tnballers</a> on Instagram. <a href="https://www.tiktok.com/@truenorthballers" target="_blank" rel="noopener noreferrer">@truenorthballers</a> on TikTok.</p>
-        <p>Brampton, Ontario, Canada</p>
+        <p>Canada</p>
         <p style="margin-top:10px;font-size:12px;color:var(--c-muted)"><a href="mailto:contact@tnballers.com?subject=Data%20request">Request or delete my data →</a></p>
       </aside>
     </div>
@@ -1463,7 +1451,7 @@ html.nine-lock{overflow:hidden}
         <img src="/players/badge.png" alt="TNB crest">
         <div>
           <div class="name">True North Ballers</div>
-          <span class="sub">Brampton · Ontario · Canada</span>
+          <span class="sub">Canada</span>
         </div>
       </div>
       <nav class="footer-links" aria-label="Footer">
@@ -1499,8 +1487,8 @@ html.nine-lock{overflow:hidden}
      ============================================================ -->
 <script>
 window.STATS_ASOF = '26 Oct 2026';
-window.canadaBest = [{"name": "Liam Millar", "pos": "Winger", "club": "Birmingham City (loan, Hull City)", "apps": 10, "g": 5, "a": 4, "caps": 47, "intl": 1, "no": "11", "form": "5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1-0 loss at Cardiff (24 Oct).", "fm": "932308/liam-millar"}, {"name": "Alphonso Davies", "pos": "Left Back / Winger", "club": "Bayern Munich", "apps": 10, "g": 2, "a": 2, "caps": 59, "intl": 15, "no": "19", "form": "Captain. Scored vs Arsenal in the Champions League (21 Oct, 2-2): his second UCL goal this season.", "fm": "751202/alphonso-davies"}, {"name": "Jonathan David", "pos": "Striker", "club": "Atlético Madrid (loan, Juventus)", "apps": 5, "g": 3, "a": 2, "caps": 85, "intl": 43, "no": "10", "form": "3 goals and 2 assists in five LaLiga games. Canada's all-time top scorer.", "fm": "939569/jonathan-david"}, {"name": "Tani Oluwaseyi", "pos": "Striker", "club": "Villarreal", "apps": 5, "g": 0, "a": 0, "caps": 31, "intl": 2, "no": "12", "form": "Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct).", "fm": "1338740/tani-oluwaseyi"}, {"name": "Stephen Eustáquio", "pos": "Central Midfield", "club": "Swansea City", "apps": 8, "g": 1, "a": 1, "caps": 63, "intl": 5, "no": "7", "form": "Vice-captain. Back from a shoulder knock; scored in the 2-1 win at Lincoln.", "fm": "816223/stephen-eustaquio"}, {"name": "Tajon Buchanan", "pos": "Winger", "club": "Villarreal", "apps": 8, "g": 0, "a": 0, "caps": 67, "intl": 8, "no": "17", "form": "Back from his hamstring injury: started and played 87 minutes of the 2-1 derby win over Valencia (24 Oct).", "fm": "1026135/tajon-buchanan"}];
-window.sideList = [{"name": "Cyle Larin", "club": "Southampton", "reason": "Muscle injury (17 Oct)", "date": "26 Oct 2026", "back": "TBC", "note": "Muscle injury (17 Oct). Expected back: TBC."}, {"name": "Nathan Saliba", "club": "Villarreal", "reason": "Muscle injury (missed 24 Oct derby)", "date": "26 Oct 2026", "back": "TBC", "note": "Muscle injury (missed 24 Oct derby). Expected back: TBC."}, {"name": "Ismaël Koné", "club": "Sassuolo", "reason": "Broken leg", "date": "26 Oct 2026", "back": "Late Oct", "note": "Broken leg. Expected back: Late Oct."}, {"name": "Alistair Johnston", "club": "Celtic", "reason": "Hamstring: forced off on his return (25 Oct)", "date": "26 Oct 2026", "back": "TBC", "note": "Hamstring: forced off on his return (25 Oct). Expected back: TBC."}, {"name": "Moïse Bombito", "club": "OGC Nice", "reason": "Tibia surgery", "date": "26 Oct 2026", "back": "TBC", "note": "Tibia surgery. Expected back: TBC."}, {"name": "Ali Ahmed", "club": "Norwich City", "reason": "Ligament injury", "date": "26 Oct 2026", "back": "Early Nov", "note": "Ligament injury. Expected back: Early Nov."}, {"name": "Derek Cornelius", "club": "Marseille", "reason": "Hip injury", "date": "26 Oct 2026", "back": "Early Jan", "note": "Hip injury. Expected back: Early Jan."}, {"name": "Promise David", "club": "Brighton (loan)", "reason": "Few Premier League minutes so far", "date": "26 Oct 2026", "back": "TBC", "note": "Few Premier League minutes so far. Expected back: TBC."}];
+window.canadaBest = [{"name": "Liam Millar", "pos": "Winger", "club": "Birmingham City (loan, Hull City)", "apps": 10, "g": 5, "a": 4, "caps": 47, "intl": 1, "no": "11", "form": "5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1-0 loss at Cardiff (24 Oct).", "fm": "932308/liam-millar", "ig": "liammillar11"}, {"name": "Alphonso Davies", "pos": "Left Back / Winger", "club": "Bayern Munich", "apps": 10, "g": 2, "a": 2, "caps": 59, "intl": 15, "no": "19", "form": "Captain. Scored vs Arsenal in the Champions League (21 Oct, 2-2): his second UCL goal this season.", "fm": "751202/alphonso-davies", "ig": "alphonsodavies"}, {"name": "Jonathan David", "pos": "Striker", "club": "Atlético Madrid (loan, Juventus)", "apps": 5, "g": 3, "a": 2, "caps": 85, "intl": 43, "no": "10", "form": "3 goals and 2 assists in five LaLiga games. Canada's all-time top scorer.", "fm": "939569/jonathan-david", "ig": "jodavid"}, {"name": "Tani Oluwaseyi", "pos": "Striker", "club": "Villarreal", "apps": 5, "g": 0, "a": 0, "caps": 31, "intl": 2, "no": "12", "form": "Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct).", "fm": "1338740/tani-oluwaseyi", "ig": ""}, {"name": "Stephen Eustáquio", "pos": "Central Midfield", "club": "Swansea City", "apps": 8, "g": 1, "a": 1, "caps": 63, "intl": 5, "no": "7", "form": "Vice-captain. Back from a shoulder knock; scored in the 2-1 win at Lincoln.", "fm": "816223/stephen-eustaquio", "ig": "stepheustaquio"}, {"name": "Tajon Buchanan", "pos": "Winger", "club": "Villarreal", "apps": 8, "g": 0, "a": 0, "caps": 67, "intl": 8, "no": "17", "form": "Back from his hamstring injury: started and played 87 minutes of the 2-1 derby win over Valencia (24 Oct).", "fm": "1026135/tajon-buchanan", "ig": "tajonbuchanan"}];
+window.sideList = [{"name": "Cyle Larin", "club": "Southampton", "reason": "Muscle injury (17 Oct)", "date": "26 Oct 2026", "back": "TBC", "note": "Muscle injury (17 Oct). Expected back: TBC.", "ig": "cylelarin"}, {"name": "Nathan Saliba", "club": "Villarreal", "reason": "Muscle injury (missed 24 Oct derby)", "date": "26 Oct 2026", "back": "TBC", "note": "Muscle injury (missed 24 Oct derby). Expected back: TBC.", "ig": "nathansaliba_"}, {"name": "Ismaël Koné", "club": "Sassuolo", "reason": "Broken leg", "date": "26 Oct 2026", "back": "Late Oct", "note": "Broken leg. Expected back: Late Oct.", "ig": ""}, {"name": "Alistair Johnston", "club": "Celtic", "reason": "Hamstring: forced off on his return (25 Oct)", "date": "26 Oct 2026", "back": "TBC", "note": "Hamstring: forced off on his return (25 Oct). Expected back: TBC.", "ig": "alistairjohnston"}, {"name": "Moïse Bombito", "club": "OGC Nice", "reason": "Tibia surgery", "date": "26 Oct 2026", "back": "TBC", "note": "Tibia surgery. Expected back: TBC.", "ig": "m.bombito_"}, {"name": "Ali Ahmed", "club": "Norwich City", "reason": "Ligament injury", "date": "26 Oct 2026", "back": "Early Nov", "note": "Ligament injury. Expected back: Early Nov.", "ig": ""}, {"name": "Derek Cornelius", "club": "Marseille", "reason": "Hip injury", "date": "26 Oct 2026", "back": "Early Jan", "note": "Hip injury. Expected back: Early Jan.", "ig": "dcornelius13"}, {"name": "Promise David", "club": "Brighton (loan)", "reason": "Few Premier League minutes so far", "date": "26 Oct 2026", "back": "TBC", "note": "Few Premier League minutes so far. Expected back: TBC.", "ig": "txby.72"}];
 window.feedPosts = [];
 
 window.peoplePhotos = {"Liam Millar": {"f": "/img/people/millar.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Liam_Millar_Canada_v_Qatar_18_June_2026-008.jpg"}, "Alphonso Davies": {"f": "/img/people/davies.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Alphonso_Davies_Canada_v_Qatar_18_June_2026-007_(cropped).jpg"}, "Jonathan David": {"f": "/img/people/j_david.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Jonathan_David_Canada_v_Qatar_18_June_2026-242_(cropped).jpg"}, "Tani Oluwaseyi": {"f": "/img/people/oluwaseyi.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Tani_Oluwaseyi_Canada_v_Qatar_18_June_2026-024.jpg"}, "Stephen Eustáquio": {"f": "/img/people/eustaquio.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Stephen_Eustaquio_Canada_v_Qatar_18_June_2026-164_(cropped).jpg"}, "Tajon Buchanan": {"f": "/img/people/buchanan.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Tajon_Buchanan_Canada_v_Qatar_18_June_2026-094.jpg"}, "Cyle Larin": {"f": "/img/people/larin.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Cyle_Larin_Canada_v_Qatar_18_June_2026-037_(cropped).jpg"}, "Nathan Saliba": {"f": "/img/people/saliba.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Nathan_Saliba_Canada_v_Qatar_18_June_2026-208_(cropped).jpg"}, "Ismaël Koné": {"f": "/img/people/kone.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Isma%C3%ABl_Kone_Canada_v_Qatar_18_June_2026-062_(cropped).jpg"}, "Alistair Johnston": {"f": "/img/people/johnston.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Alistair_Johnston_Canada_v_Qatar_18_June_2026-038_(cropped).jpg"}, "Moïse Bombito": {"f": "/img/people/bombito.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Moise_Bombito_Canada_v_Qatar_18_June_2026_face_crop.jpg"}, "Ali Ahmed": {"f": "/img/people/ahmed.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Ali_Ahmed_Canada_v_Qatar_18_June_2026-163_(cropped).jpg"}, "Derek Cornelius": {"f": "/img/people/cornelius.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Derek_Cornelius_Canada_v_Qatar_18_June_2026-111_(cropped).jpg"}, "Promise David": {"f": "/img/people/p_david.jpg", "a": "Bryan Berlin", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Promise_David_Canada_v_Qatar_18_June_2026-018.jpg"}, "Thomas Müller": {"f": "/img/people/muller.jpg", "a": "Werner100359", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg"}, "Alexis Sánchez": {"f": "/img/people/sanchez.jpg", "a": "Кирилл Венедиктов", "l": "CC BY-SA 3.0", "u": "https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg"}, "Sebastian Giovinco": {"f": "/img/people/giovinco.jpg", "a": "Original: HighlanderICT from Toronto, Cana", "l": "CC BY-SA 2.0", "u": "https://commons.wikimedia.org/wiki/File:Sebastian_Giovinco_2015-05-23_Toronto_FC_(edited).jpg"}, "Didier Drogba": {"f": "/img/people/drogba.jpg", "a": "Y.Leclercq©", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Didier_Drogba_(2019)_(cropped2).jpg"}, "Thierry Henry": {"f": "/img/people/henry.jpg", "a": "Web Summit", "l": "CC BY 2.0", "u": "https://commons.wikimedia.org/wiki/File:Thierry_Henry_(51649035951)_(cropped).jpg"}, "Alessandro Nesta": {"f": "/img/people/nesta.jpg", "a": "Joerudi", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Alessandro_Nesta_as_Miami_FC_Manager.jpg"}, "Lorenzo Insigne": {"f": "/img/people/insigne.jpg", "a": "Presidenza della Repubblica", "l": "Attribution", "u": "https://commons.wikimedia.org/wiki/File:Lorenzo_Insigne_2021.jpg"}};
@@ -2049,7 +2037,7 @@ window.ninePlayers = [
         '<p class="pm-form">'+esc(p.form)+'</p>'+
         '<div class="pm-foot">'+
           '<a href="https://www.fotmob.com/players/'+p.fm+'" target="_blank" rel="noopener noreferrer">FotMob profile ↗</a>'+
-          '<span>Instagram handle: not yet verified for the preview. We only link handles confirmed from the club or the player\'s verified profile.</span>'+
+          (p.ig ? '<a class="pm-ig" href="https://www.instagram.com/'+esc(p.ig)+'/" target="_blank" rel="noopener noreferrer">Follow @'+esc(p.ig)+' on Instagram ↗</a>' : '')+
         '</div>'+
         '<p class="pm-note">Club stats for 2026–27 and Canada caps as of '+window.STATS_ASOF+'. Source: FotMob, cross-checked with club announcements. TNB isn\'t affiliated with these players or Canada Soccer.</p>';
     }
@@ -2066,7 +2054,7 @@ window.ninePlayers = [
         '<h4 class="pm-h">Status</h4>'+
         '<p class="pm-form">'+esc(p.note)+'</p>'+
         '<div class="pm-foot">'+
-          '<span>Instagram handle: not yet verified for the preview. We only link handles confirmed from the club or the player\'s verified profile.</span>'+
+          (p.ig ? '<a class="pm-ig" href="https://www.instagram.com/'+esc(p.ig)+'/" target="_blank" rel="noopener noreferrer">Follow @'+esc(p.ig)+' on Instagram ↗</a>' : '')+
         '</div>'+
         '<p class="pm-note">Status as of '+window.STATS_ASOF+'. Source: FotMob and club announcements. TNB isn\'t affiliated with these players or Canada Soccer.</p>';
     }

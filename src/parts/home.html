@@ -7,11 +7,11 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0b0b0b">
 <link rel="icon" href="/players/badge.png" type="image/png">
-<meta name="description" content="True North Ballers: independent Canadian soccer platform. Partner-player tracker, Canada's Best right now, videography and scouting in Brampton.">
+<meta name="description" content="True North Ballers: independent Canadian soccer platform. Partner-player tracker, Canada's Best right now, videography and scouting in Canada.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="True North Ballers">
 <meta property="og:title" content="True North Ballers · Canadian football, unfiltered.">
-<meta property="og:description" content="The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Brampton.">
+<meta property="og:description" content="The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Canada.">
 <meta property="og:url" content="https://tnballers.com/">
 <meta property="og:image" content="https://tnballers.com/players/badge.png">
 <meta property="og:image:alt" content="True North Ballers crest">
@@ -848,7 +848,7 @@ html.nine-lock{overflow:hidden}
 :root[data-theme="light"] .collab .collab-cta:hover{background:var(--c-red);color:#fff}
 
 /* Modal, scoreboard content stays white in light mode */
-:root[data-theme="light"] .nine-dialog *,
+:root[data-theme="light"] .nine-dialog *:not(.fut-card *):not(.fut-card),
 :root[data-theme="light"] .pm-dialog *{color:inherit}
 :root[data-theme="light"] .nine-mname,
 :root[data-theme="light"] .nine-msub,
@@ -911,6 +911,31 @@ html.nine-lock{overflow:hidden}
 :root[data-theme="light"] .scout-step{color:#5a5a5a}
 :root[data-theme="light"] .scout-step.active{background:#0b0b0b;color:#fff}
 :root[data-theme="light"] .form-check label{color:#2a2a2a}
+
+/* --- Light theme v2: scoreboard, sidelined and pop-ups go light (no black boxes) --- */
+:root[data-theme="light"] .scoreboard,:root[data-theme="light"] .score-row{background:#fff;border-color:rgba(0,0,0,.1);color:#0b0b0b}
+:root[data-theme="light"] .scoreboard-head{background:#F0ECE2;color:#5a5a5a}
+:root[data-theme="light"] .score-row .n,:root[data-theme="light"] .score-row .rank,:root[data-theme="light"] .score-row .n-stat{color:#0b0b0b}
+:root[data-theme="light"] .score-row .c,:root[data-theme="light"] .score-row .hl,:root[data-theme="light"] .score-row .n-stat .u{color:#5a5a5a}
+:root[data-theme="light"] .score-row .pos{color:#8A6B00}
+:root[data-theme="light"] .score-row:hover,:root[data-theme="light"] .score-row:focus-within,:root[data-theme="light"] .score-row.is-hover{background:linear-gradient(90deg,rgba(204,0,0,.08),#fff 70%);color:#0b0b0b}
+:root[data-theme="light"] .sidelined{background:#fff;color:#0b0b0b;border-color:rgba(0,0,0,.1)}
+:root[data-theme="light"] .sidelined h3{background:#F0ECE2;color:#0b0b0b;border-color:rgba(0,0,0,.1)}
+:root[data-theme="light"] .sidelined .pname{color:#0b0b0b}
+:root[data-theme="light"] .sidelined .pclub,:root[data-theme="light"] .sidelined .why{color:#5a5a5a}
+:root[data-theme="light"] .nine-dialog,:root[data-theme="light"] .pm-dialog{background:#fff;color:#0b0b0b;border-color:rgba(0,0,0,.12)}
+:root[data-theme="light"] .nine-mtop{background:#fff;color:#0b0b0b}
+:root[data-theme="light"] .nine-mname,:root[data-theme="light"] .nine-tile b,:root[data-theme="light"] .nine-comps table,:root[data-theme="light"] .nine-comps th,:root[data-theme="light"] .nine-comps td,:root[data-theme="light"] .nine-hl li,:root[data-theme="light"] .nine-bar-row,:root[data-theme="light"] .nine-bar-row b{color:#0b0b0b}
+:root[data-theme="light"] .nine-msub,:root[data-theme="light"] .nine-mcount,:root[data-theme="light"] .nine-tile span,:root[data-theme="light"] .nine-src,:root[data-theme="light"] .nine-asof,:root[data-theme="light"] .nine-bar-row span{color:#5a5a5a}
+:root[data-theme="light"] .nine-tile,:root[data-theme="light"] .nine-hl li,:root[data-theme="light"] .pm-grid > div{background:#F4F0E8;color:#0b0b0b;border-color:rgba(0,0,0,.08)}
+:root[data-theme="light"] .nine-chip{background:#F4F0E8;color:#0b0b0b;border-color:rgba(0,0,0,.12)}
+:root[data-theme="light"] .nine-ig-btn{background:#0b0b0b;color:#fff}
+:root[data-theme="light"] .nine-ig-btn:hover{background:var(--c-red);color:#fff}
+:root[data-theme="light"] .pm-form{color:#2a2a2a}
+:root[data-theme="light"] .pm-note{color:#5a5a5a}
+:root[data-theme="light"] .pm-pic{background:#F4F0E8}
+.leg-ig{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--c-gold);border-bottom:1px solid currentColor}
+.leg-ig:hover{color:var(--c-red)}
 
 /* --- SVC link cards (whole card is a link) --- */
 .svc-link{display:flex;flex-direction:column;cursor:pointer;transition:transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, box-shadow .22s ease}
@@ -1009,7 +1034,7 @@ html.nine-lock{overflow:hidden}
   <div class="wrap topbar-row">
     <a class="brand" href="#home" aria-label="True North Ballers home">
       <img class="logo" src="/players/badge.png" alt="TNB crest">
-      <span class="word">True North Ballers<small>Independent · Brampton</small></span>
+      <span class="word">True North Ballers</span>
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="#tracker"><span class="live-dot" aria-hidden="true"></span>Live</a>
@@ -1058,14 +1083,12 @@ html.nine-lock{overflow:hidden}
     <div class="hero-text">
       <div class="hero-meta" data-h="meta">
         <span class="chip live">LIVE</span>
-        <span>Issue 02</span><span class="dot">·</span>
-        <span>Saturday 25 Oct 2026</span><span class="dot">·</span>
-        <span>Brampton, Ontario</span>
+        <span>Canada</span>
       </div>
 
       <h1 class="hero-headline" data-h="headline">Canadian football, <em>unfiltered.</em></h1>
 
-      <p class="hero-sub" data-h="sub">The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Brampton.</p>
+      <p class="hero-sub" data-h="sub">The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Canada.</p>
 
       <div class="hero-cta" data-h="cta">
         <a class="btn" href="#players">Meet the players <span class="arrow">→</span></a>
@@ -1098,7 +1121,6 @@ html.nine-lock{overflow:hidden}
       <div class="rot-caption" id="heroRotCap" aria-live="polite"><span class="pip" aria-hidden="true"></span><b id="heroRotName">Bibishkov</b><span id="heroRotClub">Vancouver FC</span></div>
     </div>
 
-    <span class="hero-issue">Issue 02 · 25 Oct 2026</span>
   </div>
 </section>
 
@@ -1418,15 +1440,15 @@ html.nine-lock{overflow:hidden}
     <div class="about-grid">
       <div class="about-copy reveal">
         <span class="eyebrow">08 / About TNB</span>
-        <h2 class="sec-title">Built in <em>Brampton.</em></h2>
-        <p>True North Ballers is independent Canadian soccer media. We're based in Brampton, Ontario, and we build around eight partner players, tracking their matches, telling their stories, and helping the next ones get seen.</p>
+        <h2 class="sec-title">Built in <em>Canada.</em></h2>
+        <p>True North Ballers is independent Canadian soccer media. We're based in Canada, and we build around eight partner players, tracking their matches, telling their stories, and helping the next ones get seen.</p>
         <p>Independent. Not affiliated with Canada Soccer or any club.</p>
       </div>
       <aside class="about-contact reveal">
         <h4>Say hello</h4>
         <p>contact@tnballers.com</p>
         <p><a href="https://instagram.com/tnballers" target="_blank" rel="noopener noreferrer">@tnballers</a> on Instagram. <a href="https://www.tiktok.com/@truenorthballers" target="_blank" rel="noopener noreferrer">@truenorthballers</a> on TikTok.</p>
-        <p>Brampton, Ontario, Canada</p>
+        <p>Canada</p>
         <p style="margin-top:10px;font-size:12px;color:var(--c-muted)"><a href="mailto:contact@tnballers.com?subject=Data%20request">Request or delete my data →</a></p>
       </aside>
     </div>
@@ -1516,7 +1538,7 @@ html.nine-lock{overflow:hidden}
         <img src="/players/badge.png" alt="TNB crest">
         <div>
           <div class="name">True North Ballers</div>
-          <span class="sub">Brampton · Ontario · Canada</span>
+          <span class="sub">Canada</span>
         </div>
       </div>
       <nav class="footer-links" aria-label="Footer">
@@ -2048,7 +2070,7 @@ window.ninePlayers = [
         '<p class="pm-form">'+esc(p.form)+'</p>'+
         '<div class="pm-foot">'+
           '<a href="https://www.fotmob.com/players/'+p.fm+'" target="_blank" rel="noopener noreferrer">FotMob profile ↗</a>'+
-          '<span>Instagram handle: not yet verified for the preview. We only link handles confirmed from the club or the player\'s verified profile.</span>'+
+          (p.ig ? '<a class="pm-ig" href="https://www.instagram.com/'+esc(p.ig)+'/" target="_blank" rel="noopener noreferrer">Follow @'+esc(p.ig)+' on Instagram ↗</a>' : '')+
         '</div>'+
         '<p class="pm-note">Club stats for 2026–27 and Canada caps as of '+window.STATS_ASOF+'. Source: FotMob, cross-checked with club announcements. TNB isn\'t affiliated with these players or Canada Soccer.</p>';
     }
@@ -2065,7 +2087,7 @@ window.ninePlayers = [
         '<h4 class="pm-h">Status</h4>'+
         '<p class="pm-form">'+esc(p.note)+'</p>'+
         '<div class="pm-foot">'+
-          '<span>Instagram handle: not yet verified for the preview. We only link handles confirmed from the club or the player\'s verified profile.</span>'+
+          (p.ig ? '<a class="pm-ig" href="https://www.instagram.com/'+esc(p.ig)+'/" target="_blank" rel="noopener noreferrer">Follow @'+esc(p.ig)+' on Instagram ↗</a>' : '')+
         '</div>'+
         '<p class="pm-note">Status as of '+window.STATS_ASOF+'. Source: FotMob and club announcements. TNB isn\'t affiliated with these players or Canada Soccer.</p>';
     }

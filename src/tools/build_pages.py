@@ -11,7 +11,7 @@ STATS_ASOF = '26 Oct 2026'
 EFFECTIVE  = '26 Oct 2026'
 
 PAGES = {
-    'about':        ('About', 'True North Ballers: an independent Canadian soccer platform built in Brampton.'),
+    'about':        ('About', 'True North Ballers: an independent Canadian soccer platform built in Canada.'),
     'scouted':      ('Get Scouted', 'How scouting works at TNB: upload a clip, we watch it, standouts may be shared with CPL and League1 coaches and scouts in our network. Free for players.'),
     'submit':       ('Submit your footage', 'Upload a reel or paste a link. Up to 8 MB on direct upload; longer videos go in as a link.'),
     'book':         ('Book a shoot', 'TNB videography: highlight reels, matchday coverage, training sessions, player profiles and campaigns.'),
@@ -25,7 +25,7 @@ NAV = '''<header class="topbar">
   <div class="wrap topbar-row">
     <a class="brand" href="/" aria-label="True North Ballers home">
       <img class="logo" src="/players/badge.png" alt="TNB crest">
-      <span class="word">True North Ballers<small>Independent · Brampton</small></span>
+      <span class="word">True North Ballers</span>
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="/#tracker"><span class="live-dot" aria-hidden="true"></span>Live</a>
@@ -71,7 +71,7 @@ FOOTER = f'''<footer class="footer">
         <img src="/players/badge.png" alt="TNB crest">
         <div>
           <div class="name">True North Ballers</div>
-          <span class="sub">Brampton · Ontario · Canada</span>
+          <span class="sub">Canada</span>
         </div>
       </div>
       <nav class="footer-links" aria-label="Footer">
@@ -268,7 +268,7 @@ CONTENT = {
       <option value="">Choose</option>
       <option>Goalkeeper</option><option>Centre-back</option><option>Full-back / Wing-back</option><option>Defensive midfield</option><option>Central midfield</option><option>Attacking midfield</option><option>Winger</option><option>Striker</option>
     </select></div>
-    <div class="form-group"><label for="club">Current club</label><input type="text" id="club" name="club" placeholder="e.g. Brampton YSC" autocomplete="organization"></div>
+    <div class="form-group"><label for="club">Current club</label><input type="text" id="club" name="club" placeholder="e.g. your club name" autocomplete="organization"></div>
     <div class="form-group full">
       <label>Age group *</label>
       <div class="checks" role="radiogroup">
@@ -371,7 +371,7 @@ CONTENT = {
 
     'about': '''
 <p class="eyebrow">About TNB</p>
-<h1>Independent. Built in Brampton.</h1>
+<h1>Independent. Built in Canada.</h1>
 <p>True North Ballers is an independent Canadian soccer platform. We cover eight partner players day by day, track Canada's best in Europe and the MLS, and film what Canadian clubs and families need: match tapes, highlight reels, and short videos that make a scout stop scrolling.</p>
 <h2>What we do</h2>
 <ul>
@@ -387,14 +387,14 @@ CONTENT = {
   <li>Rumours. See <a href="/terms/">Terms</a>: TNB posts facts only.</li>
 </ul>
 <h2>Contact</h2>
-<p><a href="mailto:contact@tnballers.com">contact@tnballers.com</a>. Based in Brampton, Ontario, Canada.</p>
+<p><a href="mailto:contact@tnballers.com">contact@tnballers.com</a>. Based in Canada.</p>
 <p class="asof">Last updated: {EFFECTIVE}.</p>
 ''',
 
     'privacy': '''
 <p class="eyebrow">Legal</p>
 <h1>Privacy policy.</h1>
-<p>True North Ballers (TNB) is a Canadian independent publication based in Brampton, Ontario. We follow PIPEDA (the Personal Information Protection and Electronic Documents Act).</p>
+<p>True North Ballers (TNB) is a Canadian independent publication based in Canada. We follow PIPEDA (the Personal Information Protection and Electronic Documents Act).</p>
 <h2>What we collect</h2>
 <ul>
   <li><b>Only what you give us.</b> On the booking form and the "Get Scouted" form, we collect your name, email, and whatever you type in the message / about / position fields. If you upload footage, we hold the file. If you paste a footage link, we hold the link.</li>
