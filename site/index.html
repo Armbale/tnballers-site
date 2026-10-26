@@ -936,6 +936,9 @@ html.nine-lock{overflow:hidden}
 .leg-ig{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--c-gold);border-bottom:1px solid currentColor}
 .leg-ig:hover{color:var(--c-red)}
 
+.amb-photo{position:absolute;top:28px;right:28px;width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--c-gold);box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .25s ease}
+.amb-card:hover .amb-photo{transform:scale(1.05) rotate(-2deg)}
+@media (max-width:600px){.amb-photo{width:80px;height:80px;top:20px;right:20px}}
 /* --- SVC link cards (whole card is a link) --- */
 .svc-link{display:flex;flex-direction:column;cursor:pointer;transition:transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, box-shadow .22s ease}
 .svc-link:hover,.svc-link:focus-visible{transform:translateY(-4px);border-color:var(--c-red);box-shadow:0 14px 30px rgba(0,0,0,.45)}
@@ -1175,6 +1178,7 @@ html.nine-lock{overflow:hidden}
 
     <div class="sponsors-grid reveal">
       <article class="amb-card">
+        <img class="amb-photo" src="/img/people/shobhit-banwait.jpg" alt="Shobhit Banwait" width="150" height="150" loading="lazy">
         <span class="amb-pill">Lead Ambassador</span>
         <h3 class="amb-name">Shobhit<br>Banwait</h3>
         <div class="amb-reach"><b>350K+</b><span>Combined social reach</span></div>
@@ -1192,6 +1196,7 @@ html.nine-lock{overflow:hidden}
       </article>
 
       <article class="amb-card">
+        <img class="amb-photo" src="/img/people/trixafa.jpg" alt="Trixafa" width="150" height="150" loading="lazy">
         <span class="amb-pill">Lead Ambassador</span>
         <h3 class="amb-name">Trixafa</h3>
         <div class="amb-reach"><b>110K+</b><span>Combined social reach</span></div>
@@ -1598,7 +1603,7 @@ window.ninePlayers = [
     name:'Christian Greco-Taylor', first:'Christian', last:'Greco-Taylor', src:[{t:'FotMob',u:'https://www.fotmob.com/players/1500408/christian-greco-taylor'}], pos:'Left Back', short:'LB', jersey:'15',
     club:'Pacific FC', clubCode:'PFC', league:'CPL', from:'Calgary, AB',
     ig:'https://www.instagram.com/cgrecotaylorr/', igHandle:'@cgrecotaylorr',
-    photo:'/players/greco.png', alt:'Christian Greco-Taylor in a purple Pacific FC kit',
+    photo:'/players/greco-taylor.png', alt:'Christian Greco-Taylor in a purple Pacific FC kit',
     comps:[{c:'CPL', apps:25, starts:19, mins:1823, g:0, a:2}],
     stats:[{l:'Defending',v:83},{l:'Pace',v:81},{l:'Stamina',v:85},{l:'Passing',v:76},{l:'Tackling',v:82}],
     highlights:[

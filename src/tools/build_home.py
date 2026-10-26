@@ -53,7 +53,8 @@ nine_array = m.group(1)
 # Expand IMG.<key> placeholders used in the live site (they point to /players/<key>.png)
 # But the preview inlines paths as strings. The current nine_data.js uses `IMG.<key>` tokens.
 # Replace IMG.<key> → "/players/<key>.png".
-nine_array = re.sub(r"IMG\.([a-z\-]+)", lambda m: f"'/players/{m.group(1)}.png'", nine_array)
+_IMG_FILE = {'greco': 'greco-taylor'}  # nine_data key -> file name in site/players/
+nine_array = re.sub(r"IMG\.([a-z\-]+)", lambda m: f"'/players/{_IMG_FILE.get(m.group(1), m.group(1))}.png'", nine_array)
 
 # Load feed.json
 feed_all = json.loads((PARTS / 'feed.json').read_text(encoding='utf-8'))
