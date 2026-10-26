@@ -24,7 +24,7 @@ Live site: https://tnballers.com (Netlify project "tnballers", publishes the `si
 
 ## Updating stats
 1. Edit only the data in `src/parts/nine_data.js` and/or `src/parts/make_canada.py`.
-2. Update `STATS_ASOF` (and the as-of text in `nine_table.html` / `make_canada.py`) to today's date, e.g. "18 Oct 2026".
+2. Update `STATS_ASOF` in `nine_data.js` and the "caps as of" date in the `can-note` in `make_canada.py` to today's date, e.g. "18 Oct 2026". The homepage picks both up at build time.
 3. Run `src/build.sh`. If it fails, fix or revert; never push a failed build.
 4. Sanity checks before committing: season totals never go down; minutes <= 90 x apps (+ extra time); a player can't gain more goals than games played that day would allow. If a number looks wrong or can't be confirmed from two sources, leave the old value and say so in the report.
 5. Commit `src/` and `site/` together with a message like "Stats update 18 Oct 2026: Olguin +1 app, ..." Netlify goes live about a minute after a push to `main`.

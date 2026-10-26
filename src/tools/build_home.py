@@ -248,6 +248,12 @@ tpl = (PARTS / 'home.html').read_text(encoding='utf-8')
 # 1. STATS_ASOF (in the inline <script> that defines window.STATS_ASOF)
 tpl = re.sub(r"window\.STATS_ASOF = '[^']+';", f"window.STATS_ASOF = '{STATS_ASOF}';", tpl, count=1)
 
+# 1b. Canada's Best "as of" date follows the can-note in make_canada.py (updated by the tracker)
+_mc = (PARTS / 'make_canada.py').read_text(encoding='utf-8')
+_m = re.search(r'caps as of (\d{1,2} \w+ \d{4})', _mc)
+if _m:
+    tpl = re.sub(r'caps as of \d{1,2} \w+ \d{4}', 'caps as of ' + _m.group(1), tpl)
+
 # 2. window.ninePlayers array literal (replace the preview's inline array with the live nine_data.js one)
 tpl = re.sub(r"window\.ninePlayers = \[.*?\];",
              f"window.ninePlayers = {nine_array};",
