@@ -1,0 +1,23 @@
+Vendored third-party libraries used by tnballers.com — all self-hosted, no runtime CDN.
+
+================================================================
+GSAP 3.13.0  (gsap.min.js, ScrollTrigger.min.js)
+================================================================
+Source:   https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/
+Project:  https://gsap.com
+Author:   GreenSock (Jack Doyle), now a Webflow product
+Licence:  GSAP Standard License  —  https://gsap.com/standard-license
+
+Status for tnballers.com (editorial media site, free to visit, no paywall,
+no in-app purchases, not an SDK/toolkit distributed to third parties):
+
+Permitted under the Standard License. The library is used only to animate
+our own first-party website. We do not re-distribute the GSAP source
+beyond serving the minified bundle to our site visitors.
+
+================================================================
+Lenis 1.1.14  (lenis.min.js)
+================================================================
+Source:   https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js
+Project:  https://github.com/darkroomengineering/lenis
+Licence:  MIT  —  see lenis-LICENSE.txt

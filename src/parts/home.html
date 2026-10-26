@@ -1,0 +1,2170 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TNB · homepage preview</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" href="/players/badge.png" type="image/png">
+<meta name="description" content="True North Ballers: independent Canadian soccer platform. Partner-player tracker, Canada's Best right now, videography and scouting in Brampton.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="True North Ballers">
+<meta property="og:title" content="True North Ballers · Canadian football, unfiltered.">
+<meta property="og:description" content="The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Brampton.">
+<meta property="og:url" content="https://tnballers.com/">
+<meta property="og:image" content="https://tnballers.com/players/badge.png">
+<meta property="og:image:alt" content="True North Ballers crest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="True North Ballers · Canadian football, unfiltered.">
+<meta name="twitter:description" content="The eight players carrying Canada's game. Live stats. Real stories.">
+<meta name="twitter:image" content="https://tnballers.com/players/badge.png">
+<link rel="canonical" href="https://tnballers.com/">
+
+<link rel="preload" as="font" type="font/woff2" href="/fonts/tanker/Tanker-Regular.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/switzer/Switzer-Regular.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/switzer/Switzer-Semibold.woff2" crossorigin>
+
+<!-- Pre-paint theme setter: read storage + system pref before any style resolves. No flash. -->
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('tnb-theme');
+    if(!t){ t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', t);
+    var mc = document.querySelector('meta[name="theme-color"]');
+    if(mc) mc.setAttribute('content', t === 'light' ? '#F6F3EE' : '#0b0b0b');
+  }catch(_){ document.documentElement.setAttribute('data-theme','dark'); }
+})();
+</script>
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --c-ink:#0b0b0b;
+  --c-ink-2:#141414;
+  --c-ink-3:#1f1f1f;
+  --c-red:#CC0000;
+  --c-red-b:#e60000;
+  --c-gold:#C9A227;
+  --c-gold-l:#F3D27A;
+  --c-white:#ffffff;
+  --c-dim:#c9c9c9;
+  --c-muted:#9a9a9a;
+  --c-faint:#6a6a6a;
+  --c-border:rgba(255,255,255,.08);
+  --c-border-s:rgba(255,255,255,.14);
+
+  --f-display:'Tanker',Impact,sans-serif;
+  --f-body:'Switzer',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-mono:ui-monospace,'SFMono-Regular',Menlo,monospace;
+
+  --max:1280px;
+  --pad:clamp(20px,4vw,48px);
+
+  --radius-m:4px;
+}
+
+/* FONTS: Fontshare FFL v2.0, self-hosted */
+@font-face{font-family:'Tanker';src:url('/fonts/tanker/Tanker-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Switzer';src:url('/fonts/switzer/Switzer-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Switzer';src:url('/fonts/switzer/Switzer-Semibold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Switzer';src:url('/fonts/switzer/Switzer-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+/* RESET + BASE */
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%}
+body{
+  margin:0;background:var(--c-ink);color:var(--c-white);
+  font-family:var(--f-body);font-weight:400;line-height:1.5;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  font-variant-numeric:tabular-nums;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3,h4,h5{margin:0;line-height:1}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+input,select,textarea{font:inherit;color:inherit;background:var(--c-ink-2);border:1px solid var(--c-border-s);padding:12px 14px;width:100%;border-radius:var(--radius-m)}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--c-red);outline-offset:3px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* LAYOUT PRIMITIVES */
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold)}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--c-red)}
+.sec-title{font-family:var(--f-display);font-weight:400;font-size:clamp(42px,6.4vw,96px);line-height:.95;letter-spacing:-.005em;text-transform:uppercase;color:var(--c-white);margin:12px 0 20px;text-wrap:balance}
+.sec-title em{font-style:normal;color:var(--c-red)}
+.sec-sub{max-width:60ch;font-size:16px;line-height:1.6;color:var(--c-dim)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:36px}
+.sec-head .right{display:flex;gap:12px;align-items:center}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 22px;
+  background:var(--c-red);color:var(--c-white);
+  font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  border-radius:var(--radius-m);
+  transition:background .18s ease, transform .12s ease;
+  will-change:transform;
+}
+.btn:hover{background:var(--c-red-b)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--c-white);border:1px solid var(--c-border-s);padding:13px 22px}
+.btn.ghost:hover{border-color:var(--c-white);background:#1a1a1a}
+.btn.gold{background:var(--c-gold);color:#111}
+.btn.gold:hover{background:#e2b733}
+.btn .arrow{display:inline-block;transition:transform .18s ease}
+.btn:hover .arrow{transform:translateX(3px)}
+
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;font-family:var(--f-body);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;border-radius:2px}
+.chip.live{background:var(--c-red);color:#fff}
+.chip.live::before{content:"";width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,55%{opacity:1}70%,100%{opacity:.2}}
+
+/* icons (inline SVG, no emoji) */
+.i{width:16px;height:16px;fill:currentColor;flex:none}
+.i-18{width:18px;height:18px}
+.i-22{width:22px;height:22px}
+
+/* ============================================================
+   TOP BAR  (no backdrop-filter: perf)
+   ============================================================ */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:var(--c-ink);
+  border-bottom:1px solid var(--c-border);
+}
+.topbar-row{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .logo{width:40px;height:40px;flex:none}
+.brand .word{font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.28em;text-transform:uppercase;line-height:1.1;color:var(--c-white)}
+.brand .word small{display:block;font-weight:400;font-size:10px;letter-spacing:.22em;color:var(--c-muted);margin-top:2px}
+.nav{display:flex;gap:4px}
+.nav a{font-family:var(--f-body);font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:8px 12px;color:var(--c-dim);border-bottom:2px solid transparent;white-space:nowrap}
+.nav a:hover{color:var(--c-white);border-color:var(--c-red)}
+.nav .live-dot{display:inline-block;width:7px;height:7px;background:var(--c-red);border-radius:50%;margin-right:6px;vertical-align:1px;animation:blink 1.4s ease-in-out infinite}
+/* Hamburger (shown below 1200px) */
+.nav-toggle{all:unset;cursor:pointer;width:40px;height:40px;display:none;align-items:center;justify-content:center;border:1px solid var(--c-border-s);border-radius:50%;color:var(--c-white);transition:border-color .18s ease,color .18s ease}
+.nav-toggle:hover,.nav-toggle:focus-visible{border-color:var(--c-red);color:var(--c-red)}
+.nav-toggle svg{width:18px;height:18px}
+.nav-sheet{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.78);display:none;align-items:stretch;justify-content:flex-end}
+.nav-sheet[open]{display:flex}
+.nav-sheet-inner{width:min(360px,86vw);height:100%;background:var(--c-ink);border-left:1px solid var(--c-border-s);padding:28px 24px;display:flex;flex-direction:column;gap:4px;overflow:auto}
+.nav-sheet-inner .close{align-self:flex-end;all:unset;cursor:pointer;color:var(--c-dim);font-size:22px;padding:4px 10px;border:1px solid var(--c-border-s)}
+.nav-sheet-inner .close:hover{color:#fff;border-color:var(--c-red)}
+.nav-sheet-inner a{font-family:var(--f-body);font-weight:700;font-size:16px;letter-spacing:.14em;text-transform:uppercase;padding:14px 10px;color:var(--c-white);border-bottom:1px solid var(--c-border)}
+.nav-sheet-inner a:hover,.nav-sheet-inner a:focus-visible{color:var(--c-red);background:rgba(204,0,0,.08)}
+.topbar-right{display:flex;align-items:center;gap:14px}
+.social-row{display:flex;gap:4px}
+.social-row a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;color:var(--c-dim);border:1px solid var(--c-border-s);border-radius:50%;transition:color .18s, border-color .18s, background .18s}
+.social-row a:hover{color:#fff;border-color:var(--c-red);background:var(--c-red)}
+@media (max-width:1200px){.nav{display:none}.nav-toggle{display:inline-flex}}
+@media (max-width:900px){.social-row{display:none}.brand .word small{display:none}}
+
+/* ============================================================
+   HERO  (fixed overlaps, no cut-off, transparent cutout)
+   ============================================================ */
+.hero{
+  position:relative;
+  padding:64px 0 72px;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero::before{
+  content:"";position:absolute;top:0;right:-10%;width:60%;height:100%;
+  background:linear-gradient(107deg,transparent 10%,var(--c-red) 10%,var(--c-red) 40%,transparent 40%);
+  z-index:0;
+}
+.hero::after{
+  content:"";position:absolute;top:0;right:-10%;width:60%;height:100%;
+  background:linear-gradient(107deg,transparent 42%,var(--c-gold) 42%,var(--c-gold) 43%,transparent 43%);
+  z-index:0;
+}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center;min-height:min(80vh,780px)}
+.hero-text{display:flex;flex-direction:column;gap:28px;max-width:860px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-family:var(--f-body);font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold)}
+.hero-meta .dot{opacity:.4}
+.hero-headline{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(56px,9.4vw,152px);line-height:.9;letter-spacing:-.012em;text-transform:uppercase;color:var(--c-white);
+  text-wrap:balance;max-width:14ch;
+}
+.hero-headline em{font-style:normal;color:var(--c-red)}
+.hero-sub{max-width:52ch;font-size:clamp(15px,1.15vw,18px);line-height:1.55;color:var(--c-dim)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero-score{margin-top:8px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--c-border-s);padding-top:18px;max-width:600px}
+.hero-score div{display:flex;flex-direction:column;gap:4px;padding-right:16px}
+.hero-score .lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-muted);font-weight:600}
+.hero-score .val{font-family:var(--f-display);font-weight:400;font-size:44px;line-height:1;color:var(--c-white)}
+.hero-score .note{font-size:11px;color:var(--c-faint);margin-top:4px;letter-spacing:.02em}
+
+.hero-photo{position:relative;height:min(78vh,780px);display:flex;align-items:flex-end;justify-content:flex-end}
+.hero-photo img{max-height:100%;height:auto;width:auto;max-width:100%;object-fit:contain;object-position:bottom right;background:transparent}
+
+.hero-issue{position:absolute;left:var(--pad);bottom:16px;z-index:3;font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.3em;color:var(--c-faint);text-transform:uppercase}
+
+/* GSAP targets start hidden; fallback shown if JS fails */
+.hero-text [data-h],.hero-photo{opacity:0}
+.no-js .hero-text [data-h],.no-js .hero-photo{opacity:1}
+
+@media (max-width:900px){
+  .hero{padding:36px 0 48px}
+  .hero::before{top:auto;bottom:0;right:-10%;width:120%;height:60%;background:linear-gradient(170deg,transparent 56%,var(--c-red) 56%,var(--c-red) 78%,transparent 78%)}
+  .hero::after{top:auto;bottom:0;right:-10%;width:120%;height:60%;background:linear-gradient(170deg,transparent 78.5%,var(--c-gold) 78.5%,var(--c-gold) 79%,transparent 79%)}
+  .hero-inner{grid-template-columns:1fr;gap:28px;min-height:0}
+  .hero-score .val{font-size:30px}
+  .hero-photo{height:380px}
+  .hero-issue{display:none}
+}
+
+/* ============================================================
+   LIVE TICKER (single row, pure CSS marquee, items duplicated in HTML)
+   ============================================================ */
+.ticker{position:relative;background:#000;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border);overflow:hidden}
+.ticker-row{display:flex;align-items:stretch;min-height:58px}
+.ticker-tag{display:flex;align-items:center;gap:10px;padding:0 20px;background:var(--c-red);color:#fff;font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.26em;text-transform:uppercase;flex:0 0 auto;white-space:nowrap}
+.ticker-tag::before{content:"";width:8px;height:8px;background:#fff;border-radius:50%;animation:blink 1.4s ease-in-out infinite}
+.ticker-strip{flex:1;overflow:hidden;position:relative;mask-image:linear-gradient(to right,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%)}
+.ticker-track{display:flex;gap:48px;align-items:center;padding:0 24px;white-space:nowrap;animation:marquee 42s linear infinite;will-change:transform}
+.ticker-strip:hover .ticker-track{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:12px;font-size:14px;color:var(--c-white)}
+.ticker-item .t-tag{font-family:var(--f-body);font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-gold);padding:2px 8px;border:1px solid var(--c-gold);border-radius:2px}
+.ticker-item .t-date{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-muted);font-weight:600}
+.ticker-item a:hover .t-head{color:var(--c-gold)}
+.ticker-more{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:0 20px;color:var(--c-white);font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;border-left:1px solid var(--c-border);white-space:nowrap}
+.ticker-more:hover{color:var(--c-gold)}
+@keyframes marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media (max-width:900px){.ticker-more{display:none}}
+
+/* ============================================================
+   PLAYERS: FUT cards (ported, restyled in Tanker/Switzer)
+   ============================================================ */
+.players{padding:88px 0 72px;position:relative;background:var(--c-ink-2);border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.players-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+.nine-slider{position:relative;margin-top:16px}
+.nine-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:8px}
+.nine-count{font-family:var(--f-display);color:var(--c-white);display:flex;align-items:baseline;gap:8px}
+.nine-count b{font-size:2.6rem;font-weight:400;color:var(--c-red);line-height:1}
+.nine-count span{font-size:1rem;color:var(--c-muted);letter-spacing:2px}
+.nine-ctrls{display:flex;gap:8px}
+.nine-arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--c-border-s);background:var(--c-ink-2);color:var(--c-white);font-size:1.1rem;cursor:pointer;transition:background .18s, color .18s, border-color .18s}
+.nine-arrow:hover{background:var(--c-red);color:#fff;border-color:var(--c-red)}
+.nine-track{list-style:none;margin:0;padding:34px calc(50% - 135px) 26px;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nine-track::-webkit-scrollbar{display:none}
+.nine-slide{flex:0 0 260px;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;transition:transform .4s cubic-bezier(.2,.8,.2,1), opacity .4s;transform:scale(.86);opacity:.5;will-change:transform,opacity}
+.nine-slide.is-near{opacity:.75}
+.nine-slide.is-active{transform:scale(1);opacity:1}
+.nine-open{all:unset;cursor:pointer;display:block;border-radius:14px;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.nine-slide.is-active .nine-open:hover{transform:translateY(-6px) rotate(-1deg)}
+.nine-open:focus-visible{outline:3px solid var(--c-red);outline-offset:6px}
+.nine-cap{margin-top:14px;text-align:center;display:flex;flex-direction:column;gap:2px;opacity:0;transform:translateY(6px);transition:.3s}
+.nine-slide.is-active .nine-cap{opacity:1;transform:none}
+.nine-cap b{font-family:var(--f-body);font-weight:700;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c-white)}
+.nine-cap span{font-size:.78rem;color:var(--c-muted)}
+.nine-cap .nine-cap-num{font-family:var(--f-display);font-size:.9rem;color:var(--c-red);letter-spacing:2px}
+.nine-dots{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:12px}
+.nine-dot{width:34px;height:34px;border-radius:50%;border:1px solid var(--c-border-s);background:var(--c-ink-2);font-family:var(--f-display);font-size:1rem;color:var(--c-dim);cursor:pointer;transition:.2s}
+.nine-dot:hover{border-color:var(--c-red);color:var(--c-red)}
+.nine-dot.on{background:var(--c-red);border-color:var(--c-red);color:#fff;transform:scale(1.1)}
+.nine-progress{height:3px;background:var(--c-border);border-radius:3px;margin:18px auto 0;max-width:340px;overflow:hidden}
+.nine-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--c-red),var(--c-gold));transition:width .4s}
+
+.fut-card{
+  --w:260px;width:var(--w);height:calc(var(--w)*1.46);position:relative;
+  background:linear-gradient(145deg,#F6DB8B 0%,#C9A23B 30%,#FBE7A6 52%,#B38A25 75%,#EBCB6E 100%);
+  clip-path:polygon(0 8%,14% 0,86% 0,100% 8%,100% 89%,50% 100%,0 89%);
+  padding:4px;
+}
+.fut-big{--w:310px}
+.fut-in{
+  position:relative;width:100%;height:100%;overflow:hidden;
+  clip-path:polygon(0 8%,14% 0,86% 0,100% 8%,100% 89%,50% 100%,0 89%);
+  background:radial-gradient(120% 70% at 70% 15%,#2a2a2a 0%,#111 45%,#050505 100%);
+  color:#fff;display:flex;flex-direction:column;
+}
+.fut-sash{position:absolute;z-index:0;width:22%;height:66%;left:82%;top:-30%;transform:rotate(38deg);background:var(--c-red);box-shadow:-5px 0 0 #fff,5px 0 0 #fff;opacity:.92}
+.fut-shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.22) 48%,transparent 60%);transform:translateX(-120%);transition:transform .9s ease;pointer-events:none;z-index:4}
+.nine-open:hover .fut-shine,.nine-open:focus-visible .fut-shine,.nine-slide.is-active .fut-shine{transform:translateX(120%)}
+.fut-top{position:relative;z-index:2;display:grid;grid-template-columns:30% 70%;padding:12% 8% 0 8%;flex:0 0 auto}
+/* Dark gradient behind the name/attrs: dense black so names stay readable over kit sponsors */
+.fut-in::after{content:'';position:absolute;left:0;right:0;bottom:0;height:52%;z-index:1;background:linear-gradient(180deg,rgba(7,7,7,0) 0%,rgba(7,7,7,.75) 18%,rgba(7,7,7,.97) 38%,#070707 100%)}
+.fut-meta{display:flex;flex-direction:column;align-items:center;gap:2px;padding-top:4%}
+.fut-ovr{font-family:var(--f-display);font-size:calc(var(--w)*.2);line-height:.85;color:var(--c-gold-l)}
+.fut-pos{font-family:var(--f-body);font-weight:700;font-size:calc(var(--w)*.065);letter-spacing:.12em;color:#fff}
+.fut-leaf{margin-top:4px;color:var(--c-red)}
+.fut-club{font-family:var(--f-body);font-weight:700;font-size:calc(var(--w)*.05);letter-spacing:.1em;border:1px solid rgba(243,210,122,.6);color:var(--c-gold-l);padding:1px 5px;border-radius:3px;margin-top:4px}
+.fut-photo{position:relative;aspect-ratio:1/1.05;border-radius:6px 6px 0 0;overflow:hidden;-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+.fut-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.fut-initials{display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--f-display);font-size:calc(var(--w)*.2);color:var(--c-gold-l);background:#1c1c1c}
+.fut-name{position:relative;z-index:2;text-align:center;font-family:var(--f-display);font-size:calc(var(--w)*.1);letter-spacing:.015em;line-height:1.2;margin:-4% 9% 0;padding:2px 0 3px;border-bottom:1px solid rgba(243,210,122,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fut-attrs{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;column-gap:10%;padding:3% 14% 0}
+.fut-attr{display:flex;align-items:baseline;gap:6px;font-family:var(--f-body);font-weight:700}
+.fut-attr b{font-weight:800;font-size:calc(var(--w)*.068);color:#fff;min-width:1.4em}
+.fut-attr span{font-size:calc(var(--w)*.052);letter-spacing:.1em;color:rgba(255,255,255,.75);font-weight:600}
+.fut-attr-season b{color:var(--c-gold-l)}
+.fut-foot{position:relative;z-index:2;display:flex;justify-content:center;gap:10px;margin-top:auto;padding:0 0 12.5%;font-family:var(--f-body);font-weight:700;font-size:calc(var(--w)*.042);letter-spacing:.18em;color:var(--c-gold-l)}
+.fut-news{position:absolute;z-index:5;top:11%;right:6%;background:#fff;color:var(--c-red);font-family:var(--f-body);font-weight:800;font-size:calc(var(--w)*.045);letter-spacing:.14em;padding:2px 7px;border-radius:3px}
+
+/* MODAL (dark theme) */
+html.nine-lock{overflow:hidden}
+.nine-modal{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px}
+.nine-modal[hidden]{display:none}
+.nine-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78);opacity:0;transition:opacity .22s}
+.nine-modal.on .nine-backdrop{opacity:1}
+.nine-dialog{position:relative;width:min(1000px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#111;border:1px solid var(--c-border-s);border-radius:12px;transform:translateY(16px);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1), opacity .22s;outline:none}
+.nine-modal.on .nine-dialog{transform:none;opacity:1}
+.nine-mtop{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#111;border-bottom:1px solid var(--c-border)}
+.nine-mcount{font-family:var(--f-body);font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:.75rem;color:var(--c-red)}
+.nine-mnav{display:flex;gap:8px}
+.nine-mnav .nine-arrow,.nine-close{width:40px;height:40px}
+.nine-close{border-radius:50%;border:1px solid var(--c-border-s);background:var(--c-ink-2);color:#fff;cursor:pointer;font-size:.95rem}
+.nine-close:hover{background:var(--c-red);border-color:var(--c-red)}
+.nine-mbody{display:grid;grid-template-columns:340px 1fr;gap:34px;padding:26px 32px 32px}
+.nine-mcard{display:flex;justify-content:center;align-items:flex-start;padding-top:6px}
+.nine-news-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(204,0,0,.14);border:1px solid rgba(204,0,0,.35);color:#fff;border-radius:999px;padding:6px 14px 6px 6px;font-size:.85rem;font-weight:600;margin:0 0 14px}
+.nine-news-pill span{background:var(--c-red);color:#fff;font-family:var(--f-body);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.66rem;padding:4px 9px;border-radius:999px}
+.nine-mname{font-family:var(--f-display);font-weight:400;font-size:clamp(2.2rem,5vw,3.4rem);line-height:.95;color:var(--c-white);margin:0 0 6px;letter-spacing:.01em}
+.nine-msub{color:var(--c-dim);font-size:.95rem;margin:0 0 14px}
+.nine-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.nine-chip{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--c-border-s);background:var(--c-ink-2);color:var(--c-white)}
+.nine-ig{border-color:rgba(204,0,0,.35);color:#fff;background:rgba(204,0,0,.14)}
+.nine-ig:hover{background:var(--c-red);color:#fff}
+.nine-ig-btn{font-family:var(--f-body);font-weight:700;letter-spacing:.08em;padding:9px 14px;background:#fff;color:#111;border-color:#fff}
+.nine-ig-btn:hover,.nine-ig-btn:focus-visible{background:var(--c-red);color:#fff;border-color:var(--c-red);transform:translateY(-1px)}
+.nine-ig-btn svg{color:currentColor}
+.nine-h4{font-family:var(--f-body);font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:.74rem;color:var(--c-muted);margin:22px 0 10px}
+.nine-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.nine-tile{background:var(--c-ink-2);border:1px solid var(--c-border);border-radius:6px;padding:12px 6px;text-align:center}
+.nine-tile b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.9rem;line-height:1;color:var(--c-white)}
+.nine-tile span{font-family:var(--f-body);font-weight:700;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c-muted)}
+.nine-tile:nth-child(4) b{color:var(--c-red)}
+.nine-comps{margin-top:10px;overflow-x:auto}
+.nine-comps table{width:100%;border-collapse:collapse;font-size:.85rem}
+.nine-comps th,.nine-comps td{padding:8px 6px;border-bottom:1px solid var(--c-border);text-align:center;color:var(--c-white)}
+.nine-comps thead th{font-family:var(--f-body);font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c-muted)}
+.nine-comps tbody th,.nine-comps thead th:first-child{text-align:left;font-weight:600;color:var(--c-dim)}
+.nine-bars{display:grid;gap:8px}
+.nine-bar-row{display:grid;grid-template-columns:100px 1fr 34px;align-items:center;gap:10px;font-size:.85rem;color:var(--c-dim)}
+.nine-bar-track{height:8px;background:var(--c-border);border-radius:8px;overflow:hidden}
+.nine-bar-track i{display:block;height:100%;background:linear-gradient(90deg,var(--c-red),var(--c-gold));border-radius:8px;transform-origin:left;animation:barGrow .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes barGrow{from{transform:scaleX(0)}}
+.nine-bar-row b{font-family:var(--f-display);font-weight:400;font-size:1.15rem;color:var(--c-white);text-align:right}
+.nine-hl{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.nine-hl li{background:var(--c-ink-2);border:1px solid var(--c-border);border-left:3px solid var(--c-red);border-radius:6px;padding:9px 12px;font-size:.88rem;color:var(--c-white)}
+.nine-asof{font-size:.75rem;color:var(--c-muted);margin-top:16px}
+.nine-src{font-size:.78rem;color:var(--c-muted);margin:8px 0 0}
+.nine-src a{color:var(--c-gold-l);font-weight:600}
+
+@media (max-width:820px){
+  .nine-mbody{grid-template-columns:1fr;padding:18px}
+  .nine-mcard .fut-card{--w:230px}
+  .nine-tiles{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:560px){
+  .nine-track{padding-left:calc(50% - 115px);padding-right:calc(50% - 115px);gap:10px}
+  .nine-slide{flex:0 0 230px}
+  .nine-slide .fut-card{--w:230px}
+  .nine-head .nine-ctrls{display:none}
+  .nine-dot{width:30px;height:30px}
+  .nine-modal{padding:0}
+  .nine-dialog{max-height:100vh;height:100%;border-radius:0}
+}
+
+/* ============================================================
+   CANADA (scoreboard)
+   ============================================================ */
+.canada{padding:88px 0 72px}
+.canada-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:start}
+.scoreboard{background:#000;border:1px solid var(--c-border-s)}
+.scoreboard-head{display:grid;grid-template-columns:40px 56px minmax(0,1fr) 100px 48px 48px 48px;gap:12px;padding:16px 20px;background:var(--c-ink-2);border-bottom:1px solid var(--c-border-s);font-family:var(--f-body);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-muted)}
+.scoreboard-head .r-stat{text-align:right}
+.score-row{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:40px 56px minmax(0,1fr) 100px 48px 48px 48px;gap:12px;padding:18px 20px;align-items:center;border-bottom:1px solid var(--c-border);position:relative;text-align:left;font:inherit;color:inherit;background:#000;transition:background .15s ease}
+.score-row:last-child{border-bottom:0}
+.score-row:hover{background:#141414}
+.score-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .15s ease}
+.score-row:hover::before{background:var(--c-red)}
+.score-row .rank{font-family:var(--f-display);font-size:28px;color:var(--c-white);line-height:1}
+.score-row .pos{font-family:var(--f-body);font-weight:700;font-size:10px;letter-spacing:.2em;color:var(--c-gold)}
+.score-row .name{display:flex;flex-direction:column;gap:2px;min-width:0}
+.score-row .name .n{font-family:var(--f-body);font-weight:700;font-size:16px;color:var(--c-white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.score-row .name .c{font-size:12px;color:var(--c-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.score-row .hl{font-size:12px;color:var(--c-muted);line-height:1.4;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.score-row .n-stat{font-family:var(--f-display);font-size:20px;color:var(--c-white);text-align:right;line-height:1}
+.score-row .n-stat .u{font-family:var(--f-body);font-weight:600;font-size:9px;letter-spacing:.2em;color:var(--c-muted);display:block;margin-top:2px}
+
+.sidelined{background:var(--c-ink-2);border:1px solid var(--c-border-s)}
+.sidelined h3{display:flex;align-items:center;gap:10px;padding:16px 20px;background:#000;border-bottom:1px solid var(--c-border-s);font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-white)}
+.sidelined h3::before{content:"";width:9px;height:9px;background:var(--c-gold);border-radius:50%}
+.sidelined ul{padding:4px 0}
+.sidelined li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 20px;border-bottom:1px solid var(--c-border)}
+.sidelined li:last-child{border-bottom:0}
+.sidelined .pname{font-family:var(--f-body);font-weight:600;font-size:14px;color:var(--c-white)}
+.sidelined .pclub{font-size:11px;color:var(--c-muted);letter-spacing:.08em}
+.sidelined .why{font-size:11px;color:var(--c-dim);text-align:right;max-width:52%;line-height:1.4}
+.canada-note{margin-top:20px;font-size:12px;color:var(--c-muted);line-height:1.6}
+.canada-note a{color:var(--c-gold);border-bottom:1px solid var(--c-border-s)}
+
+@media (max-width:1024px){.canada-layout{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .scoreboard-head{display:none}
+  .score-row{grid-template-columns:40px 1fr auto;grid-template-areas:"r n stats" "r hl stats";row-gap:4px;padding:14px 16px}
+  .score-row .rank{grid-area:r}
+  .score-row .pos{display:none}
+  .score-row .name{grid-area:n}
+  .score-row .hl{grid-area:hl}
+  .score-row .n-stat{grid-area:stats}
+  .score-row .n-stat:nth-of-type(2),.score-row .n-stat:nth-of-type(3){display:none}
+}
+
+/* ============================================================
+   SERVICES + BOOK
+   ============================================================ */
+.services{padding:88px 0 72px;position:relative;background:var(--c-ink-2);border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.svc{position:relative;background:var(--c-ink-2);padding:40px;border:1px solid var(--c-border);overflow:hidden;display:flex;flex-direction:column;gap:20px;min-height:380px}
+.svc::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--c-red)}
+.svc.gold::before{background:var(--c-gold)}
+.svc-num{font-family:var(--f-display);font-size:88px;line-height:.8;color:#262626;position:absolute;right:20px;bottom:0;z-index:0}
+.svc h3{font-family:var(--f-display);font-size:48px;letter-spacing:-.005em;text-transform:uppercase;color:var(--c-white);position:relative;z-index:1}
+.svc p{color:var(--c-dim);font-size:15px;line-height:1.6;position:relative;z-index:1;max-width:48ch}
+.svc ul{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
+.svc li{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-dim);padding:4px 10px;background:#1a1a1a;border:1px solid var(--c-border-s);font-weight:600}
+.svc .cta-row{display:flex;gap:10px;margin-top:auto;flex-wrap:wrap;position:relative;z-index:1}
+.book{margin-top:40px;background:var(--c-ink-2);border:1px solid var(--c-border);padding:40px;position:relative}
+.book-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:32px}
+.book-head h3{font-family:var(--f-display);font-size:40px;text-transform:uppercase;color:var(--c-white);letter-spacing:-.005em}
+.book-head p{color:var(--c-dim);font-size:14px;max-width:48ch}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-grid .full{grid-column:1 / -1}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-muted);font-weight:600}
+.form-group .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:8px 0}
+.form-group .checks label{display:flex;gap:8px;align-items:center;letter-spacing:0;text-transform:none;color:var(--c-dim);font-size:14px;font-weight:400}
+.form-group .checks input{width:auto;padding:0}
+.form-check{display:flex;gap:10px;align-items:flex-start;padding:12px 0;font-size:13px;color:var(--c-dim);line-height:1.5}
+.form-check input{width:auto;margin-top:3px;padding:0}
+.form-check a{color:var(--c-gold);border-bottom:1px solid var(--c-border-s)}
+@media (max-width:900px){.svc-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.form-group .checks{grid-template-columns:1fr}}
+
+/* ============================================================
+   SPONSORS (lead ambassadors: Shobhit + Trixafa) + COLLAB BANNER
+   ============================================================ */
+.sponsors-sec{padding:88px 0 72px}
+.sponsors-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.amb-card{position:relative;background:var(--c-ink-2);border:1px solid var(--c-border);padding:32px;display:flex;flex-direction:column;gap:16px;min-height:340px}
+.amb-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--c-red)}
+.amb-pill{display:inline-block;background:var(--c-red);color:#fff;font-family:var(--f-body);font-weight:700;letter-spacing:.2em;padding:4px 10px;border-radius:2px;font-size:10px;text-transform:uppercase;align-self:flex-start}
+.amb-name{font-family:var(--f-display);font-size:clamp(44px,5vw,72px);line-height:.9;letter-spacing:-.005em;color:var(--c-white);text-transform:uppercase}
+.amb-reach{display:flex;align-items:baseline;gap:10px;padding:14px 0;border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.amb-reach b{font-family:var(--f-display);font-size:48px;line-height:1;color:var(--c-gold)}
+.amb-reach span{font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-muted)}
+.amb-quote{font-size:15px;line-height:1.55;color:var(--c-dim);font-style:italic;position:relative;padding-left:14px;border-left:2px solid var(--c-red)}
+.amb-socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.amb-social{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--c-border-s);color:var(--c-white);font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;border-radius:2px;transition:background .18s,border-color .18s,color .18s}
+.amb-social:hover{background:var(--c-red);border-color:var(--c-red);color:#fff}
+
+.collab{margin-top:28px;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:26px;padding:28px 30px;background:radial-gradient(90% 140% at 0% 50%,rgba(204,0,0,.4),transparent 60%),#111;color:#fff;border:1px solid var(--c-border-s);border-radius:0}
+.collab-play{width:60px;height:60px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.collab-play svg{width:22px;height:22px;fill:var(--c-red);margin-left:3px}
+.collab-big{font-family:var(--f-display);font-size:clamp(44px,5vw,72px);line-height:.9;color:var(--c-white)}
+.collab-big .u{font-family:var(--f-body);font-weight:700;font-size:16px;color:var(--c-gold);vertical-align:middle;margin-left:4px;letter-spacing:.05em}
+.collab-lbl{font-family:var(--f-body);font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:11px;color:var(--c-dim);margin-top:4px}
+.collab-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.collab-tag{font-family:var(--f-body);font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:11px;color:var(--c-gold-l);margin:0}
+.collab-head{font-family:var(--f-display);font-size:28px;letter-spacing:.01em;color:var(--c-white);text-transform:uppercase;line-height:1}
+.collab-text{font-size:14px;line-height:1.55;color:var(--c-dim);margin:0;max-width:460px}
+.collab-cta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#111;font-family:var(--f-body);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:11px;padding:13px 18px;white-space:nowrap;border-radius:2px;transition:background .18s,color .18s}
+.collab-cta:hover{background:var(--c-red);color:#fff}
+.collab-cta svg{width:14px;height:14px;fill:currentColor}
+
+@media (max-width:900px){
+  .sponsors-grid{grid-template-columns:1fr}
+  .collab{grid-template-columns:auto 1fr;gap:18px}
+  .collab-copy,.collab-cta{grid-column:1/-1}
+  .collab-cta{justify-self:start}
+}
+
+/* ============================================================
+   METRICS BAND (no reach)
+   ============================================================ */
+.metrics{padding:72px 0;background:var(--c-ink-2);border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.metrics-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--c-border-s)}
+.metrics-row > div{padding:28px 24px;border-right:1px solid var(--c-border)}
+.metrics-row > div:last-child{border-right:0}
+.metrics-row .mlbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-muted);font-weight:600}
+.metrics-row .mval{font-family:var(--f-display);font-size:clamp(44px,5vw,72px);color:var(--c-white);line-height:.9;margin-top:12px}
+.metrics-row .mnote{font-size:12px;color:var(--c-dim);margin-top:10px;line-height:1.4}
+@media (max-width:900px){
+  .metrics-row{grid-template-columns:1fr 1fr}
+  .metrics-row > div{border-right:0;border-bottom:1px solid var(--c-border)}
+  .metrics-row > div:nth-child(odd){border-right:1px solid var(--c-border)}
+  .metrics-row > div:nth-last-child(-n+2){border-bottom:0}
+}
+@media (max-width:560px){.metrics-row{grid-template-columns:1fr}.metrics-row > div{border-right:0 !important}}
+
+/* ============================================================
+   LEGENDS TEASER
+   ============================================================ */
+.legends{padding:88px 0 72px}
+.leg-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.leg-card{position:relative;background:var(--c-ink-2);border:1px solid var(--c-border);padding:32px;overflow:hidden;display:flex;flex-direction:column;gap:14px;min-height:260px}
+.leg-card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 70%,var(--c-red) 70%,var(--c-red) 73%,transparent 73%);opacity:.7;pointer-events:none}
+.leg-card .flag{position:absolute;top:28px;right:32px;font-size:28px;line-height:1}
+.leg-card .tag{font-family:var(--f-body);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold)}
+.leg-card h3{font-family:var(--f-display);font-size:44px;letter-spacing:-.005em;text-transform:uppercase;color:var(--c-white);position:relative;z-index:1}
+.leg-card .club{font-size:13px;color:var(--c-dim);font-weight:600;letter-spacing:.08em}
+.leg-card .desc{font-size:14px;color:var(--c-dim);line-height:1.5;max-width:40ch;position:relative;z-index:1}
+.leg-foot{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;border-top:1px solid var(--c-border)}
+.leg-foot p{font-size:13px;color:var(--c-muted);max-width:48ch}
+@media (max-width:720px){.leg-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   SCOUT (recruit form)
+   ============================================================ */
+.scout{padding:88px 0 72px;background:var(--c-ink-2);border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.scout-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.scout-copy p{color:var(--c-dim);font-size:15px;line-height:1.6;margin-top:16px;max-width:46ch}
+.scout-steps{display:flex;gap:0;margin-top:28px}
+.scout-step{flex:1;padding:14px 16px;border:1px solid var(--c-border-s);font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-muted)}
+.scout-step.active{background:#1a1a1a;color:var(--c-white);border-color:var(--c-red)}
+.scout-step .n{color:var(--c-red);margin-right:8px}
+.scout-form{background:#000;border:1px solid var(--c-border-s);padding:28px}
+.scout-form fieldset{border:0;padding:0;margin:0}
+.scout-form legend{font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold);margin-bottom:12px}
+.scout-form .pane{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scout-form .pane .full{grid-column:1 / -1}
+.scout-form .pane[hidden]{display:none}
+.scout-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;align-items:center;flex-wrap:wrap}
+.scout-nav .page-ind{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-muted)}
+.file-input{position:relative;overflow:hidden}
+.file-input input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.file-input .fake{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:var(--c-ink-2);border:1px solid var(--c-border-s);color:var(--c-dim);font-size:14px}
+.file-input .fake .pick{font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold)}
+.help{font-size:12px;color:var(--c-muted);margin-top:6px;line-height:1.5}
+.help a{color:var(--c-gold);border-bottom:1px solid var(--c-border-s)}
+@media (max-width:900px){.scout-grid{grid-template-columns:1fr}.scout-form .pane{grid-template-columns:1fr}}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about{padding:88px 0 72px}
+.about-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px;align-items:start}
+.about-copy p{color:var(--c-dim);font-size:16px;line-height:1.7;margin-top:14px;max-width:52ch}
+.about-contact{background:var(--c-ink-2);border:1px solid var(--c-border);padding:28px;display:flex;flex-direction:column;gap:14px}
+.about-contact h4{font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold)}
+.about-contact p{font-size:14px;color:var(--c-dim);line-height:1.6}
+.about-contact a{color:var(--c-white);border-bottom:1px solid var(--c-border-s)}
+.about-contact a:hover{color:var(--c-gold)}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:#000;padding:48px 0 24px;border-top:1px solid var(--c-border)}
+.footer-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:start}
+.footer-brand{display:flex;gap:14px;align-items:center}
+.footer-brand img{width:48px;height:48px}
+.footer-brand .name{font-family:var(--f-body);font-weight:700;font-size:14px;letter-spacing:.26em;text-transform:uppercase}
+.footer-brand .sub{display:block;font-family:var(--f-body);font-size:11px;letter-spacing:.22em;color:var(--c-muted);text-transform:uppercase;font-weight:600;margin-top:4px}
+.footer-links{display:flex;flex-wrap:wrap;gap:0 24px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-dim);font-weight:600}
+.footer-links a:hover{color:var(--c-gold)}
+.footer-socials{display:flex;gap:8px;margin-top:12px}
+.footer-socials a{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;color:var(--c-dim);border:1px solid var(--c-border-s);border-radius:50%;transition:color .18s, border-color .18s, background .18s}
+.footer-socials a:hover{color:#fff;border-color:var(--c-red);background:var(--c-red)}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:32px;padding-top:20px;border-top:1px solid var(--c-border);font-size:12px;color:var(--c-muted)}
+.footer-bottom a{color:var(--c-dim);border-bottom:1px solid var(--c-border)}
+.footer-bottom a:hover{color:var(--c-gold)}
+
+/* ============================================================
+   REVEAL + REDUCED MOTION
+   ============================================================ */
+.reveal{opacity:0;transform:translate3d(0,14px,0);transition:opacity .55s ease, transform .55s ease}
+.reveal.is-in{opacity:1;transform:translate3d(0,0,0)}
+
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{animation:none !important}
+  .chip.live::before,.ticker-tag::before{animation:none !important}
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}
+}
+
+/* preview-only banner (removed in real build) */
+.preview-banner{position:fixed;left:12px;bottom:12px;z-index:100;padding:8px 14px;background:#000;border:1px solid var(--c-gold);color:var(--c-gold);font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;pointer-events:none}
+
+/* hero intro (CSS only, respects reduced-motion via the media query above) */
+@keyframes slideUp{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translate3d(24px,0,0)}to{opacity:1;transform:none}}
+.hero-text [data-h="meta"]{animation:slideUp .55s .05s ease forwards}
+.hero-text [data-h="headline"]{animation:slideUp .7s .18s ease forwards}
+.hero-text [data-h="sub"]{animation:slideUp .55s .36s ease forwards}
+.hero-text [data-h="cta"]{animation:slideUp .5s .48s ease forwards}
+.hero-text [data-h="score"]{animation:slideUp .5s .56s ease forwards}
+.hero-photo{animation:slideInRight .75s .1s ease forwards}
+
+/* ============================================================
+   ROUND 2 ADDITIONS
+   ============================================================ */
+
+/* Hero rotator: stacked images, crossfade between them */
+.hero-photo{position:relative;overflow:visible}
+.hero-photo .rot{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;opacity:0;transition:opacity .9s ease}
+.hero-photo .rot.on{opacity:1}
+/* Never upscale a cutout beyond its native size: keeps low-res files from pixelating in the hero. */
+.hero-photo .rot img{max-height:100%;height:auto;width:auto;max-width:100%;object-fit:contain;object-position:bottom right;background:transparent;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));image-rendering:auto}
+.hero-photo .rot-caption{position:absolute;left:0;bottom:14px;z-index:5;display:flex;align-items:center;gap:10px;font-family:var(--f-body);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-faint);background:rgba(0,0,0,.55);padding:6px 10px;border:1px solid var(--c-border-s);border-radius:2px;transition:opacity .3s ease}
+.hero-photo .rot-caption b{color:var(--c-white);font-weight:700;letter-spacing:.1em}
+.hero-photo .rot-caption .pip{width:6px;height:6px;background:var(--c-red);border-radius:50%}
+@media (prefers-reduced-motion:reduce){.hero-photo .rot{transition:none}}
+
+/* Make the whole FUT card button lift on hover/focus; subtle, GPU-only */
+.nine-open{transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease}
+.nine-slide .nine-open:hover,.nine-slide .nine-open:focus-visible{transform:translateY(-6px)}
+@media (prefers-reduced-motion:reduce){.nine-open{transition:none}.nine-slide .nine-open:hover,.nine-slide .nine-open:focus-visible{transform:none}}
+
+/* Grab cursor + no text selection while dragging the track */
+.nine-track{cursor:grab;-webkit-user-select:none;user-select:none;scroll-behavior:smooth;touch-action:pan-y}
+.nine-track.is-dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none}
+.nine-track.is-dragging .nine-slide{pointer-events:none}
+.nine-open{-webkit-user-drag:none}
+
+/* Canada's Best scoreboard: full-row buttons, hover lift, form-note tooltip */
+.score-row{position:relative;cursor:pointer;transition:background .18s ease, transform .18s ease}
+.score-row:hover,.score-row:focus-within,.score-row.is-hover{background:linear-gradient(90deg,rgba(204,0,0,.08),transparent 70%)}
+.score-row:hover .rank,.score-row.is-hover .rank{color:var(--c-red)}
+.score-row:focus-visible{outline:2px solid var(--c-red);outline-offset:-2px}
+.score-row .hl{position:relative;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Native tooltip replacement: show full form note on hover under the row */
+.score-row[data-form]:hover::after,.score-row[data-form]:focus-within::after{content:attr(data-form);position:absolute;left:16px;right:16px;bottom:-8px;transform:translateY(100%);z-index:6;background:#141414;border:1px solid var(--c-border-s);padding:10px 14px;font-size:12px;line-height:1.5;color:var(--c-dim);letter-spacing:.01em;text-transform:none;white-space:normal;max-width:720px;pointer-events:none;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+@media (max-width:860px){.score-row[data-form]:hover::after,.score-row[data-form]:focus-within::after{display:none}}
+@media (prefers-reduced-motion:reduce){.score-row{transition:none}}
+
+/* Sidelined list: hover lift + clickable */
+.sidelined li{position:relative;cursor:pointer;transition:background .18s ease}
+.sidelined li:hover,.sidelined li:focus-within{background:rgba(201,162,39,.07)}
+.sidelined li:focus-visible{outline:2px solid var(--c-gold);outline-offset:-2px}
+
+/* Ambassador card hover lift */
+.amb-card{transition:transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, box-shadow .22s ease}
+.amb-card:hover,.amb-card:focus-within{transform:translateY(-4px);border-color:var(--c-red);box-shadow:0 14px 30px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion:reduce){.amb-card{transition:none}.amb-card:hover{transform:none}}
+
+/* Collab banner hover */
+.collab{transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease}
+.collab:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.55)}
+@media (prefers-reduced-motion:reduce){.collab{transition:none}.collab:hover{transform:none}}
+
+/* Metrics number hover: colour shift + subtle pop */
+.metrics-row > div{transition:background .22s ease}
+.metrics-row > div:hover{background:#161616}
+.metrics-row .mval{display:inline-block;transition:transform .25s cubic-bezier(.2,.8,.2,1), color .22s ease}
+.metrics-row > div:hover .mval{color:var(--c-red);transform:translateY(-4px)}
+.metrics-row > div:nth-child(even):hover .mval{color:var(--c-gold)}
+@media (prefers-reduced-motion:reduce){.metrics-row .mval{transition:color .22s ease;transform:none !important}}
+
+/* Legend card photos (placeholder: initials over a maple-leaf gradient tile) */
+.leg-card,.leg-now{transition:transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, box-shadow .22s ease}
+.leg-card:hover,.leg-now:hover{transform:translateY(-4px);border-color:var(--c-red);box-shadow:0 14px 30px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion:reduce){.leg-card,.leg-now{transition:none}.leg-card:hover,.leg-now:hover{transform:none}}
+.leg-pic{position:relative;aspect-ratio:4/3;background:radial-gradient(120% 100% at 20% 0%,#2a0a0a,#0b0b0b 70%);border-bottom:1px solid var(--c-border-s);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.leg-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:1}
+.leg-pic .leg-credit a{color:var(--c-gold-l);border-bottom:1px solid rgba(255,255,255,.2)}
+.leg-pic::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 85% 85%,rgba(201,162,39,.14),transparent 55%);pointer-events:none}
+.leg-pic .leg-initials{font-family:var(--f-display);font-size:72px;line-height:1;color:#fff;letter-spacing:.02em;mix-blend-mode:screen;opacity:.92}
+.leg-pic .leg-stripe{position:absolute;right:-20%;top:0;bottom:0;width:40%;background:linear-gradient(180deg,var(--c-red),#8a0000);transform:skewX(-14deg);opacity:.72}
+.leg-pic .leg-leaf{position:absolute;left:14px;top:12px;width:22px;height:22px;color:var(--c-gold);opacity:.9}
+.leg-pic .leg-credit{position:absolute;left:0;right:0;bottom:0;padding:6px 12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--c-dim);background:linear-gradient(0deg,rgba(0,0,0,.75),transparent);text-align:right}
+
+/* Buttons and links hover (nav, footer, chips, btn) */
+.nav a,.footer-links a{transition:color .18s ease, border-color .18s ease}
+.nav a:hover,.footer-links a:hover,.nav a:focus-visible,.footer-links a:focus-visible{color:var(--c-red)}
+.btn{transition:transform .22s cubic-bezier(.2,.8,.2,1), background .18s ease, color .18s ease, border-color .18s ease}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.btn{transition:background .18s ease,color .18s ease,border-color .18s ease}.btn:hover,.btn:focus-visible{transform:none}}
+
+/* Lightweight profile modal (Canada's Best + Sidelined). Reuses nine-modal shell styles via class. */
+.pm-dialog{max-width:720px;background:#111;color:#fff;border:1px solid var(--c-border-s);padding:28px;max-height:88vh;overflow:auto}
+.pm-head{display:grid;grid-template-columns:120px 1fr auto;gap:20px;align-items:start;margin-bottom:20px}
+.pm-pic{aspect-ratio:1/1;width:120px;background:radial-gradient(120% 100% at 20% 0%,#2a0a0a,#0b0b0b 70%);display:flex;align-items:center;justify-content:center;border:1px solid var(--c-border-s);position:relative;overflow:hidden}
+.pm-pic .pm-initials{font-family:var(--f-display);font-size:52px;color:#fff;letter-spacing:.02em}
+.pm-pic .leg-leaf{position:absolute;left:8px;top:6px;width:16px;height:16px;color:var(--c-gold);opacity:.9}
+.pm-name{font-family:var(--f-display);font-size:36px;line-height:1;color:#fff;margin:0}
+.pm-sub{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--c-muted);margin-top:6px}
+.pm-close{all:unset;cursor:pointer;color:var(--c-dim);font-size:22px;padding:4px 10px;border:1px solid var(--c-border-s)}
+.pm-close:hover,.pm-close:focus-visible{color:#fff;border-color:var(--c-red)}
+.pm-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--c-border);border:1px solid var(--c-border);margin:6px 0 16px}
+.pm-grid > div{background:#111;padding:14px 10px;text-align:center}
+.pm-grid b{display:block;font-family:var(--f-display);font-size:28px;line-height:1;color:#fff}
+.pm-grid span{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-muted);margin-top:6px}
+.pm-h{font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold);margin:18px 0 8px}
+.pm-form{font-size:14px;line-height:1.6;color:#e8e8e8}
+.pm-foot{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px;font-size:12px;color:var(--c-muted);letter-spacing:.04em}
+.pm-foot a{color:var(--c-gold);border-bottom:1px solid var(--c-border-s)}
+.pm-note{margin-top:14px;font-size:11px;color:var(--c-faint);line-height:1.6}
+@media (max-width:560px){.pm-head{grid-template-columns:72px 1fr auto}.pm-pic{width:72px}.pm-pic .pm-initials{font-size:30px}.pm-grid{grid-template-columns:repeat(2,1fr)}.pm-name{font-size:26px}}
+
+/* Legal / about stubs */
+.legal-stub{padding:72px 0;border-top:1px solid var(--c-border-s);background:var(--c-ink-2)}
+.legal-stub:target{background:linear-gradient(180deg,rgba(204,0,0,.08),transparent 30%)}
+.legal-stub h2{font-family:var(--f-display);font-size:clamp(32px,4vw,56px);line-height:.95;color:#fff;margin:0 0 10px}
+.legal-stub .legal-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold);font-weight:600;margin:0 0 8px}
+.legal-stub p{color:var(--c-dim);line-height:1.7;max-width:72ch;margin:12px 0}
+.legal-stub ul{color:var(--c-dim);line-height:1.7;padding-left:20px;max-width:72ch}
+.legal-stub .legal-asof{margin-top:18px;font-size:11px;color:var(--c-faint);letter-spacing:.08em;text-transform:uppercase}
+
+/* Reduced-motion: shut off every transform transition */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0ms !important;animation-delay:0ms !important;transition-duration:0ms !important}
+}
+
+/* ============================================================
+   LIGHT THEME. Cream, like the current live site. Dark is default.
+   Toggle lives in the topbar. Pre-paint script in <head> sets
+   data-theme on <html> before first paint, so there is no FOUC.
+   ============================================================ */
+:root[data-theme="light"]{
+  --c-ink:#F6F3EE;
+  --c-ink-2:#ECE6DC;
+  --c-ink-3:#DED3C1;
+  --c-red:#CC0000;
+  --c-red-b:#B30000;
+  --c-gold:#8A6B00;         /* darkened so 4.5:1 vs cream (WCAG AA) */
+  --c-gold-l:#C9A227;
+  --c-white:#0b0b0b;
+  --c-dim:#2a2a2a;
+  --c-muted:#5a5a5a;
+  --c-faint:#767676;
+  --c-border:rgba(0,0,0,.10);
+  --c-border-s:rgba(0,0,0,.20);
+}
+/* Keep certain components intentionally dark on both themes (broadcast chrome). */
+:root[data-theme="light"] .ticker,
+:root[data-theme="light"] .scoreboard,
+:root[data-theme="light"] .score-row,
+:root[data-theme="light"] .sidelined h3,
+:root[data-theme="light"] .nine-dialog,
+:root[data-theme="light"] .pm-dialog,
+:root[data-theme="light"] .collab,
+:root[data-theme="light"] .nine-mtop{color:#fff}
+:root[data-theme="light"] .scoreboard,
+:root[data-theme="light"] .score-row,
+:root[data-theme="light"] .sidelined h3{background:#0b0b0b;border-color:rgba(255,255,255,.1)}
+:root[data-theme="light"] .score-row .n{color:#fff}
+:root[data-theme="light"] .nine-dialog,
+:root[data-theme="light"] .pm-dialog{background:#111;border-color:rgba(255,255,255,.14)}
+:root[data-theme="light"] .nine-mtop{background:#111}
+:root[data-theme="light"] .pm-grid > div{background:#111;color:#fff}
+:root[data-theme="light"] .pm-pic{background:radial-gradient(120% 100% at 20% 0%,#2a0a0a,#0b0b0b 70%)}
+:root[data-theme="light"] .nine-tile b{color:#fff}
+:root[data-theme="light"] .scout-step.active{color:#fff}
+:root[data-theme="light"] .btn{border-color:rgba(0,0,0,.3)}
+:root[data-theme="light"] .btn.ghost{color:var(--c-white);border-color:rgba(0,0,0,.3)}
+:root[data-theme="light"] .btn.ghost:hover{background:var(--c-red);color:#fff;border-color:var(--c-red)}
+:root[data-theme="light"] .btn.gold{color:#fff;background:var(--c-gold-l)}
+:root[data-theme="light"] .collab{background:radial-gradient(90% 140% at 0% 50%,rgba(204,0,0,.5),transparent 60%),#111}
+:root[data-theme="light"] .fut-news{box-shadow:0 2px 6px rgba(0,0,0,.3)}
+:root[data-theme="light"] .hero-score .val{color:var(--c-white)}
+:root[data-theme="light"] .amb-card{background:#fff;border-color:rgba(0,0,0,.1)}
+:root[data-theme="light"] .amb-social{background:#fff;color:#0b0b0b}
+:root[data-theme="light"] .leg-card,
+:root[data-theme="light"] .leg-now{background:#fff;border-color:rgba(0,0,0,.1)}
+:root[data-theme="light"] .legal-stub{background:#F0ECE2}
+:root[data-theme="light"] .legal-stub h2,
+:root[data-theme="light"] .legal-stub p,
+:root[data-theme="light"] .legal-stub ul,
+:root[data-theme="light"] .legal-stub li{color:var(--c-white)}
+:root[data-theme="light"] .players,
+:root[data-theme="light"] .services,
+:root[data-theme="light"] .scout,
+:root[data-theme="light"] .metrics{background:var(--c-ink-2);border-color:rgba(0,0,0,.08)}
+:root[data-theme="light"] .metrics-row > div:hover{background:#E4DDCF}
+:root[data-theme="light"] .score-row:hover,
+:root[data-theme="light"] .score-row:focus-within,
+:root[data-theme="light"] .score-row.is-hover{background:linear-gradient(90deg,rgba(204,0,0,.14),transparent 70%);color:#fff}
+:root[data-theme="light"] .leg-pic{background:radial-gradient(120% 100% at 20% 0%,#2a0a0a,#0b0b0b 70%)}
+
+/* Theme toggle button */
+.theme-toggle{all:unset;cursor:pointer;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--c-border-s);border-radius:50%;color:var(--c-dim);transition:color .18s ease, border-color .18s ease, background .18s ease}
+.theme-toggle:hover,.theme-toggle:focus-visible{color:var(--c-white);border-color:var(--c-red);background:transparent}
+.theme-toggle svg{width:16px;height:16px}
+.theme-toggle .sun{display:none}
+.theme-toggle .moon{display:block}
+:root[data-theme="light"] .theme-toggle .sun{display:block}
+:root[data-theme="light"] .theme-toggle .moon{display:none}
+@media (max-width:900px){.topbar-right .theme-toggle{display:inline-flex}}
+
+/* Make sure the live-dot still blinks visibly in light mode */
+:root[data-theme="light"] .nav a{color:var(--c-dim)}
+:root[data-theme="light"] .nav a:hover{color:var(--c-red)}
+
+/* Ambassador pill readable in light mode */
+:root[data-theme="light"] .amb-reach b{color:var(--c-gold-l)}
+
+/* Preview banner stays visible on both */
+:root[data-theme="light"] .preview-banner{background:#111;color:#fff}
+
+/* ---------- Light-mode contrast fixes (WCAG AA) ---------- */
+/* Ticker is intentionally dark; override its inner colors so text is white, not black-on-black */
+:root[data-theme="light"] .ticker-item{color:#fff}
+:root[data-theme="light"] .ticker-item .t-date{color:#c9c9c9}
+:root[data-theme="light"] .ticker-item .t-tag{color:#F3D27A;border-color:#F3D27A}
+:root[data-theme="light"] .ticker-item a:hover .t-head{color:#F3D27A}
+:root[data-theme="light"] .ticker-more{color:#fff;border-left-color:rgba(255,255,255,.2)}
+:root[data-theme="light"] .ticker-more:hover{color:#F3D27A}
+:root[data-theme="light"] .ticker{border-top-color:rgba(0,0,0,.1);border-bottom-color:rgba(0,0,0,.1)}
+
+/* Service tag chips: swap chip bg to pale cream + dark text in light mode */
+:root[data-theme="light"] .svc li{background:#fff;border-color:rgba(0,0,0,.15);color:#0b0b0b}
+:root[data-theme="light"] .svc{background:#fff;border:1px solid rgba(0,0,0,.08)}
+:root[data-theme="light"] .svc h3{color:#0b0b0b}
+:root[data-theme="light"] .svc p{color:#2a2a2a}
+:root[data-theme="light"] .svc .svc-num{color:rgba(0,0,0,.08)}
+
+/* Hero rot-caption: dark pill on cream, light pill on dark */
+:root[data-theme="light"] .hero-photo .rot-caption{background:rgba(255,255,255,.9);color:#0b0b0b;border-color:rgba(0,0,0,.14)}
+:root[data-theme="light"] .hero-photo .rot-caption b{color:#0b0b0b}
+
+/* Form groups: readable radio + check labels in light mode */
+:root[data-theme="light"] .form-group .checks label{color:#2a2a2a}
+:root[data-theme="light"] .form-group .checks label input{accent-color:var(--c-red)}
+:root[data-theme="light"] .form-group label{color:#0b0b0b}
+:root[data-theme="light"] input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] textarea{background:#fff;color:#0b0b0b;border-color:rgba(0,0,0,.2)}
+
+/* Collab banner: already dark, keep white text */
+:root[data-theme="light"] .collab .collab-text,
+:root[data-theme="light"] .collab .collab-head,
+:root[data-theme="light"] .collab .collab-big,
+:root[data-theme="light"] .collab .collab-tag,
+:root[data-theme="light"] .collab .collab-lbl{color:#fff}
+:root[data-theme="light"] .collab .collab-tag{color:#F3D27A}
+:root[data-theme="light"] .collab .collab-lbl{color:#c9c9c9}
+:root[data-theme="light"] .collab .collab-cta{background:#fff;color:#111}
+:root[data-theme="light"] .collab .collab-cta:hover{background:var(--c-red);color:#fff}
+
+/* Modal, scoreboard content stays white in light mode */
+:root[data-theme="light"] .nine-dialog *,
+:root[data-theme="light"] .pm-dialog *{color:inherit}
+:root[data-theme="light"] .nine-mname,
+:root[data-theme="light"] .nine-msub,
+:root[data-theme="light"] .nine-mcount,
+:root[data-theme="light"] .nine-tile b,
+:root[data-theme="light"] .nine-comps table,
+:root[data-theme="light"] .nine-comps th,
+:root[data-theme="light"] .nine-comps td,
+:root[data-theme="light"] .nine-hl li,
+:root[data-theme="light"] .nine-bar-row,
+:root[data-theme="light"] .nine-bar-row b{color:#fff}
+:root[data-theme="light"] .nine-msub,
+:root[data-theme="light"] .nine-mcount,
+:root[data-theme="light"] .nine-tile span,
+:root[data-theme="light"] .nine-src,
+:root[data-theme="light"] .nine-asof{color:#c9c9c9}
+:root[data-theme="light"] .nine-bar-row span{color:#c9c9c9}
+:root[data-theme="light"] .pm-form{color:#fff}
+:root[data-theme="light"] .pm-note{color:#9a9a9a}
+
+/* Scoreboard rows: stay dark + content white in light mode */
+:root[data-theme="light"] .scoreboard-head{background:#141414;color:#9a9a9a}
+:root[data-theme="light"] .score-row .n,
+:root[data-theme="light"] .score-row .rank,
+:root[data-theme="light"] .score-row .n-stat{color:#fff}
+:root[data-theme="light"] .score-row .c,
+:root[data-theme="light"] .score-row .hl,
+:root[data-theme="light"] .score-row .n-stat .u{color:#c9c9c9}
+:root[data-theme="light"] .score-row .pos{color:#F3D27A}
+:root[data-theme="light"] .sidelined{background:#141414;color:#fff}
+:root[data-theme="light"] .sidelined .pname{color:#fff}
+:root[data-theme="light"] .sidelined .pclub,
+:root[data-theme="light"] .sidelined .why{color:#c9c9c9}
+
+/* Hero sub, canada-note, nine-cap, labels: enough contrast on cream */
+:root[data-theme="light"] .hero-sub,
+:root[data-theme="light"] .canada-note,
+:root[data-theme="light"] .nine-cap b,
+:root[data-theme="light"] .nine-cap{color:#2a2a2a}
+:root[data-theme="light"] .nine-count b,
+:root[data-theme="light"] .nine-count span,
+:root[data-theme="light"] .fut-foot,
+:root[data-theme="light"] .section-sub{color:inherit}
+
+/* Legend labels under cream cards */
+:root[data-theme="light"] .leg-card h3,
+:root[data-theme="light"] .leg-now h3{color:#0b0b0b}
+:root[data-theme="light"] .leg-card .club,
+:root[data-theme="light"] .leg-now .club{color:#2a2a2a}
+:root[data-theme="light"] .leg-card .desc,
+:root[data-theme="light"] .leg-now .desc{color:#2a2a2a}
+
+/* Legal-stub body colors in light mode */
+:root[data-theme="light"] .legal-stub h2{color:#0b0b0b}
+:root[data-theme="light"] .legal-stub p,
+:root[data-theme="light"] .legal-stub ul,
+:root[data-theme="light"] .legal-stub li{color:#2a2a2a}
+
+/* Scout step label in light mode */
+:root[data-theme="light"] .scout-step{color:#5a5a5a}
+:root[data-theme="light"] .scout-step.active{background:#0b0b0b;color:#fff}
+:root[data-theme="light"] .form-check label{color:#2a2a2a}
+
+/* --- SVC link cards (whole card is a link) --- */
+.svc-link{display:flex;flex-direction:column;cursor:pointer;transition:transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, box-shadow .22s ease}
+.svc-link:hover,.svc-link:focus-visible{transform:translateY(-4px);border-color:var(--c-red);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.svc-link .btn-ghostline{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:12px 16px;border:1px solid var(--c-border-s);color:var(--c-white)}
+.svc-link:hover .btn-ghostline{background:var(--c-red);border-color:var(--c-red);color:#fff}
+.svc.svc-gold{background:linear-gradient(140deg,rgba(201,162,39,.08),transparent 60%)}
+
+/* --- Live ticker: clickable items + animated LIVE dot --- */
+.ticker-item{cursor:pointer;transition:color .18s ease}
+.ticker-tag::before{animation:livePulse 1.6s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes livePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.65), 0 0 0 0 rgba(255,255,255,.3);transform:scale(1)}
+  50%{box-shadow:0 0 0 6px rgba(255,255,255,0), 0 0 0 10px rgba(255,255,255,0);transform:scale(1.15)}
+}
+@media (prefers-reduced-motion:reduce){.ticker-tag::before{animation:none}}
+
+/* --- Holographic foil sheen + 3D tilt on FUT cards --- */
+.nine-open{perspective:1200px;transform-style:preserve-3d}
+.fut-card{transform-style:preserve-3d;will-change:transform;transition:transform .18s ease-out}
+.nine-open.is-tilt .fut-card{transition:transform .05s linear}
+/* The holographic layer: rainbow mask that moves with the cursor */
+.fut-in::before{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity .25s ease;
+  background:
+    radial-gradient(60% 90% at var(--mx,50%) var(--my,50%),rgba(255,255,255,.5),rgba(255,255,255,0) 55%),
+    linear-gradient(115deg, hsl(0 80% 60% / .35), hsl(45 95% 60% / .35), hsl(170 80% 55% / .35), hsl(220 85% 65% / .35), hsl(305 80% 65% / .35)) 0 0 / 300% 300%;
+  background-position: calc(var(--mx,50%) * -1 + 100%) calc(var(--my,50%) * -1 + 100%), 0 0;
+}
+.nine-open:hover .fut-in::before,.nine-open:focus-visible .fut-in::before,.nine-open.is-tilt .fut-in::before{opacity:.55}
+@media (hover:none){.nine-open:hover .fut-in::before{opacity:0}} /* touch devices: static */
+@media (prefers-reduced-motion:reduce){.nine-open .fut-card{transform:none !important}.fut-in::before{display:none}}
+
+/* --- Film grain on dark sections (very subtle, CSS only) --- */
+.players::after,.hero::after{content:""}  /* keep .hero::after reserved */
+.grain{position:relative}
+.grain::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.045;mix-blend-mode:overlay;z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size:140px 140px;
+}
+:root[data-theme="light"] .grain::after{opacity:.028}
+
+/* --- Mobile sticky bottom bar (CTA for Scouted + Book) --- */
+.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;grid-template-columns:1fr 1fr;gap:0;background:#0b0b0b;border-top:1px solid var(--c-border-s)}
+.mobile-bar a{all:unset;cursor:pointer;text-align:center;padding:14px 10px;font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#fff;transition:background .18s ease}
+.mobile-bar a:first-child{border-right:1px solid var(--c-border-s)}
+.mobile-bar a:hover,.mobile-bar a:focus-visible{background:var(--c-red)}
+.mobile-bar .gold{color:var(--c-gold-l)}
+@media (max-width:720px){.mobile-bar{display:grid}body{padding-bottom:60px}}
+@media (max-width:720px) and (prefers-reduced-motion:reduce){.mobile-bar a{transition:none}}
+
+/* View Transitions (fade between pages; graceful no-op on unsupported browsers) */
+@media (prefers-reduced-motion:no-preference){
+  ::view-transition-old(root),::view-transition-new(root){animation-duration:260ms;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+}
+
+/* From the feed strip */
+.feed-strip{padding:72px 0;background:var(--c-ink-2);border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+.feed-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.feed-grid li{aspect-ratio:4/5;background:#111;border:1px solid var(--c-border-s);overflow:hidden;position:relative;transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease}
+.feed-grid li:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.feed-grid a{display:block;height:100%;position:relative}
+.feed-grid img{width:100%;height:100%;object-fit:cover;display:block}
+.feed-grid .fcap{position:absolute;left:0;right:0;bottom:0;padding:8px 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.7),transparent)}
+.feed-empty{color:var(--c-muted);font-size:12px;line-height:1.6;margin-top:8px}
+@media (max-width:900px){.feed-grid{grid-template-columns:repeat(3,1fr)}.feed-grid li:nth-child(n+7){display:none}}
+@media (max-width:500px){.feed-grid{grid-template-columns:repeat(2,1fr)}}
+:root[data-theme="light"] .feed-grid li{background:#fff;border-color:rgba(0,0,0,.1)}
+
+/* Legends full-grid (reused by the #legends chapter) */
+.legends-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin:14px 0 10px}
+.legends-grid .leg-card{background:#111;border:1px solid var(--c-border-s);display:flex;flex-direction:column}
+.legends-grid .leg-pic{aspect-ratio:4/5;border-bottom:1px solid var(--c-border-s)}
+.legends-grid .leg-card .flag{display:inline-block;margin:12px 14px 0}
+.legends-grid .leg-card .tag{display:inline-block;margin:0 14px;font-family:var(--f-body);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-gold)}
+.legends-grid .leg-card h3{font-family:var(--f-display);font-size:22px;line-height:1;color:#fff;margin:10px 14px 4px}
+.legends-grid .leg-card .club{color:var(--c-dim);font-size:12px;margin:0 14px}
+.legends-grid .leg-card .desc{color:var(--c-muted);font-size:13px;line-height:1.5;margin:6px 14px 16px}
+:root[data-theme="light"] .legends-grid .leg-card{background:#fff;color:#0b0b0b}
+:root[data-theme="light"] .legends-grid .leg-card h3{color:#0b0b0b}
+.leg-tl{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:14px}
+.leg-tl li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px;background:#111;border:1px solid var(--c-border-s)}
+:root[data-theme="light"] .leg-tl li{background:#fff;color:#0b0b0b}
+.leg-tl .tl-year{font-family:var(--f-display);font-size:20px;color:var(--c-gold-l);letter-spacing:.02em}
+.leg-tl b{font-family:var(--f-body);font-weight:700;color:#fff;display:block;margin-bottom:4px}
+:root[data-theme="light"] .leg-tl b{color:#0b0b0b}
+.leg-tl p{color:var(--c-muted);margin:0;font-size:13px;line-height:1.55}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <a class="brand" href="#home" aria-label="True North Ballers home">
+      <img class="logo" src="/players/badge.png" alt="TNB crest">
+      <span class="word">True North Ballers<small>Independent · Brampton</small></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#tracker"><span class="live-dot" aria-hidden="true"></span>Live</a>
+      <a href="#players">The Players</a>
+      <a href="#canada">Canada</a>
+      <a href="#services">Services</a>
+      <a href="#scouted">Get Scouted</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="social-row">
+        <a href="https://instagram.com/tnballers" target="_blank" rel="noopener noreferrer" aria-label="TNB on Instagram">
+          <svg class="i i-18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 2 .25 2.5.42.6.24 1.1.5 1.6 1s.78 1 1 1.6c.2.5.4 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.06 1.2-.25 2-.42 2.5-.24.6-.5 1.1-1 1.6s-1 .78-1.6 1c-.5.2-1.3.4-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.06-2-.25-2.5-.42-.6-.24-1.1-.5-1.6-1s-.78-1-1-1.6c-.2-.5-.4-1.3-.4-2.5-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.06-1.2.25-2 .42-2.5.24-.6.5-1.1 1-1.6s1-.78 1.6-1c.5-.2 1.3-.4 2.5-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.05-1.7.23-2.1.4-.5.2-.9.44-1.3.84s-.6.8-.84 1.3c-.17.4-.35 1-.4 2.1C2.6 10 2.6 10.4 2.6 12s0 2 .1 3.2c.05 1.1.23 1.7.4 2.1.2.5.44.9.84 1.3s.8.6 1.3.84c.4.17 1 .35 2.1.4 1.2.1 1.6.1 3.2.1s2 0 3.2-.1c1.1-.05 1.7-.23 2.1-.4.5-.2.9-.44 1.3-.84s.6-.8.84-1.3c.17-.4.35-1 .4-2.1.1-1.2.1-1.6.1-3.2s0-2-.1-3.2c-.05-1.1-.23-1.7-.4-2.1-.2-.5-.44-.9-.84-1.3s-.8-.6-1.3-.84c-.4-.17-1-.35-2.1-.4C14 4 13.6 4 12 4zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.4-2.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@truenorthballers" target="_blank" rel="noopener noreferrer" aria-label="TNB on TikTok">
+          <svg class="i i-18" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.6 7.3a7 7 0 0 1-4.1-1.3 7 7 0 0 1-1.9-2V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.9a2.6 2.6 0 1 0 1.8 2.5V2h2.9a4.5 4.5 0 0 0 4.6 4.4h1.3v2.9z"/></svg>
+        </a>
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch theme" title="Switch theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 14.5A9 9 0 1 1 9.5 2.5a7 7 0 0 0 12 12Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 17a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM4.2 4.2a1 1 0 0 1 1.4 0l1.5 1.5a1 1 0 1 1-1.4 1.4L4.2 5.6a1 1 0 0 1 0-1.4Zm13.3 13.3a1 1 0 0 1 1.4 0l1.5 1.5a1 1 0 1 1-1.4 1.4l-1.5-1.5a1 1 0 0 1 0-1.4ZM2 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm17 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM4.2 19.8a1 1 0 0 1 0-1.4l1.5-1.5a1 1 0 1 1 1.4 1.4l-1.5 1.5a1 1 0 0 1-1.4 0Zm13.3-13.3a1 1 0 0 1 0-1.4l1.5-1.5a1 1 0 1 1 1.4 1.4L19 6.5a1 1 0 0 1-1.5 0Z"/></svg>
+      </button>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navSheet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+      </button>
+      <a class="btn" href="/submit/">Get Scouted <span class="arrow">→</span></a>
+    </div>
+  </div>
+</header>
+<div class="nav-sheet" id="navSheet" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="nav-sheet-inner">
+    <button type="button" class="close" id="navClose" aria-label="Close menu">✕</button>
+    <a href="#tracker">Live</a>
+    <a href="#players">The Players</a>
+    <a href="#canada">Canada</a>
+    <a href="#services">What TNB does</a>
+    <a href="/submit/">Get Scouted</a>
+    <a href="/book/">Book a shoot</a>
+    <a href="/about/">About</a>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="home" class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <div class="hero-meta" data-h="meta">
+        <span class="chip live">LIVE</span>
+        <span>Issue 02</span><span class="dot">·</span>
+        <span>Saturday 25 Oct 2026</span><span class="dot">·</span>
+        <span>Brampton, Ontario</span>
+      </div>
+
+      <h1 class="hero-headline" data-h="headline">Canadian football, <em>unfiltered.</em></h1>
+
+      <p class="hero-sub" data-h="sub">The eight players carrying Canada's game. Live stats. Real stories. Independent. Built in Brampton.</p>
+
+      <div class="hero-cta" data-h="cta">
+        <a class="btn" href="#players">Meet the players <span class="arrow">→</span></a>
+        <a class="btn ghost" href="#tracker">Live tracker</a>
+      </div>
+
+      <div class="hero-score" data-h="score" aria-hidden="true">
+        <div>
+          <span class="lbl">Partner players tracked</span>
+          <span class="val" data-count="8">0</span>
+        </div>
+        <div>
+          <span class="lbl">Live events, last 7 days</span>
+          <span class="val" data-count="9">0</span>
+          <span class="note">Computed from <code style="font-family:inherit;color:var(--c-gold)">feed.json</code> at build time.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-photo" id="heroPhoto" data-rotate="true">
+      <!-- All 8 partner players; one layer per player, crossfaded by JS. Pause on hover; off for reduced-motion. -->
+      <div class="rot on"><img src="/players/bibishkov.png" alt="Marsel Bibishkov, Vancouver FC"></div>
+      <div class="rot"><img src="/players/ciccarelli.png" alt="Tavio Ciccarelli, HFX Wanderers"></div>
+      <div class="rot"><img src="/players/tavernier.png" alt="Kevaughn Tavernier, Forge FC"></div>
+      <div class="rot"><img src="/players/bruno.png" alt="Zayne Bruno, Forge FC"></div>
+      <div class="rot"><img src="/players/olguin.png" alt="Lucas Olguin, HFX Wanderers"></div>
+      <div class="rot"><img src="/players/keshavarz.png" alt="Sami Keshavarz, Pacific FC"></div>
+      <div class="rot"><img src="/players/greco-taylor.png" alt="Christian Greco-Taylor, Pacific FC"></div>
+      <div class="rot"><img src="/players/pavela.png" alt="Ivan Pavela, Inter Toronto FC"></div>
+      <div class="rot-caption" id="heroRotCap" aria-live="polite"><span class="pip" aria-hidden="true"></span><b id="heroRotName">Bibishkov</b><span id="heroRotClub">Vancouver FC</span></div>
+    </div>
+
+    <span class="hero-issue">Issue 02 · 25 Oct 2026</span>
+  </div>
+</section>
+
+<!-- ===================== LIVE TICKER (single row, items duplicated for seamless loop) ===================== -->
+<section id="tracker" class="ticker" aria-label="Live tracker">
+  <div class="ticker-row">
+    <div class="ticker-tag">LIVE TRACKER</div>
+    <div class="ticker-strip">
+      <div class="ticker-track" id="tickerTrack">
+        <!-- set 1 -->
+        <span class="ticker-item"><span class="t-tag">Matchday</span><span class="t-date">24 Oct</span><a href="https://fieldlevelmedia.com/mls/morgan-whittakers-goal-the-difference-as-rapids-shut-out-whitecaps/" target="_blank" rel="noopener noreferrer"><span class="t-head">Whitecaps lose 1 to 0 at Colorado</span></a></span>
+        <span class="ticker-item"><span class="t-tag">Injury</span><span class="t-date">24 Oct</span><a href="https://canadiansoccerdaily.com/2026/10/24/villarreal-beat-valencia-late-nathan-saliba-misses-derby-with-muscle-injury" target="_blank" rel="noopener noreferrer"><span class="t-head">Saliba misses Valencia derby</span></a></span>
+        <span class="ticker-item"><span class="t-tag">Matchday</span><span class="t-date">24 Oct</span><a href="https://www.ctvnews.ca/toronto/sports/article/columbus-crew-beats-toronto-fc-4-2-for-5th-win-in-last-6-games/" target="_blank" rel="noopener noreferrer"><span class="t-head">Toronto FC lose 4 to 2 at Columbus</span></a></span>
+        <span class="ticker-item"><span class="t-tag">Trophy</span><span class="t-date">23 Oct</span><a href="https://canadiansoccerdaily.com/2026/10/24/montreal-roses-win-2026-supporters-shield-beat-ottawa-rapid-in-regular-season-finale/" target="_blank" rel="noopener noreferrer"><span class="t-head">Montreal Roses win the Supporters' Shield</span></a></span>
+        <span class="ticker-item"><span class="t-tag">Trophy</span><span class="t-date">21 Oct</span><a href="https://www.cplsoccer.com/news/forge-make-history-as-first-canadian-champions-from-cpl-highlights" target="_blank" rel="noopener noreferrer"><span class="t-head">Forge FC are Canadian Champions</span></a></span>
+        <span class="ticker-item"><span class="t-tag">Goal</span><span class="t-date">21 Oct</span><a href="https://www.uefa.com/uefachampionsleague/match/2042849--bayern-vs-arsenal/" target="_blank" rel="noopener noreferrer"><span class="t-head">Davies scores vs Arsenal</span></a></span>
+        <!-- set 2: duplicate for seamless loop -->
+        <span class="ticker-item" aria-hidden="true"><span class="t-tag">Matchday</span><span class="t-date">24 Oct</span><a href="https://fieldlevelmedia.com/mls/morgan-whittakers-goal-the-difference-as-rapids-shut-out-whitecaps/" target="_blank" rel="noopener noreferrer" tabindex="-1"><span class="t-head">Whitecaps lose 1 to 0 at Colorado</span></a></span>
+        <span class="ticker-item" aria-hidden="true"><span class="t-tag">Injury</span><span class="t-date">24 Oct</span><a href="https://canadiansoccerdaily.com/2026/10/24/villarreal-beat-valencia-late-nathan-saliba-misses-derby-with-muscle-injury" target="_blank" rel="noopener noreferrer" tabindex="-1"><span class="t-head">Saliba misses Valencia derby</span></a></span>
+        <span class="ticker-item" aria-hidden="true"><span class="t-tag">Matchday</span><span class="t-date">24 Oct</span><a href="https://www.ctvnews.ca/toronto/sports/article/columbus-crew-beats-toronto-fc-4-2-for-5th-win-in-last-6-games/" target="_blank" rel="noopener noreferrer" tabindex="-1"><span class="t-head">Toronto FC lose 4 to 2 at Columbus</span></a></span>
+        <span class="ticker-item" aria-hidden="true"><span class="t-tag">Trophy</span><span class="t-date">23 Oct</span><a href="https://canadiansoccerdaily.com/2026/10/24/montreal-roses-win-2026-supporters-shield-beat-ottawa-rapid-in-regular-season-finale/" target="_blank" rel="noopener noreferrer" tabindex="-1"><span class="t-head">Montreal Roses win the Supporters' Shield</span></a></span>
+        <span class="ticker-item" aria-hidden="true"><span class="t-tag">Trophy</span><span class="t-date">21 Oct</span><a href="https://www.cplsoccer.com/news/forge-make-history-as-first-canadian-champions-from-cpl-highlights" target="_blank" rel="noopener noreferrer" tabindex="-1"><span class="t-head">Forge FC are Canadian Champions</span></a></span>
+        <span class="ticker-item" aria-hidden="true"><span class="t-tag">Goal</span><span class="t-date">21 Oct</span><a href="https://www.uefa.com/uefachampionsleague/match/2042849--bayern-vs-arsenal/" target="_blank" rel="noopener noreferrer" tabindex="-1"><span class="t-head">Davies scores vs Arsenal</span></a></span>
+      </div>
+    </div>
+    <a class="ticker-more" href="https://instagram.com/tnballers" target="_blank" rel="noopener noreferrer">View full feed <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ===================== THE PLAYERS (FUT cards) ===================== -->
+<section id="players" class="players grain">
+  <div class="wrap">
+    <div class="players-head reveal">
+      <div>
+        <span class="eyebrow">01 / The Players</span>
+        <h2 class="sec-title">The eight. <em>No filler.</em></h2>
+        <p class="sec-sub">Eight Canadian partners we track in full. Tap a card for the full dossier.</p>
+      </div>
+    </div>
+    <div class="nine-slider" data-nine-slider></div>
+  </div>
+</section>
+
+<!-- ===================== SPONSORS + COLLAB ===================== -->
+<section class="sponsors-sec" aria-label="Lead sponsors">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">02 / Lead sponsors</span>
+        <h2 class="sec-title">Our ambassadors.</h2>
+        <p class="sec-sub">Shobhit Banwait and Trixafa reach a wider Canadian audience than most clubs. Our players post to that audience.</p>
+      </div>
+    </div>
+
+    <div class="sponsors-grid reveal">
+      <article class="amb-card">
+        <span class="amb-pill">Lead Ambassador</span>
+        <h3 class="amb-name">Shobhit<br>Banwait</h3>
+        <div class="amb-reach"><b>350K+</b><span>Combined social reach</span></div>
+        <blockquote class="amb-quote">"Music bridges the gap between the dressing room and the culture. The streets that produce Canadian ballers share the exact same rhythm."</blockquote>
+        <div class="amb-socials">
+          <a class="amb-social" href="https://www.instagram.com/shobhitbanwait/" target="_blank" rel="noopener noreferrer">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 2 .25 2.5.42.6.24 1.1.5 1.6 1s.78 1 1 1.6c.2.5.4 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.06 1.2-.25 2-.42 2.5-.24.6-.5 1.1-1 1.6s-1 .78-1.6 1c-.5.2-1.3.4-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.06-2-.25-2.5-.42-.6-.24-1.1-.5-1.6-1s-.78-1-1-1.6c-.2-.5-.4-1.3-.4-2.5-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.06-1.2.25-2 .42-2.5.24-.6.5-1.1 1-1.6s1-.78 1.6-1c.5-.2 1.3-.4 2.5-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.05-1.7.23-2.1.4-.5.2-.9.44-1.3.84s-.6.8-.84 1.3c-.17.4-.35 1-.4 2.1C2.6 10 2.6 10.4 2.6 12s0 2 .1 3.2c.05 1.1.23 1.7.4 2.1.2.5.44.9.84 1.3s.8.6 1.3.84c.4.17 1 .35 2.1.4 1.2.1 1.6.1 3.2.1s2 0 3.2-.1c1.1-.05 1.7-.23 2.1-.4.5-.2.9-.44 1.3-.84s.6-.8.84-1.3c.17-.4.35-1 .4-2.1.1-1.2.1-1.6.1-3.2s0-2-.1-3.2c-.05-1.1-.23-1.7-.4-2.1-.2-.5-.44-.9-.84-1.3s-.8-.6-1.3-.84c-.4-.17-1-.35-2.1-.4C14 4 13.6 4 12 4zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.4-2.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+            Instagram
+          </a>
+          <a class="amb-social" href="https://www.youtube.com/channel/UCtZm7pVKCfIHBeIsB7JDexw" target="_blank" rel="noopener noreferrer">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </article>
+
+      <article class="amb-card">
+        <span class="amb-pill">Lead Ambassador</span>
+        <h3 class="amb-name">Trixafa</h3>
+        <div class="amb-reach"><b>110K+</b><span>Combined social reach</span></div>
+        <blockquote class="amb-quote">Canadian football creator bringing street-level skill and soccer culture to a fast-growing audience.</blockquote>
+        <div class="amb-socials">
+          <a class="amb-social" href="https://www.instagram.com/iam_trixafa.ent/" target="_blank" rel="noopener noreferrer">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 2 .25 2.5.42.6.24 1.1.5 1.6 1s.78 1 1 1.6c.2.5.4 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.06 1.2-.25 2-.42 2.5-.24.6-.5 1.1-1 1.6s-1 .78-1.6 1c-.5.2-1.3.4-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.06-2-.25-2.5-.42-.6-.24-1.1-.5-1.6-1s-.78-1-1-1.6c-.2-.5-.4-1.3-.4-2.5-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.06-1.2.25-2 .42-2.5.24-.6.5-1.1 1-1.6s1-.78 1.6-1c.5-.2 1.3-.4 2.5-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.05-1.7.23-2.1.4-.5.2-.9.44-1.3.84s-.6.8-.84 1.3c-.17.4-.35 1-.4 2.1C2.6 10 2.6 10.4 2.6 12s0 2 .1 3.2c.05 1.1.23 1.7.4 2.1.2.5.44.9.84 1.3s.8.6 1.3.84c.4.17 1 .35 2.1.4 1.2.1 1.6.1 3.2.1s2 0 3.2-.1c1.1-.05 1.7-.23 2.1-.4.5-.2.9-.44 1.3-.84s.6-.8.84-1.3c.17-.4.35-1 .4-2.1.1-1.2.1-1.6.1-3.2s0-2-.1-3.2c-.05-1.1-.23-1.7-.4-2.1-.2-.5-.44-.9-.84-1.3s-.8-.6-1.3-.84c-.4-.17-1-.35-2.1-.4C14 4 13.6 4 12 4zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.4-2.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+            Instagram
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="collab reveal" aria-label="TNB x Shobhit Banwait x Trixafa collab">
+      <div class="collab-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div>
+        <div class="collab-big"><span data-count="100">0</span><span class="u">K+</span></div>
+        <div class="collab-lbl">Views in seven days</div>
+      </div>
+      <div class="collab-copy">
+        <p class="collab-tag">The collab</p>
+        <h3 class="collab-head">Shobhit Banwait × Trixafa × TNB</h3>
+        <p class="collab-text">One video with our lead sponsors passed 100,000 views inside seven days. That's the reach our players get.</p>
+      </div>
+      <a class="collab-cta" href="https://www.instagram.com/tnballers" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 2 .25 2.5.42.6.24 1.1.5 1.6 1s.78 1 1 1.6c.2.5.4 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.06 1.2-.25 2-.42 2.5-.24.6-.5 1.1-1 1.6s-1 .78-1.6 1c-.5.2-1.3.4-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.06-2-.25-2.5-.42-.6-.24-1.1-.5-1.6-1s-.78-1-1-1.6c-.2-.5-.4-1.3-.4-2.5-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.06-1.2.25-2 .42-2.5.24-.6.5-1.1 1-1.6s1-.78 1.6-1c.5-.2 1.3-.4 2.5-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.05-1.7.23-2.1.4-.5.2-.9.44-1.3.84s-.6.8-.84 1.3c-.17.4-.35 1-.4 2.1C2.6 10 2.6 10.4 2.6 12s0 2 .1 3.2c.05 1.1.23 1.7.4 2.1.2.5.44.9.84 1.3s.8.6 1.3.84c.4.17 1 .35 2.1.4 1.2.1 1.6.1 3.2.1s2 0 3.2-.1c1.1-.05 1.7-.23 2.1-.4.5-.2.9-.44 1.3-.84s.6-.8.84-1.3c.17-.4.35-1 .4-2.1.1-1.2.1-1.6.1-3.2s0-2-.1-3.2c-.05-1.1-.23-1.7-.4-2.1-.2-.5-.44-.9-.84-1.3s-.8-.6-1.3-.84c-.4-.17-1-.35-2.1-.4C14 4 13.6 4 12 4zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.4-2.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+        Watch on @tnballers
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CANADA'S BEST ===================== -->
+<section id="canada" class="canada">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">03 / The Standard</span>
+        <h2 class="sec-title">Canada's best, <em>right now.</em></h2>
+        <p class="sec-sub">Ranked on current form, not reputation. Club stats for 2026–27 and Canada caps as of 25 Oct 2026.</p>
+      </div>
+    </div>
+
+    <div class="canada-layout reveal">
+      <div class="scoreboard" role="table" aria-label="Canada's in-form players, ranked" id="canScoreboard">
+        <div class="scoreboard-head" role="row">
+          <div>#</div><div>Pos</div><div>Player / Club</div><div>Form</div>
+          <div class="r-stat">Apps</div><div class="r-stat">G</div><div class="r-stat">A</div>
+        </div>
+        <button type="button" class="score-row" role="row" data-can-i="0" data-form="5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1 to 0 loss at Cardiff (24 Oct).">
+          <span class="rank">1</span><span class="pos">WG</span>
+          <div class="name"><span class="n">Liam Millar</span><span class="c">Birmingham City (loan, Hull City)</span></div>
+          <span class="hl">Brace vs QPR (17 Oct)</span>
+          <span class="n-stat">10<span class="u">GP</span></span><span class="n-stat">5<span class="u">G</span></span><span class="n-stat">4<span class="u">A</span></span>
+        </button>
+        <button type="button" class="score-row" role="row" data-can-i="1" data-form="Captain. Scored vs Arsenal in the Champions League (21 Oct, 2 to 2): his second UCL goal this season.">
+          <span class="rank">2</span><span class="pos">LB</span>
+          <div class="name"><span class="n">Alphonso Davies</span><span class="c">Bayern Munich · Captain</span></div>
+          <span class="hl">UCL goal vs Arsenal (21 Oct)</span>
+          <span class="n-stat">10<span class="u">GP</span></span><span class="n-stat">2<span class="u">G</span></span><span class="n-stat">2<span class="u">A</span></span>
+        </button>
+        <button type="button" class="score-row" role="row" data-can-i="2" data-form="3 goals and 2 assists in five LaLiga games. Canada's all-time top scorer (43).">
+          <span class="rank">3</span><span class="pos">ST</span>
+          <div class="name"><span class="n">Jonathan David</span><span class="c">Atlético Madrid (loan, Juventus)</span></div>
+          <span class="hl">Canada's all-time top scorer, 43</span>
+          <span class="n-stat">5<span class="u">GP</span></span><span class="n-stat">3<span class="u">G</span></span><span class="n-stat">2<span class="u">A</span></span>
+        </button>
+        <button type="button" class="score-row" role="row" data-can-i="3" data-form="Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct).">
+          <span class="rank">4</span><span class="pos">ST</span>
+          <div class="name"><span class="n">Tani Oluwaseyi</span><span class="c">Villarreal</span></div>
+          <span class="hl">Two UCL goals in a week, at Napoli and Anfield</span>
+          <span class="n-stat">5<span class="u">GP</span></span><span class="n-stat">0<span class="u">G</span></span><span class="n-stat">0<span class="u">A</span></span>
+        </button>
+        <button type="button" class="score-row" role="row" data-can-i="4" data-form="Vice-captain. Back from a shoulder knock; scored in the 2 to 1 win at Lincoln.">
+          <span class="rank">5</span><span class="pos">CM</span>
+          <div class="name"><span class="n">Stephen Eustáquio</span><span class="c">Swansea City · Vice-captain</span></div>
+          <span class="hl">Scored in the 2 to 1 win at Lincoln</span>
+          <span class="n-stat">8<span class="u">GP</span></span><span class="n-stat">1<span class="u">G</span></span><span class="n-stat">1<span class="u">A</span></span>
+        </button>
+        <button type="button" class="score-row" role="row" data-can-i="5" data-form="Back from his hamstring injury: started and played 87 minutes of the 2 to 1 derby win over Valencia (24 Oct).">
+          <span class="rank">6</span><span class="pos">WG</span>
+          <div class="name"><span class="n">Tajon Buchanan</span><span class="c">Villarreal</span></div>
+          <span class="hl">87 mins of the 2 to 1 derby win over Valencia</span>
+          <span class="n-stat">8<span class="u">GP</span></span><span class="n-stat">0<span class="u">G</span></span><span class="n-stat">0<span class="u">A</span></span>
+        </button>
+      </div>
+
+      <aside class="sidelined" aria-label="Sidelined players">
+        <h3>On the sidelines</h3>
+        <ul id="sidelinedList">
+          <li tabindex="0" role="button" data-side-i="0" aria-label="Cyle Larin, open profile"><div><div class="pname">Cyle Larin</div><div class="pclub">Southampton</div></div><div class="why">Muscle injury (17 Oct). Back: TBC</div></li>
+          <li tabindex="0" role="button" data-side-i="1" aria-label="Nathan Saliba, open profile"><div><div class="pname">Nathan Saliba</div><div class="pclub">Villarreal</div></div><div class="why">Missed Valencia derby. Back: TBC</div></li>
+          <li tabindex="0" role="button" data-side-i="2" aria-label="Ismaël Koné, open profile"><div><div class="pname">Ismaël Koné</div><div class="pclub">Sassuolo</div></div><div class="why">Broken leg. Back: Late Oct</div></li>
+          <li tabindex="0" role="button" data-side-i="3" aria-label="Alistair Johnston, open profile"><div><div class="pname">Alistair Johnston</div><div class="pclub">Celtic</div></div><div class="why">Hamstring. Back: Late Oct</div></li>
+          <li tabindex="0" role="button" data-side-i="4" aria-label="Moïse Bombito, open profile"><div><div class="pname">Moïse Bombito</div><div class="pclub">OGC Nice</div></div><div class="why">Tibia surgery. Back: TBC</div></li>
+          <li tabindex="0" role="button" data-side-i="5" aria-label="Ali Ahmed, open profile"><div><div class="pname">Ali Ahmed</div><div class="pclub">Norwich City</div></div><div class="why">Ligament. Back: Early Nov</div></li>
+          <li tabindex="0" role="button" data-side-i="6" aria-label="Derek Cornelius, open profile"><div><div class="pname">Derek Cornelius</div><div class="pclub">Marseille</div></div><div class="why">Hip injury. Back: Early Jan</div></li>
+          <li tabindex="0" role="button" data-side-i="7" aria-label="Promise David, open profile"><div><div class="pname">Promise David</div><div class="pclub">Brighton (loan)</div></div><div class="why">Few PL minutes so far. Back: TBC</div></li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="canada-note">Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>, cross-checked with club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+  </div>
+</section>
+
+<!-- ===================== WHAT TNB DOES (three cards -> three pages) ===================== -->
+<section id="services" class="services grain">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">04 / What TNB does</span>
+        <h2 class="sec-title">Three doors. <em>One standard.</em></h2>
+      </div>
+    </div>
+
+    <div class="svc-grid reveal">
+      <a class="svc svc-link" href="/scouted/">
+        <span class="svc-num" aria-hidden="true">01</span>
+        <h3>Get Scouted</h3>
+        <p>How we review your footage, when standouts get shared with CPL and League1 coaches and scouts in our network. Free for players.</p>
+        <ul><li>CPL &amp; League1 network</li><li>Written write-up</li><li>No fees</li></ul>
+        <div class="cta-row"><span class="btn btn-ghostline">Read more <span class="arrow">→</span></span></div>
+      </a>
+
+      <a class="svc svc-link" href="/submit/">
+        <span class="svc-num" aria-hidden="true">02</span>
+        <h3>Submit Your Footage</h3>
+        <p>Upload a clip (up to 8 MB) or paste a link to a longer file. We'll reply after we have watched it.</p>
+        <ul><li>Players 13+</li><li>Parent / guardian consent</li><li>Upload or link</li></ul>
+        <div class="cta-row"><span class="btn btn-ghostline">Open the form <span class="arrow">→</span></span></div>
+      </a>
+
+      <a class="svc svc-link svc-gold" href="/book/">
+        <span class="svc-num" aria-hidden="true">03</span>
+        <h3>Videography / Book a Shoot</h3>
+        <p>Highlight reels, matchday coverage, training sessions, player profiles and campaigns. 50% deposit books the date.</p>
+        <ul><li>Highlight reels</li><li>Matchday</li><li>Training</li><li>Campaigns</li></ul>
+        <div class="cta-row"><span class="btn btn-ghostline">Book a shoot <span class="arrow">→</span></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METRICS BAND (only computable numbers) ===================== -->
+<section class="metrics grain" aria-label="TNB by the numbers">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:24px">
+      <div>
+        <span class="eyebrow">05 / The numbers</span>
+        <h2 class="sec-title" style="font-size:clamp(32px,4.4vw,56px)">Numbers that count.</h2>
+        <p class="sec-sub">Only numbers we can defend. Each one is computed from a data file at build time.</p>
+      </div>
+    </div>
+    <div class="metrics-row reveal">
+      <div>
+        <div class="mlbl">Partner players</div>
+        <div class="mval"><span data-count="8">0</span></div>
+        <div class="mnote">Partnered and tracked in full. Count of entries in <code>src/parts/nine_data.js</code>.</div>
+      </div>
+      <div>
+        <div class="mlbl">Live events, last 7 days</div>
+        <div class="mval"><span data-count="9">0</span></div>
+        <div class="mnote">Items in <code>src/parts/feed.json</code> dated within the last 7 days of <code>STATS_ASOF</code>.</div>
+      </div>
+      <div>
+        <div class="mlbl">Partner clubs (CPL)</div>
+        <div class="mval"><span data-count="5">0</span></div>
+        <div class="mnote">Distinct <code>club</code> values across <code>nine_data.js</code>.</div>
+      </div>
+      <div>
+        <div class="mlbl">Canada's Best, tracked</div>
+        <div class="mval"><span data-count="6">0</span></div>
+        <div class="mnote">Players in <code>BEST[]</code> in <code>make_canada.py</code>. Plus <span data-count="8">0</span> on the sidelined list.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LEGENDS TEASER ===================== -->
+<section class="feed-strip grain" aria-label="From the TNB feed">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:18px">
+      <div>
+        <span class="eyebrow">06 / From the feed</span>
+        <h2 class="sec-title" style="font-size:clamp(28px,3.4vw,44px)">Latest from <a href="https://instagram.com/tnballers" target="_blank" rel="noopener noreferrer" style="color:var(--c-red);border-bottom:1px solid var(--c-border-s)">@tnballers</a>.</h2>
+      </div>
+    </div>
+    <ul class="feed-grid" id="feedGrid" role="list"></ul>
+    <p id="feedEmpty" class="feed-empty" hidden>Instagram post graphics will appear here once <code>src/tools/social_formats.py</code> exports Reels under <code>site/social/</code>. Nothing is embedded from Instagram.</p>
+  </div>
+</section>
+
+<section class="legends grain" aria-label="Legends teaser">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">07 / Legends on Canadian soil</span>
+        <h2 class="sec-title">The greats played <em>here.</em></h2>
+        <p class="sec-sub">From Pelé to Messi, some of the biggest names in the game have played on Canadian grass. A few still call it home.</p>
+      </div>
+      <div class="right"><a class="btn ghost" href="#legends">View all legends <span class="arrow">→</span></a></div>
+    </div>
+
+    <div class="leg-grid reveal">
+      <article class="leg-card" tabindex="0">
+        <div class="leg-pic">
+          <img src="/img/people/muller.jpg" alt="Thomas Müller" loading="lazy">
+          <span class="leg-credit">Photo: Werner100359, <a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0 / Wikimedia</a></span>
+        </div>
+        <span class="flag" aria-hidden="true">🇩🇪</span>
+        <span class="tag">Playing here now</span>
+        <h3>Thomas Müller</h3>
+        <p class="club">Vancouver Whitecaps · Since Aug 2025</p>
+        <p class="desc">2014 World Cup winner. 13 Bundesliga titles with Bayern. 9 MLS goals and 6 assists this season (currently out with a hamstring).</p>
+      </article>
+      <article class="leg-card" tabindex="0">
+        <div class="leg-pic">
+          <img src="/img/people/sanchez.jpg" alt="Alexis Sánchez" loading="lazy">
+          <span class="leg-credit">Photo: Кирилл Венедиктов, <a href="https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 / Wikimedia</a></span>
+        </div>
+        <span class="flag" aria-hidden="true">🇨🇱</span>
+        <span class="tag">Playing here now</span>
+        <h3>Alexis Sánchez</h3>
+        <p class="club">CF Montréal · Since Aug 2026</p>
+        <p class="desc">Chile's all-time top scorer (51) and most-capped player (168). Two Copa Américas, titles at Barcelona and Inter.</p>
+      </article>
+    </div>
+
+    <div class="leg-foot">
+      <p>Giovinco, Drogba, Henry, Nesta, Insigne. And the one-night-only visits from Pelé, Platini, Maradona, Agüero, Ronaldo and Messi.</p>
+      <a class="btn ghost" href="#legends">The full chronicle <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Get Scouted form moved to its own page at /submit/.
+     Scouting explainer at /scouted/. Booking form at /book/. -->
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">08 / About TNB</span>
+        <h2 class="sec-title">Built in <em>Brampton.</em></h2>
+        <p>True North Ballers is independent Canadian soccer media. We're based in Brampton, Ontario, and we build around eight partner players, tracking their matches, telling their stories, and helping the next ones get seen.</p>
+        <p>Independent. Not affiliated with Canada Soccer or any club.</p>
+      </div>
+      <aside class="about-contact reveal">
+        <h4>Say hello</h4>
+        <p>contact@tnballers.com</p>
+        <p><a href="https://instagram.com/tnballers" target="_blank" rel="noopener noreferrer">@tnballers</a> on Instagram. <a href="https://www.tiktok.com/@truenorthballers" target="_blank" rel="noopener noreferrer">@truenorthballers</a> on TikTok.</p>
+        <p>Brampton, Ontario, Canada</p>
+        <p style="margin-top:10px;font-size:12px;color:var(--c-muted)"><a href="mailto:contact@tnballers.com?subject=Data%20request">Request or delete my data →</a></p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LEGENDS FULL (stub for preview) ===================== -->
+<section id="legends" class="legal-stub" aria-labelledby="legends-full-h">
+  <div class="wrap">
+    <p class="legal-eyebrow">07 / The full chronicle</p>
+<!-- (section-level eyebrow retained for the legends anchor page.) -->
+    <h2 id="legends-full-h">Legends on Canadian soil.</h2>
+    <p>Full version of the Legends chapter is wired into the production build from <code>make_canada.py</code> (<code>NOW</code>, <code>HOME</code>, <code>MOMENTS</code> arrays). Every photo below is self-hosted from Wikimedia Commons under a free licence (see <a href="/img/people/CREDITS.md" style="color:var(--c-gold)">CREDITS.md</a> for the full list).</p>
+
+    <h3 class="pm-h">Playing here now</h3>
+    <div class="legends-grid">
+      <article class="leg-card">
+        <div class="leg-pic"><img src="/img/people/muller.jpg" alt="Thomas Müller" loading="lazy"><span class="leg-credit">Photo: Werner100359, <a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span></div>
+        <span class="flag" aria-hidden="true">🇩🇪</span><span class="tag">Now</span>
+        <h3>Thomas Müller</h3><p class="club">Vancouver Whitecaps · Since Aug 2025</p>
+        <p class="desc">2014 World Cup winner. 13 Bundesliga titles with Bayern. 9 MLS goals and 6 assists this season.</p>
+      </article>
+      <article class="leg-card">
+        <div class="leg-pic"><img src="/img/people/sanchez.jpg" alt="Alexis Sánchez" loading="lazy"><span class="leg-credit">Photo: Кирилл Венедиктов, <a href="https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span></div>
+        <span class="flag" aria-hidden="true">🇨🇱</span><span class="tag">Now</span>
+        <h3>Alexis Sánchez</h3><p class="club">CF Montréal · Since Aug 2026</p>
+        <p class="desc">Chile's all-time top scorer (51) and most-capped player (168). Two Copa Américas.</p>
+      </article>
+    </div>
+
+    <h3 class="pm-h">They called Canada home</h3>
+    <div class="legends-grid">
+      <article class="leg-card">
+        <div class="leg-pic"><img src="/img/people/giovinco.jpg" alt="Sebastian Giovinco" loading="lazy"><span class="leg-credit">Photo: HighlanderICT, <a href="https://commons.wikimedia.org/wiki/File:Sebastian_Giovinco_2015-05-23_Toronto_FC_(edited).jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></span></div>
+        <span class="flag" aria-hidden="true">🇮🇹</span><span class="tag">2015 to 2019</span>
+        <h3>Sebastian Giovinco</h3><p class="club">Toronto FC</p>
+        <p class="desc">MLS MVP in his first season. Led TFC to the 2017 treble.</p>
+      </article>
+      <article class="leg-card">
+        <div class="leg-pic"><img src="/img/people/drogba.jpg" alt="Didier Drogba" loading="lazy"><span class="leg-credit">Photo: Y. Leclercq, <a href="https://commons.wikimedia.org/wiki/File:Didier_Drogba_(2019)_(cropped2).jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span></div>
+        <span class="flag" aria-hidden="true">🇨🇮</span><span class="tag">2015 to 2016</span>
+        <h3>Didier Drogba</h3><p class="club">Montreal Impact</p>
+        <p class="desc">A hat-trick on his first start, 11 goals in his first 11 MLS games.</p>
+      </article>
+      <article class="leg-card">
+        <div class="leg-pic"><img src="/img/people/henry.jpg" alt="Thierry Henry" loading="lazy"><span class="leg-credit">Photo: Web Summit, <a href="https://commons.wikimedia.org/wiki/File:Thierry_Henry_(51649035951)_(cropped).jpg" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></div>
+        <span class="flag" aria-hidden="true">🇫🇷</span><span class="tag">2019 to 2021</span>
+        <h3>Thierry Henry</h3><p class="club">CF Montréal (head coach)</p>
+        <p class="desc">Arsenal legend and World Cup winner coached Montreal through 2020.</p>
+      </article>
+      <article class="leg-card">
+        <div class="leg-pic"><img src="/img/people/nesta.jpg" alt="Alessandro Nesta" loading="lazy"><span class="leg-credit">Photo: Joerudi, <a href="https://commons.wikimedia.org/wiki/File:Alessandro_Nesta_as_Miami_FC_Manager.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span></div>
+        <span class="flag" aria-hidden="true">🇮🇹</span><span class="tag">2012 to 2013</span>
+        <h3>Alessandro Nesta</h3><p class="club">Montreal Impact</p>
+        <p class="desc">2006 World Cup winner and two-time Champions League winner.</p>
+      </article>
+      <article class="leg-card">
+        <div class="leg-pic"><img src="/img/people/insigne.jpg" alt="Lorenzo Insigne" loading="lazy"><span class="leg-credit">Photo: Presidenza della Repubblica, <a href="https://commons.wikimedia.org/wiki/File:Lorenzo_Insigne_2021.jpg" target="_blank" rel="noopener noreferrer">Attribution</a></span></div>
+        <span class="flag" aria-hidden="true">🇮🇹</span><span class="tag">2022 to 2025</span>
+        <h3>Lorenzo Insigne</h3><p class="club">Toronto FC</p>
+        <p class="desc">Euro 2020 winner with Italy. Napoli legend turned TFC designated player.</p>
+      </article>
+    </div>
+
+    <h3 class="pm-h">One night only</h3>
+    <ol class="leg-tl">
+      <li><span class="tl-year">1970s</span><div><b>Pelé, Cruyff, Beckenbauer</b><p>The NASL era brought the game's greatest to Toronto, Vancouver and Montreal.</p></div></li>
+      <li><span class="tl-year">1983</span><div><b>Michel Platini</b><p>Juventus and the three-time Ballon d'Or winner faced the Toronto Blizzard.</p></div></li>
+      <li><span class="tl-year">1996</span><div><b>Diego Maradona</b><p>Exhibition for Toronto Italia.</p></div></li>
+      <li><span class="tl-year">2007</span><div><b>Agüero, Di María, Suárez, Piqué</b><p>The U-20 World Cup in Canada. Agüero won the Golden Ball and Golden Boot.</p></div></li>
+      <li><span class="tl-year">2009</span><div><b>Cristiano Ronaldo</b><p>Real Madrid 5 to 1 Toronto FC at Rogers Centre.</p></div></li>
+      <li><span class="tl-year">May 2026</span><div><b>Lionel Messi</b><p>A goal and two assists as Inter Miami won 4 to 2 at BMO Field.</p></div></li>
+      <li><span class="tl-year">Jul 2026</span><div><b>Cristiano Ronaldo</b><p>Scored a penalty at BMO Field as Portugal beat Croatia 2 to 1 (41, oldest scorer in World Cup knockout history).</p></div></li>
+    </ol>
+    <p class="legal-asof">Full styled layout ships at the full-build gate. Timeline photos: free-licence shortlist pending for Pelé/Cruyff/Beckenbauer/Platini/Maradona/Agüero/Ronaldo/Messi.</p>
+  </div>
+</section>
+
+<!-- Legal stubs removed: real pages now live at /about/, /privacy/, /terms/, /cookies/, /accessibility/.
+     Any legacy /#privacy-style link is redirected to the matching page by the hashRedirect script. -->
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <img src="/players/badge.png" alt="TNB crest">
+        <div>
+          <div class="name">True North Ballers</div>
+          <span class="sub">Brampton · Ontario · Canada</span>
+        </div>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/cookies/">Cookies</a>
+        <a href="/accessibility/">Accessibility</a>
+      </nav>
+      <div class="footer-socials">
+        <a href="https://instagram.com/tnballers" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg class="i i-18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 2 .25 2.5.42.6.24 1.1.5 1.6 1s.78 1 1 1.6c.2.5.4 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.06 1.2-.25 2-.42 2.5-.24.6-.5 1.1-1 1.6s-1 .78-1.6 1c-.5.2-1.3.4-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.06-2-.25-2.5-.42-.6-.24-1.1-.5-1.6-1s-.78-1-1-1.6c-.2-.5-.4-1.3-.4-2.5-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.06-1.2.25-2 .42-2.5.24-.6.5-1.1 1-1.6s1-.78 1.6-1c.5-.2 1.3-.4 2.5-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.05-1.7.23-2.1.4-.5.2-.9.44-1.3.84s-.6.8-.84 1.3c-.17.4-.35 1-.4 2.1C2.6 10 2.6 10.4 2.6 12s0 2 .1 3.2c.05 1.1.23 1.7.4 2.1.2.5.44.9.84 1.3s.8.6 1.3.84c.4.17 1 .35 2.1.4 1.2.1 1.6.1 3.2.1s2 0 3.2-.1c1.1-.05 1.7-.23 2.1-.4.5-.2.9-.44 1.3-.84s.6-.8.84-1.3c.17-.4.35-1 .4-2.1.1-1.2.1-1.6.1-3.2s0-2-.1-3.2c-.05-1.1-.23-1.7-.4-2.1-.2-.5-.44-.9-.84-1.3s-.8-.6-1.3-.84c-.4-.17-1-.35-2.1-.4C14 4 13.6 4 12 4zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.4-2.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@truenorthballers" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg class="i i-18" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.6 7.3a7 7 0 0 1-4.1-1.3 7 7 0 0 1-1.9-2V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.9a2.6 2.6 0 1 0 1.8 2.5V2h2.9a4.5 4.5 0 0 0 4.6 4.4h1.3v2.9z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 True North Ballers. Independent. Not affiliated with Canada Soccer or any club.</p>
+      <p><a href="mailto:contact@tnballers.com">contact@tnballers.com</a> · <a href="mailto:contact@tnballers.com?subject=Data%20request">Request or delete my data</a></p>
+    </div>
+  </div>
+</footer>
+
+<nav class="mobile-bar" aria-label="Quick actions">
+  <a href="/submit/">Get Scouted</a>
+  <a class="gold" href="/book/">Book a shoot</a>
+</nav>
+
+<div class="preview-banner" aria-hidden="true">PREVIEW · homepage · Round 3</div>
+
+<!-- ============================================================
+     INLINE PLAYER DATA (preview only; the real build will pull from src/parts/nine_data.js)
+     ============================================================ -->
+<script>
+window.STATS_ASOF = '26 Oct 2026';
+window.peoplePhotos = {"Liam Millar":{"f":"/img/people/millar.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Liam_Millar_Canada_v_Qatar_18_June_2026-008.jpg"},"Alphonso Davies":{"f":"/img/people/davies.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Alphonso_Davies_Canada_v_Qatar_18_June_2026-007_(cropped).jpg"},"Jonathan David":{"f":"/img/people/j_david.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Jonathan_David_Canada_v_Qatar_18_June_2026-242_(cropped).jpg"},"Tani Oluwaseyi":{"f":"/img/people/oluwaseyi.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Tani_Oluwaseyi_Canada_v_Qatar_18_June_2026-024.jpg"},"Stephen Eustáquio":{"f":"/img/people/eustaquio.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Stephen_Eustaquio_Canada_v_Qatar_18_June_2026-164_(cropped).jpg"},"Tajon Buchanan":{"f":"/img/people/buchanan.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Tajon_Buchanan_Canada_v_Qatar_18_June_2026-094.jpg"},"Cyle Larin":{"f":"/img/people/larin.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Cyle_Larin_Canada_v_Qatar_18_June_2026-037_(cropped).jpg"},"Nathan Saliba":{"f":"/img/people/saliba.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Nathan_Saliba_Canada_v_Qatar_18_June_2026-208_(cropped).jpg"},"Ismaël Koné":{"f":"/img/people/kone.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Isma%C3%ABl_Kone_Canada_v_Qatar_18_June_2026-062_(cropped).jpg"},"Alistair Johnston":{"f":"/img/people/johnston.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Alistair_Johnston_Canada_v_Qatar_18_June_2026-038_(cropped).jpg"},"Moïse Bombito":{"f":"/img/people/bombito.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Moise_Bombito_Canada_v_Qatar_18_June_2026_face_crop.jpg"},"Ali Ahmed":{"f":"/img/people/ahmed.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Ali_Ahmed_Canada_v_Qatar_18_June_2026-163_(cropped).jpg"},"Derek Cornelius":{"f":"/img/people/cornelius.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Derek_Cornelius_Canada_v_Qatar_18_June_2026-111_(cropped).jpg"},"Promise David":{"f":"/img/people/p_david.jpg","a":"Bryan Berlin","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Promise_David_Canada_v_Qatar_18_June_2026-018.jpg"},"Thomas Müller":{"f":"/img/people/muller.jpg","a":"Werner100359","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg"},"Alexis Sánchez":{"f":"/img/people/sanchez.jpg","a":"Кирилл Венедиктов","l":"CC BY-SA 3.0","u":"https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg"},"Sebastian Giovinco":{"f":"/img/people/giovinco.jpg","a":"HighlanderICT","l":"CC BY-SA 2.0","u":"https://commons.wikimedia.org/wiki/File:Sebastian_Giovinco_2015-05-23_Toronto_FC_(edited).jpg"},"Didier Drogba":{"f":"/img/people/drogba.jpg","a":"Y. Leclercq","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Didier_Drogba_(2019)_(cropped2).jpg"},"Thierry Henry":{"f":"/img/people/henry.jpg","a":"Web Summit","l":"CC BY 2.0","u":"https://commons.wikimedia.org/wiki/File:Thierry_Henry_(51649035951)_(cropped).jpg"},"Alessandro Nesta":{"f":"/img/people/nesta.jpg","a":"Joerudi","l":"CC BY-SA 4.0","u":"https://commons.wikimedia.org/wiki/File:Alessandro_Nesta_as_Miami_FC_Manager.jpg"},"Lorenzo Insigne":{"f":"/img/people/insigne.jpg","a":"Presidenza della Repubblica","l":"Attribution","u":"https://commons.wikimedia.org/wiki/File:Lorenzo_Insigne_2021.jpg"}};
+window.ninePlayers = [
+  { name:'Marsel Bibishkov', first:'Marsel', last:'Bibishkov', pos:'Striker / Left Wing', short:'ST', jersey:'19', club:'Vancouver FC', clubCode:'VFC', ig:'https://www.instagram.com/marsel.bibishkov/', igHandle:'@marsel.bibishkov', photo:'/players/bibishkov.png',
+    comps:[{c:'CPL',apps:1,starts:0,mins:1,g:0,a:0},{c:'Canada U-20 · CONCACAF U-20',apps:4,starts:null,mins:174,g:0,a:1},{c:'Langley United (loan) · League1 BC',apps:1,starts:null,mins:null,g:1,a:0}],
+    stats:[{l:'Finishing',v:86},{l:'Strength',v:84},{l:'Aerial',v:85},{l:'Dribbling',v:79},{l:'Pace',v:78}],
+    highlights:['Canada U-20 at the 2026 CONCACAF U-20 Championship, assist vs Mexico','Signed by Vancouver FC, March 2026','Juventus U17 in Italy: 17 apps, 6 goals','Bulgarian top-flight debut with Septemvri Sofia','TFC Academy graduate'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1417560/marsel-bibishkov'}]
+  },
+  { name:'Tavio Ciccarelli', first:'Tavio', last:'Ciccarelli', pos:'Centre Forward', short:'ST', jersey:'20', club:'HFX Wanderers FC', clubCode:'HFX', agency:'Rabonasports', from:'Winnipeg, MB', ig:'https://www.instagram.com/taviociccarelli/', igHandle:'@taviociccarelli', photo:'/players/ciccarelli.png',
+    comps:[{c:'CPL',apps:22,starts:5,mins:480,g:6,a:0}],
+    stats:[{l:'Finishing',v:87},{l:'Pace',v:84},{l:'Strength',v:80},{l:'Dribbling',v:82},{l:'Stamina',v:81}],
+    highlights:['6 CPL goals in 2026: one every 80 minutes','CPL Team of the Week, Week 11','Scored off the bench at Forge (3 Oct)','Canada U-20, 2024 CONCACAF U-20 Championship','Former Sheffield United U18'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1780322/tavio-ciccarelli'}]
+  },
+  { name:'Kevaughn Tavernier', first:'Kevaughn', last:'Tavernier', pos:'Right Wing', short:'RW', jersey:'20', club:'Forge FC', clubCode:'FOR', ig:'https://www.instagram.com/kj_tav/', igHandle:'@kj_tav', photo:'/players/tavernier.png', news:'Forge FC are 2026 Canadian Champions (21 Oct)',
+    comps:[{c:'CPL',apps:3,starts:2,mins:127,g:0,a:0},{c:'CONCACAF Champions Cup',apps:2,starts:0,mins:5,g:0,a:0}],
+    stats:[{l:'Pace',v:90},{l:'Dribbling',v:86},{l:'Crossing',v:82},{l:'Finishing',v:77},{l:'Stamina',v:80}],
+    highlights:['2026 Canadian Champions with Forge FC: the first CPL club ever to win it','CONCACAF Champions Cup minutes vs Tigres UANL','Rejoined Forge FC on a multi-year pro deal (Jan 2026)','League1 Ontario Young Player of the Season','Canada U-17 FIFA World Cup 2023','Trialled at AS Monaco'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1609746/kevaughn-tavernier'}]
+  },
+  { name:'Zayne Bruno', first:'Zayne', last:'Bruno', pos:'Central Midfield', short:'CM', jersey:'32', club:'Forge FC', clubCode:'FOR', ig:'https://www.instagram.com/zaynebruno10/', igHandle:'@zaynebruno10', photo:'/players/bruno.png', news:'Forge FC are 2026 Canadian Champions (21 Oct)',
+    comps:[{c:'CPL',apps:3,starts:0,mins:3,g:0,a:0},{c:'Canada U-20 (incl. CONCACAF U-20 Championship)',apps:8,starts:null,mins:null,g:1,a:1}],
+    stats:[{l:'Stamina',v:84},{l:'Passing',v:81},{l:'Tackling',v:78},{l:'Vision',v:79},{l:'Shooting',v:72}],
+    highlights:['2026 Canadian Champions with Forge FC: the first CPL club ever to win it','Canada U-20: 8 caps and a goal in 2026','Forge FC Exceptional Young Player contract','Youngest player on Forge FC first team (2025)','League2 Ontario All-Star with Sigma FC B'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1610143/zayne-bruno'}]
+  },
+  { name:'Lucas Olguin', first:'Lucas', last:'Olguin', pos:'Central Midfield', short:'CM', jersey:'5', club:'HFX Wanderers FC', clubCode:'HFX', from:'Toronto, ON', ig:'https://www.instagram.com/lucasolguinn8/', igHandle:'@lucasolguinn8', photo:'/players/olguin.png', news:"First professional goal: 44′ at Vancouver FC, 17 Oct 2026",
+    comps:[{c:'CPL',apps:22,starts:20,mins:1705,g:1,a:0}],
+    stats:[{l:'Stamina',v:88},{l:'Passing',v:83},{l:'Vision',v:81},{l:'Tackling',v:82},{l:'Dribbling',v:80}],
+    highlights:["First professional goal: 44′ equaliser at Vancouver FC (17 Oct)",'20 CPL starts in his first HFX season','74 appearances for Toronto FC II','TFC Academy graduate'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1780465/lucas-olguin'}]
+  },
+  { name:'Sami Keshavarz', first:'Sami', last:'Keshavarz', pos:'Central Midfield', short:'CM', jersey:'34', club:'Pacific FC', clubCode:'PFC', ig:'https://www.instagram.com/keshavarz___sam', igHandle:'@keshavarz___sam', photo:'/players/keshavarz.png',
+    comps:[{c:'CPL',apps:11,starts:6,mins:554,g:0,a:0}],
+    stats:[{l:'Stamina',v:85},{l:'Passing',v:82},{l:'Dribbling',v:79},{l:'Vision',v:80},{l:'Tackling',v:77}],
+    highlights:['Full 90s in Pacific\'s 4 to 3 and 5 to 0 wins (Sep to Oct)','Pacific FC professional contract','Trained with VfL Bochum U-21 in Germany'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1780377/sami-keshavarz'}]
+  },
+  { name:'Christian Greco-Taylor', first:'Christian', last:'Greco-Taylor', pos:'Left Back', short:'LB', jersey:'15', club:'Pacific FC', clubCode:'PFC', from:'Calgary, AB', ig:'https://www.instagram.com/cgrecotaylorr/', igHandle:'@cgrecotaylorr', photo:'/players/greco-taylor.png',
+    comps:[{c:'CPL',apps:24,starts:18,mins:1733,g:0,a:2}],
+    stats:[{l:'Defending',v:83},{l:'Pace',v:81},{l:'Stamina',v:85},{l:'Passing',v:76},{l:'Tackling',v:82}],
+    highlights:['24 CPL appearances, 18 starts and 2 assists in 2026','Canada U-20 international','Featured in the CPL Next Gen series'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1500408/christian-greco-taylor'}]
+  },
+  { name:'Ivan Pavela', first:'Ivan', last:'Pavela', pos:'Goalkeeper', short:'GK', jersey:'12', club:'Inter Toronto FC', clubCode:'ITO', agency:'Rabonasports', ig:'https://www.instagram.com/ivanpavela/', igHandle:'@ivanpavela', photo:'/players/pavela.png',
+    gk:{saves:30, ga:18, cs:0},
+    comps:[{c:'CPL',apps:7,starts:7,mins:630,g:0,a:0}],
+    stats:[{l:'Reflexes',v:84},{l:'Positioning',v:82},{l:'Aerial',v:85},{l:'Distribution',v:78},{l:'Command',v:80}],
+    highlights:['30 CPL saves in 2026','CPL Team of the Week, Week 18','CPL Next Gen Class of 2025','Canada U-20 international','Hajduk Split U19 and Puskás Akadémia U19'],
+    src:[{t:'FotMob',u:'https://www.fotmob.com/players/1780385/ivan-pavela'}]
+  }
+];
+</script>
+
+<!-- ============================================================
+     INTERACTIONS (no Lenis, no GSAP; just vanilla JS)
+     ============================================================ -->
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // =================== 3D tilt + holographic foil on FUT cards (desktop only) ===================
+  (function tiltCards(){
+    if(reduce) return;
+    if(window.matchMedia('(hover:none)').matches) return; // touch -> static
+    document.querySelectorAll('.nine-open').forEach(function(btn){
+      var card = btn.querySelector('.fut-card'); if(!card) return;
+      var raf = null;
+      function onMove(e){
+        var r = btn.getBoundingClientRect();
+        var cx = (e.clientX - r.left) / r.width;
+        var cy = (e.clientY - r.top) / r.height;
+        var rx = (cy - 0.5) * -10, ry = (cx - 0.5) * 10;
+        if(raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function(){
+          card.style.transform = 'rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-6px)';
+          btn.style.setProperty('--mx', (cx*100).toFixed(1) + '%');
+          btn.style.setProperty('--my', (cy*100).toFixed(1) + '%');
+          btn.classList.add('is-tilt');
+        });
+      }
+      function onLeave(){
+        if(raf) cancelAnimationFrame(raf);
+        card.style.transform = '';
+        btn.classList.remove('is-tilt');
+      }
+      btn.addEventListener('pointermove', onMove);
+      btn.addEventListener('pointerleave', onLeave);
+      btn.addEventListener('blur', onLeave);
+    });
+  })();
+
+  // =================== Theme toggle ===================
+  (function themeToggle(){
+    var btn = document.getElementById('themeToggle'); if(!btn) return;
+    var mc = document.querySelector('meta[name="theme-color"]');
+    function cur(){ return document.documentElement.getAttribute('data-theme') || 'dark'; }
+    function set(t){
+      document.documentElement.setAttribute('data-theme', t);
+      if(mc) mc.setAttribute('content', t === 'light' ? '#F6F3EE' : '#0b0b0b');
+      btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+      try { localStorage.setItem('tnb-theme', t); } catch(_){}
+    }
+    btn.addEventListener('click', function(){ set(cur() === 'light' ? 'dark' : 'light'); });
+    set(cur()); // syncs aria-label
+  })();
+
+  // =================== From the feed strip ===================
+  (function feedStrip(){
+    var grid = document.getElementById('feedGrid'), empty = document.getElementById('feedEmpty');
+    if(!grid) return;
+    var posts = (window.feedPosts || []).slice(0, 6);
+    if(!posts.length){ grid.remove(); if(empty) empty.hidden = false; return; }
+    grid.innerHTML = posts.map(function(p){
+      return '<li><a href="'+(p.url||'https://instagram.com/tnballers')+'" target="_blank" rel="noopener noreferrer"><img src="'+p.img+'" alt="'+esc(p.cap||'TNB post')+'" loading="lazy"><span class="fcap">'+esc(p.cap||'')+'</span></a></li>';
+    }).join('');
+  })();
+
+  // =================== View Transitions on same-origin link clicks ===================
+  (function viewTx(){
+    if(!document.startViewTransition) return;
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[href]'); if(!a) return;
+      var href = a.getAttribute('href');
+      if(!href || href.startsWith('#') || href.startsWith('mailto:') || a.target === '_blank' || a.hasAttribute('download')) return;
+      var url;
+      try{ url = new URL(href, window.location.href); } catch(_){ return; }
+      if(url.origin !== window.location.origin) return;
+      e.preventDefault();
+      document.startViewTransition(function(){ window.location.href = url.href; });
+    });
+  })();
+
+  // =================== Nav sheet toggle (hamburger below 1200px) ===================
+  (function navSheet(){
+    var btn = document.getElementById('navToggle'), sheet = document.getElementById('navSheet'), close = document.getElementById('navClose');
+    if(!btn || !sheet) return;
+    function open(){ sheet.setAttribute('open','true'); btn.setAttribute('aria-expanded','true'); document.documentElement.classList.add('nine-lock'); var f = sheet.querySelector('a'); if(f) f.focus({preventScroll:true}); }
+    function shut(){ sheet.removeAttribute('open'); btn.setAttribute('aria-expanded','false'); document.documentElement.classList.remove('nine-lock'); btn.focus({preventScroll:true}); }
+    btn.addEventListener('click', open);
+    close && close.addEventListener('click', shut);
+    sheet.addEventListener('click', function(e){ if(e.target === sheet) shut(); });
+    sheet.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+    document.addEventListener('keydown', function(e){ if(sheet.hasAttribute('open') && e.key==='Escape'){ e.preventDefault(); shut(); } });
+  })();
+
+  // =================== Hash redirect: old /#privacy etc. point to /privacy/ etc. ===================
+  (function hashRedirect(){
+    var map = {'#privacy':'/privacy/','#terms':'/terms/','#cookies':'/cookies/','#accessibility':'/accessibility/','#about':'/about/'};
+    function run(){ var h = window.location.hash; if(map[h]) window.location.replace(map[h]); }
+    run();
+    window.addEventListener('hashchange', run);
+  })();
+  function motionOff(){ return reduce; }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function pad(n){ return (n<10?'0':'')+n; }
+  function fmt(n, partial){ return (n==null?'–':n.toLocaleString('en-CA')) + (partial?'+':''); }
+
+  // =================== THE NINE: FUT cards + modal ===================
+  var P = window.ninePlayers || [];
+  if(P.length){
+    var N = P.length;
+    var AB = {Finishing:'FIN',Strength:'STR',Aerial:'AER',Dribbling:'DRI',Pace:'PAC',Stamina:'STA',Crossing:'CRO',Passing:'PAS',Tackling:'TAC',Vision:'VIS',Shooting:'SHO',Defending:'DEF',Positioning:'POS',Distribution:'DIS',Reflexes:'REF',Command:'COM'};
+    function tot(p){
+      var t={apps:0,starts:0,mins:0,g:0,a:0,sp:false,mp:false};
+      p.comps.forEach(function(c){
+        t.apps+=c.apps; t.g+=c.g; t.a+=c.a;
+        if(c.starts==null) t.sp=true; else t.starts+=c.starts;
+        if(c.mins==null) t.mp=true; else t.mins+=c.mins;
+      });
+      return t;
+    }
+    function ovr(p){ var s=0; p.stats.forEach(function(x){ s+=x.v; }); return Math.round(s/p.stats.length); }
+    P.forEach(function(p){ p._t = tot(p); p._o = ovr(p); });
+
+    function cardHTML(p, big){
+      var attrs = p.stats.map(function(x){ return '<div class="fut-attr"><b>'+x.v+'</b><span>'+(AB[x.l]||x.l.slice(0,3).toUpperCase())+'</span></div>'; }).join('');
+      attrs += '<div class="fut-attr fut-attr-season"><b>'+p._t.apps+'</b><span>APP</span></div>';
+      // leaf: inline SVG (no emoji)
+      var leaf = '<svg class="fut-leaf" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 10.4 7l-5-1 2.6 4.4L4 14l5-1 .5 5 2.5-4 2.5 4 .5-5 5 1-4-3.6L18.6 6l-5 1Z"/></svg>';
+      var photo = p.photo ? '<img src="'+p.photo+'" alt="" loading="lazy" draggable="false">' : '<span class="fut-initials">'+esc(p.first[0]+p.last[0])+'</span>';
+      return '<div class="fut-card'+(big?' fut-big':'')+'" aria-hidden="true"><div class="fut-in">'+
+        '<div class="fut-sash"></div><div class="fut-shine"></div>'+
+        '<div class="fut-top">'+
+          '<div class="fut-meta"><span class="fut-ovr">'+p._o+'</span><span class="fut-pos">'+p.short+'</span>'+leaf+'<span class="fut-club">'+esc(p.clubCode)+'</span></div>'+
+          '<div class="fut-photo">'+photo+'</div>'+
+        '</div>'+
+        '<div class="fut-name">'+esc(p.last)+'</div>'+
+        '<div class="fut-attrs">'+attrs+'</div>'+
+        '<div class="fut-foot"><span>TNB · 2026</span><span>#'+esc(p.jersey)+'</span></div>'+
+        (p.news ? '<div class="fut-news">NEW</div>' : '')+
+      '</div></div>';
+    }
+
+    // ---------- modal ----------
+    var modal = document.createElement('div');
+    modal.className = 'nine-modal'; modal.hidden = true;
+    modal.innerHTML = '<div class="nine-backdrop" data-close></div>'+
+      '<div class="nine-dialog" role="dialog" aria-modal="true" aria-labelledby="nineMTitle" tabindex="-1">'+
+        '<div class="nine-mtop"><span class="nine-mcount" id="nineMCount"></span>'+
+          '<div class="nine-mnav"><button type="button" class="nine-arrow" data-step="-1" aria-label="Previous player">←</button><button type="button" class="nine-arrow" data-step="1" aria-label="Next player">→</button>'+
+          '<button type="button" class="nine-close" data-close aria-label="Close player stats">✕</button></div></div>'+
+        '<div class="nine-mbody" id="nineMBody"></div>'+
+      '</div>';
+    document.body.appendChild(modal);
+    var mBody = modal.querySelector('#nineMBody'), mCount = modal.querySelector('#nineMCount'), dialog = modal.querySelector('.nine-dialog');
+    var cur = -1, returnFocus = null;
+
+    function tiles(p){
+      var t=p._t, list;
+      if(p.gk) list=[['Apps',fmt(t.apps)],['Mins',fmt(t.mins,t.mp)],['Saves',fmt(p.gk.saves)],['Conceded',fmt(p.gk.ga)],['Clean sheets',fmt(p.gk.cs)]];
+      else list=[['Apps',fmt(t.apps)],['Starts',(t.sp&&!t.starts)?'–':fmt(t.starts,t.sp)],['Mins',fmt(t.mins,t.mp)],['Goals',fmt(t.g)],['Assists',fmt(t.a)]];
+      return list.map(function(x){ return '<div class="nine-tile"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'; }).join('');
+    }
+    function render(i){
+      var p=P[i];
+      var rows = p.comps.map(function(c){
+        return '<tr><th scope="row">'+esc(c.c)+'</th><td>'+fmt(c.apps)+'</td><td>'+fmt(c.starts)+'</td><td>'+fmt(c.mins)+'</td><td>'+fmt(c.g)+'</td><td>'+fmt(c.a)+'</td></tr>';
+      }).join('');
+      var bars = p.stats.map(function(x){ return '<div class="nine-bar-row"><span>'+esc(x.l)+'</span><div class="nine-bar-track"><i style="width:'+x.v+'%"></i></div><b>'+x.v+'</b></div>'; }).join('');
+      var hl = p.highlights.map(function(h){ return '<li>'+esc(h)+'</li>'; }).join('');
+      mBody.innerHTML =
+        '<div class="nine-mcard">'+cardHTML(p,true)+'</div>'+
+        '<div class="nine-minfo">'+
+          (p.news ? '<p class="nine-news-pill"><span>Latest</span>'+esc(p.news)+'</p>' : '')+
+          '<h3 class="nine-mname" id="nineMTitle">'+esc(p.name)+'</h3>'+
+          '<p class="nine-msub">'+esc(p.pos)+' · '+esc(p.club)+' · #'+esc(p.jersey)+'</p>'+
+          '<div class="nine-chips">'+
+            (p.ig ? '<a class="nine-chip nine-ig nine-ig-btn" href="'+p.ig+'" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:14px;height:14px"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 2 .25 2.5.42.6.24 1.1.5 1.6 1s.78 1 1 1.6c.2.5.4 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.06 1.2-.25 2-.42 2.5-.24.6-.5 1.1-1 1.6s-1 .78-1.6 1c-.5.2-1.3.4-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.06-2-.25-2.5-.42-.6-.24-1.1-.5-1.6-1s-.78-1-1-1.6c-.2-.5-.4-1.3-.4-2.5-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.06-1.2.25-2 .42-2.5.24-.6.5-1.1 1-1.6s1-.78 1.6-1c.5-.2 1.3-.4 2.5-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zm5.4-2.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>Follow '+esc(p.igHandle)+'<span class="visually-hidden"> on Instagram (opens in a new tab)</span></a>' : '')+
+            (p.agency ? '<span class="nine-chip">'+esc(p.agency)+'</span>' : '')+
+            (p.from ? '<span class="nine-chip">'+esc(p.from)+'</span>' : '')+
+          '</div>'+
+          '<h4 class="nine-h4">2026 season · all competitions</h4>'+
+          '<div class="nine-tiles'+(p.gk?' gk':'')+'">'+tiles(p)+'</div>'+
+          '<div class="nine-comps"><table><caption class="visually-hidden">'+esc(p.name)+' 2026 statistics by competition</caption><thead><tr><th scope="col">Competition</th><th scope="col">Apps</th><th scope="col">Starts</th><th scope="col">Mins</th><th scope="col">G</th><th scope="col">A</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+          '<p class="nine-src">Source: '+(p.src||[]).map(function(x){ return '<a href="'+x.u+'" target="_blank" rel="noopener noreferrer">'+esc(x.t)+'<span class="visually-hidden"> (opens in a new tab)</span></a>'; }).join(', ')+' · as of '+window.STATS_ASOF+'</p>'+
+          '<h4 class="nine-h4">TNB scout ratings</h4><div class="nine-bars">'+bars+'</div>'+
+          '<h4 class="nine-h4">Highlights</h4><ul class="nine-hl">'+hl+'</ul>'+
+          '<p class="nine-asof">Stats as of '+window.STATS_ASOF+'.</p>'+
+        '</div>';
+      mCount.textContent = 'Player '+pad(i+1)+' of '+pad(N);
+      cur = i;
+    }
+    function open(i, from){
+      returnFocus = from || document.activeElement;
+      render(i);
+      modal.hidden = false;
+      document.documentElement.classList.add('nine-lock');
+      requestAnimationFrame(function(){ modal.classList.add('on'); });
+      dialog.focus({preventScroll:true});
+    }
+    function close(){
+      if(modal.hidden) return;
+      modal.classList.remove('on'); modal.hidden = true; cur = -1;
+      document.documentElement.classList.remove('nine-lock');
+      if(returnFocus && returnFocus.focus) returnFocus.focus({preventScroll:true});
+    }
+    function step(d){ if(cur<0) return; render((cur+d+N)%N); sliders.forEach(function(s){ s.go(cur,true); }); }
+    modal.addEventListener('click', function(e){
+      if(e.target.closest('[data-close]')) close();
+      var a = e.target.closest('[data-step]'); if(a) step(+a.getAttribute('data-step'));
+    });
+    document.addEventListener('keydown', function(e){
+      if(modal.hidden) return;
+      if(e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); close(); }
+      else if(e.key==='ArrowRight'){ step(1); }
+      else if(e.key==='ArrowLeft'){ step(-1); }
+    }, true);
+
+    // ---------- slider ----------
+    var sliders = [];
+    function Slider(root){
+      var self=this, active=0, ticking=false;
+      root.innerHTML =
+        '<div class="nine-head"><div class="nine-count" aria-live="polite"><b>01</b><span>/ '+pad(N)+'</span></div>'+
+        '<div class="nine-ctrls"><button type="button" class="nine-arrow" data-dir="-1" aria-label="Previous player">←</button><button type="button" class="nine-arrow" data-dir="1" aria-label="Next player">→</button></div></div>'+
+        '<ul class="nine-track" aria-label="TNB partner players">'+
+          P.map(function(p,i){
+            return '<li class="nine-slide" data-i="'+i+'"><button type="button" class="nine-open" data-i="'+i+'" aria-label="'+esc(p.name)+', '+esc(p.pos)+', '+esc(p.club)+'. Open stats">'+cardHTML(p,false)+'</button>'+
+              '<div class="nine-cap"><span class="nine-cap-num">'+pad(i+1)+'</span><b>'+esc(p.name)+'</b><span>'+esc(p.club)+'</span></div></li>';
+          }).join('')+
+        '</ul>'+
+        '<div class="nine-dots">'+P.map(function(p,i){ return '<button type="button" class="nine-dot" data-i="'+i+'" aria-label="Show player '+(i+1)+': '+esc(p.name)+'"><span>'+(i+1)+'</span></button>'; }).join('')+'</div>'+
+        '<div class="nine-progress" aria-hidden="true"><i></i></div>';
+      var track=root.querySelector('.nine-track'),
+          slides=[].slice.call(root.querySelectorAll('.nine-slide')),
+          dots=[].slice.call(root.querySelectorAll('.nine-dot')),
+          countB=root.querySelector('.nine-count b'),
+          bar=root.querySelector('.nine-progress i');
+      function setActive(i){
+        active=i;
+        slides.forEach(function(s,k){ s.classList.toggle('is-active',k===i); s.classList.toggle('is-near',Math.abs(k-i)===1); });
+        dots.forEach(function(d,k){ d.classList.toggle('on',k===i); if(k===i) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current'); });
+        countB.textContent = pad(i+1);
+        bar.style.width = ((i+1)/N*100)+'%';
+      }
+      this.go = function(i, instant){
+        i=(i+N)%N; var s=slides[i];
+        var left = s.offsetLeft - (track.clientWidth - s.offsetWidth)/2;
+        try { track.scrollTo({left:left, behavior:(instant||motionOff())?'auto':'smooth'}); } catch(e){ track.scrollLeft=left; }
+        setActive(i);
+      };
+      function nearest(){
+        var c = track.scrollLeft + track.clientWidth/2, best=0, bd=1e9;
+        slides.forEach(function(s,k){ var d=Math.abs(s.offsetLeft+s.offsetWidth/2-c); if(d<bd){bd=d;best=k;} });
+        return best;
+      }
+      track.addEventListener('scroll', function(){
+        if(ticking) return; ticking=true;
+        requestAnimationFrame(function(){ ticking=false; var n=nearest(); if(n!==active) setActive(n); });
+      }, {passive:true});
+      root.addEventListener('click', function(e){
+        var d=e.target.closest('[data-dir]'); if(d){ self.go(active + +d.getAttribute('data-dir')); return; }
+        var dot=e.target.closest('.nine-dot'); if(dot){ self.go(+dot.getAttribute('data-i')); return; }
+        var o=e.target.closest('.nine-open'); if(o){
+          var i=+o.getAttribute('data-i');
+          // Click = open. We also centre the card so the modal lines up with it, but we do NOT swallow the click.
+          if(i!==active) self.go(i, true);
+          open(i, o);
+        }
+      });
+      // Enter / Space on a card button opens the modal (native button behaviour works, but we also handle it)
+      track.addEventListener('keydown', function(e){
+        if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+          e.preventDefault();
+          self.go(active + (e.key==='ArrowRight'?1:-1));
+          var b=slides[active].querySelector('.nine-open'); if(b) b.focus({preventScroll:true});
+        }
+      });
+      setActive(0);
+      // re-centre on resize
+      if(window.ResizeObserver){ new ResizeObserver(function(){ self.go(active,true); }).observe(track); }
+    }
+    document.querySelectorAll('[data-nine-slider]').forEach(function(el){ sliders.push(new Slider(el)); });
+  }
+
+  // =================== scout form (2-step + file size) ===================
+  function initScout(){
+    var ageRadios = document.querySelectorAll('input[name="age-group"]');
+    var guardianWrap = document.getElementById('guardian-wrap');
+    ageRadios.forEach(function(r){ r.addEventListener('change', function(){
+      var under18 = (r.value === '13-15' || r.value === '16-17') && r.checked;
+      if(guardianWrap){ guardianWrap.hidden = !under18; }
+    })});
+    var p1 = document.getElementById('pane-1'), p2 = document.getElementById('pane-2');
+    var steps = document.querySelectorAll('.scout-step');
+    function go(n){
+      if(n===1){ p1.hidden=false; p2.hidden=true; steps[0].classList.add('active'); steps[1].classList.remove('active') }
+      if(n===2){ p1.hidden=true;  p2.hidden=false; steps[0].classList.remove('active'); steps[1].classList.add('active') }
+    }
+    document.querySelectorAll('[data-next]').forEach(function(b){
+      b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-next'),10)) });
+    });
+    var file = document.getElementById('raw-footage');
+    var label = document.getElementById('file-name');
+    if(file && label){
+      file.addEventListener('change', function(){
+        var f = file.files && file.files[0];
+        if(!f){ label.textContent = 'No file chosen'; return; }
+        var mb = Math.round(f.size/1024/1024*10)/10;
+        label.textContent = f.size > 8*1024*1024
+          ? (f.name + ' · too large (' + mb + ' MB). Paste a link below instead.')
+          : (f.name + ' · ' + mb + ' MB');
+      });
+    }
+  }
+  initScout();
+
+  // =================== scroll reveals ===================
+  (function initReveals(){
+    if(reduce){ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in') }); return }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target) }
+      });
+    },{ rootMargin:'0px 0px -8% 0px', threshold:.08 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el) });
+  })();
+
+  // =================== HERO ROTATOR (crossfade through all 8 partner players) ===================
+  (function heroRotator(){
+    var root = document.getElementById('heroPhoto');
+    if(!root) return;
+    var rots = [].slice.call(root.querySelectorAll('.rot'));
+    if(rots.length < 2) return;
+    var P = window.ninePlayers || [];
+    var nameEl = document.getElementById('heroRotName'), clubEl = document.getElementById('heroRotClub');
+    var i = 0, paused = false, timer = null;
+    function set(n){
+      rots.forEach(function(el,k){ el.classList.toggle('on', k===n); });
+      if(P[n]){
+        if(nameEl) nameEl.textContent = P[n].last;
+        if(clubEl) clubEl.textContent = P[n].club;
+      }
+      i = n;
+    }
+    function tick(){ if(paused) return; set((i+1) % rots.length); }
+    function start(){ if(reduce) return; stop(); timer = setInterval(tick, 4200); }
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+    root.addEventListener('mouseenter', function(){ paused = true; });
+    root.addEventListener('mouseleave', function(){ paused = false; });
+    root.addEventListener('focusin', function(){ paused = true; });
+    root.addEventListener('focusout', function(){ paused = false; });
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) stop(); else start(); });
+    set(0);
+    start();
+  })();
+
+  // =================== CANADA'S BEST + SIDELINED profile modal ===================
+  (function canadaProfile(){
+    var canBest = [
+      { name:'Liam Millar', pos:'Winger', club:'Birmingham City (loan, Hull City)', no:11, apps:10, g:5, a:4, caps:47, intl:1,
+        form:"5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1 to 0 loss at Cardiff (24 Oct).",
+        fm:'932308/liam-millar' },
+      { name:'Alphonso Davies', pos:'Left Back / Winger', club:'Bayern Munich · Captain', no:19, apps:10, g:2, a:2, caps:59, intl:15,
+        form:"Captain. Scored vs Arsenal in the Champions League (21 Oct, 2 to 2): his second UCL goal this season.",
+        fm:'751202/alphonso-davies' },
+      { name:'Jonathan David', pos:'Striker', club:'Atlético Madrid (loan, Juventus)', no:10, apps:5, g:3, a:2, caps:85, intl:43,
+        form:"3 goals and 2 assists in five LaLiga games. Canada's all-time top scorer.",
+        fm:'939569/jonathan-david' },
+      { name:'Tani Oluwaseyi', pos:'Striker', club:'Villarreal', no:12, apps:5, g:0, a:0, caps:31, intl:2,
+        form:"Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct).",
+        fm:'1338740/tani-oluwaseyi' },
+      { name:'Stephen Eustáquio', pos:'Central Midfield', club:'Swansea City · Vice-captain', no:7, apps:8, g:1, a:1, caps:63, intl:5,
+        form:"Vice-captain. Back from a shoulder knock; scored in the 2 to 1 win at Lincoln.",
+        fm:'816223/stephen-eustaquio' },
+      { name:'Tajon Buchanan', pos:'Winger', club:'Villarreal', no:17, apps:8, g:0, a:0, caps:67, intl:8,
+        form:"Back from his hamstring injury: started and played 87 minutes of the 2 to 1 derby win over Valencia (24 Oct).",
+        fm:'1026135/tajon-buchanan' }
+    ];
+    var sideList = [
+      { name:'Cyle Larin', club:'Southampton', reason:'Muscle injury', date:'17 Oct 2026', back:'TBC', note:'Hit in training; club has not set a return date.' },
+      { name:'Nathan Saliba', club:'Villarreal', reason:'Muscle injury', date:'24 Oct 2026', back:'TBC', note:'Missed the 2 to 1 derby win over Valencia.' },
+      { name:'Ismaël Koné', club:'Sassuolo', reason:'Broken leg', date:'Oct 2026', back:'Late Oct', note:'In the final stage of recovery.' },
+      { name:'Alistair Johnston', club:'Celtic', reason:'Hamstring', date:'Oct 2026', back:'Late Oct', note:'Training with the squad; close to a return.' },
+      { name:'Moïse Bombito', club:'OGC Nice', reason:'Tibia surgery', date:'Oct 2026', back:'TBC', note:'Long-term absence; no public return date.' },
+      { name:'Ali Ahmed', club:'Norwich City', reason:'Ligament injury', date:'Oct 2026', back:'Early Nov', note:'Progressing in rehab.' },
+      { name:'Derek Cornelius', club:'Marseille', reason:'Hip injury', date:'Oct 2026', back:'Early Jan', note:'Expected back around the mid-season window.' },
+      { name:'Promise David', club:'Brighton (loan)', reason:'Few Premier League minutes so far', date:'Season so far', back:'TBC', note:'Fit but waiting for a run of starts.' }
+    ];
+    var initials = function(name){
+      var parts = name.split(/\s+/);
+      return (parts[0][0] + (parts[parts.length-1][0]||'')).toUpperCase();
+    };
+    var modal = document.createElement('div');
+    modal.className = 'nine-modal'; modal.hidden = true;
+    modal.innerHTML = '<div class="nine-backdrop" data-close></div>'+
+      '<div class="pm-dialog nine-dialog" role="dialog" aria-modal="true" aria-labelledby="pmTitle" tabindex="-1">'+
+        '<div class="pm-head">'+
+          '<div class="pm-pic" id="pmPic"></div>'+
+          '<div><h3 class="pm-name" id="pmTitle"></h3><p class="pm-sub" id="pmSub"></p><p class="pm-credit" id="pmCredit" style="font-size:11px;color:var(--c-faint);margin-top:6px;letter-spacing:.04em"></p></div>'+
+          '<button type="button" class="pm-close" data-close aria-label="Close profile">✕</button>'+
+        '</div>'+
+        '<div id="pmBody"></div>'+
+      '</div>';
+    document.body.appendChild(modal);
+    var dialog = modal.querySelector('.pm-dialog');
+    var pmPic   = modal.querySelector('#pmPic');
+    var pmTitle = modal.querySelector('#pmTitle');
+    var pmSub   = modal.querySelector('#pmSub');
+    var pmCredit= modal.querySelector('#pmCredit');
+    var pmBody  = modal.querySelector('#pmBody');
+    var returnFocus = null;
+
+    function setPic(name){
+      var photos = window.peoplePhotos || {};
+      var ph = photos[name];
+      if(ph){
+        pmPic.innerHTML = '<img src="'+ph.f+'" alt="'+esc(name)+'" style="width:100%;height:100%;object-fit:cover">';
+        pmCredit.innerHTML = 'Photo: '+esc(ph.a)+', <a href="'+ph.u+'" target="_blank" rel="noopener noreferrer" style="color:var(--c-gold);border-bottom:1px solid var(--c-border-s)">'+esc(ph.l)+' / Wikimedia Commons</a>';
+      } else {
+        var parts = name.split(/\s+/); var ini = (parts[0][0]+(parts[parts.length-1][0]||'')).toUpperCase();
+        pmPic.innerHTML = '<svg class="leg-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 10.4 7l-5-1 2.6 4.4L4 14l5-1 .5 5 2.5-4 2.5 4 .5-5 5 1-4-3.6L18.6 6l-5 1Z"/></svg><span class="pm-initials">'+esc(ini)+'</span>';
+        pmCredit.textContent = 'Photo pending.';
+      }
+    }
+
+    function renderBest(p){
+      setPic(p.name);
+      pmTitle.textContent = p.name;
+      pmSub.textContent = p.pos + ' · ' + p.club + ' · #' + p.no;
+      pmBody.innerHTML =
+        '<div class="pm-grid" role="list">'+
+          '<div role="listitem"><b>'+p.apps+'</b><span>Apps</span></div>'+
+          '<div role="listitem"><b>'+p.g+'</b><span>Goals</span></div>'+
+          '<div role="listitem"><b>'+p.a+'</b><span>Assists</span></div>'+
+          '<div role="listitem"><b>'+p.caps+'</b><span>🇨🇦 Caps</span></div>'+
+          '<div role="listitem"><b>'+p.intl+'</b><span>🇨🇦 Goals</span></div>'+
+        '</div>'+
+        '<h4 class="pm-h">Form note</h4>'+
+        '<p class="pm-form">'+esc(p.form)+'</p>'+
+        '<div class="pm-foot">'+
+          '<a href="https://www.fotmob.com/players/'+p.fm+'" target="_blank" rel="noopener noreferrer">FotMob profile ↗</a>'+
+          '<span>Instagram handle: not yet verified for the preview. We only link handles confirmed from the club or the player\'s verified profile.</span>'+
+        '</div>'+
+        '<p class="pm-note">Club stats for 2026–27 and Canada caps as of '+window.STATS_ASOF+'. Source: FotMob, cross-checked with club announcements. TNB isn\'t affiliated with these players or Canada Soccer.</p>';
+    }
+    function renderSide(p){
+      setPic(p.name);
+      pmTitle.textContent = p.name;
+      pmSub.textContent = p.club + ' · Sidelined';
+      pmBody.innerHTML =
+        '<div class="pm-grid" role="list" style="grid-template-columns:repeat(3,1fr)">'+
+          '<div role="listitem"><b>'+esc(p.reason)+'</b><span>Reason</span></div>'+
+          '<div role="listitem"><b>'+esc(p.date)+'</b><span>Reported</span></div>'+
+          '<div role="listitem"><b>'+esc(p.back)+'</b><span>Expected back</span></div>'+
+        '</div>'+
+        '<h4 class="pm-h">Status</h4>'+
+        '<p class="pm-form">'+esc(p.note)+'</p>'+
+        '<div class="pm-foot">'+
+          '<span>Instagram handle: not yet verified for the preview. We only link handles confirmed from the club or the player\'s verified profile.</span>'+
+        '</div>'+
+        '<p class="pm-note">Status as of '+window.STATS_ASOF+'. Source: FotMob and club announcements. TNB isn\'t affiliated with these players or Canada Soccer.</p>';
+    }
+    function open(kind, i, from){
+      returnFocus = from || document.activeElement;
+      if(kind==='best') renderBest(canBest[i]); else renderSide(sideList[i]);
+      modal.hidden = false;
+      document.documentElement.classList.add('nine-lock');
+      requestAnimationFrame(function(){ modal.classList.add('on'); });
+      dialog.focus({preventScroll:true});
+    }
+    function close(){
+      if(modal.hidden) return;
+      modal.classList.remove('on'); modal.hidden = true;
+      document.documentElement.classList.remove('nine-lock');
+      if(returnFocus && returnFocus.focus) returnFocus.focus({preventScroll:true});
+    }
+    modal.addEventListener('click', function(e){ if(e.target.closest('[data-close]')) close(); });
+    document.addEventListener('keydown', function(e){ if(!modal.hidden && e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); close(); } }, true);
+
+    document.querySelectorAll('[data-can-i]').forEach(function(el){
+      el.addEventListener('click', function(){ open('best', +el.getAttribute('data-can-i'), el); });
+    });
+    document.querySelectorAll('[data-side-i]').forEach(function(el){
+      el.addEventListener('click', function(){ open('side', +el.getAttribute('data-side-i'), el); });
+      el.addEventListener('keydown', function(e){
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open('side', +el.getAttribute('data-side-i'), el); }
+      });
+    });
+  })();
+
+  // =================== DRAGGABLE player slider (pointer events on .nine-track) ===================
+  // Engages only on explicit horizontal intent (>12px X and X>Y). Clicks always pass through.
+  (function dragSliders(){
+    document.querySelectorAll('[data-nine-slider] .nine-track').forEach(function(track){
+      var startX=0, startY=0, startLeft=0, pid=null, armed=false, dragging=false;
+      function down(e){
+        if(e.pointerType === 'mouse' && e.button !== 0) return;
+        armed = true; dragging = false;
+        startX = e.clientX; startY = e.clientY; startLeft = track.scrollLeft;
+        pid = e.pointerId;
+      }
+      function move(e){
+        if(!armed) return;
+        var dx = e.clientX - startX, dy = e.clientY - startY;
+        if(!dragging){
+          if(Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)){
+            dragging = true;
+            track.classList.add('is-dragging');
+            try { track.setPointerCapture(pid); } catch(_){}
+          } else { return; }
+        }
+        track.scrollLeft = startLeft - dx;
+      }
+      function up(){
+        armed = false;
+        if(!dragging) return;
+        track.classList.remove('is-dragging');
+        try { if(pid!=null) track.releasePointerCapture(pid); } catch(_){}
+        // Suppress exactly one click that would otherwise fire from pointerup after a real drag.
+        var kill = function(ev){ ev.preventDefault(); ev.stopPropagation(); window.removeEventListener('click', kill, true); };
+        window.addEventListener('click', kill, true);
+        setTimeout(function(){ window.removeEventListener('click', kill, true); }, 80);
+        dragging = false;
+      }
+      track.addEventListener('pointerdown', down);
+      track.addEventListener('pointermove', move);
+      track.addEventListener('pointerup', up);
+      track.addEventListener('pointercancel', up);
+      track.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    });
+  })();
+
+  // =================== count-up on hero + metrics + collab ===================
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    if(isNaN(target)){ return }
+    if(reduce){ el.textContent = (target % 1 ? target.toFixed(1) : target).toString(); return }
+    var dur = 1000, t0 = performance.now();
+    function tick(now){
+      var t = Math.min(1,(now-t0)/dur);
+      var eased = 1 - Math.pow(1-t,3);
+      var v = target * eased;
+      el.textContent = target % 1 ? v.toFixed(1) : Math.round(v).toString();
+      if(t<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  (function initCountUp(){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ animateCount(en.target); io.unobserve(en.target) }
+      });
+    },{ threshold:.3 });
+    document.querySelectorAll('[data-count]').forEach(function(el){ io.observe(el) });
+  })();
+
+})();
+</script>
+
+</body>
+</html>

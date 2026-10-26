@@ -123,7 +123,12 @@ def legends_section(sfx):
 </section>
 '''
 
-open('parts/canada.html', 'w').write(best_section('', False))
-open('parts/canada_view.html', 'w').write(best_section('-view', True))
-open('parts/legends.html', 'w').write(legends_section(''))
-print('ok')
+if __name__ == '__main__':
+    # Legacy writers for the old build chain. Guarded so build_home.py can import
+    # the module safely to read BEST/SIDE/NOW/HOME/MOMENTS without side effects.
+    import os
+    if os.path.isdir('parts'):
+        open('parts/canada.html', 'w').write(best_section('', False))
+        open('parts/canada_view.html', 'w').write(best_section('-view', True))
+        open('parts/legends.html', 'w').write(legends_section(''))
+        print('ok')

@@ -1,0 +1,191 @@
+{
+  "millar": {
+    "display": "Liam Millar",
+    "ok": true,
+    "file": "millar.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Liam_Millar_Canada_v_Qatar_18_June_2026-008.jpg"
+  },
+  "davies": {
+    "display": "Alphonso Davies",
+    "ok": true,
+    "file": "davies.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Alphonso_Davies_Canada_v_Qatar_18_June_2026-007_(cropped).jpg"
+  },
+  "j_david": {
+    "display": "Jonathan David",
+    "ok": true,
+    "file": "j_david.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Jonathan_David_Canada_v_Qatar_18_June_2026-242_(cropped).jpg"
+  },
+  "oluwaseyi": {
+    "display": "Tani Oluwaseyi",
+    "ok": true,
+    "file": "oluwaseyi.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Tani_Oluwaseyi_Canada_v_Qatar_18_June_2026-024.jpg"
+  },
+  "eustaquio": {
+    "display": "Stephen Eust\u00e1quio",
+    "ok": true,
+    "file": "eustaquio.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Stephen_Eustaquio_Canada_v_Qatar_18_June_2026-164_(cropped).jpg"
+  },
+  "buchanan": {
+    "display": "Tajon Buchanan",
+    "ok": true,
+    "file": "buchanan.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Tajon_Buchanan_Canada_v_Qatar_18_June_2026-094.jpg"
+  },
+  "larin": {
+    "display": "Cyle Larin",
+    "ok": true,
+    "file": "larin.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Cyle_Larin_Canada_v_Qatar_18_June_2026-037_(cropped).jpg"
+  },
+  "saliba": {
+    "display": "Nathan Saliba",
+    "ok": true,
+    "file": "saliba.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Nathan_Saliba_Canada_v_Qatar_18_June_2026-208_(cropped).jpg"
+  },
+  "kone": {
+    "display": "Isma\u00ebl Kon\u00e9",
+    "ok": true,
+    "file": "kone.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Isma%C3%ABl_Kone_Canada_v_Qatar_18_June_2026-062_(cropped).jpg"
+  },
+  "johnston": {
+    "display": "Alistair Johnston",
+    "ok": true,
+    "file": "johnston.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Alistair_Johnston_Canada_v_Qatar_18_June_2026-038_(cropped).jpg"
+  },
+  "bombito": {
+    "display": "Mo\u00efse Bombito",
+    "ok": true,
+    "file": "bombito.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Moise_Bombito_Canada_v_Qatar_18_June_2026_face_crop.jpg"
+  },
+  "ahmed": {
+    "display": "Ali Ahmed",
+    "ok": true,
+    "file": "ahmed.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Ali_Ahmed_Canada_v_Qatar_18_June_2026-163_(cropped).jpg"
+  },
+  "cornelius": {
+    "display": "Derek Cornelius",
+    "ok": true,
+    "file": "cornelius.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Derek_Cornelius_Canada_v_Qatar_18_June_2026-111_(cropped).jpg"
+  },
+  "p_david": {
+    "display": "Promise David",
+    "ok": true,
+    "file": "p_david.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Promise_David_Canada_v_Qatar_18_June_2026-018.jpg"
+  },
+  "muller": {
+    "display": "Thomas M\u00fcller",
+    "ok": true,
+    "file": "muller.jpg",
+    "author": "Werner100359",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg"
+  },
+  "sanchez": {
+    "display": "Alexis S\u00e1nchez",
+    "ok": true,
+    "file": "sanchez.jpg",
+    "author": "\u041a\u0438\u0440\u0438\u043b\u043b \u0412\u0435\u043d\u0435\u0434\u0438\u043a\u0442\u043e\u0432",
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg"
+  },
+  "giovinco": {
+    "display": "Sebastian Giovinco",
+    "ok": true,
+    "file": "giovinco.jpg",
+    "author": "Original: HighlanderICT from Toronto, Canada / Derivative work: Danyele This JPG graphic was created with GIMP .",
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Sebastian_Giovinco_2015-05-23_Toronto_FC_(edited).jpg"
+  },
+  "drogba": {
+    "display": "Didier Drogba",
+    "ok": true,
+    "file": "drogba.jpg",
+    "author": "Y.Leclercq\u00a9",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Didier_Drogba_(2019)_(cropped2).jpg"
+  },
+  "henry": {
+    "display": "Thierry Henry",
+    "ok": true,
+    "file": "henry.jpg",
+    "author": "Web Summit",
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Thierry_Henry_(51649035951)_(cropped).jpg"
+  },
+  "nesta": {
+    "display": "Alessandro Nesta",
+    "ok": true,
+    "file": "nesta.jpg",
+    "author": "Joerudi",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Alessandro_Nesta_as_Miami_FC_Manager.jpg"
+  },
+  "insigne": {
+    "display": "Lorenzo Insigne",
+    "ok": true,
+    "file": "insigne.jpg",
+    "author": "Presidenza della Repubblica",
+    "licence": "Attribution",
+    "licence_url": "",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Lorenzo_Insigne_2021.jpg"
+  }
+}
