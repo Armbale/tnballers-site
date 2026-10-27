@@ -187,5 +187,176 @@
     "licence": "Attribution",
     "licence_url": "",
     "descurl": "https://commons.wikimedia.org/wiki/File:Lorenzo_Insigne_2021.jpg"
+  },
+  "ronaldo": {
+    "display": "Cristiano Ronaldo",
+    "ok": true,
+    "file": "ronaldo.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_(cropped).jpg"
+  },
+  "messi": {
+    "display": "Lionel Messi",
+    "ok": true,
+    "file": "messi.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Leo_Messi_Argentina_v_Egypt_7_July_2026-1.jpg"
+  },
+  "fleming": {
+    "display": "Jessie Fleming",
+    "ok": true,
+    "file": "fleming.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Jessie_Fleming_Gotham_Portland_26_Sep_2025-019_(cropped).jpg"
+  },
+  "sonis": {
+    "display": "Janine Sonis",
+    "ok": true,
+    "file": "sonis.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Janine_Sonis_Gotham_v_Denver_Mar_25_2026-35_(cropped).jpg"
+  },
+  "lawrence": {
+    "display": "Ashley Lawrence",
+    "ok": true,
+    "file": "lawrence.jpg",
+    "author": "Ashley lawrence",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Ashley_Lawrence_Chelsea_(cropped).jpg"
+  },
+  "k_buchanan": {
+    "display": "Kadeisha Buchanan",
+    "ok": true,
+    "file": "k_buchanan.jpg",
+    "author": "Katie Chan",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:20250510-Kadeisha_Buchanan_(cropped_-_portrait).jpg"
+  },
+  "rose": {
+    "display": "Jade Rose",
+    "ok": true,
+    "file": "rose.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Jade_Rose_Canada_v_Argentina_Mar_7_2026-57_(cropped).jpg"
+  },
+  "defilippo": {
+    "display": "Jessica De Filippo",
+    "ok": true,
+    "file": "defilippo.jpg",
+    "author": "John Shorten",
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Jessica_De_Filippo_VRFC_(cropped).png"
+  },
+  "hunter": {
+    "display": "Kaylee Hunter",
+    "ok": true,
+    "file": "hunter.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Kaylee_Hunter_Canada_v_Argentina_Mar_7_2026-11.jpg"
+  },
+  "pridham": {
+    "display": "Delaney Baie Pridham",
+    "ok": true,
+    "file": "pridham.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:DB_Pridham_Canada_v_Argentina_Mar_7_2026-34.jpg"
+  },
+  "alidou": {
+    "display": "Marie-Yasmine Alidou",
+    "ok": true,
+    "file": "alidou.jpg",
+    "author": "Hameltion",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:NC_Courage_vs_Portland_Thorns_(Apr_2026)_05.jpg"
+  },
+  "viens": {
+    "display": "Evelyne Viens",
+    "ok": true,
+    "file": "viens.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Evelyne_Viens_Canada_v_Argentina_Mar_7_2026-25_(cropped).jpg"
+  },
+  "sheridan": {
+    "display": "Kailen Sheridan",
+    "ok": true,
+    "file": "sheridan.jpg",
+    "author": "Bryan Berlin",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Kailen_Sheridan_Gotham_NC_Courage_Mar_21_2026-62_(cropped).jpg"
+  },
+  "ronaldinho": {
+    "display": "Ronaldinho",
+    "ok": true,
+    "file": "ronaldinho.jpg",
+    "author": "Marcos Corr\u00eaa/PR",
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Ronaldinho_in_2019.jpg"
+  },
+  "rooney": {
+    "display": "Wayne Rooney",
+    "ok": true,
+    "file": "rooney.jpg",
+    "author": "All-Pro Reels from District of Columbia, USA",
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Wayne_Rooney_(50121495731)_(cropped).jpg"
+  },
+  "maradona": {
+    "display": "Diego Maradona",
+    "ok": true,
+    "file": "maradona.jpg",
+    "author": "Unknown author Unknown author",
+    "licence": "Public domain",
+    "licence_url": "",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Argentina_celebrando_copa_(cropped).jpg"
+  },
+  "pele": {
+    "display": "Pel\u00e9, Cruyff, Beckenbauer",
+    "ok": true,
+    "file": "pele.jpg",
+    "author": "Unknown author Unknown author",
+    "licence": "Public domain",
+    "licence_url": "",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Pele_con_brasil_(cropped).jpg"
+  },
+  "aguero": {
+    "display": "Ag\u00fcero, Di Mar\u00eda, Su\u00e1rez, Piqu\u00e9",
+    "ok": true,
+    "file": "aguero.jpg",
+    "author": "\u041a\u0438\u0440\u0438\u043b\u043b \u0412\u0435\u043d\u0435\u0434\u0438\u043a\u0442\u043e\u0432",
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:Ag%C3%BCero_in_2018.jpg"
+  },
+  "o_smith": {
+    "display": "Olivia Smith",
+    "ok": true,
+    "file": "o_smith.jpg",
+    "author": "Katie Chan",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "descurl": "https://commons.wikimedia.org/wiki/File:20241006-Olivia_Smith_(cropped).jpg"
   }
 }

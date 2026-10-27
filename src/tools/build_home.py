@@ -243,6 +243,14 @@ def legend_slider():
     for n, c, y, flag, d, tag in mc.NOW: items.append((n, f'{c}', 'Here now', flag, d))
     for y, n, d in reversed(mc.MOMENTS): items.append((n, '', y, '', d))
     for n, c, y, flag, d in mc.HOME: items.append((n, c, y, flag, d))
+    merged = {}
+    for it in items:  # one slide per legend: keep the latest year, join the stories
+        if it[0] in merged:
+            n, c, y, f, d = merged[it[0]]
+            merged[it[0]] = (n, c or it[1], y, f or it[3], d + ' ' + it[4])
+        else:
+            merged[it[0]] = it
+    items = list(merged.values())
     first = ('Cristiano Ronaldo', 'Lionel Messi')
     items.sort(key=lambda it: first.index(it[0]) if it[0] in first else len(first))
     out = []

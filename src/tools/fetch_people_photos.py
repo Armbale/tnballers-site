@@ -143,6 +143,7 @@ def pick(info):
     credit  = strip_html(md.get('Credit',{}).get('value',''))
     descurl = info.get('descriptionurl','')
     thumb   = info.get('thumburl') or info.get('url','')
+    thumb   = thumb.replace('://thumb.wikimedia.org/', '://upload.wikimedia.org/').split('?')[0]
     source  = (strip_html(credit) + ' ' + strip_html(author)).lower()
     # ban watermarked agency sources
     if any(b in source for b in BANNED):
