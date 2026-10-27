@@ -38,7 +38,30 @@ PEOPLE = {
     'henry':          ('Thierry Henry',         'Thierry Henry'),
     'nesta':          ('Alessandro Nesta',      'Alessandro Nesta'),
     'insigne':        ('Lorenzo Insigne',       'Lorenzo Insigne'),
+    # Legends slider (display = the name used on the homepage slide)
+    'ronaldo':        ('Cristiano Ronaldo',     'Cristiano Ronaldo'),
+    'messi':          ('Lionel Messi',          'Lionel Messi'),
+    'ronaldinho':     ('Ronaldinho',            'Ronaldinho'),
+    'rooney':         ('Wayne Rooney',          'Wayne Rooney'),
+    'maradona':       ('Diego Maradona',        'Diego Maradona'),
+    'platini':        ('Michel Platini',        'Michel Platini'),
+    'pele':           ('Pelé',                  'Pelé, Cruyff, Beckenbauer'),
+    'aguero':         ('Sergio Agüero',         'Agüero, Di María, Suárez, Piqué'),
+    # Canada's women
+    'o_smith':        ('Olivia Smith (soccer)', 'Olivia Smith'),
+    'fleming':        ('Jessie Fleming',        'Jessie Fleming'),
+    'sonis':          ('Janine Sonis',          'Janine Sonis'),
+    'lawrence':       ('Ashley Lawrence',       'Ashley Lawrence'),
+    'k_buchanan':     ('Kadeisha Buchanan',     'Kadeisha Buchanan'),
+    'rose':           ('Jade Rose',             'Jade Rose'),
+    'defilippo':      ('Jessica De Filippo',    'Jessica De Filippo'),
+    'hunter':         ('Kaylee Hunter',         'Kaylee Hunter'),
+    'pridham':        ('Delaney Baie Pridham',  'Delaney Baie Pridham'),
+    'alidou':         ('Marie-Yasmine Alidou',  'Marie-Yasmine Alidou'),
+    'viens':          ('Évelyne Viens',         'Evelyne Viens'),
+    'sheridan':       ('Kailen Sheridan',       'Kailen Sheridan'),
 }
+ONLY = set(sys.argv[1:])  # optional: only fetch these slugs and keep the rest
 
 ALLOWED = ('cc-by-sa', 'cc by-sa', 'cc-by', 'cc by', 'cc0', 'cc-pd', 'public domain', 'pd', 'attribution')
 BANNED  = ('getty', 'imago', 'shutter', 'reuters', 'ap ', 'associated press')
@@ -66,6 +89,12 @@ def resolve_wiki(title):
         img = p.get('pageimage')
         return (name, img) if (orig and img) else (name, None)
     return title, None
+
+def search_title(q):
+    url = 'https://en.wikipedia.org/w/api.php?' + urllib.parse.urlencode({
+        'action':'query','format':'json','list':'search','srsearch':q + ' soccer','srlimit':1})
+    hits = jget(url).get('query',{}).get('search',[])
+    return hits[0]['title'] if hits else None
 
 def commons_info(filename):
     url = 'https://commons.wikimedia.org/w/api.php?' + urllib.parse.urlencode({
@@ -114,11 +143,17 @@ def pick(info):
         return {'ok':False,'reason':f'licence not allowed ({lic_s})'}
     return {'ok':True,'thumb':thumb,'author':author or 'Unknown','licence':md.get('LicenseShortName',{}).get('value','') or 'Free licence','licence_url':lic_url,'descurl':descurl,'credit':credit}
 
-results = {}
+prev = OUT / '_results.json'
+results = json.loads(prev.read_text()) if (ONLY and prev.exists()) else {}
 for slug, (title, display) in PEOPLE.items():
+    if ONLY and slug not in ONLY: continue
     print(f'[{slug}] {title!r}')
     try:
         name, img = resolve_wiki(title)
+        if not img:
+            alt = search_title(display.split(',')[0])
+            if alt and alt != name:
+                name, img = resolve_wiki(alt)
         if not img:
             print('  no infobox image on Wikipedia')
             results[slug] = {'display':display,'ok':False,'reason':'no infobox image'}
