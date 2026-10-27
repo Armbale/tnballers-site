@@ -13,7 +13,7 @@ from pathlib import Path
 from PIL import Image
 import io
 
-UA = 'tnballers.com photo fetcher (contact@tnballers.com)'
+UA = 'tnballers-photo-fetcher/1.0 (https://tnballers.com)'
 
 # slug -> (search title on en.wikipedia.org, display name)
 PEOPLE = {
@@ -67,11 +67,19 @@ ALLOWED = ('cc-by-sa', 'cc by-sa', 'cc-by', 'cc by', 'cc0', 'cc-pd', 'public dom
 BANNED  = ('getty', 'imago', 'shutter', 'reuters', 'ap ', 'associated press')
 OUT = Path('site/img/people'); OUT.mkdir(parents=True, exist_ok=True)
 
-def http(url):
-    r = urllib.request.Request(url, headers={'User-Agent': UA})
-    return urllib.request.urlopen(r, timeout=25)
+def http(url, tries=10):
+    import time, urllib.error
+    for i in range(tries):
+        try:
+            r = urllib.request.Request(url, headers={'User-Agent': UA})
+            return urllib.request.urlopen(r, timeout=25)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or i == tries - 1: raise
+            time.sleep(int(e.headers.get('retry-after') or 10) + 2 + i * 3)
 
+import time
 def jget(url):
+    time.sleep(0.6)
     with http(url) as r: return json.load(r)
 
 def resolve_wiki(title):
@@ -99,7 +107,7 @@ def search_title(q):
 def commons_info(filename):
     url = 'https://commons.wikimedia.org/w/api.php?' + urllib.parse.urlencode({
         'action':'query','format':'json','titles':'File:'+filename,
-        'prop':'imageinfo','iiprop':'url|user|extmetadata','iiurlwidth':900,
+        'prop':'imageinfo','iiprop':'url|user|extmetadata','iiurlwidth':960,
     })
     d = jget(url)
     pages = d.get('query',{}).get('pages',{})

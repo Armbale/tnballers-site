@@ -25,6 +25,9 @@ SIDE = [
 # Official Instagram handles (no @). Only add handles confirmed as the player's own account:
 # the blue verified tick on Instagram, or listed on their Canada Soccer / club profile. Never guess.
 IG = {
+ 'Olivia Smith':'livysmithhh', 'Jessie Fleming':'_jessflem', 'Janine Sonis':'janinebeckie4', 'Ashley Lawrence':'ashley_lawrence10',
+ 'Kadeisha Buchanan':'keishaballa', 'Jade Rose':'_.jaderose', 'Jessica De Filippo':'jesstheflip', 'Kaylee Hunter':'kaylee.hunterrr',
+ 'Delaney Baie Pridham':'dbaiee', 'Marie-Yasmine Alidou':'mimialidou', 'Evelyne Viens':'evelyneviens', 'Kailen Sheridan':'kailensheridan',
  'Alphonso Davies':'alphonsodavies', 'Jonathan David':'jodavid', 'Liam Millar':'liammillar11',
  'Stephen Eustáquio':'stepheustaquio', 'Tajon Buchanan':'tajonbuchanan', 'Cyle Larin':'cylelarin',
  'Nathan Saliba':'nathansaliba_', 'Alistair Johnston':'alistairjohnston', 'Moïse Bombito':'m.bombito_',
