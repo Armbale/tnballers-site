@@ -243,6 +243,8 @@ def legend_slider():
     for n, c, y, flag, d, tag in mc.NOW: items.append((n, f'{c}', 'Here now', flag, d))
     for y, n, d in reversed(mc.MOMENTS): items.append((n, '', y, '', d))
     for n, c, y, flag, d in mc.HOME: items.append((n, c, y, flag, d))
+    first = ('Cristiano Ronaldo', 'Lionel Messi')
+    items.sort(key=lambda it: first.index(it[0]) if it[0] in first else len(first))
     out = []
     for n, club, yr, flag, d in items:
         src, cr = _photo(n, LP.get(n))
@@ -257,8 +259,7 @@ def legend_slider():
             + f'<p class="desc">{esc(d)}</p>{ig}</div></article>')
     return ('<div class="leg-slider reveal"><div class="leg-track" id="legTrack">\n      ' + '\n      '.join(out)
             + '\n    </div><div class="leg-progress" aria-hidden="true"><span></span></div></div>\n'
-            '    <div class="leg-foot"><p>Drag, swipe or use the arrows. Hover a legend for the story.</p>'
-            '<a class="btn ghost" href="#legends">The full chronicle <span class="arrow">→</span></a></div>')
+            '    <div class="leg-foot"><p>Drag, swipe or use the arrows. Hover a legend for the story.</p></div>')
 
 def women_cards():
     IG = getattr(mc, 'IG', {})
@@ -367,16 +368,6 @@ tpl = teaser_re.sub(
 tpl = tpl.replace('<!--LEGENDS_SLIDER-->', legend_slider(), 1)
 tpl = tpl.replace('<!--WOMEN_CARDS-->', women_cards(), 1)
 tpl = tpl.replace('<!--WOMEN_ASOF-->', esc(getattr(mc, 'WOMEN_ASOF', '')), 1)
-
-# 9. Replace Legends full section
-lf = legend_full()
-# Find NOW / HOME / MOMENTS blocks in the full chronicle section by their H3 labels
-full_re = re.compile(r'(<section id="legends" class="legal-stub".*?<h3 class="pm-h">Playing here now</h3>\s*<div class="legends-grid">)(.*?)(</div>\s*<h3 class="pm-h">They called Canada home</h3>\s*<div class="legends-grid">)(.*?)(</div>\s*<h3 class="pm-h">One night only</h3>\s*<ol class="leg-tl">)(.*?)(</ol>)', re.DOTALL)
-tpl = full_re.sub(
-    lambda m: (m.group(1) + '\n      ' + lf['now'] + '\n    ' +
-               m.group(3) + '\n      ' + lf['home'] + '\n    ' +
-               m.group(5) + '\n      ' + lf['moments'] + '\n    ' + m.group(7)),
-    tpl, count=1)
 
 # 10. Metrics band data-count values
 def set_metric(label, value):
