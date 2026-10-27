@@ -32,6 +32,34 @@ IG = {
  'Thomas Müller':'esmuellert', 'Alexis Sánchez':'alexis_officia1',
 }
 
+# Legends slider photos: card name -> file in site/img/people/ (credit in CREDITS.md).
+# A missing file shows an initials tile instead.
+LEGEND_PHOTO = {
+ 'Thomas Müller':'muller', 'Alexis Sánchez':'sanchez', 'Sebastian Giovinco':'giovinco', 'Didier Drogba':'drogba',
+ 'Thierry Henry':'henry', 'Alessandro Nesta':'nesta', 'Lorenzo Insigne':'insigne',
+ 'Lionel Messi':'messi', 'Cristiano Ronaldo':'ronaldo', 'Ronaldinho':'ronaldinho', 'Wayne Rooney':'rooney',
+ 'Diego Maradona':'maradona', 'Michel Platini':'platini', 'Pelé, Cruyff, Beckenbauer':'pele',
+ 'Agüero, Di María, Suárez, Piqué':'aguero',
+}
+
+# Canada's women right now. (name, pos, club, caps, intl goals, stat value, stat label, note, photo slug)
+# Caps/goals as of WOMEN_ASOF (Canada Soccer / Wikipedia squad table). Only verified facts in notes.
+WOMEN_ASOF = '12 Oct 2026'
+WOMEN = [
+ ('Olivia Smith','Forward','Arsenal',25,6,'','','Scored Canada\'s goal in the 1–1 draw with Denmark in Montréal (9 Oct).','o_smith'),
+ ('Jessie Fleming','Midfield','Portland Thorns',159,20,'','','Captain. Olympic gold medallist and the heartbeat of the midfield.','fleming'),
+ ('Janine Sonis','Forward','Denver Summit',132,40,'','','40 international goals, the most in the current squad.','sonis'),
+ ('Ashley Lawrence','Defence','OL Lyonnes',154,8,'','','One of the world\'s best full-backs, playing for European giants Lyon.','lawrence'),
+ ('Kadeisha Buchanan','Defence','Chelsea',159,6,'','','159 caps. A Champions League winner at the heart of Canada\'s back line.','k_buchanan'),
+ ('Jade Rose','Defence','Manchester City',43,1,'','','The next leader of the defence, already 43 caps in.','rose'),
+ ('Jessica De Filippo','Forward','Vancouver Rise',None,None,'12','NSL goals','Top scorer in the 2026 Northern Super League regular season.','defilippo'),
+ ('Kaylee Hunter','Forward','AFC Toronto',4,0,'10','NSL goals','Third in the NSL scoring race and now a Canada regular.','hunter'),
+ ('Delaney Baie Pridham','Forward','Ottawa Rapid',9,1,'8','NSL goals','Won the first NSL Golden Boot in 2025. Ottawa are in the playoffs.','pridham'),
+ ('Marie-Yasmine Alidou','Midfield','Montreal Roses',24,6,'','','Set up the winner as Montreal Roses clinched the NSL Supporters\' Shield.','alidou'),
+ ('Evelyne Viens','Forward','Paris FC',51,11,'','','11 international goals, leading the line in France.','viens'),
+ ('Kailen Sheridan','Goalkeeper','North Carolina Courage',71,0,'','','71 caps between the posts for Canada.','sheridan'),
+]
+
 def best_section(sfx, view_title):
     cards = ''
     for i, (n, pos, club, comp, apps, g, a, caps, ig, no, hl, fm) in enumerate(BEST):
@@ -98,6 +126,8 @@ MOMENTS = [
  ('1996','Diego Maradona','Played an exhibition for Toronto Italia alongside his brother.'),
  ('2007','Agüero, Di María, Suárez, Piqué','The U-20 World Cup in Canada. Agüero won the Golden Ball and Golden Boot as Argentina lifted the trophy.'),
  ('2009','Cristiano Ronaldo','Real Madrid beat Toronto FC 5–1 in a friendly at Rogers Centre.'),
+ ('2019','Wayne Rooney','England and Manchester United\'s record scorer played his last MLS game at BMO Field, a 5–1 playoff defeat to Toronto FC.'),
+ ('May 2026','Ronaldinho','The Ballon d\'Or winner led a Brazil Legends side with Adriano and Maicon against Toronto FC Legends at BMO Field (8 May).'),
  ('May 2026','Lionel Messi','A goal and two assists as Inter Miami won 4–2 at BMO Field, in front of a record 44,828.'),
  ('Jul 2026','Cristiano Ronaldo','Scored a penalty at BMO Field as Portugal beat Croatia 2–1, becoming the oldest scorer in World Cup knockout history (41).'),
 ]

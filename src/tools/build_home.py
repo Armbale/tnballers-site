@@ -221,6 +221,62 @@ def legend_full():
         'moments': '\n      '.join(moments),
     }
 
+
+# ---------- Legends slider + Canada's women ----------
+def _photo(name, slug):
+    """(src, credit_html) for a person; credit from _results.json when known."""
+    ph = PEOPLE.get(name)
+    if ph and (SITE / ph['f'].lstrip('/')).exists():
+        cr = (f'Photo: {esc(ph["a"])}, <a href="{esc(ph["u"])}" target="_blank" rel="noopener noreferrer">{esc(ph["l"])}</a>')
+        return ph['f'], cr
+    if slug and (SITE / 'img' / 'people' / f'{slug}.jpg').exists():
+        return f'/img/people/{slug}.jpg', ''
+    return None, ''
+
+def _initials(n):
+    parts = [w for w in n.replace(',', ' ').split() if w[:1].isalpha()]
+    return ''.join(w[0] for w in parts[:2]).upper()
+
+def legend_slider():
+    LP = getattr(mc, 'LEGEND_PHOTO', {}); IG = getattr(mc, 'IG', {})
+    items = []
+    for n, c, y, flag, d, tag in mc.NOW: items.append((n, f'{c}', 'Here now', flag, d))
+    for y, n, d in reversed(mc.MOMENTS): items.append((n, '', y, '', d))
+    for n, c, y, flag, d in mc.HOME: items.append((n, c, y, flag, d))
+    out = []
+    for n, club, yr, flag, d in items:
+        src, cr = _photo(n, LP.get(n))
+        pic = (f'<img src="{esc(src)}" alt="{esc(n)}" loading="lazy">' if src else f'<span class="ini" aria-hidden="true">{esc(_initials(n))}</span>')
+        ig = (f'<a class="leg-ig" href="https://www.instagram.com/{esc(IG[n])}/" target="_blank" rel="noopener noreferrer">Follow @{esc(IG[n])}</a>' if IG.get(n) else '')
+        out.append(
+            f'<article class="leg-slide" tabindex="0">{pic}<span class="shade"></span><span class="stripe" aria-hidden="true"></span>'
+            + (f'<span class="flag" aria-hidden="true">{flag}</span>' if flag else '')
+            + (f'<span class="credit">{cr}</span>' if cr else '')
+            + f'<div class="body"><span class="yr">{esc(yr)}</span><h3>{esc(n)}</h3>'
+            + (f'<p class="club">{esc(club)}</p>' if club else '')
+            + f'<p class="desc">{esc(d)}</p>{ig}</div></article>')
+    return ('<div class="leg-slider reveal"><div class="leg-track" id="legTrack">\n      ' + '\n      '.join(out)
+            + '\n    </div><div class="leg-progress" aria-hidden="true"><span></span></div></div>\n'
+            '    <div class="leg-foot"><p>Drag, swipe or use the arrows. Hover a legend for the story.</p>'
+            '<a class="btn ghost" href="#legends">The full chronicle <span class="arrow">→</span></a></div>')
+
+def women_cards():
+    IG = getattr(mc, 'IG', {})
+    out = []
+    for n, pos, club, caps, goals, sv, sl, note, slug in getattr(mc, 'WOMEN', []):
+        src, cr = _photo(n, slug)
+        pic = (f'<img src="{esc(src)}" alt="{esc(n)}" loading="lazy">' if src else f'<span class="ini" aria-hidden="true">{esc(_initials(n))}</span>')
+        stats = []
+        if caps is not None: stats.append(f'<div><b>{caps}</b><span>Caps</span></div><div><b>{goals}</b><span>Goals</span></div>')
+        if sv: stats.append(f'<div><b>{esc(str(sv))}</b><span>{esc(sl)}</span></div>')
+        ig = (f'<a class="w-ig" href="https://www.instagram.com/{esc(IG[n])}/" target="_blank" rel="noopener noreferrer">Follow @{esc(IG[n])}</a>' if IG.get(n) else '')
+        out.append(
+            f'<li class="w-card" tabindex="0"><div class="w-pic">{pic}<span class="pos">{esc(pos)}</span>'
+            + (f'<span class="credit">{cr}</span>' if cr else '') + '</div>'
+            f'<div class="w-body"><h3>{esc(n)}</h3><p class="club">{esc(club)}</p>'
+            f'<div class="w-stats">{"".join(stats)}</div><p>{esc(note)}</p>{ig}</div></li>')
+    return '\n      '.join(out)
+
 # Feed strip from site/social/*/feed.jpg
 def feed_posts():
     social = SITE / 'social'
@@ -306,6 +362,11 @@ teaser_re = re.compile(r'(<section class="legends grain" aria-label="Legends tea
 tpl = teaser_re.sub(
     lambda m: m.group(1) + '\n      ' + legend_now_cards() + '\n    ' + m.group(3),
     tpl, count=1)
+
+# 8b. Legends slider + women
+tpl = tpl.replace('<!--LEGENDS_SLIDER-->', legend_slider(), 1)
+tpl = tpl.replace('<!--WOMEN_CARDS-->', women_cards(), 1)
+tpl = tpl.replace('<!--WOMEN_ASOF-->', esc(getattr(mc, 'WOMEN_ASOF', '')), 1)
 
 # 9. Replace Legends full section
 lf = legend_full()

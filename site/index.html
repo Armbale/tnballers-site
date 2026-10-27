@@ -939,6 +939,60 @@ html.nine-lock{overflow:hidden}
 .amb-photo{position:absolute;top:28px;right:28px;width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--c-gold);box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .25s ease}
 .amb-card:hover .amb-photo{transform:scale(1.05) rotate(-2deg)}
 @media (max-width:600px){.amb-photo{width:80px;height:80px;top:20px;right:20px}}
+/* --- Legends slider (big, auto-sliding) --- */
+.leg-nav{display:flex;gap:10px}
+.leg-arrow{all:unset;cursor:pointer;width:48px;height:48px;border-radius:50%;border:1px solid var(--c-border-s);display:inline-flex;align-items:center;justify-content:center;color:var(--c-white);font-size:18px;transition:background .2s,border-color .2s,color .2s}
+.leg-arrow:hover,.leg-arrow:focus-visible{background:var(--c-red);border-color:var(--c-red);color:#fff}
+.leg-slider{position:relative;margin-top:8px}
+.leg-track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 2px 18px;cursor:grab}
+.leg-track::-webkit-scrollbar{display:none}
+.leg-track.dragging{cursor:grabbing;scroll-snap-type:none}
+.leg-slide{flex:0 0 clamp(270px,30vw,380px);scroll-snap-align:start;position:relative;aspect-ratio:3/4;overflow:hidden;background:#111;border:1px solid var(--c-border-s);transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .25s}
+.leg-slide:hover,.leg-slide:focus-within{transform:translateY(-6px);border-color:var(--c-gold)}
+.leg-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .6s cubic-bezier(.2,.8,.2,1);filter:saturate(1.05)}
+.leg-slide:hover img{transform:scale(1.06)}
+.leg-slide .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:96px;color:rgba(255,255,255,.12);background:radial-gradient(120% 90% at 20% 0%,#3a0a0a,#0b0b0b 70%)}
+.leg-slide .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.92) 88%)}
+.leg-slide .stripe{position:absolute;top:-10%;right:18%;width:14px;height:130%;background:var(--c-red);transform:rotate(18deg);opacity:.85}
+.leg-slide .body{position:absolute;left:0;right:0;bottom:0;padding:22px;color:#fff}
+.leg-slide .yr{display:inline-block;font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#0b0b0b;background:var(--c-gold-l);padding:5px 9px;margin-bottom:12px}
+.leg-slide h3{font-family:var(--f-display);font-size:clamp(30px,3vw,40px);line-height:.95;text-transform:uppercase;margin:0 0 6px;color:#fff}
+.leg-slide .club{font-size:12px;letter-spacing:.06em;color:#d8d8d8;margin:0 0 8px;font-weight:600}
+.leg-slide .desc{font-size:13px;line-height:1.5;color:#cfcfcf;margin:0;max-height:0;opacity:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease}
+.leg-slide:hover .desc,.leg-slide:focus-within .desc{max-height:140px;opacity:1}
+.leg-slide .flag{position:absolute;top:16px;left:16px;font-size:26px;z-index:2}
+.leg-slide .credit{position:absolute;top:14px;right:12px;font-size:9px;color:rgba(255,255,255,.7);max-width:55%;text-align:right;z-index:2}
+.leg-slide .credit a{color:inherit;text-decoration:underline}
+.leg-slide .leg-ig{position:relative;z-index:2;color:var(--c-gold-l);margin-top:10px}
+.leg-progress{height:3px;background:var(--c-border);margin-top:6px;position:relative;overflow:hidden}
+.leg-progress span{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--c-red);transition:width .4s ease}
+@media (hover:none){.leg-slide .desc{max-height:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.leg-slide,.leg-slide img,.leg-slide .desc{transition:none}}
+/* --- Canada's women rail --- */
+.women{padding:88px 0 72px;background:var(--c-ink);border-top:1px solid var(--c-border)}
+.w-track{list-style:none;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 2px 18px;margin:0}
+.w-track::-webkit-scrollbar{display:none}
+.w-card{flex:0 0 clamp(240px,24vw,290px);scroll-snap-align:start;background:var(--c-ink-2);border:1px solid var(--c-border-s);position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .25s,box-shadow .3s}
+.w-card:hover,.w-card:focus-within{transform:translateY(-6px);border-color:var(--c-red);box-shadow:0 16px 34px rgba(0,0,0,.35)}
+.w-pic{aspect-ratio:4/4;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 20% 0%,#3a0a0a,#0b0b0b 70%)}
+.w-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .6s}
+.w-card:hover .w-pic img{transform:scale(1.06)}
+.w-pic .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:72px;color:rgba(255,255,255,.14)}
+.w-pic .pos{position:absolute;left:12px;top:12px;font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:var(--c-red);color:#fff;padding:5px 8px}
+.w-pic .credit{position:absolute;right:8px;bottom:6px;font-size:9px;color:rgba(255,255,255,.75)}
+.w-pic .credit a{color:inherit;text-decoration:underline}
+.w-body{padding:16px 18px 18px}
+.w-body h3{font-family:var(--f-display);font-size:26px;line-height:1;text-transform:uppercase;margin:0 0 4px;color:var(--c-white)}
+.w-body .club{font-size:12px;color:var(--c-muted);letter-spacing:.06em;margin:0 0 12px}
+.w-stats{display:flex;gap:16px;margin-bottom:12px}
+.w-stats div{display:flex;flex-direction:column}
+.w-stats b{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--c-white)}
+.w-stats span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c-muted);margin-top:4px}
+.w-body p{font-size:13px;line-height:1.5;color:var(--c-dim);margin:0}
+.w-body .w-ig{display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:var(--c-gold);border-bottom:1px solid currentColor}
+:root[data-theme="light"] .w-card{background:#fff;border-color:rgba(0,0,0,.1)}
+:root[data-theme="light"] .women{background:var(--c-ink)}
+
 /* --- SVC link cards (whole card is a link) --- */
 .svc-link{display:flex;flex-direction:column;cursor:pointer;transition:transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, box-shadow .22s ease}
 .svc-link:hover,.svc-link:focus-visible{transform:translateY(-4px);border-color:var(--c-red);box-shadow:0 14px 30px rgba(0,0,0,.45)}
@@ -1105,7 +1159,6 @@ html.nine-lock{overflow:hidden}
         <div>
           <span class="lbl">Live events, last 7 days</span>
           <span class="val" data-count="18">0</span>
-          <span class="note">Computed from <code style="font-family:inherit;color:var(--c-gold)">feed.json</code> at build time.</span>
         </div>
       </div>
     </div>
@@ -1274,6 +1327,33 @@ html.nine-lock{overflow:hidden}
   </div>
 </section>
 
+<!-- ===================== CANADA'S WOMEN ===================== -->
+<section id="women" class="women grain" aria-labelledby="women-h">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Canada's women</span>
+        <h2 class="sec-title" id="women-h">The women <em>leading Canada.</em></h2>
+        <p class="sec-sub">From the Champions League to the Northern Super League. Caps and goals as of 12 Oct 2026.</p>
+      </div>
+      <div class="right leg-nav"><button type="button" class="leg-arrow" data-target="womenTrack" data-dir="-1" aria-label="Previous player">←</button><button type="button" class="leg-arrow" data-target="womenTrack" data-dir="1" aria-label="Next player">→</button></div>
+    </div>
+    <ul class="w-track reveal" id="womenTrack" role="list"><li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">OS</span><span class="pos">Forward</span></div><div class="w-body"><h3>Olivia Smith</h3><p class="club">Arsenal</p><div class="w-stats"><div><b>25</b><span>Caps</span></div><div><b>6</b><span>Goals</span></div></div><p>Scored Canada&#39;s goal in the 1–1 draw with Denmark in Montréal (9 Oct).</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">JF</span><span class="pos">Midfield</span></div><div class="w-body"><h3>Jessie Fleming</h3><p class="club">Portland Thorns</p><div class="w-stats"><div><b>159</b><span>Caps</span></div><div><b>20</b><span>Goals</span></div></div><p>Captain. Olympic gold medallist and the heartbeat of the midfield.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">JS</span><span class="pos">Forward</span></div><div class="w-body"><h3>Janine Sonis</h3><p class="club">Denver Summit</p><div class="w-stats"><div><b>132</b><span>Caps</span></div><div><b>40</b><span>Goals</span></div></div><p>40 international goals, the most in the current squad.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">AL</span><span class="pos">Defence</span></div><div class="w-body"><h3>Ashley Lawrence</h3><p class="club">OL Lyonnes</p><div class="w-stats"><div><b>154</b><span>Caps</span></div><div><b>8</b><span>Goals</span></div></div><p>One of the world&#39;s best full-backs, playing for European giants Lyon.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">KB</span><span class="pos">Defence</span></div><div class="w-body"><h3>Kadeisha Buchanan</h3><p class="club">Chelsea</p><div class="w-stats"><div><b>159</b><span>Caps</span></div><div><b>6</b><span>Goals</span></div></div><p>159 caps. A Champions League winner at the heart of Canada&#39;s back line.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">JR</span><span class="pos">Defence</span></div><div class="w-body"><h3>Jade Rose</h3><p class="club">Manchester City</p><div class="w-stats"><div><b>43</b><span>Caps</span></div><div><b>1</b><span>Goals</span></div></div><p>The next leader of the defence, already 43 caps in.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">JD</span><span class="pos">Forward</span></div><div class="w-body"><h3>Jessica De Filippo</h3><p class="club">Vancouver Rise</p><div class="w-stats"><div><b>12</b><span>NSL goals</span></div></div><p>Top scorer in the 2026 Northern Super League regular season.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">KH</span><span class="pos">Forward</span></div><div class="w-body"><h3>Kaylee Hunter</h3><p class="club">AFC Toronto</p><div class="w-stats"><div><b>4</b><span>Caps</span></div><div><b>0</b><span>Goals</span></div><div><b>10</b><span>NSL goals</span></div></div><p>Third in the NSL scoring race and now a Canada regular.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">DB</span><span class="pos">Forward</span></div><div class="w-body"><h3>Delaney Baie Pridham</h3><p class="club">Ottawa Rapid</p><div class="w-stats"><div><b>9</b><span>Caps</span></div><div><b>1</b><span>Goals</span></div><div><b>8</b><span>NSL goals</span></div></div><p>Won the first NSL Golden Boot in 2025. Ottawa are in the playoffs.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">MA</span><span class="pos">Midfield</span></div><div class="w-body"><h3>Marie-Yasmine Alidou</h3><p class="club">Montreal Roses</p><div class="w-stats"><div><b>24</b><span>Caps</span></div><div><b>6</b><span>Goals</span></div></div><p>Set up the winner as Montreal Roses clinched the NSL Supporters&#39; Shield.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">EV</span><span class="pos">Forward</span></div><div class="w-body"><h3>Evelyne Viens</h3><p class="club">Paris FC</p><div class="w-stats"><div><b>51</b><span>Caps</span></div><div><b>11</b><span>Goals</span></div></div><p>11 international goals, leading the line in France.</p></div></li>
+      <li class="w-card" tabindex="0"><div class="w-pic"><span class="ini" aria-hidden="true">KS</span><span class="pos">Goalkeeper</span></div><div class="w-body"><h3>Kailen Sheridan</h3><p class="club">North Carolina Courage</p><div class="w-stats"><div><b>71</b><span>Caps</span></div><div><b>0</b><span>Goals</span></div></div><p>71 caps between the posts for Canada.</p></div></li></ul>
+    <p class="canada-note">Source: Canada Soccer, Northern Super League and club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+  </div>
+</section>
+
 <!-- ===================== WHAT TNB DOES (three cards -> three pages) ===================== -->
 <section id="services" class="services grain">
   <div class="wrap">
@@ -1319,29 +1399,29 @@ html.nine-lock{overflow:hidden}
       <div>
         <span class="eyebrow">05 / The numbers</span>
         <h2 class="sec-title" style="font-size:clamp(32px,4.4vw,56px)">Numbers that count.</h2>
-        <p class="sec-sub">Only numbers we can defend. Each one is computed from a data file at build time.</p>
+        <p class="sec-sub">Real numbers, updated through the season.</p>
       </div>
     </div>
     <div class="metrics-row reveal">
       <div>
         <div class="mlbl">Partner players</div>
         <div class="mval"><span data-count="8">0</span></div>
-        <div class="mnote">Partnered and tracked in full. Count of entries in <code>src/parts/nine_data.js</code>.</div>
+        <div class="mnote">Partnered and tracked all season.</div>
       </div>
       <div>
         <div class="mlbl">Live events, last 7 days</div>
         <div class="mval"><span data-count="18">0</span></div>
-        <div class="mnote">Items in <code>src/parts/feed.json</code> dated within the last 7 days of <code>STATS_ASOF</code>.</div>
+        <div class="mnote">Goals, results, injuries and moves on the Live Tracker.</div>
       </div>
       <div>
         <div class="mlbl">Partner clubs (CPL)</div>
         <div class="mval"><span data-count="5">0</span></div>
-        <div class="mnote">Distinct <code>club</code> values across <code>nine_data.js</code>.</div>
+        <div class="mnote">Vancouver FC, HFX Wanderers, Forge FC, Pacific FC and Inter Toronto.</div>
       </div>
       <div>
         <div class="mlbl">Canada's Best, tracked</div>
         <div class="mval"><span data-count="6">0</span></div>
-        <div class="mnote">Players in <code>BEST[]</code> in <code>make_canada.py</code>. Plus <span data-count="8">0</span> on the sidelined list.</div>
+        <div class="mnote">Ranked on current form. Plus <span data-count="8">0</span> on the sidelined list.</div>
       </div>
     </div>
   </div>
@@ -1357,7 +1437,6 @@ html.nine-lock{overflow:hidden}
       </div>
     </div>
     <ul class="feed-grid" id="feedGrid" role="list"></ul>
-    <p id="feedEmpty" class="feed-empty" hidden>Instagram post graphics will appear here once <code>src/tools/social_formats.py</code> exports Reels under <code>site/social/</code>. Nothing is embedded from Instagram.</p>
   </div>
 </section>
 
@@ -1367,20 +1446,30 @@ html.nine-lock{overflow:hidden}
       <div>
         <span class="eyebrow">07 / Legends on Canadian soil</span>
         <h2 class="sec-title">The greats played <em>here.</em></h2>
-        <p class="sec-sub">From Pelé to Messi, some of the biggest names in the game have played on Canadian grass. A few still call it home.</p>
+        <p class="sec-sub">Pelé, Maradona, Ronaldo, Messi, Ronaldinho. The biggest names in the game have played on Canadian grass, and a few still call it home.</p>
       </div>
-      <div class="right"><a class="btn ghost" href="#legends">View all legends <span class="arrow">→</span></a></div>
+      <div class="right leg-nav"><button type="button" class="leg-arrow" data-dir="-1" aria-label="Previous legend">←</button><button type="button" class="leg-arrow" data-dir="1" aria-label="Next legend">→</button></div>
     </div>
 
-    <div class="leg-grid reveal">
-      <article class="leg-card" tabindex="0"><div class="leg-pic"><img src="/img/people/muller.jpg" alt="Thomas Müller" loading="lazy"><span class="leg-credit">Photo: Werner100359, <a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0 / Wikimedia</a></span></div><span class="flag" aria-hidden="true">🇩🇪</span><span class="tag">Playing here now</span><h3>Thomas Müller</h3><p class="club">Vancouver Whitecaps · Since Aug 2025</p><p class="desc">2014 World Cup winner. 13 Bundesliga titles with Bayern. Now in Vancouver: 9 goals and 6 assists in MLS this season (currently out with a hamstring injury).</p><a class="leg-ig" href="https://www.instagram.com/esmuellert/" target="_blank" rel="noopener noreferrer">Follow @esmuellert</a></article>
-      <article class="leg-card" tabindex="0"><div class="leg-pic"><img src="/img/people/sanchez.jpg" alt="Alexis Sánchez" loading="lazy"><span class="leg-credit">Photo: Кирилл Венедиктов, <a href="https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 / Wikimedia</a></span></div><span class="flag" aria-hidden="true">🇨🇱</span><span class="tag">Playing here now</span><h3>Alexis Sánchez</h3><p class="club">CF Montréal · Since Aug 2026</p><p class="desc">Chile&#39;s all-time top scorer (51) and most-capped player (168). Two Copa Américas, and title winner at Barcelona and Inter.</p><a class="leg-ig" href="https://www.instagram.com/alexis_officia1/" target="_blank" rel="noopener noreferrer">Follow @alexis_officia1</a></article>
-    </div>
-
-    <div class="leg-foot">
-      <p>Giovinco, Drogba, Henry, Nesta, Insigne. And the one-night-only visits from Pelé, Platini, Maradona, Agüero, Ronaldo and Messi.</p>
-      <a class="btn ghost" href="#legends">The full chronicle <span class="arrow">→</span></a>
-    </div>
+    <div class="leg-slider reveal"><div class="leg-track" id="legTrack">
+      <article class="leg-slide" tabindex="0"><img src="/img/people/muller.jpg" alt="Thomas Müller" loading="lazy"><span class="shade"></span><span class="stripe" aria-hidden="true"></span><span class="flag" aria-hidden="true">🇩🇪</span><span class="credit">Photo: Werner100359, <a href="https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_(2025-01-06_Testspiel)_19.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span><div class="body"><span class="yr">Here now</span><h3>Thomas Müller</h3><p class="club">Vancouver Whitecaps</p><p class="desc">2014 World Cup winner. 13 Bundesliga titles with Bayern. Now in Vancouver: 9 goals and 6 assists in MLS this season (currently out with a hamstring injury).</p><a class="leg-ig" href="https://www.instagram.com/esmuellert/" target="_blank" rel="noopener noreferrer">Follow @esmuellert</a></div></article>
+      <article class="leg-slide" tabindex="0"><img src="/img/people/sanchez.jpg" alt="Alexis Sánchez" loading="lazy"><span class="shade"></span><span class="stripe" aria-hidden="true"></span><span class="flag" aria-hidden="true">🇨🇱</span><span class="credit">Photo: Кирилл Венедиктов, <a href="https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></span><div class="body"><span class="yr">Here now</span><h3>Alexis Sánchez</h3><p class="club">CF Montréal</p><p class="desc">Chile&#39;s all-time top scorer (51) and most-capped player (168). Two Copa Américas, and title winner at Barcelona and Inter.</p><a class="leg-ig" href="https://www.instagram.com/alexis_officia1/" target="_blank" rel="noopener noreferrer">Follow @alexis_officia1</a></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">CR</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">Jul 2026</span><h3>Cristiano Ronaldo</h3><p class="desc">Scored a penalty at BMO Field as Portugal beat Croatia 2–1, becoming the oldest scorer in World Cup knockout history (41).</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">LM</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">May 2026</span><h3>Lionel Messi</h3><p class="desc">A goal and two assists as Inter Miami won 4–2 at BMO Field, in front of a record 44,828.</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">R</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">May 2026</span><h3>Ronaldinho</h3><p class="desc">The Ballon d&#39;Or winner led a Brazil Legends side with Adriano and Maicon against Toronto FC Legends at BMO Field (8 May).</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">WR</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">2019</span><h3>Wayne Rooney</h3><p class="desc">England and Manchester United&#39;s record scorer played his last MLS game at BMO Field, a 5–1 playoff defeat to Toronto FC.</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">CR</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">2009</span><h3>Cristiano Ronaldo</h3><p class="desc">Real Madrid beat Toronto FC 5–1 in a friendly at Rogers Centre.</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">AD</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">2007</span><h3>Agüero, Di María, Suárez, Piqué</h3><p class="desc">The U-20 World Cup in Canada. Agüero won the Golden Ball and Golden Boot as Argentina lifted the trophy.</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">DM</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">1996</span><h3>Diego Maradona</h3><p class="desc">Played an exhibition for Toronto Italia alongside his brother.</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">MP</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">1983</span><h3>Michel Platini</h3><p class="desc">Juventus and the three-time Ballon d&#39;Or winner faced the Toronto Blizzard.</p></div></article>
+      <article class="leg-slide" tabindex="0"><span class="ini" aria-hidden="true">PC</span><span class="shade"></span><span class="stripe" aria-hidden="true"></span><div class="body"><span class="yr">1970s</span><h3>Pelé, Cruyff, Beckenbauer</h3><p class="desc">The NASL era brought the world&#39;s greatest to Toronto, Vancouver and Montreal.</p></div></article>
+      <article class="leg-slide" tabindex="0"><img src="/img/people/giovinco.jpg" alt="Sebastian Giovinco" loading="lazy"><span class="shade"></span><span class="stripe" aria-hidden="true"></span><span class="flag" aria-hidden="true">🇮🇹</span><span class="credit">Photo: Original: HighlanderICT from Toronto, Cana, <a href="https://commons.wikimedia.org/wiki/File:Sebastian_Giovinco_2015-05-23_Toronto_FC_(edited).jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></span><div class="body"><span class="yr">2015–19</span><h3>Sebastian Giovinco</h3><p class="club">Toronto FC</p><p class="desc">MLS MVP in his first season. Led TFC to the 2017 treble: MLS Cup, Supporters&#39; Shield and Canadian Championship.</p></div></article>
+      <article class="leg-slide" tabindex="0"><img src="/img/people/drogba.jpg" alt="Didier Drogba" loading="lazy"><span class="shade"></span><span class="stripe" aria-hidden="true"></span><span class="flag" aria-hidden="true">🇨🇮</span><span class="credit">Photo: Y.Leclercq©, <a href="https://commons.wikimedia.org/wiki/File:Didier_Drogba_(2019)_(cropped2).jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span><div class="body"><span class="yr">2015–16</span><h3>Didier Drogba</h3><p class="club">Montreal Impact</p><p class="desc">Chelsea&#39;s Champions League hero hit a hat-trick on his first start and 11 goals in his first 11 MLS games.</p></div></article>
+      <article class="leg-slide" tabindex="0"><img src="/img/people/henry.jpg" alt="Thierry Henry" loading="lazy"><span class="shade"></span><span class="stripe" aria-hidden="true"></span><span class="flag" aria-hidden="true">🇫🇷</span><span class="credit">Photo: Web Summit, <a href="https://commons.wikimedia.org/wiki/File:Thierry_Henry_(51649035951)_(cropped).jpg" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span><div class="body"><span class="yr">2019–21</span><h3>Thierry Henry</h3><p class="club">CF Montréal (head coach)</p><p class="desc">Arsenal&#39;s all-time top scorer and a World Cup winner coached Montreal through the 2020 season.</p></div></article>
+      <article class="leg-slide" tabindex="0"><img src="/img/people/nesta.jpg" alt="Alessandro Nesta" loading="lazy"><span class="shade"></span><span class="stripe" aria-hidden="true"></span><span class="flag" aria-hidden="true">🇮🇹</span><span class="credit">Photo: Joerudi, <a href="https://commons.wikimedia.org/wiki/File:Alessandro_Nesta_as_Miami_FC_Manager.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span><div class="body"><span class="yr">2012–13</span><h3>Alessandro Nesta</h3><p class="club">Montreal Impact</p><p class="desc">2006 World Cup winner and two-time Champions League winner, finishing his career in Montreal.</p></div></article>
+      <article class="leg-slide" tabindex="0"><img src="/img/people/insigne.jpg" alt="Lorenzo Insigne" loading="lazy"><span class="shade"></span><span class="stripe" aria-hidden="true"></span><span class="flag" aria-hidden="true">🇮🇹</span><span class="credit">Photo: Presidenza della Repubblica, <a href="https://commons.wikimedia.org/wiki/File:Lorenzo_Insigne_2021.jpg" target="_blank" rel="noopener noreferrer">Attribution</a></span><div class="body"><span class="yr">2022–25</span><h3>Lorenzo Insigne</h3><p class="club">Toronto FC</p><p class="desc">Euro 2020 winner with Italy. Napoli legend turned Toronto FC designated player.</p></div></article>
+    </div><div class="leg-progress" aria-hidden="true"><span></span></div></div>
+    <div class="leg-foot"><p>Drag, swipe or use the arrows. Hover a legend for the story.</p><a class="btn ghost" href="#legends">The full chronicle <span class="arrow">→</span></a></div>
   </div>
 </section>
 
@@ -1414,7 +1503,7 @@ html.nine-lock{overflow:hidden}
     <p class="legal-eyebrow">07 / The full chronicle</p>
 <!-- (section-level eyebrow retained for the legends anchor page.) -->
     <h2 id="legends-full-h">Legends on Canadian soil.</h2>
-    <p>Full version of the Legends chapter is wired into the production build from <code>make_canada.py</code> (<code>NOW</code>, <code>HOME</code>, <code>MOMENTS</code> arrays). Every photo below is self-hosted from Wikimedia Commons under a free licence (see <a href="/img/people/CREDITS.md" style="color:var(--c-gold)">CREDITS.md</a> for the full list).</p>
+    <p>Every legend who has played on Canadian soil, from the NASL days to the 2026 World Cup.</p>
 
     <h3 class="pm-h">Playing here now</h3>
     <div class="legends-grid">
@@ -1438,6 +1527,8 @@ html.nine-lock{overflow:hidden}
       <li><span class="tl-year">1996</span><div><b>Diego Maradona</b><p>Played an exhibition for Toronto Italia alongside his brother.</p></div></li>
       <li><span class="tl-year">2007</span><div><b>Agüero, Di María, Suárez, Piqué</b><p>The U-20 World Cup in Canada. Agüero won the Golden Ball and Golden Boot as Argentina lifted the trophy.</p></div></li>
       <li><span class="tl-year">2009</span><div><b>Cristiano Ronaldo</b><p>Real Madrid beat Toronto FC 5–1 in a friendly at Rogers Centre.</p></div></li>
+      <li><span class="tl-year">2019</span><div><b>Wayne Rooney</b><p>England and Manchester United&#39;s record scorer played his last MLS game at BMO Field, a 5–1 playoff defeat to Toronto FC.</p></div></li>
+      <li><span class="tl-year">May 2026</span><div><b>Ronaldinho</b><p>The Ballon d&#39;Or winner led a Brazil Legends side with Adriano and Maicon against Toronto FC Legends at BMO Field (8 May).</p></div></li>
       <li><span class="tl-year">May 2026</span><div><b>Lionel Messi</b><p>A goal and two assists as Inter Miami won 4–2 at BMO Field, in front of a record 44,828.</p></div></li>
       <li><span class="tl-year">Jul 2026</span><div><b>Cristiano Ronaldo</b><p>Scored a penalty at BMO Field as Portugal beat Croatia 2–1, becoming the oldest scorer in World Cup knockout history (41).</p></div></li>
     </ol>
@@ -1690,12 +1781,45 @@ window.ninePlayers = [
     var grid = document.getElementById('feedGrid'), empty = document.getElementById('feedEmpty');
     if(!grid) return;
     var posts = (window.feedPosts || []).slice(0, 6);
-    if(!posts.length){ grid.remove(); if(empty) empty.hidden = false; return; }
+    if(!posts.length){ var sec = grid.closest('section'); if(sec) sec.hidden = true; return; }
     grid.innerHTML = posts.map(function(p){
       return '<li><a href="'+(p.url||'https://instagram.com/tnballers')+'" target="_blank" rel="noopener noreferrer"><img src="'+p.img+'" alt="'+esc(p.cap||'TNB post')+'" loading="lazy"><span class="fcap">'+esc(p.cap||'')+'</span></a></li>';
     }).join('');
   })();
 
+
+  // =================== Legends + Women sliders ===================
+  (function sliders(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function step(track){ var c = track.querySelector('.leg-slide,.w-card'); return c ? c.getBoundingClientRect().width + 20 : 300; }
+    function go(track, dir){
+      var max = track.scrollWidth - track.clientWidth - 4;
+      if(dir > 0 && track.scrollLeft >= max) track.scrollTo({left:0, behavior: reduce?'auto':'smooth'});
+      else if(dir < 0 && track.scrollLeft <= 4) track.scrollTo({left:max, behavior: reduce?'auto':'smooth'});
+      else track.scrollBy({left: dir*step(track), behavior: reduce?'auto':'smooth'});
+    }
+    document.querySelectorAll('.leg-arrow').forEach(function(b){
+      b.addEventListener('click', function(){
+        var t = document.getElementById(b.getAttribute('data-target') || 'legTrack');
+        if(t) go(t, +b.getAttribute('data-dir'));
+      });
+    });
+    ['legTrack','womenTrack'].forEach(function(id){
+      var t = document.getElementById(id); if(!t) return;
+      var down=false, sx=0, sl=0, moved=false;
+      t.addEventListener('pointerdown', function(e){ if(e.pointerType!=='mouse') return; down=true; moved=false; sx=e.clientX; sl=t.scrollLeft; t.classList.add('dragging'); });
+      window.addEventListener('pointermove', function(e){ if(!down) return; var dx=e.clientX-sx; if(Math.abs(dx)>4) moved=true; t.scrollLeft = sl - dx; });
+      window.addEventListener('pointerup', function(){ if(!down) return; down=false; t.classList.remove('dragging'); });
+      t.addEventListener('click', function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); moved=false; } }, true);
+      var bar = t.parentElement.querySelector('.leg-progress span');
+      t.addEventListener('scroll', function(){ if(bar){ var m=t.scrollWidth-t.clientWidth; bar.style.width = (m>0 ? (t.scrollLeft/m*100) : 0)+'%'; } }, {passive:true});
+      if(id==='legTrack' && !reduce){
+        var hover=false, timer=setInterval(function(){ if(!hover && !down && !document.hidden) go(t, 1); }, 3800);
+        t.addEventListener('mouseenter', function(){ hover=true; }); t.addEventListener('mouseleave', function(){ hover=false; });
+        t.addEventListener('focusin', function(){ hover=true; }); t.addEventListener('focusout', function(){ hover=false; });
+      }
+    });
+  })();
   // =================== View Transitions on same-origin link clicks ===================
   (function viewTx(){
     if(!document.startViewTransition) return;
