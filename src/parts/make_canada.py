@@ -15,7 +15,7 @@ SIDE = [
  ('Cyle Larin','Southampton','Muscle injury (17 Oct)','TBC'),
  ('Nathan Saliba','Villarreal','Muscle injury (missed 24 Oct derby)','TBC'),
  ('Ismaël Koné','Sassuolo','Broken leg','Late Oct'),
- ('Alistair Johnston','Celtic','Hamstring: forced off on his return (25 Oct)','TBC'),
+ ('Alistair Johnston','Celtic','Hamstring: forced off on his return (25 Oct)','After the Nov break'),
  ('Moïse Bombito','OGC Nice','Tibia surgery','TBC'),
  ('Ali Ahmed','Norwich City','Ligament injury','Early Nov'),
  ('Derek Cornelius','Marseille','Hip injury','Early Jan'),
