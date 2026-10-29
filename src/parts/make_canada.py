@@ -3,10 +3,10 @@ def esc(s): return s.replace('&', '&amp;')
 
 # name, pos, club, comp label, apps, goals, assists, caps, intl goals, shirt, highlight, fotmob id
 BEST = [
- ('Liam Millar','Winger','Birmingham City (loan, Hull City)','All comps',10,5,4,47,1,'11','5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1–0 loss at Cardiff (24 Oct).','932308/liam-millar'),
  ('Alphonso Davies','Left Back / Winger','Bayern Munich','All comps',11,3,3,59,15,'19','Captain. Off the bench at half-time vs Magdeburg (28 Oct, DFB-Pokal, 6–1): won a penalty, scored and assisted. Also scored vs Arsenal in the Champions League (21 Oct).','751202/alphonso-davies'),
+ ('Liam Millar','Winger','Birmingham City (loan, Hull City)','All comps',10,5,4,47,1,'11','5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1–0 loss at Cardiff (24 Oct).','932308/liam-millar'),
  ('Jonathan David','Striker','Atlético Madrid (loan, Juventus)','LaLiga',5,3,2,85,43,'10','3 goals and 2 assists in five LaLiga games. Canada\'s all-time top scorer.','939569/jonathan-david'),
- ('Tani Oluwaseyi','Striker','Villarreal','LaLiga',5,0,0,31,2,'12','Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct).','1338740/tani-oluwaseyi'),
+ ('Tani Oluwaseyi','Striker','Villarreal','LaLiga',5,0,0,31,2,'12','Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct). Scored again in the 5–0 Copa del Rey win at Manacor (27 Oct).','1338740/tani-oluwaseyi'),
  ('Stephen Eustáquio','Central Midfield','Swansea City','Championship',8,1,1,63,5,'7','Vice-captain. Back from a shoulder knock; scored in the 2–1 win at Lincoln.','816223/stephen-eustaquio'),
  ('Tajon Buchanan','Winger','Villarreal','LaLiga',8,0,0,67,8,'17','Back from his hamstring injury: started and played 87 minutes of the 2–1 derby win over Valencia (24 Oct).','1026135/tajon-buchanan'),
 ]
@@ -106,14 +106,14 @@ def best_section(sfx, view_title):
         </ul>
       </aside>
     </div>
-    <p class="can-note">Club stats for 2026–27 and Canada caps as of 28 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+    <p class="can-note">Club stats for 2026–27 and Canada caps as of 29 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
   </div>
 </section>
 '''
 
 # ---------- legends ----------
 NOW = [
- ('Thomas Müller','Vancouver Whitecaps','Since Aug 2025','🇩🇪','2014 World Cup winner. 13 Bundesliga titles with Bayern. Now in Vancouver: 9 goals and 6 assists in MLS this season (currently out with a hamstring injury).','Playing here now'),
+ ('Thomas Müller','Vancouver Whitecaps','Since Aug 2025','🇩🇪','2014 World Cup winner. 13 Bundesliga titles with Bayern. Now in Vancouver: 9 goals and 6 assists in MLS this season. Back from a hamstring injury: came off the bench vs San Diego (28 Oct).','Playing here now'),
  ('Alexis Sánchez','CF Montréal','Since Aug 2026','🇨🇱','Chile\'s all-time top scorer (51) and most-capped player (168). Two Copa Américas, and title winner at Barcelona and Inter.','Playing here now'),
 ]
 HOME = [
