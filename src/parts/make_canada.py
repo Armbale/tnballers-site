@@ -8,7 +8,7 @@ BEST = [
  ('Jonathan David','Striker','Atlético Madrid (loan, Juventus)','LaLiga',5,3,2,85,43,'10','3 goals and 2 assists in five LaLiga games. Canada\'s all-time top scorer.','939569/jonathan-david'),
  ('Tani Oluwaseyi','Striker','Villarreal','LaLiga',5,0,0,31,2,'12','Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct). Scored again in the 5–0 Copa del Rey win at Manacor (27 Oct).','1338740/tani-oluwaseyi'),
  ('Stephen Eustáquio','Central Midfield','Swansea City','Championship',8,1,1,63,5,'7','Vice-captain. Back from a shoulder knock; scored in the 2–1 win at Lincoln.','816223/stephen-eustaquio'),
- ('Tajon Buchanan','Winger','Villarreal','LaLiga',8,0,0,67,8,'17','Back from his hamstring injury: started and played 87 minutes of the 2–1 derby win over Valencia (24 Oct).','1026135/tajon-buchanan'),
+ ('Tajon Buchanan','Winger','Villarreal','LaLiga',9,0,0,67,8,'17','Started again in the 1–0 home loss to Espanyol (30 Oct), after 87 minutes of the 2–1 derby win over Valencia (24 Oct).','1026135/tajon-buchanan'),
 ]
 # name, club, reason, expected back
 SIDE = [
@@ -106,7 +106,7 @@ def best_section(sfx, view_title):
         </ul>
       </aside>
     </div>
-    <p class="can-note">Club stats for 2026–27 and Canada caps as of 29 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+    <p class="can-note">Club stats for 2026–27 and Canada caps as of 30 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
   </div>
 </section>
 '''
