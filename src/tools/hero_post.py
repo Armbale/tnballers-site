@@ -71,7 +71,7 @@ def build(a, tmp, anim, vw, vh):
 <div class="ctx" style="top:calc(var(--rowTop) + {max(252, 160 + 33*nsc + 22)}px)">{e(a.context)}</div>
 </div>
 <div class="foot"><span class="c">📸 {e(a.credit)}</span><span class="r">TNBALLERS.COM <img src="badge.png"></span></div>
-<div class="vig"></div><div class="grain"></div></div>'''
+<div class="vig"></div><div class="grain"></div><div class="flashl"></div></div>'''
     rep = {'%%FONTS%%': (SITE / 'fonts').as_uri(), '%%BODY%%': body, '%%CLUB%%': a.club_colour, '%%HOMEC%%': a.home_colour,
            '%%AWAYC%%': a.away_colour, '%%VH%%': str(vh), '%%GHOSTSIZE%%': str(ghost), '%%PX%%': f'{px:.0f}',
            '%%PW%%': f'{pw:.0f}', '%%NAMESIZE%%': str(namesize), '%%ANIM%%': 'anim' if anim else ''}

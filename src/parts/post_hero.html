@@ -94,18 +94,25 @@ html,body{width:1080px;height:var(--H);overflow:hidden;background:#050506}
 @keyframes push{from{transform:scale(1)}to{transform:scale(1.05)}}
 @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-60px)}}
 @keyframes sweep{from{background-position:-1200px 0}to{background-position:1200px 0}}
-.anim .beams{animation:fade 1.2s .2s both}
-.anim .ghost,.anim .ghost2{animation:slideR .9s cubic-bezier(.2,.8,.2,1) .1s both, drift 7s linear 1s both}
-.anim .echo{animation:fade 1.4s .5s both}
-.anim .player{animation:rise 1.0s cubic-bezier(.15,.9,.2,1) .3s both, push 6.5s linear 1.3s both;transform-origin:50% 100%}
-.anim .kicker,.anim .ft{animation:drop .5s ease-out 0s both}
-.anim .who{animation:slideL .7s cubic-bezier(.2,.8,.2,1) 1.0s both}
-.anim .board{animation:up .6s cubic-bezier(.2,.8,.2,1) 1.7s both}
-.anim .plate{animation:plate .45s cubic-bezier(.2,1.4,.4,1) 2.05s both}
-.anim .score{animation:pop .5s ease-out 2.15s both}
-.anim .team.h{animation:slideL .5s ease-out 2.3s both}
-.anim .team.a{animation:slideR .5s ease-out 2.3s both}
-.anim .sc{animation:fade .5s 2.7s both}
-.anim .ctx{animation:fade .6s 3.1s both}
+/* HOOK FIRST (Baller, 31 Oct 2026): frame 0 already shows the player's face, the name and the score.
+   Nothing starts invisible except the small details; the motion is a punch-in, a flash and a slow push. */
+@keyframes punch{0%{transform:scale(1.14)}100%{transform:scale(1)}}
+@keyframes flash{0%{opacity:.35}100%{opacity:0}}
+@keyframes thump{0%{transform:scale(1.25)}60%{transform:scale(.96)}100%{transform:scale(1)}}
+@keyframes nudgeL{from{transform:translateX(-40px)}to{transform:none}}
+@keyframes nudgeR{from{transform:translateX(40px)}to{transform:none}}
+.flashl{position:absolute;inset:0;background:#fff;z-index:30;opacity:0;pointer-events:none}
+.anim .flashl{animation:flash .25s ease-out 0s both}
+.anim .player{animation:punch .7s cubic-bezier(.2,.9,.2,1) 0s both, push 7s linear .7s both;transform-origin:50% 100%}
+.anim .ghost,.anim .ghost2{animation:nudgeR .8s ease-out 0s both, drift 7.5s linear .8s both}
+.anim .echo{animation:fade 1s .2s both}
+.anim .beams{animation:fade .8s 0s both}
+.anim .who{animation:nudgeL .6s cubic-bezier(.2,.8,.2,1) 0s both}
+.anim .score{animation:thump .55s ease-out .05s both}
+.anim .plate{animation:none}
+.anim .team.h{animation:nudgeL .5s ease-out .1s both}
+.anim .team.a{animation:nudgeR .5s ease-out .1s both}
+.anim .sc{animation:fade .5s .5s both}
+.anim .ctx{animation:fade .5s .9s both}
 </style></head>
 <body class="%%ANIM%%">%%BODY%%</body></html>
