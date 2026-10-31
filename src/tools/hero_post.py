@@ -52,6 +52,7 @@ def build(a, tmp, anim, vw, vh):
     ghost = max(150, min(330, int(1700 / max(len(surname), 1))))
     namesize = 160 if max(len(first), len(last)) <= 7 else 120 if max(len(first), len(last)) <= 9 else 100
     lines = lambda s: '<br>'.join(e(x.strip()) for x in s.split('|') if x.strip())
+    nsc = max(len([x for x in a.home_scorers.split('|') if x.strip()]), len([x for x in a.away_scorers.split('|') if x.strip()]), 1)
     body = f'''<div class="post{' reel' if vh > 1350 else ''}">
 <div class="beams"></div><div class="dots"></div>
 <div class="stripe"></div><div class="stripe thin"></div>
@@ -67,7 +68,7 @@ def build(a, tmp, anim, vw, vh):
 <div class="plate"></div><div class="score">{hs}–{as_}</div>
 <div class="team h {dim_h}">{e(a.home)}<i></i></div><div class="team a {dim_a}">{e(a.away)}<i></i></div>
 <div class="sc h">{lines(a.home_scorers)}</div><div class="sc a">{lines(a.away_scorers)}</div>
-<div class="ctx">{e(a.context)}</div>
+<div class="ctx" style="top:calc(var(--rowTop) + {max(252, 160 + 33*nsc + 22)}px)">{e(a.context)}</div>
 </div>
 <div class="foot"><span class="c">📸 {e(a.credit)}</span><span class="r">TNBALLERS.COM <img src="badge.png"></span></div>
 <div class="vig"></div><div class="grain"></div></div>'''
