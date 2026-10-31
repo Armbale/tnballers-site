@@ -45,7 +45,7 @@ const W = 1080, H = 1920;
 const lerp=(a,b,t)=>a+(b-a)*t, clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, eout=t=>1-Math.pow(1-t,3);
 // pitch %: x 0-100 left->right, y 0-100 own goal -> opponent goal
-const P=(x,y,h=0)=>new THREE.Vector3((x-50)/100*68, h, (y-50)/100*105);
+const P=(x,y,h=0)=>new THREE.Vector3((50-x)/100*68, h, (y-50)/100*105);
 function along(pts,t){ // pts [[x,y],...] -> Vector3, t 0..1 on polyline
   if(pts.length===1) return P(...pts[0]);
   const v=pts.map(p=>P(p[0],p[1])); let L=[0];
@@ -116,28 +116,54 @@ function label(text,color){
   g.font='bold 64px Switzer, Arial'; g.textAlign='center'; g.lineWidth=12; g.strokeStyle='rgba(0,0,0,.85)'; g.strokeText(text,256,84); g.fillStyle=color; g.fillText(text,256,84);
   const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthTest:false,sizeAttenuation:false})); s.scale.set(.2,.05,1); return s;
 }
-function figure(colour,shorts,isScorer){
-  const g=new THREE.Group(), m=new THREE.MeshStandardMaterial({color:colour,roughness:.55,emissive:isScorer?new THREE.Color(colour).multiplyScalar(.25):0x000000});
-  const skin=new THREE.MeshStandardMaterial({color:0x6b4a3a,roughness:.7}), sh=new THREE.MeshStandardMaterial({color:shorts,roughness:.7});
-  const torso=new THREE.Mesh(new THREE.CapsuleGeometry(.21,.55,6,12),m); torso.position.y=1.28; g.add(torso);
-  const head=new THREE.Mesh(new THREE.SphereGeometry(.15,16,12),skin); head.position.y=1.82; g.add(head);
-  const hips=new THREE.Mesh(new THREE.CapsuleGeometry(.24,.12,6,12),sh); hips.position.y=.9; g.add(hips);
-  const legs=[], arms=[];
-  for(const s of [-1,1]){
-    const leg=new THREE.Group(); leg.position.set(.12*s,.88,0); const lm=new THREE.Mesh(new THREE.CapsuleGeometry(.09,.62,4,8),skin); lm.position.y=-.4; leg.add(lm);
-    const boot=new THREE.Mesh(new THREE.BoxGeometry(.13,.08,.26),new THREE.MeshStandardMaterial({color:0x111111})); boot.position.set(0,-.82,.05); leg.add(boot); g.add(leg); legs.push(leg);
-    const arm=new THREE.Group(); arm.position.set(.33*s,1.55,0); const am=new THREE.Mesh(new THREE.CapsuleGeometry(.06,.5,4,8),m); am.position.y=-.3; arm.add(am); g.add(arm); arms.push(arm);
+function numberTex(num,kit,ink){const c=document.createElement('canvas');c.width=256;c.height=256;const g=c.getContext('2d');g.fillStyle=kit;g.fillRect(0,0,256,256);
+  if(num){g.font='bold 150px Switzer, Arial';g.textAlign='center';g.fillStyle=ink;g.fillText(num,128,190);} return new THREE.CanvasTexture(c);}
+function limb(r0,r1,len,mat){ // tapered segment hanging down from its joint
+  const m=new THREE.Mesh(new THREE.CylinderGeometry(r0,r1,len,14,1),mat); m.position.y=-len/2; m.castShadow=true; return m;}
+function joint(r,mat){const m=new THREE.Mesh(new THREE.SphereGeometry(r,14,10),mat); m.castShadow=true; return m;}
+function figure(colour,shorts,isScorer,opts={}){
+  const g=new THREE.Group(); const body=new THREE.Group(); g.add(body);
+  const kit=new THREE.MeshStandardMaterial({color:colour,roughness:.6,emissive:isScorer?new THREE.Color(colour).multiplyScalar(.18):0x000000});
+  const back=new THREE.MeshStandardMaterial({map:numberTex(opts.num||'',colour,opts.ink||'#ffffff'),roughness:.6});
+  const skin=new THREE.MeshStandardMaterial({color:opts.skin||0x5a3a2a,roughness:.65});
+  const sh=new THREE.MeshStandardMaterial({color:shorts,roughness:.7}), sock=new THREE.MeshStandardMaterial({color:opts.socks||colour,roughness:.7});
+  const boot=new THREE.MeshStandardMaterial({color:opts.boots||0x111111,roughness:.4}), hair=new THREE.MeshStandardMaterial({color:0x121212,roughness:.9});
+  // pelvis + shorts
+  const pelvis=new THREE.Group(); pelvis.position.y=.98; body.add(pelvis);
+  const shortsM=new THREE.Mesh(new THREE.CylinderGeometry(.19,.21,.26,16),sh); shortsM.position.y=-.06; shortsM.castShadow=true; pelvis.add(shortsM);
+  // torso (tapered, shirt with number on the back)
+  const chest=new THREE.Group(); chest.position.y=.08; pelvis.add(chest);
+  const torsoGeo=new THREE.CylinderGeometry(.215,.17,.56,16,1,false); const torso=new THREE.Mesh(torsoGeo,[kit,kit,kit]); torso.position.y=.3; torso.scale.z=.72; torso.castShadow=true; chest.add(torso);
+  const numPlate=new THREE.Mesh(new THREE.PlaneGeometry(.26,.26),back); numPlate.position.set(0,.33,-.155); numPlate.rotation.y=Math.PI; chest.add(numPlate);
+  const shoulders=new THREE.Mesh(new THREE.CapsuleGeometry(.075,.34,6,12),kit); shoulders.rotation.z=Math.PI/2; shoulders.position.y=.56; shoulders.scale.z=.9; chest.add(shoulders);
+  const neck=limb(.055,.06,.12,skin); const neckG=new THREE.Group(); neckG.position.y=.72; neckG.add(neck); neck.position.y=.0; chest.add(neckG);
+  const head=new THREE.Group(); head.position.y=.84; chest.add(head);
+  const skull=new THREE.Mesh(new THREE.SphereGeometry(.115,18,14),skin); skull.scale.set(.92,1.08,1); skull.castShadow=true; head.add(skull);
+  const cap=new THREE.Mesh(new THREE.SphereGeometry(.12,18,10,0,Math.PI*2,0,Math.PI*.5),hair); cap.position.y=.025; cap.scale.set(.95,1,1.02); head.add(cap);
+  // arms: shoulder -> elbow -> hand
+  const arms=[], legs=[];
+  for(const sd of [-1,1]){
+    const sh0=new THREE.Group(); sh0.position.set(.24*sd,.56,0); chest.add(sh0);
+    sh0.add(joint(.065,kit)); const upper=limb(.06,.05,.28,kit); sh0.add(upper);
+    const el=new THREE.Group(); el.position.y=-.28; sh0.add(el); el.add(joint(.045,skin)); el.add(limb(.045,.038,.26,skin));
+    const hand=joint(.042,skin); hand.position.y=-.28; el.add(hand);
+    sh0.rotation.z=.12*sd; arms.push({sh:sh0,el});
+    // legs: hip -> knee -> ankle
+    const hip=new THREE.Group(); hip.position.set(.1*sd,-.08,0); pelvis.add(hip);
+    hip.add(limb(.085,.065,.44,skin)); const knee=new THREE.Group(); knee.position.y=-.44; hip.add(knee); knee.add(joint(.06,skin));
+    const shin=limb(.06,.045,.42,sock); knee.add(shin);
+    const foot=new THREE.Mesh(new THREE.BoxGeometry(.1,.07,.25),boot); foot.position.set(0,-.44,.06); foot.castShadow=true; knee.add(foot);
+    legs.push({hip,knee});
   }
-  g.traverse(o=>{if(o.isMesh){o.castShadow=true;}});
-  if(isScorer){const ring=new THREE.Mesh(new THREE.RingGeometry(.7,.95,40),new THREE.MeshBasicMaterial({color:0xf0c255,transparent:true,opacity:.9,side:THREE.DoubleSide}));
+  if(isScorer){const ring=new THREE.Mesh(new THREE.RingGeometry(.7,.95,48),new THREE.MeshBasicMaterial({color:0xf0c255,transparent:true,opacity:.9,side:THREE.DoubleSide}));
     ring.rotation.x=-Math.PI/2; ring.position.y=.03; g.add(ring); g.userData.ring=ring;}
-  g.userData.legs=legs; g.userData.arms=arms; return g;
+  g.userData={...g.userData,body,pelvis,chest,head,arms,legs}; return g;
 }
 const players={};
 for(const p of S.players){
   const opp=p.team==='opp', gk=p.id==='gk';
   const col=p.id==='scorer'?S.club_colour:(opp?(gk?S.gk_colour||'#1fa35a':S.opp_colour):S.club_colour);
-  const f=figure(col, opp?S.opp_shorts||'#ffffff':S.club_shorts||'#ffffff', p.id==='scorer');
+  const f=figure(col, opp?(gk?'#111111':S.opp_shorts||'#ffffff'):S.club_shorts||'#ffffff', p.id==='scorer', {num:p.num||'', ink:opp?'#111111':'#ffffff', socks:opp?(S.opp_socks||col):(S.club_socks||col)});
   if(p.label){const l=label(p.label,p.id==='scorer'?'#f0c255':'#ffffff'); l.position.y=2.6; f.add(l);}
   f.position.copy(P(p.x,p.y)); sc.add(f); players[p.id]={f,p};
 }
@@ -165,24 +191,28 @@ function ballPos(t){
   return v;
 }
 const hist=[];
-function animateFigure(f,vel,t,run){
-  const ph=t*11, a=run?Math.sin(ph)*.7*vel:0;
-  f.userData.legs[0].rotation.x=a; f.userData.legs[1].rotation.x=-a; f.userData.arms[0].rotation.x=-a*.8; f.userData.arms[1].rotation.x=a*.8;
-  f.position.y=run?Math.abs(Math.sin(ph))*.08*vel:0;
+function animateFigure(f,vel,t,run,kick=0){
+  const u=f.userData, ph=t*10.5*(run?1:0), sw=run?vel:0;
+  const L=u.legs, A=u.arms;
+  for(let i=0;i<2;i++){const s=i?1:-1, c=Math.sin(ph+(i?Math.PI:0));
+    L[i].hip.rotation.x=-c*.75*sw; L[i].knee.rotation.x=Math.max(0,Math.sin(ph+(i?Math.PI:0)-1.2))*1.3*sw;
+    A[i].sh.rotation.x=c*.7*sw; A[i].el.rotation.x=-(.4+.5*sw);}
+  u.chest.rotation.x=.18*sw; u.pelvis.position.y=.98+(run?Math.abs(Math.sin(ph))*.06*sw:0);
+  if(kick>0){const k=Math.sin(Math.min(1,kick)*Math.PI); L[1].hip.rotation.x=-1.4*k+.5*(1-k); L[1].knee.rotation.x=.9*(1-k); L[0].knee.rotation.x=.25; A[0].sh.rotation.z=-1.1*k; A[1].sh.rotation.x=-.6*k; u.chest.rotation.x=-.12*k;}
 }
 // cameras: list of shots {t0,t1,from(t)->pos,look}
-function camAt(t){
-  const sp=scorerPos(t), bp=ballPos(t), G=new THREE.Vector3(0,1,GZ);
+function camAt(t,at){
+  const sp=scorerPos(at), bp=ballPos(at), G=new THREE.Vector3(0,1,GZ);
   const shots=S.cameras;
   for(const c of shots){ if(t>=c.t0 && t<c.t1){ const k=(t-c.t0)/(c.t1-c.t0);
-    if(c.type==='broadcast') return [new THREE.Vector3(lerp(-46,-44,k),22,lerp(sp.z-6,bp.z-2,k)), new THREE.Vector3(lerp(sp.x,bp.x,.5)*.3,0,lerp(sp.z,bp.z,.5)+6), 'BROADCAST'];
+    if(c.type==='broadcast') return [new THREE.Vector3(lerp(46,44,k),22,lerp(sp.z-6,bp.z-2,k)), new THREE.Vector3(lerp(sp.x,bp.x,.5)*.3,0,lerp(sp.z,bp.z,.5)+6), 'BROADCAST'];
     if(c.type==='behind_assist'){const a=P(S.players.find(p=>p.id==='assist').x,S.players.find(p=>p.id==='assist').y); return [a.clone().add(new THREE.Vector3(1.5,3.2,-7+k*2)), bp.clone().lerp(sp,.5).setY(.5), 'THE PASS'];}
-    if(c.type==='follow') return [sp.clone().add(new THREE.Vector3(-3.5,2.2,-6+k)), sp.clone().lerp(G,.35).setY(1), 'THE RUN'];
-    if(c.type==='behind_goal') return [new THREE.Vector3(lerp(4,1.5,k),1.6+k*.3,GZ+9), bp.clone().lerp(sp,.3).setY(1), 'THE FINISH'];
+    if(c.type==='follow') return [sp.clone().add(new THREE.Vector3(3.5,2.2,-6+k)), sp.clone().lerp(G,.35).setY(1), 'THE RUN'];
+    if(c.type==='behind_goal') return [new THREE.Vector3(lerp(sp.x*.7,sp.x*.35,k),1.9+k*.4,GZ+6.5), sp.clone().lerp(bp,.45).setY(.8), 'THE FINISH', 58];
     if(c.type==='orbit'){const ang=lerp(-.9,.6,k); return [sp.clone().add(new THREE.Vector3(Math.sin(ang)*9,4+k,Math.cos(ang)*-9)), sp.clone().setY(1.3), 'REPLAY'];}
     if(c.type==='aerial') return [new THREE.Vector3(0,62-k*8,GZ-26-k*4), new THREE.Vector3(0,0,GZ-24), 'OVERVIEW'];
   }}
-  return [new THREE.Vector3(-44,22,sp.z),new THREE.Vector3(0,0,sp.z+6),''];
+  return [new THREE.Vector3(44,22,sp.z),new THREE.Vector3(0,0,sp.z+6),''];
 }
 const ov=document.getElementById('ov');
 const first=S.player.split(' ')[0], last=S.player.split(' ').slice(1).join(' ');
@@ -192,17 +222,18 @@ window.renderAt=function(t){
   // players
   for(const id in players){const {f,p}=players[id]; let pos=P(p.x,p.y), run=false, vel=0;
     if(id==='scorer'){pos=scorerPos(at); run=at>T.run0&&at<T.shot1+.2; vel=1;}
-    else if(id==='gk'){const k=clamp((at-T.pass1)/(T.shot1-T.pass1)); pos=P(p.x,p.y).lerp(P(p.x+(S.gk_dive||6),p.y-1.5),eout(k)); run=k>0&&k<1; vel=.6;
-      f.rotation.z=at>T.shot0? -clamp((at-T.shot0)/.4)*1.2*Math.sign(S.gk_dive||1):0; f.position.y=0;}
+    else if(id==='gk'){const k=clamp((at-T.pass1)/(T.shot1-T.pass1)); const out=P(p.x,p.y).lerp(scorerPos(at),.22); pos=P(p.x,p.y).lerp(out,eout(clamp(k*1.6))); if(at>T.shot0){pos.x+=-(S.gk_dive||6)/100*68*clamp((at-T.shot0)/.4)*.35;} run=k>0&&k<1; vel=.6;
+      f.userData.dive=at>T.shot0? clamp((at-T.shot0)/.4)*1.25*Math.sign(S.gk_dive||1):0; f.position.y=0;}
     else if(p.team==='opp'){const k=clamp((at-T.run0)/(T.shot0-T.run0)); const s=along(S.run,1); pos=P(p.x,p.y).lerp(s,k*.18); run=k>0&&k<1; vel=.5;}
     else if(id==='assist'){pos=P(p.x,p.y); }
     f.position.x=pos.x; f.position.z=pos.z;
     const look=ballPos(at); f.lookAt(look.x,f.position.y,look.z);
-    if(id!=='gk') animateFigure(f,vel,at,run);
+    if(id==='gk'){const d=f.userData.dive||0; f.userData.body.rotation.z=d; f.userData.body.position.y=Math.abs(d)*.35; f.userData.arms.forEach(a=>{a.sh.rotation.z=(a.sh.position.x>0?1:-1)*(.2+2.2*Math.abs(d)/1.25)});}
+    if(id!=='gk') animateFigure(f,vel,at,run, id==='scorer'&&at>T.shot0-.25&&at<T.shot0+.35 ? (at-(T.shot0-.25))/.6 : 0);
     if(f.userData.ring){f.userData.ring.scale.setScalar(1+.15*Math.sin(t*6));}
   }
   // celebrate
-  if(at>T.goal+.3){const f=players.scorer.f; f.position.y=Math.abs(Math.sin((at-T.goal)*5))*.5; f.userData.arms.forEach(a=>a.rotation.x=-2.8);}
+  if(at>T.goal+.3){const f=players.scorer.f; f.position.y=Math.abs(Math.sin((at-T.goal)*5))*.45; f.userData.arms.forEach((a,i)=>{a.sh.rotation.x=-2.9; a.sh.rotation.z=(i?1:-1)*.35; a.el.rotation.x=0;});}
   // ball, trail, net ripple
   const bp=ballPos(at); ball.position.copy(bp); ball.rotation.x+=.3; glow.position.copy(bp);
   hist.push(bp.clone()); while(hist.length>TRAIL) hist.shift();
@@ -211,8 +242,8 @@ window.renderAt=function(t){
   const na=netGeo.attributes.position.array; const rip=at>T.shot1?Math.exp(-(at-T.shot1)*2.5):0; const hx=P(...S.shot[1]).x;
   for(let i=0;i<na.length;i+=3){const dx=net0[i]-hx, dy=net0[i+1]-(S.shot_height-1.22); const d=Math.sqrt(dx*dx+dy*dy); na[i+2]=net0[i+2]+rip*1.4*Math.exp(-d*d*.6)*Math.cos(d*5-(at-T.shot1)*14);} netGeo.attributes.position.needsUpdate=true;
   // camera (+ shake on the goal)
-  const [cp,cl,camName]=camAt(t); cam.position.copy(cp); if(t>T.goal_wall&&t<T.goal_wall+.5){const s=(T.goal_wall+.5-t)*.5; cam.position.x+=Math.sin(t*90)*s; cam.position.y+=Math.cos(t*77)*s;}
-  cam.lookAt(cl); cam.fov=t>sm[0]&&t<sm[1]?36:42; cam.updateProjectionMatrix();
+  const [cp,cl,camName]=camAt(t,at); cam.position.copy(cp); if(t>T.goal_wall&&t<T.goal_wall+.5){const s=(T.goal_wall+.5-t)*.5; cam.position.x+=Math.sin(t*90)*s; cam.position.y+=Math.cos(t*77)*s;}
+  cam.lookAt(cl); cam.fov=camAt(t,at)[3]||42; cam.updateProjectionMatrix();
   r.render(sc,cam);
   // overlays
   let h='<div class="bar t"></div><div class="bar b"></div>';

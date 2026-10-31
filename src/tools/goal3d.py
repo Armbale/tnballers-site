@@ -20,6 +20,7 @@ def main():
     ap.add_argument('--still'); ap.add_argument('--still-at', type=float, default=6.2)
     ap.add_argument('--three', default=str(ROOT / 'src/vendor/three.min.js'))
     ap.add_argument('--fps', type=int, default=30)
+    ap.add_argument('--frames', help='comma list of seconds: render only these stills (preview), e.g. 2,4.1,5.2')
     a = ap.parse_args()
     s = json.loads(pathlib.Path(a.spec).read_text(encoding='utf-8'))
     t = pathlib.Path(tempfile.mkdtemp())
@@ -35,6 +36,15 @@ def main():
         b = p.chromium.launch(args=['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist', '--allow-file-access-from-files'])
         pg = b.new_page(viewport={'width': 1080, 'height': 1920})
         pg.goto((t / 'index.html').as_uri()); pg.wait_for_function('window.ready===true'); pg.evaluate('document.fonts.ready')
+        if a.frames:
+            want = [float(x) for x in a.frames.split(',')]
+            outs = []
+            for i in range(int(max(want) * a.fps) + 1):
+                tt = i / a.fps; pg.evaluate(f'renderAt({tt})')
+                for w in want:
+                    if abs(tt - w) < 0.5 / a.fps:
+                        o = pathlib.Path(a.out).with_name(f'{pathlib.Path(a.out).stem}_{w}.jpg'); pg.screenshot(path=str(o), type='jpeg', quality=90); outs.append(str(o))
+            b.close(); shutil.rmtree(t); print('previews', outs); return
         n = int(secs * a.fps)
         for i in range(n):
             tt = i / a.fps
