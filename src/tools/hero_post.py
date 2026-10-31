@@ -59,7 +59,7 @@ def build(a, tmp, anim, vw, vh):
 <div class="echo"><img src="player.png"></div>
 <div class="player"><img src="player.png"></div>
 <div class="kicker"><i></i>{e(a.comp)}</div>
-<div class="ft">FULL TIME</div>
+<div class="ft">{e(a.badge)}</div>
 <div class="who"><div class="flag">🇨🇦 {e(a.flag)}</div>
 <div class="name"><span class="f">{e(first)}</span><span class="l">{e(last)}</span></div>
 {f'<div class="tag">{e(a.tag)}</div>' if a.tag else ''}</div>
@@ -87,7 +87,7 @@ def main():
     ap.add_argument('--home', required=True); ap.add_argument('--away', required=True); ap.add_argument('--score', required=True)
     ap.add_argument('--home-colour', default='#ffffff'); ap.add_argument('--away-colour', default='#ffffff')
     ap.add_argument('--home-scorers', default=''); ap.add_argument('--away-scorers', default='')
-    ap.add_argument('--comp', required=True); ap.add_argument('--tag', default=''); ap.add_argument('--context', default='')
+    ap.add_argument('--comp', required=True); ap.add_argument('--tag', default=''); ap.add_argument('--context', default=''); ap.add_argument('--badge', default='FULL TIME')
     ap.add_argument('--credit', required=True); ap.add_argument('--reel')
     ap.add_argument('--player-width', type=float, default=720); ap.add_argument('--player-shift', type=float, default=60)
     ap.add_argument('--who-top', type=int, default=330)
