@@ -114,7 +114,7 @@ def best_section(sfx, view_title):
 # ---------- legends ----------
 NOW = [
  ('Thomas Müller','Vancouver Whitecaps','Since Aug 2025','🇩🇪','2014 World Cup winner. 13 Bundesliga titles with Bayern. Now in Vancouver: 9 goals and 6 assists in MLS this season. Back from a hamstring injury: came off the bench vs San Diego (28 Oct).','Playing here now'),
- ('Alexis Sánchez','CF Montréal','Since Aug 2026','🇨🇱','Chile\'s all-time top scorer (51) and most-capped player (168). Two Copa Américas, and title winner at Barcelona and Inter.','Playing here now'),
+ ('Alexis Sánchez','CF Montréal','Since Aug 2026','🇨🇱','Chile\'s all-time top scorer (51) and most-capped player (168). Two Copa Américas, and title winner at Barcelona and Inter. Started the 1–1 draw at NYCFC (31 Oct).','Playing here now'),
 ]
 HOME = [
  ('Sebastian Giovinco','Toronto FC','2015–19','🇮🇹','MLS MVP in his first season. Led TFC to the 2017 treble: MLS Cup, Supporters\' Shield and Canadian Championship.'),
