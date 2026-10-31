@@ -50,30 +50,30 @@ def build(a, tmp, anim, vw, vh):
     dim_a = 'dim' if as_ < hs else ''
     surname = last or first
     ghost = max(150, min(330, int(1700 / max(len(surname), 1))))
-    namesize = 150 if max(len(first), len(last)) <= 7 else 120 if max(len(first), len(last)) <= 9 else 100
+    namesize = 160 if max(len(first), len(last)) <= 7 else 120 if max(len(first), len(last)) <= 9 else 100
     lines = lambda s: '<br>'.join(e(x.strip()) for x in s.split('|') if x.strip())
-    body = f'''<div class="post">
+    body = f'''<div class="post{' reel' if vh > 1350 else ''}">
+<div class="beams"></div><div class="dots"></div>
 <div class="stripe"></div><div class="stripe thin"></div>
-<div class="ghost">{e(surname)}</div>
-<div class="rim"></div>
+<div class="ghost">{e(surname)}</div><div class="ghost2">{e(surname)}</div>
+<div class="echo"><img src="player.png"></div>
 <div class="player"><img src="player.png"></div>
 <div class="kicker"><i></i>{e(a.comp)}</div>
 <div class="ft">FULL TIME</div>
 <div class="who"><div class="flag">🇨🇦 {e(a.flag)}</div>
-<div class="name"><span>{e(first)}</span><span>{e(last)}</span></div>
+<div class="name"><span class="f">{e(first)}</span><span class="l">{e(last)}</span></div>
 {f'<div class="tag">{e(a.tag)}</div>' if a.tag else ''}</div>
 <div class="board">
-<div class="row"><div class="team h {dim_h}">{e(a.home)}</div><div class="score">{hs}–{as_}</div><div class="team a {dim_a}">{e(a.away)}</div></div>
-<div class="scorers"><div class="sc">{lines(a.home_scorers)}</div><div></div><div class="sc">{lines(a.away_scorers)}</div></div>
+<div class="plate"></div><div class="score">{hs}–{as_}</div>
+<div class="team h {dim_h}">{e(a.home)}<i></i></div><div class="team a {dim_a}">{e(a.away)}<i></i></div>
+<div class="sc h">{lines(a.home_scorers)}</div><div class="sc a">{lines(a.away_scorers)}</div>
 <div class="ctx">{e(a.context)}</div>
 </div>
 <div class="foot"><span class="c">📸 {e(a.credit)}</span><span class="r">TNBALLERS.COM <img src="badge.png"></span></div>
-<div class="grain"></div></div>'''
-    nsc = max(len([x for x in a.home_scorers.split('|') if x.strip()]), len([x for x in a.away_scorers.split('|') if x.strip()]), 1)
+<div class="vig"></div><div class="grain"></div></div>'''
     rep = {'%%FONTS%%': (SITE / 'fonts').as_uri(), '%%BODY%%': body, '%%CLUB%%': a.club_colour, '%%HOMEC%%': a.home_colour,
-           '%%AWAYC%%': a.away_colour, '%%VW%%': str(vw), '%%VH%%': str(vh), '%%GHOSTSIZE%%': str(ghost), '%%PX%%': f'{px:.0f}',
-           '%%PY%%': f'{py:.0f}', '%%PW%%': f'{pw:.0f}', '%%WHOTOP%%': str(a.who_top), '%%NAMESIZE%%': str(namesize),
-           '%%CTXTOP%%': str(262 + 34 * nsc + 26), '%%ANIM%%': 'anim' if anim else ''}
+           '%%AWAYC%%': a.away_colour, '%%VH%%': str(vh), '%%GHOSTSIZE%%': str(ghost), '%%PX%%': f'{px:.0f}',
+           '%%PW%%': f'{pw:.0f}', '%%NAMESIZE%%': str(namesize), '%%ANIM%%': 'anim' if anim else ''}
     page = (PARTS / 'post_hero.html').read_text(encoding='utf-8')
     for k, v in rep.items(): page = page.replace(k, v)
     (tmp / 'index.html').write_text(page, encoding='utf-8')
@@ -89,7 +89,7 @@ def main():
     ap.add_argument('--home-scorers', default=''); ap.add_argument('--away-scorers', default='')
     ap.add_argument('--comp', required=True); ap.add_argument('--tag', default=''); ap.add_argument('--context', default='')
     ap.add_argument('--credit', required=True); ap.add_argument('--reel')
-    ap.add_argument('--player-width', type=float, default=760); ap.add_argument('--player-shift', type=float, default=60)
+    ap.add_argument('--player-width', type=float, default=720); ap.add_argument('--player-shift', type=float, default=60)
     ap.add_argument('--who-top', type=int, default=330)
     a = ap.parse_args()
     from playwright.sync_api import sync_playwright
@@ -112,8 +112,8 @@ def main():
             for i in range(fps * secs):
                 t = i * 1000 / fps
                 pg.evaluate(f'document.getAnimations().forEach(a=>{{a.pause();a.currentTime={t}}})')
-                pg.screenshot(path=str(fr / f'{i:04d}.png'))
-            subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-framerate', str(fps), '-i', str(fr / '%04d.png'),
+                pg.screenshot(path=str(fr / f'{i:04d}.jpg'), type='jpeg', quality=92)
+            subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-framerate', str(fps), '-i', str(fr / '%04d.jpg'),
                             '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-movflags', '+faststart', a.reel], check=True)
             print('wrote', a.reel)
         b.close()
