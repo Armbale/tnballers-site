@@ -37,8 +37,12 @@ canvas{position:absolute;inset:0}
 </style></head><body>
 <canvas id="c" width="1080" height="1920"></canvas>
 <div class="ov" id="ov"></div>
-<script src="three.min.js"></script>
-<script>
+<script type="importmap">{"imports":{"three":"./three/three.module.min.js","three/addons/":"./three/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
+const GLTF = await new Promise((res,rej)=>new GLTFLoader().load('./models/Xbot.glb',res,undefined,rej));
 const S = %%SPEC%%;
 const W = 1080, H = 1920;
 // ---------- helpers ----------
@@ -123,41 +127,19 @@ function limb(r0,r1,len,mat){ // tapered segment hanging down from its joint
 function joint(r,mat){const m=new THREE.Mesh(new THREE.SphereGeometry(r,14,10),mat); m.castShadow=true; return m;}
 function figure(colour,shorts,isScorer,opts={}){
   const g=new THREE.Group(); const body=new THREE.Group(); g.add(body);
-  const kit=new THREE.MeshStandardMaterial({color:colour,roughness:.6,emissive:isScorer?new THREE.Color(colour).multiplyScalar(.18):0x000000});
-  const back=new THREE.MeshStandardMaterial({map:numberTex(opts.num||'',colour,opts.ink||'#ffffff'),roughness:.6});
-  const skin=new THREE.MeshStandardMaterial({color:opts.skin||0x5a3a2a,roughness:.65});
-  const sh=new THREE.MeshStandardMaterial({color:shorts,roughness:.7}), sock=new THREE.MeshStandardMaterial({color:opts.socks||colour,roughness:.7});
-  const boot=new THREE.MeshStandardMaterial({color:opts.boots||0x111111,roughness:.4}), hair=new THREE.MeshStandardMaterial({color:0x121212,roughness:.9});
-  // pelvis + shorts
-  const pelvis=new THREE.Group(); pelvis.position.y=.98; body.add(pelvis);
-  const shortsM=new THREE.Mesh(new THREE.CylinderGeometry(.19,.21,.26,16),sh); shortsM.position.y=-.06; shortsM.castShadow=true; pelvis.add(shortsM);
-  // torso (tapered, shirt with number on the back)
-  const chest=new THREE.Group(); chest.position.y=.08; pelvis.add(chest);
-  const torsoGeo=new THREE.CylinderGeometry(.215,.17,.56,16,1,false); const torso=new THREE.Mesh(torsoGeo,[kit,kit,kit]); torso.position.y=.3; torso.scale.z=.72; torso.castShadow=true; chest.add(torso);
-  const numPlate=new THREE.Mesh(new THREE.PlaneGeometry(.26,.26),back); numPlate.position.set(0,.33,-.155); numPlate.rotation.y=Math.PI; chest.add(numPlate);
-  const shoulders=new THREE.Mesh(new THREE.CapsuleGeometry(.075,.34,6,12),kit); shoulders.rotation.z=Math.PI/2; shoulders.position.y=.56; shoulders.scale.z=.9; chest.add(shoulders);
-  const neck=limb(.055,.06,.12,skin); const neckG=new THREE.Group(); neckG.position.y=.72; neckG.add(neck); neck.position.y=.0; chest.add(neckG);
-  const head=new THREE.Group(); head.position.y=.84; chest.add(head);
-  const skull=new THREE.Mesh(new THREE.SphereGeometry(.115,18,14),skin); skull.scale.set(.92,1.08,1); skull.castShadow=true; head.add(skull);
-  const cap=new THREE.Mesh(new THREE.SphereGeometry(.12,18,10,0,Math.PI*2,0,Math.PI*.5),hair); cap.position.y=.025; cap.scale.set(.95,1,1.02); head.add(cap);
-  // arms: shoulder -> elbow -> hand
-  const arms=[], legs=[];
-  for(const sd of [-1,1]){
-    const sh0=new THREE.Group(); sh0.position.set(.24*sd,.56,0); chest.add(sh0);
-    sh0.add(joint(.065,kit)); const upper=limb(.06,.05,.28,kit); sh0.add(upper);
-    const el=new THREE.Group(); el.position.y=-.28; sh0.add(el); el.add(joint(.045,skin)); el.add(limb(.045,.038,.26,skin));
-    const hand=joint(.042,skin); hand.position.y=-.28; el.add(hand);
-    sh0.rotation.z=.12*sd; arms.push({sh:sh0,el});
-    // legs: hip -> knee -> ankle
-    const hip=new THREE.Group(); hip.position.set(.1*sd,-.08,0); pelvis.add(hip);
-    hip.add(limb(.085,.065,.44,skin)); const knee=new THREE.Group(); knee.position.y=-.44; hip.add(knee); knee.add(joint(.06,skin));
-    const shin=limb(.06,.045,.42,sock); knee.add(shin);
-    const foot=new THREE.Mesh(new THREE.BoxGeometry(.1,.07,.25),boot); foot.position.set(0,-.44,.06); foot.castShadow=true; knee.add(foot);
-    legs.push({hip,knee});
-  }
+  const m=SkeletonUtils.clone(GLTF.scene); body.add(m);
+  const kit=new THREE.MeshStandardMaterial({color:colour,roughness:.55,metalness:.05,emissive:isScorer?new THREE.Color(colour).multiplyScalar(.2):0x000000});
+  const joints=new THREE.MeshStandardMaterial({color:shorts,roughness:.6,metalness:.1});
+  m.traverse(o=>{ if(o.isSkinnedMesh||o.isMesh){ o.castShadow=true; o.frustumCulled=false;
+      o.material = /Joint/i.test(o.material.name) ? joints : kit; } });
+  const bones={}; m.traverse(o=>{ if(o.isBone) bones[o.name.replace('mixamorig:','')]=o; });
+  const mixer=new THREE.AnimationMixer(m);
+  const clip=n=>GLTF.animations.find(c=>c.name===n);
+  const run=mixer.clipAction(clip('run')), idle=mixer.clipAction(clip('idle'));
+  run.play(); idle.play();
   if(isScorer){const ring=new THREE.Mesh(new THREE.RingGeometry(.7,.95,48),new THREE.MeshBasicMaterial({color:0xf0c255,transparent:true,opacity:.9,side:THREE.DoubleSide}));
     ring.rotation.x=-Math.PI/2; ring.position.y=.03; g.add(ring); g.userData.ring=ring;}
-  g.userData={...g.userData,body,pelvis,chest,head,arms,legs}; return g;
+  g.userData={...g.userData,body,model:m,bones,mixer,run,idle,phase:Math.random()*3}; return g;
 }
 const players={};
 for(const p of S.players){
@@ -192,13 +174,14 @@ function ballPos(t){
 }
 const hist=[];
 function animateFigure(f,vel,t,run,kick=0){
-  const u=f.userData, ph=t*10.5*(run?1:0), sw=run?vel:0;
-  const L=u.legs, A=u.arms;
-  for(let i=0;i<2;i++){const s=i?1:-1, c=Math.sin(ph+(i?Math.PI:0));
-    L[i].hip.rotation.x=-c*.75*sw; L[i].knee.rotation.x=Math.max(0,Math.sin(ph+(i?Math.PI:0)-1.2))*1.3*sw;
-    A[i].sh.rotation.x=c*.7*sw; A[i].el.rotation.x=-(.4+.5*sw);}
-  u.chest.rotation.x=.18*sw; u.pelvis.position.y=.98+(run?Math.abs(Math.sin(ph))*.06*sw:0);
-  if(kick>0){const k=Math.sin(Math.min(1,kick)*Math.PI); L[1].hip.rotation.x=-1.4*k+.5*(1-k); L[1].knee.rotation.x=.9*(1-k); L[0].knee.rotation.x=.25; A[0].sh.rotation.z=-1.1*k; A[1].sh.rotation.x=-.6*k; u.chest.rotation.x=-.12*k;}
+  const u=f.userData, w=run?clamp(vel*1.2):0;
+  u.run.setEffectiveWeight(w); u.idle.setEffectiveWeight(1-w);
+  u.run.time=((t+u.phase)*1.0*(0.8+vel*.4))%u.run.getClip().duration; u.idle.time=(t+u.phase)%u.idle.getClip().duration;
+  u.mixer.update(0);
+  u.model.position.set(0,0,0); // root motion off
+  const B=u.bones;
+  if(kick>0 && B.RightUpLeg){const k=Math.sin(Math.min(1,kick)*Math.PI);
+    B.RightUpLeg.rotation.x+= -1.5*k; B.RightLeg.rotation.x+= .9*(1-k); B.LeftArm&&(B.LeftArm.rotation.z+=.9*k); B.Spine&&(B.Spine.rotation.x+=-.15*k);}
 }
 // cameras: list of shots {t0,t1,from(t)->pos,look}
 function camAt(t,at){
@@ -216,7 +199,7 @@ function camAt(t,at){
 }
 const ov=document.getElementById('ov');
 const first=S.player.split(' ')[0], last=S.player.split(' ').slice(1).join(' ');
-window.renderAt=function(t){
+function renderAt(t){
   // shot slow motion: map wall time -> action time
   const sm=S.slowmo; let at=t; if(t>sm[0]) at=sm[0]+Math.min(t,sm[1])-sm[0]; if(t>sm[0]&&t<sm[1]) at=sm[0]+(t-sm[0])*sm[2]; if(t>=sm[1]) at=sm[0]+(sm[1]-sm[0])*sm[2]+(t-sm[1]);
   // players
@@ -228,12 +211,12 @@ window.renderAt=function(t){
     else if(id==='assist'){pos=P(p.x,p.y); }
     f.position.x=pos.x; f.position.z=pos.z;
     const look=ballPos(at); f.lookAt(look.x,f.position.y,look.z);
-    if(id==='gk'){const d=f.userData.dive||0; f.userData.body.rotation.z=d; f.userData.body.position.y=Math.abs(d)*.35; f.userData.arms.forEach(a=>{a.sh.rotation.z=(a.sh.position.x>0?1:-1)*(.2+2.2*Math.abs(d)/1.25)});}
+    if(id==='gk'){animateFigure(f,0,at,false); const d=f.userData.dive||0; f.userData.body.rotation.z=d; f.userData.body.position.y=Math.abs(d)*.4; const B=f.userData.bones; if(B.LeftArm&&d){B.LeftArm.rotation.z+=1.8*Math.abs(d)/1.25; B.RightArm.rotation.z-=1.8*Math.abs(d)/1.25;}}
     if(id!=='gk') animateFigure(f,vel,at,run, id==='scorer'&&at>T.shot0-.25&&at<T.shot0+.35 ? (at-(T.shot0-.25))/.6 : 0);
     if(f.userData.ring){f.userData.ring.scale.setScalar(1+.15*Math.sin(t*6));}
   }
   // celebrate
-  if(at>T.goal+.3){const f=players.scorer.f; f.position.y=Math.abs(Math.sin((at-T.goal)*5))*.45; f.userData.arms.forEach((a,i)=>{a.sh.rotation.x=-2.9; a.sh.rotation.z=(i?1:-1)*.35; a.el.rotation.x=0;});}
+  if(at>T.goal+.3){const f=players.scorer.f; f.position.y=Math.abs(Math.sin((at-T.goal)*5))*.45; const B=f.userData.bones; if(B.LeftArm){B.LeftArm.rotation.set(0,0,2.6); B.RightArm.rotation.set(0,0,-2.6); B.LeftForeArm.rotation.set(0,0,0); B.RightForeArm.rotation.set(0,0,0);}}
   // ball, trail, net ripple
   const bp=ballPos(at); ball.position.copy(bp); ball.rotation.x+=.3; glow.position.copy(bp);
   hist.push(bp.clone()); while(hist.length>TRAIL) hist.shift();
@@ -262,4 +245,5 @@ window.renderAt=function(t){
   ov.innerHTML=h;
 };
 window.ready=true;
+window.renderAt=renderAt;
 </script></body></html>

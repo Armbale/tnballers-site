@@ -9,7 +9,7 @@ orbit replay, aerial), net ripple, GOAL slam and an end card. Spec example: src/
 Positions are on a 0-100 pitch (x left->right, y own goal -> attacking goal) and come from match reports
 (shot location from FotMob's shot map when available); label the Reel "Recreation based on match reports".
 """
-import argparse, json, pathlib, shutil, subprocess, tempfile
+import argparse, functools, http.server, json, pathlib, shutil, socketserver, subprocess, tempfile, threading
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 
@@ -24,18 +24,25 @@ def main():
     a = ap.parse_args()
     s = json.loads(pathlib.Path(a.spec).read_text(encoding='utf-8'))
     t = pathlib.Path(tempfile.mkdtemp())
-    shutil.copy(a.three, t / 'three.min.js')
+    shutil.copytree(ROOT / 'src/vendor/three', t / 'three'); shutil.copytree(ROOT / 'src/vendor/models', t / 'models')
     shutil.copy(ROOT / 'src/assets/cutouts/hero' / f"{s['cutout']}.png", t / 'player.png')
     html = (ROOT / 'src/parts/goal3d.html').read_text(encoding='utf-8')
-    html = html.replace('%%FONTS%%', (ROOT / 'site/fonts').as_uri()).replace('%%CLUB%%', s['club_colour']).replace('%%SPEC%%', json.dumps(s))
+    shutil.copytree(ROOT / 'site/fonts', t / 'fonts'); html = html.replace('%%FONTS%%', 'fonts').replace('%%CLUB%%', s['club_colour']).replace('%%SPEC%%', json.dumps(s))
     (t / 'index.html').write_text(html, encoding='utf-8')
     secs = s['timeline']['total']
+    # ES modules + GLB need http:// (file:// blocks module scripts): serve the temp dir locally
+    H = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(t))
+    H.log_message = lambda *x: None
+    srv = socketserver.TCPServer(('127.0.0.1', 0), H); port = srv.server_address[1]
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    url = f'http://127.0.0.1:{port}/index.html'
     from playwright.sync_api import sync_playwright
     fr = t / 'fr'; fr.mkdir()
     with sync_playwright() as p:
         b = p.chromium.launch(args=['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist', '--allow-file-access-from-files'])
         pg = b.new_page(viewport={'width': 1080, 'height': 1920})
-        pg.goto((t / 'index.html').as_uri()); pg.wait_for_function('window.ready===true'); pg.evaluate('document.fonts.ready')
+        pg.on('console', lambda m: m.type in ('error','warning') and print('page:', m.text)); pg.on('pageerror', lambda e: print('pageerror:', e))
+        pg.goto(url); pg.wait_for_function('window.ready===true', timeout=120000); pg.evaluate('document.fonts.ready')
         if a.frames:
             want = [float(x) for x in a.frames.split(',')]
             outs = []
