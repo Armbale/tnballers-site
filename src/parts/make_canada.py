@@ -3,11 +3,11 @@ def esc(s): return s.replace('&', '&amp;')
 
 # name, pos, club, comp label, apps, goals, assists, caps, intl goals, shirt, highlight, fotmob id
 BEST = [
- ('Alphonso Davies','Left Back / Winger','Bayern Munich','All comps',11,3,3,59,15,'19','Captain. Off the bench at half-time vs Magdeburg (28 Oct, DFB-Pokal, 6–1): won a penalty, scored and assisted. Also scored vs Arsenal in the Champions League (21 Oct).','751202/alphonso-davies'),
- ('Liam Millar','Winger','Birmingham City (loan, Hull City)','All comps',10,5,4,47,1,'11','5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played 70 minutes of the 1–0 loss at Cardiff (24 Oct).','932308/liam-millar'),
- ('Jonathan David','Striker','Atlético Madrid (loan, Juventus)','LaLiga',5,3,2,85,43,'10','3 goals and 2 assists in five LaLiga games. Canada\'s all-time top scorer.','939569/jonathan-david'),
+ ('Alphonso Davies','Left Back / Winger','Bayern Munich','All comps',11,3,3,59,15,'19','Captain. Played all 90 minutes of the 2–2 Klassiker vs Dortmund (31 Oct). Off the bench vs Magdeburg (28 Oct, DFB-Pokal, 6–1): won a penalty, scored and assisted. Also scored vs Arsenal in the Champions League (21 Oct).','751202/alphonso-davies'),
+ ('Liam Millar','Winger','Birmingham City (loan, Hull City)','All comps',10,5,4,47,1,'11','5 goals and 4 assists in 10 club games, including a brace vs QPR (17 Oct). Played all 90 minutes of the 3–1 win at Lincoln (31 Oct).','932308/liam-millar'),
+ ('Jonathan David','Striker','Atlético Madrid (loan, Juventus)','LaLiga',6,3,2,85,43,'10','3 goals and 2 assists in six LaLiga games. Came off the bench in the 2–0 win at Levante (31 Oct) as Atlético went top. Canada\'s all-time top scorer.','939569/jonathan-david'),
  ('Tani Oluwaseyi','Striker','Villarreal','LaLiga',5,0,0,31,2,'12','Two Champions League goals in a week: at Napoli (13 Oct) and at Anfield vs Liverpool (20 Oct). Scored again in the 5–0 Copa del Rey win at Manacor (27 Oct).','1338740/tani-oluwaseyi'),
- ('Stephen Eustáquio','Central Midfield','Swansea City','Championship',8,1,1,63,5,'7','Vice-captain. Back from a shoulder knock; scored in the 2–1 win at Lincoln.','816223/stephen-eustaquio'),
+ ('Stephen Eustáquio','Central Midfield','Swansea City','Championship',9,2,1,63,5,'7','Vice-captain. Opened the scoring in the 4–0 win over Blackburn (31 Oct), his second league goal after Lincoln (19 Sep).','816223/stephen-eustaquio'),
  ('Tajon Buchanan','Winger','Villarreal','LaLiga',9,0,0,67,8,'17','Started again in the 1–0 home loss to Espanyol (30 Oct), after 87 minutes of the 2–1 derby win over Valencia (24 Oct).','1026135/tajon-buchanan'),
 ]
 # name, club, reason, expected back
@@ -106,7 +106,7 @@ def best_section(sfx, view_title):
         </ul>
       </aside>
     </div>
-    <p class="can-note">Club stats for 2026–27 and Canada caps as of 30 Oct 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
+    <p class="can-note">Club stats for 2026–27 and Canada caps as of 1 Nov 2026. Source: <a href="https://www.fotmob.com" target="_blank" rel="noopener noreferrer">FotMob</a>; transfers from club announcements. TNB isn't affiliated with these players or Canada Soccer.</p>
   </div>
 </section>
 '''
