@@ -1,0 +1,841 @@
+{
+ "abdu": {
+  "name": "Latifah Abdu",
+  "club": "Vancouver Rise",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:LAbdu_%28cropped%29.jpg",
+  "size": [
+   800,
+   1012
+  ],
+  "quality": "ok"
+ },
+ "abzi": {
+  "name": "Diyaeddine Abzi",
+  "club": "FC Supra du Québec",
+  "credit": "John Jacques / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Diyaeddine_Abzi_2019_crop.jpg",
+  "size": [
+   800,
+   935
+  ],
+  "quality": "ok"
+ },
+ "adekugbe": {
+  "name": "Sam Adekugbe",
+  "club": "Vancouver Whitecaps",
+  "credit": "Hossein Zohrevand / Tasnim News Agency / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Sam_Adekugbe_WC2022.jpg",
+  "size": [
+   545,
+   735
+  ],
+  "quality": "ok"
+ },
+ "alidou_m": {
+  "name": "Marie-Yasmine Alidou",
+  "club": "Montréal Roses",
+  "credit": "Hameltion / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:NC_Courage_vs_Portland_Thorns_%28Apr_2026%29_05.jpg",
+  "size": [
+   500,
+   640
+  ],
+  "quality": "ok"
+ },
+ "aparicio": {
+  "name": "Manny Aparicio",
+  "club": "Atlético Ottawa",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:MannyAparicio.jpg",
+  "size": [
+   800,
+   746
+  ],
+  "quality": "ok"
+ },
+ "aromatario": {
+  "name": "Anthony Aromatario",
+  "club": "Forge FC",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Anthony_Aromatario_%28cropped%29.jpg",
+  "size": [
+   475,
+   652
+  ],
+  "quality": "ok"
+ },
+ "b_white": {
+  "name": "Brian White",
+  "club": "Vancouver Whitecaps",
+  "credit": "Elopez76 / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Brian_White.jpg",
+  "size": [
+   753,
+   1016
+  ],
+  "quality": "ok"
+ },
+ "babouli": {
+  "name": "Molham Babouli",
+  "club": "Forge FC",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Mo_Babouli_2024_%28cropped%29.jpg",
+  "size": [
+   800,
+   1120
+  ],
+  "quality": "ok"
+ },
+ "badwal": {
+  "name": "Jeevan Badwal",
+  "club": "Vancouver Whitecaps",
+  "credit": "IDontHaveSkype / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Jeevan_Badwal%2C_Vancouver_Whitecaps_FC_v_San_Jose_Earthquakes_2026-03-21_%28cropped%29.jpg",
+  "size": [
+   152,
+   205
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "bennett": {
+  "name": "Elyse Bennett",
+  "club": "Montréal Roses",
+  "credit": "Hameltion / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:NC_Courage_vs_SD_Wave_%28Oct_2024%29_005.jpg",
+  "size": [
+   500,
+   675
+  ],
+  "quality": "ok"
+ },
+ "bibishkov": {
+  "name": "Marsel Bibishkov",
+  "club": "Vancouver FC",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/bibishkov.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "biello": {
+  "name": "Alessandro Biello",
+  "club": "FC Supra du Québec",
+  "credit": "A Disappearing Act (Flickr) / Wikimedia Commons (CC BY-SA 2.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Alessandro_Biello_%28cropped%29.jpg",
+  "size": [
+   500,
+   699
+  ],
+  "quality": "ok"
+ },
+ "blackmon": {
+  "name": "Tristan Blackmon",
+  "club": "Vancouver Whitecaps",
+  "credit": "IDontHaveSkype / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:%28Tristan_Blackmon%29_Vancouver_Whitecaps_FC_players_v_San_Jose_Earthquakes_2026-03-21_%28cropped%29.jpg",
+  "size": [
+   330,
+   477
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "boehmer": {
+  "name": "Isaac Boehmer",
+  "club": "Vancouver Whitecaps",
+  "credit": "IDontHaveSkype / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Isaac_Boehmer%2C_Vancouver_Whitecaps_FC_v_San_Jose_Earthquakes_2026-03-21_%28cropped%29.jpg",
+  "size": [
+   321,
+   599
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "borges": {
+  "name": "Tristan Borges",
+  "club": "Forge FC",
+  "credit": "Thiago Szwarc / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Tristan-borges.jpg",
+  "size": [
+   800,
+   1025
+  ],
+  "quality": "ok"
+ },
+ "bout": {
+  "name": "Anna Bout",
+  "club": "Vancouver Rise",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Anna_Bout_%28cropped%29.jpg",
+  "size": [
+   800,
+   893
+  ],
+  "quality": "ok"
+ },
+ "boychuk": {
+  "name": "Tanya Boychuk",
+  "club": "Montréal Roses",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Tanya_Boychuk_%28cropped%29.jpg",
+  "size": [
+   800,
+   738
+  ],
+  "quality": "ok"
+ },
+ "brault-guillard": {
+  "name": "Zachary Brault-Guillard",
+  "club": "FC Supra du Québec",
+  "credit": "Hayden Schiff (Flickr) / Wikimedia Commons (CC BY 2.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:CINvMTL_2019-05-11_-_Zachary_Brault-Guillard_%2847962366912%29_%28cropped%29.jpg",
+  "size": [
+   675,
+   911
+  ],
+  "quality": "ok"
+ },
+ "breza": {
+  "name": "Sebastian Breza",
+  "club": "CF Montréal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Sebastian_Breza_CF_Montreal_NYCFC_6.28.25-015_%28cropped%29.jpg",
+  "size": [
+   800,
+   1040
+  ],
+  "quality": "ok"
+ },
+ "bruno": {
+  "name": "Zayne Bruno",
+  "club": "Forge FC",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/bruno.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "burns": {
+  "name": "Zoe Burns",
+  "club": "AFC Toronto",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Zoe_Burns_2026_%28cropped%29.jpg",
+  "size": [
+   800,
+   1135
+  ],
+  "quality": "ok"
+ },
+ "camargo": {
+  "name": "Sergio Camargo",
+  "club": "Cavalry FC",
+  "credit": "Hayden Schiff (Flickr) / Wikimedia Commons (CC BY 2.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:CINvTOR_2017-05-27_-_Sergio_Camargo_%2834655064390%29_%28cropped%29.jpg",
+  "size": [
+   326,
+   440
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "cavallini": {
+  "name": "Lucas Cavallini",
+  "club": "Forge FC",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Lucas_Cavallini_2018.jpg",
+  "size": [
+   800,
+   702
+  ],
+  "quality": "ok"
+ },
+ "chisholm": {
+  "name": "Olivia Chisholm",
+  "club": "AFC Toronto",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:OChisholm_%28cropped%29.jpg",
+  "size": [
+   800,
+   1028
+  ],
+  "quality": "ok"
+ },
+ "choiniere": {
+  "name": "David Choinière",
+  "club": "FC Supra du Québec",
+  "credit": "Cold, Indrid (Flickr) / Wikimedia Commons (CC BY-SA 2.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:David_Choini%C3%A8re_with_Forge_FC_in_2021_%28cropped%29.jpg",
+  "size": [
+   718,
+   969
+  ],
+  "quality": "ok"
+ },
+ "ciccarelli": {
+  "name": "Tavio Ciccarelli",
+  "club": "HFX Wanderers",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/ciccarelli.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "cubas": {
+  "name": "Andrés Cubas",
+  "club": "Vancouver Whitecaps",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Andres_Cubas_France_v_Paraguay_4_July_2026-173.jpg",
+  "size": [
+   312,
+   470
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "dangelo": {
+  "name": "Sabrina D'Angelo",
+  "club": "AFC Toronto",
+  "credit": "Suzanne Lycett (Flickr) / Wikimedia Commons (CC BY-SA 2.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Sabrinadangelo_arsenal_%28cropped%29.jpg",
+  "size": [
+   419,
+   593
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "davies": {
+  "name": "Alphonso Davies",
+  "club": "Bayern Munich",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Alphonso_Davies_Canada_v_Qatar_18_June_2026-007_(cropped",
+  "quality": "ok"
+ },
+ "de_filippo": {
+  "name": "Jessica De Filippo",
+  "club": "Vancouver Rise",
+  "credit": "John Shorten / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Jessica_De_Filippo_VRFC_%28cropped%29.png",
+  "size": [
+   627,
+   846
+  ],
+  "quality": "ok"
+ },
+ "didic": {
+  "name": "Amer Didić",
+  "club": "Cavalry FC",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Amer_Didic_%28cropped%29.jpg",
+  "size": [
+   800,
+   1079
+  ],
+  "quality": "ok"
+ },
+ "edwards": {
+  "name": "Raheem Edwards",
+  "club": "Toronto FC",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Raheem_Edwards_Red_Bull_Atlanta_5.31.25-26_%28cropped%29.jpg",
+  "size": [
+   330,
+   424
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "eustaquio": {
+  "name": "Stephen Eustáquio",
+  "club": "Swansea City",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Stephen_Eustaquio_Canada_v_Qatar_18_June_2026-164_(cropped",
+  "quality": "ok"
+ },
+ "faulknor": {
+  "name": "Kennedy Faulknor",
+  "club": "Vancouver Rise",
+  "credit": "John Shorten / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Kennedy_Faulknor_VRFC.png",
+  "size": [
+   615,
+   830
+  ],
+  "quality": "ok"
+ },
+ "filion": {
+  "name": "Maxime Filion",
+  "club": "Forge FC",
+  "credit": "Makelevi / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Forge_FC_Maxime_Filion.jpg",
+  "size": [
+   800,
+   1079
+  ],
+  "quality": "ok"
+ },
+ "gazdov": {
+  "name": "Emil Gazdov",
+  "club": "CF Montréal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Emil_Gazdov_CF_Montreal_NYCFC_6.28.25-004_%28cropped%29.jpg",
+  "size": [
+   800,
+   1048
+  ],
+  "quality": "ok"
+ },
+ "golen": {
+  "name": "Nicola Golen",
+  "club": "Ottawa Rapid",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:NGolen_%28cropped%29.jpg",
+  "size": [
+   800,
+   1080
+  ],
+  "quality": "ok"
+ },
+ "greco-taylor": {
+  "name": "Christian Greco-Taylor",
+  "club": "Pacific FC",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/greco-taylor.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "hansen": {
+  "name": "Kaela Hansen",
+  "club": "Vancouver Rise",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Kaela_Hansen_%28cropped%29.jpg",
+  "size": [
+   800,
+   1136
+  ],
+  "quality": "ok"
+ },
+ "harris": {
+  "name": "Jyllissa Harris",
+  "club": "Ottawa Rapid",
+  "credit": "Hameltion / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:NC_Courage_vs_Houston_Dash_%28Mar_2024%29_051.jpg",
+  "size": [
+   800,
+   1080
+  ],
+  "quality": "ok"
+ },
+ "hunter": {
+  "name": "Kaylee Hunter",
+  "club": "AFC Toronto",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Kaylee_Hunter_Canada_v_Argentina_Mar_7_2026-11.jpg",
+  "quality": "ok"
+ },
+ "ingham": {
+  "name": "Nathan Ingham",
+  "club": "Cavalry FC",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Ingham_%28cropped%29.jpg",
+  "size": [
+   500,
+   650
+  ],
+  "quality": "ok"
+ },
+ "j_david": {
+  "name": "Jonathan David",
+  "club": "Atlético Madrid",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Jonathan_David_Canada_v_Qatar_18_June_2026-242_(cropped",
+  "quality": "ok"
+ },
+ "j_wright": {
+  "name": "Jaylyn Wright",
+  "club": "Vancouver Rise",
+  "credit": "John Shorten / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Jaylyn_Wright_VRFC.png",
+  "size": [
+   282,
+   380
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "keshavarz": {
+  "name": "Sami Keshavarz",
+  "club": "Pacific FC",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/keshavarz.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "klomp": {
+  "name": "Daan Klomp",
+  "club": "Cavalry FC",
+  "credit": "A Disappearing Act (Flickr) / Wikimedia Commons (CC BY-SA 2.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Daan_Klomp_of_Cavalry_FC.jpg",
+  "size": [
+   500,
+   675
+  ],
+  "quality": "ok"
+ },
+ "laborda": {
+  "name": "Mathías Laborda",
+  "club": "Vancouver Whitecaps",
+  "credit": "IDontHaveSkype / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Math%C3%ADas_Laborda%2C_Vancouver_Whitecaps_FC_v_Colorado_Rapids_2026-04-25_%28cropped%29.jpg",
+  "size": [
+   470,
+   717
+  ],
+  "quality": "ok"
+ },
+ "laryea": {
+  "name": "Richie Laryea",
+  "club": "Toronto FC",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Richie_Laryea_Canada_v_Qatar_18_June_2026-096.jpg",
+  "size": [
+   793,
+   1070
+  ],
+  "quality": "ok"
+ },
+ "lee_mina": {
+  "name": "Lee Min-a",
+  "club": "Ottawa Rapid",
+  "credit": "2mina (YouTube) / Wikimedia Commons (CC BY 3.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:%EC%9D%B4%EB%AF%BC%EC%95%84_2021.jpg",
+  "size": [
+   800,
+   682
+  ],
+  "quality": "ok"
+ },
+ "loturi": {
+  "name": "Victor Loturi",
+  "club": "CF Montréal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Victor_Loturi_CF_Montreal_NYCFC_6.28.25-059_%28cropped%29.jpg",
+  "size": [
+   800,
+   1044
+  ],
+  "quality": "ok"
+ },
+ "mcaslan": {
+  "name": "Morgan McAslan",
+  "club": "Vancouver Rise",
+  "credit": "John Shorten / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Morgan_McAslan_VRFC.png",
+  "size": [
+   315,
+   425
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "melenhorst": {
+  "name": "Keera Melenhorst",
+  "club": "Ottawa Rapid",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Melenhorst_%28cropped%29.jpg",
+  "size": [
+   800,
+   872
+  ],
+  "quality": "ok"
+ },
+ "mihailovic": {
+  "name": "Djordje Mihailovic",
+  "club": "Toronto FC",
+  "credit": "DjoMihailovic / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Djordje_Mihailovic_crop.jpg",
+  "size": [
+   800,
+   1193
+  ],
+  "quality": "ok"
+ },
+ "millar": {
+  "name": "Liam Millar",
+  "club": "Birmingham City",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Liam_Millar_Canada_v_Qatar_18_June_2026-008.jpg",
+  "quality": "ok"
+ },
+ "morgan": {
+  "name": "Lewis Morgan",
+  "club": "Toronto FC",
+  "credit": "Vincenzo.togni / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Lewis_Morgan_in_2020.jpg",
+  "size": [
+   800,
+   956
+  ],
+  "quality": "ok"
+ },
+ "muller": {
+  "name": "Thomas Müller",
+  "club": "Vancouver Whitecaps",
+  "credit": "Werner100359 / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:FC_Red_Bull_Salzburg_gegen_Bayern_M%C3%BCnchen_%282025-01-06_Testspiel%29_19.jpg",
+  "size": [
+   710,
+   821
+  ],
+  "quality": "ok"
+ },
+ "nimick": {
+  "name": "Daniel Nimick",
+  "club": "Forge FC",
+  "credit": "A Disappearing Act (Flickr) / Wikimedia Commons (CC BY-SA 2.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Dan_Nimick%2C_HFX_Wanderers_FC.jpg",
+  "size": [
+   800,
+   665
+  ],
+  "quality": "ok"
+ },
+ "okoronkwo": {
+  "name": "Esther Okoronkwo",
+  "club": "AFC Toronto",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Esther_O_2026_%28cropped%29.jpg",
+  "size": [
+   330,
+   409
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "olguin": {
+  "name": "Lucas Olguin",
+  "club": "HFX Wanderers",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/olguin.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "osorio": {
+  "name": "Jonathan Osorio",
+  "club": "Toronto FC",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Jonathan_Osorio_Canada_v_Qatar_18_June_2026-029.jpg",
+  "size": [
+   405,
+   698
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "owusu": {
+  "name": "Prince Owusu",
+  "club": "CF Montréal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Prince_Owusu_CF_Montreal_NYCFC_6.28.25-058_%28cropped%29.jpg",
+  "size": [
+   500,
+   650
+  ],
+  "quality": "ok"
+ },
+ "pavela": {
+  "name": "Ivan Pavela",
+  "club": "Inter Toronto",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/pavela.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "pechersky": {
+  "name": "Lisa Pechersky",
+  "club": "Montréal Roses",
+  "credit": "John Shorten / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Lisa_Pechersky_VRFC.png",
+  "size": [
+   800,
+   1092
+  ],
+  "quality": "ok"
+ },
+ "petrasso": {
+  "name": "Luca Petrasso",
+  "club": "CF Montréal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Luca_Petrasso_CF_Montreal_NYCFC_6.28.25-055.jpg",
+  "size": [
+   800,
+   1171
+  ],
+  "quality": "ok"
+ },
+ "pickett": {
+  "name": "Victoria Pickett",
+  "club": "AFC Toronto",
+  "credit": "Hameltion / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:NC_Courage_vs_Gotham_FC_%28Mar_2024%29_061_%28cropped%29.jpg",
+  "size": [
+   800,
+   1167
+  ],
+  "quality": "ok"
+ },
+ "piette": {
+  "name": "Samuel Piette",
+  "club": "CF Montréal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Sam_Piette_CF_Montreal_NYCFC_6.28.25-152_%28cropped%29.jpg",
+  "size": [
+   733,
+   989
+  ],
+  "quality": "ok"
+ },
+ "pridham": {
+  "name": "Delaney Baie Pridham",
+  "club": "Vancouver Rise",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:DB_Pridham_Canada_v_Argentina_Mar_7_2026-34.jpg",
+  "quality": "ok"
+ },
+ "priso": {
+  "name": "Ralph Priso",
+  "club": "Vancouver Whitecaps",
+  "credit": "IDontHaveSkype / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Ralph_Priso%2C_Vancouver_Whitecaps_FC_v_San_Jose_Earthquakes_2026-03-21_%28cropped%29.jpg",
+  "size": [
+   419,
+   565
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "quinn": {
+  "name": "Quinn",
+  "club": "Vancouver Rise",
+  "credit": "John Shorten / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Quinn_VRFC.png",
+  "size": [
+   634,
+   855
+  ],
+  "quality": "ok"
+ },
+ "rea": {
+  "name": "Sean Rea",
+  "club": "FC Supra du Québec",
+  "credit": "A Disappearing Act (Flickr) / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Sean_Rea.jpg",
+  "size": [
+   423,
+   577
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "sanchez": {
+  "name": "Alexis Sánchez",
+  "club": "CF Montréal",
+  "credit": "Кирилл Венедиктов / Wikimedia Commons (CC BY-SA 3.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Alexis_S%C3%A1nchez_2017.jpg",
+  "quality": "ok"
+ },
+ "sargent": {
+  "name": "Josh Sargent",
+  "club": "Toronto FC",
+  "credit": "Hossein Zohrevand / Tasnim News Agency / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2820%29_%28cropped%29.jpg",
+  "size": [
+   800,
+   1143
+  ],
+  "quality": "ok"
+ },
+ "sauve": {
+  "name": "Mégane Sauvé",
+  "club": "Montréal Roses",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:MSauve_%28cropped%29.jpg",
+  "size": [
+   800,
+   890
+  ],
+  "quality": "ok"
+ },
+ "seto": {
+  "name": "Anne-Valérie Seto",
+  "club": "Montréal Roses",
+  "credit": "A Disappearing Act (Flickr) / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Anne-Val%C3%A9rie_Seto_%28cropped%29.jpg",
+  "size": [
+   500,
+   586
+  ],
+  "quality": "ok"
+ },
+ "silano": {
+  "name": "Lena Silano",
+  "club": "AFC Toronto",
+  "credit": "Hameltion / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:NC_Courage_vs_Washington_Spirit_%28Nov_2024%29_066_%28cropped%29.jpg",
+  "size": [
+   800,
+   1157
+  ],
+  "quality": "ok"
+ },
+ "small": {
+  "name": "Nikayla Small",
+  "club": "AFC Toronto",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Nikki_Small_%28cropped%29.jpg",
+  "size": [
+   800,
+   1068
+  ],
+  "quality": "ok"
+ },
+ "tabla": {
+  "name": "Ballou Tabla",
+  "club": "Atlético Ottawa",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Ballou_Tabla.jpg",
+  "size": [
+   800,
+   635
+  ],
+  "quality": "ok"
+ },
+ "takaoka": {
+  "name": "Yohei Takaoka",
+  "club": "Vancouver Whitecaps",
+  "credit": "IDontHaveSkype / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Yohei_Takaoka%2C_Vancouver_Whitecaps_FC_v_Colorado_Rapids_2026-04-25_%28cropped%29.jpg",
+  "size": [
+   274,
+   369
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "tavernier": {
+  "name": "Kevaughn Tavernier",
+  "club": "Forge FC",
+  "credit": "TNB (supplied by the player)",
+  "path": "site/players/tavernier.png",
+  "quality": "ok",
+  "partner": true
+ },
+ "wright": {
+  "name": "Brian Wright",
+  "club": "Forge FC",
+  "credit": "Robin Glover / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Brian_Wright_2024.jpg",
+  "size": [
+   423,
+   457
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ },
+ "zimmerman": {
+  "name": "Walker Zimmerman",
+  "club": "Toronto FC",
+  "credit": "Hossein Zohrevand / Tasnim News Agency / Wikimedia Commons (CC BY 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:2022_FIFA_World_Cup_England_0-0_USA_-_Walker_Zimmerman_%28cropped%29.jpg",
+  "size": [
+   395,
+   740
+  ],
+  "quality": "low (small source, use only if nothing better)"
+ }
+}
