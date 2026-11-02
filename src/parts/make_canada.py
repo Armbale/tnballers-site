@@ -58,7 +58,7 @@ WOMEN = [
  ('Jessica De Filippo','Forward','Vancouver Rise',None,None,'12','NSL goals','Top scorer in the 2026 Northern Super League regular season.','defilippo'),
  ('Kaylee Hunter','Forward','AFC Toronto',4,0,'10','NSL goals','Third in the NSL scoring race and now a Canada regular.','hunter'),
  ('Delaney Baie Pridham','Forward','Ottawa Rapid',9,1,'8','NSL goals','Won the first NSL Golden Boot in 2025. Ottawa are in the playoffs.','pridham'),
- ('Marie-Yasmine Alidou','Midfield','Montreal Roses',24,6,'','','Set up the winner as Montreal Roses clinched the NSL Supporters\' Shield.','alidou'),
+ ('Marie-Yasmine Alidou','Midfield','Montreal Roses',24,6,'','','Scored one and set up another in the 3–0 NSL semi-final first-leg win at Vancouver Rise (1 Nov).','alidou'),
  ('Evelyne Viens','Forward','Paris FC',51,11,'','','11 international goals, leading the line in France.','viens'),
  ('Kailen Sheridan','Goalkeeper','North Carolina Courage',71,0,'','','71 caps between the posts for Canada.','sheridan'),
 ]
