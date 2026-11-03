@@ -36,6 +36,7 @@ Live site: https://tnballers.com (Netlify project "tnballers", publishes the `si
 - Reports on other runs say "queued for <next update day>" instead of "pushed".
 
 ## Rules
+- WEB LOOKUPS (Baller, 3 Nov 2026: "Just search it up man, it saves us time"): never WebFetch a URL typed from memory (it triggers a permission prompt Baller has to answer, and scheduled runs stall). Always WebSearch first and only fetch URLs that came back in search results (or that are written in this file / the task prompt).
 - Stats source: FotMob player pages (IDs are in the data files). Cross-check goals, injuries and transfers with a second source.
 - Do not reveal individual market values or their sources.
 - Keep Canadian/British spelling.
