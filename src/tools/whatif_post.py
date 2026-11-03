@@ -46,13 +46,13 @@ body{{width:{W}px;height:{H}px;overflow:hidden;background:#08080b;font-family:Sw
 </style></head><body>
 <div class="bg"></div><div class="stripe"></div><div class="ghost">{e(a.line1)}</div>
 <img class="pl" src="{face.as_uri()}"><div class="shade"></div>
-<div class="top"><div class="wi">WHAT IF</div><div class="l1">{e(a.line1)}</div><div class="l2">{e(a.line2)}</div></div>
+<div class="top"><div class="wi">{e(a.banner)}</div><div class="l1">{e(a.line1)}</div><div class="l2">{e(a.line2)}</div></div>
 <div class="cards">
  <div class="c cL"><div class="k">{e(a.left_k)}</div><div class="v">{e(a.left_v)}</div><div class="s">{e(a.left_s)}</div></div>
  <div class="c r cR"><div class="k">{e(a.right_k)}</div><div class="v">{e(a.right_v)}</div><div class="s">{e(a.right_s)}</div></div>
 </div>
 <div class="hook">{e(a.hook)}</div>
-<div class="foot"><span>Fan concept · Photo: {e(a.credit)}</span><span>TNBALLERS.COM</span></div>
+<div class="foot"><span>{e(a.foot_label)}{e(a.credit)}</span><span>TNBALLERS.COM</span></div>
 </body></html>"""
 
 
@@ -62,6 +62,8 @@ def main():
     for k in ('player', 'line1', 'line2', 'left-k', 'left-v', 'left-s', 'right-k', 'right-v', 'right-s', 'hook', 'credit'):
         ap.add_argument(f'--{k}', required=True)
     ap.add_argument('--colour', default='#B81137')
+    ap.add_argument('--banner', default='WHAT IF')  # e.g. 'CALLED UP' for real news cards
+    ap.add_argument('--foot-label', default='Fan concept · Photo: ')  # use 'Photo: ' for real news
     a = ap.parse_args()
     from playwright.sync_api import sync_playwright
     from PIL import Image
