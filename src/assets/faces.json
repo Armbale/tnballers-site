@@ -837,5 +837,27 @@
    740
   ],
   "quality": "low (small source, use only if nothing better)"
+ },
+ "oluwaseyi": {
+  "name": "Tani Oluwaseyi",
+  "club": "Villarreal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Tani_Oluwaseyi_Canada_v_Qatar_18_June_2026-024.jpg",
+  "size": [
+   558,
+   800
+  ],
+  "quality": "ok"
+ },
+ "buchanan": {
+  "name": "Tajon Buchanan",
+  "club": "Villarreal",
+  "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+  "source": "https://commons.wikimedia.org/wiki/File:Tajon_Buchanan_Canada_v_Qatar_18_June_2026-094.jpg",
+  "size": [
+   543,
+   800
+  ],
+  "quality": "ok"
  }
 }
