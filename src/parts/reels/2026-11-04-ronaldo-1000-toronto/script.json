@@ -1,0 +1,110 @@
+[
+ {
+  "scene": "hook",
+  "say": "Nine hundred and eighty-five. Cristiano Ronaldo is fifteen goals away from one thousand.",
+  "show": "985. Cristiano Ronaldo is 15 goals away from 1,000.",
+  "hi": [
+   "985.",
+   "15",
+   "1,000."
+  ]
+ },
+ {
+  "scene": "hook",
+  "say": "Now imagine number one thousand... in Toronto.",
+  "show": "Now imagine No. 1,000... in Toronto.",
+  "hi": [
+   "1,000...",
+   "Toronto."
+  ]
+ },
+ {
+  "scene": "count",
+  "say": "Let's count them. Five for Sporting. A hundred and forty-five for Manchester United.",
+  "show": "Let's count them. 5 for Sporting. 145 for Manchester United.",
+  "hi": [
+   "5",
+   "145"
+  ]
+ },
+ {
+  "scene": "count",
+  "say": "Four hundred and fifty at Real Madrid. A hundred and one at Juventus.",
+  "show": "450 at Real Madrid. 101 at Juventus.",
+  "hi": [
+   "450",
+   "101"
+  ]
+ },
+ {
+  "scene": "count",
+  "say": "A hundred and thirty-eight for Al Nassr. And a hundred and forty-six for Portugal.",
+  "show": "138 for Al Nassr. And 146 for Portugal.",
+  "hi": [
+   "138",
+   "146"
+  ]
+ },
+ {
+  "scene": "pace",
+  "say": "This year alone, he's scored twenty-seven. At that pace, he gets there by the spring.",
+  "show": "This year alone: 27. At that pace, he gets there by spring.",
+  "hi": [
+   "27.",
+   "spring."
+  ]
+ },
+ {
+  "scene": "pace",
+  "say": "So here's the dream. He holds on, and lands in Toronto on nine hundred and ninety-nine.",
+  "show": "So here's the dream. He lands in Toronto on 999.",
+  "hi": [
+   "dream.",
+   "999."
+  ]
+ },
+ {
+  "scene": "stage",
+  "say": "B M O Field. Forty-five thousand people. The same pitch where he scored at the World Cup.",
+  "show": "BMO Field. 45,000 people. The same pitch where he scored at the World Cup.",
+  "hi": [
+   "BMO",
+   "45,000",
+   "World"
+  ]
+ },
+ {
+  "scene": "moment",
+  "say": "Penalty to Toronto. Ronaldo, on nine hundred and ninety-nine.",
+  "show": "Penalty to Toronto. Ronaldo, on 999.",
+  "hi": [
+   "Penalty",
+   "999."
+  ]
+ },
+ {
+  "scene": "moment",
+  "say": "One thousand!",
+  "show": "1,000!",
+  "hi": [
+   "1,000!"
+  ]
+ },
+ {
+  "scene": "siuu",
+  "say": "Siuuuu!",
+  "show": "SIUUU!",
+  "hi": [
+   "SIUUU!"
+  ]
+ },
+ {
+  "scene": "end",
+  "say": "History. In red. Would you be there?",
+  "show": "History. In red. Would you be there?",
+  "hi": [
+   "History.",
+   "red."
+  ]
+ }
+]
