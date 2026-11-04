@@ -1,0 +1,107 @@
+[
+ {
+  "scene": "hook",
+  "say": "What if this was real? Cristiano Ronaldo. Number seven. Toronto F C.",
+  "show": "What if this was real? Cristiano Ronaldo. No. 7. Toronto FC.",
+  "hi": [
+   "real?",
+   "Toronto",
+   "FC."
+  ],
+  "t0": 0.35,
+  "t1": 5.232
+ },
+ {
+  "scene": "bmo",
+  "say": "He's already scored at B M O Field. A World Cup penalty, against Croatia.",
+  "show": "He's already scored at BMO Field. A World Cup penalty vs Croatia.",
+  "hi": [
+   "scored",
+   "BMO",
+   "penalty"
+  ],
+  "t0": 5.392,
+  "t1": 9.776
+ },
+ {
+  "scene": "deal",
+  "say": "And the timing works. His Al Nassr deal ends in twenty twenty-seven, the same summer M L S moves to a July start.",
+  "show": "And the timing works. His Al Nassr deal ends in 2027, the same summer MLS moves to a July start.",
+  "hi": [
+   "works.",
+   "2027,",
+   "July"
+  ],
+  "t0": 9.936,
+  "t1": 17.382
+ },
+ {
+  "scene": "form",
+  "say": "Twenty-eight league goals last season, and the Saudi title. He's not slowing down.",
+  "show": "28 league goals last season, and the Saudi title. He's not slowing down.",
+  "hi": [
+   "28",
+   "title."
+  ],
+  "t0": 17.542,
+  "t1": 22.468
+ },
+ {
+  "scene": "playoffs",
+  "say": "Toronto? Twelve draws, no playoffs, and a top scorer with nine.",
+  "show": "Toronto? 12 draws, no playoffs, and a top scorer with 9.",
+  "hi": [
+   "12",
+   "no",
+   "9."
+  ],
+  "t0": 22.628,
+  "t1": 27.307
+ },
+ {
+  "scene": "playoffs",
+  "say": "Turn three of those draws into wins, and they're in.",
+  "show": "Turn 3 of those draws into wins and they're in.",
+  "hi": [
+   "3",
+   "wins",
+   "in."
+  ],
+  "t0": 27.467,
+  "t1": 31.0
+ },
+ {
+  "scene": "crowd",
+  "say": "Messi drew a record crowd to B M O Field. Ronaldo would do it every week.",
+  "show": "Messi drew a record 44,828 to BMO Field. Ronaldo would do it every week.",
+  "hi": [
+   "record",
+   "44,828",
+   "every"
+  ],
+  "t0": 31.16,
+  "t1": 35.853
+ },
+ {
+  "scene": "record",
+  "say": "The M L S record is thirty-four goals in a season. Ronaldo once scored thirty-five in one.",
+  "show": "The MLS record: 34 goals in a season. Ronaldo once scored 35 in one.",
+  "hi": [
+   "34",
+   "35"
+  ],
+  "t0": 36.013,
+  "t1": 41.972
+ },
+ {
+  "scene": "end",
+  "say": "Red shirt. B M O Field. Does he break it?",
+  "show": "Red shirt. BMO Field. Does he break it?",
+  "hi": [
+   "Red",
+   "break"
+  ],
+  "t0": 42.132,
+  "t1": 44.956
+ }
+]
