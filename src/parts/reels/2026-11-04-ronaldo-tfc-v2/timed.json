@@ -1,0 +1,189 @@
+[
+ {
+  "scene": "hook",
+  "say": "July second. A sold out B M O Field. Ronaldo steps up, and scores.",
+  "show": "2 July. A sold-out BMO Field. Ronaldo steps up... and scores.",
+  "hi": [
+   "sold-out",
+   "BMO",
+   "scores."
+  ],
+  "t0": 0.6,
+  "t1": 5.608
+ },
+ {
+  "scene": "city",
+  "say": "Little Portugal shuts down the streets. Drake calls him, my brother.",
+  "show": "Little Portugal shuts down the streets. Drake calls him \"my brother.\"",
+  "hi": [
+   "Portugal",
+   "Drake",
+   "brother.\""
+  ],
+  "t0": 5.728,
+  "t1": 9.148
+ },
+ {
+  "scene": "reveal",
+  "say": "Now imagine he never left. Cristiano Ronaldo. Toronto F C.",
+  "show": "Now imagine he never left. Cristiano Ronaldo. Toronto FC.",
+  "hi": [
+   "never",
+   "Toronto",
+   "FC."
+  ],
+  "t0": 9.268,
+  "t1": 13.511
+ },
+ {
+  "scene": "deal",
+  "say": "It's not crazy. His Al Nassr contract ends in June twenty twenty-seven. One month later, M L S starts a brand new season, and Toronto has a Designated Player spot open.",
+  "show": "It's not crazy. His Al Nassr deal ends June 2027. One month later, MLS starts a brand-new season. And TFC has a DP spot open.",
+  "hi": [
+   "June",
+   "2027.",
+   "brand-new",
+   "open."
+  ],
+  "t0": 13.631,
+  "t1": 24.897
+ },
+ {
+  "scene": "form",
+  "say": "And he's still scoring. A Saudi title last season. Seven league goals already this one.",
+  "show": "And he's still scoring. A Saudi title last season. 7 league goals already this one.",
+  "hi": [
+   "scoring.",
+   "title",
+   "7"
+  ],
+  "t0": 25.017,
+  "t1": 30.14
+ },
+ {
+  "scene": "goals",
+  "say": "Put him next to Josh Sargent, with Mihailovic feeding them both, and twenty-five goals a season is realistic.",
+  "show": "Next to Josh Sargent, with Mihailovic feeding them both, 25 goals a season is realistic.",
+  "hi": [
+   "Sargent,",
+   "Mihailovic",
+   "25"
+  ],
+  "t0": 30.26,
+  "t1": 36.522
+ },
+ {
+  "scene": "playoffs",
+  "say": "This year, Toronto missed the playoffs. Four points short, with a game left. They drew twelve games. Turn three of those draws into wins, and they're in.",
+  "show": "This year TFC missed the playoffs: 4 points short with a game left. They drew 12. Turn 3 of those draws into wins and they're in.",
+  "hi": [
+   "4",
+   "12",
+   "3",
+   "in."
+  ],
+  "t0": 36.642,
+  "t1": 44.898
+ },
+ {
+  "scene": "playoffs",
+  "say": "That's exactly what a Ronaldo goal does.",
+  "show": "That's exactly what a Ronaldo goal does.",
+  "hi": [
+   "Ronaldo"
+  ],
+  "t0": 45.018,
+  "t1": 47.305
+ },
+ {
+  "scene": "title",
+  "say": "And once you're in, anything can happen. Messi won MLS Cup with Miami. Toronto won it in twenty seventeen. With Ronaldo, why not again?",
+  "show": "Once you're in, anything can happen. Messi won MLS Cup with Miami. TFC won it in 2017. With Ronaldo, why not again?",
+  "hi": [
+   "anything",
+   "MLS",
+   "2017.",
+   "again?"
+  ],
+  "t0": 47.425,
+  "t1": 55.7
+ },
+ {
+  "scene": "merch",
+  "say": "Off the pitch, it's even bigger. When he joined Juventus, they reportedly sold five hundred and twenty thousand shirts in twenty-four hours.",
+  "show": "Off the pitch it's even bigger. When he joined Juventus, they reportedly sold 520,000 shirts in 24 hours.",
+  "hi": [
+   "bigger.",
+   "520,000",
+   "24"
+  ],
+  "t0": 55.82,
+  "t1": 63.593
+ },
+ {
+  "scene": "merch",
+  "say": "In a province where three hundred thousand people have Portuguese roots, the red number seven sells itself.",
+  "show": "In a province where 300,000 people have Portuguese roots, the red No. 7 sells itself.",
+  "hi": [
+   "300,000",
+   "No.",
+   "7"
+  ],
+  "t0": 63.713,
+  "t1": 69.461
+ },
+ {
+  "scene": "crowd",
+  "say": "When Messi came to B M O Field, forty-four thousand eight hundred turned up. With Ronaldo, that's every home game.",
+  "show": "When Messi came to BMO Field, 44,828 turned up. With Ronaldo, that's every home game.",
+  "hi": [
+   "44,828",
+   "every"
+  ],
+  "t0": 69.581,
+  "t1": 76.195
+ },
+ {
+  "scene": "stay",
+  "say": "One season turns into two. Toronto wouldn't let him go.",
+  "show": "One season turns into two. Toronto wouldn't let him go.",
+  "hi": [
+   "two.",
+   "go."
+  ],
+  "t0": 76.315,
+  "t1": 79.53
+ },
+ {
+  "scene": "record",
+  "say": "And then there's the record. The most goals in one M L S season is thirty-four. Carlos Vela, twenty nineteen.",
+  "show": "And then there's the record. Most goals in one MLS season: 34. Carlos Vela, 2019.",
+  "hi": [
+   "record.",
+   "34."
+  ],
+  "t0": 79.65,
+  "t1": 86.213
+ },
+ {
+  "scene": "record",
+  "say": "Ronaldo once scored thirty-five in a single Saudi season.",
+  "show": "Ronaldo once scored 35 in a single Saudi season.",
+  "hi": [
+   "35"
+  ],
+  "t0": 86.333,
+  "t1": 89.598
+ },
+ {
+  "scene": "end",
+  "say": "So, in red, at B M O Field... would he break it?",
+  "show": "So, in red, at BMO Field... would he break it?",
+  "hi": [
+   "red,",
+   "break"
+  ],
+  "t0": 89.718,
+  "t1": 92.593
+ }
+]

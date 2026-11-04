@@ -1,0 +1,149 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Tanker;src:url(FONTS/tanker/Tanker-Regular.woff2)}
+@font-face{font-family:Switzer;src:url(FONTS/switzer/Switzer-Semibold.woff2);font-weight:600}
+@font-face{font-family:Switzer;src:url(FONTS/switzer/Switzer-Bold.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#E31837;--gold:#F4C542;--pink:#F7A8C8;--ink:#07070a}
+body{width:1080px;height:1920px;overflow:hidden;background:var(--ink);font-family:Switzer;color:#fff;position:relative}
+#stage{position:absolute;inset:0;overflow:hidden} #sc{position:absolute;inset:0}
+.bg{position:absolute;inset:0}
+.grain{position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;pointer-events:none;z-index:70;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.vig{position:absolute;inset:0;z-index:25;pointer-events:none;background:radial-gradient(ellipse 75% 60% at 50% 45%,transparent 50%,#000c 100%)}
+.prog{position:absolute;top:0;left:0;height:8px;background:var(--gold);z-index:80}
+.cap{position:absolute;left:0;right:0;top:1450px;text-align:center;z-index:60}
+.cap span.p{display:inline-block;background:#0b0b10e6;border:2px solid #ffffff1a;padding:18px 30px 14px;border-radius:18px;font-weight:700;font-size:56px;line-height:1.15;max-width:960px;box-shadow:0 20px 50px #000a}
+.cap i{font-style:normal;color:var(--gold)}
+.foot{position:absolute;left:44px;right:44px;bottom:60px;display:flex;justify-content:space-between;font-size:20px;color:#9a9aa5;font-weight:600;letter-spacing:.05em;z-index:65}
+.card{position:absolute;background:#121218ee;border-radius:22px;border:2px solid #ffffff14;box-shadow:0 30px 60px #000b;padding:26px 30px}
+.lab{font-family:ui-monospace,Menlo,monospace;font-size:22px;letter-spacing:.16em;color:#b4b4c0;text-transform:uppercase}
+.big{font-family:Tanker;line-height:.9}
+.cut{position:absolute;filter:drop-shadow(0 30px 50px #000)}
+.fade{-webkit-mask-image:linear-gradient(#000 62%,transparent 94%)}
+.chip{display:inline-block;font-family:Tanker;font-size:44px;padding:12px 22px 6px;border-radius:12px;margin:8px}
+.stamp{position:absolute;font-family:Tanker;color:var(--red);text-shadow:4px 0 #00e5ff99,-4px 0 #ff00aa99}
+.photo{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+.shade{position:absolute;inset:0;background:linear-gradient(#000a,#0000 30%,#0000 55%,#000e 85%)}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.beam{position:absolute;top:-300px;width:240px;height:2400px;background:linear-gradient(#ffffff40,transparent 70%);filter:blur(30px);transform-origin:top center}
+</style></head><body><div id="stage"></div><div class="vig"></div><div class="grain"></div>
+<script>
+const S=__SCRIPT__; const TOTAL=__TOTAL__; const G3=__HAS3D__; const IMG='IMG/';
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)); const eo=x=>1-Math.pow(1-cl(x),3); const eb=x=>{x=cl(x);const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const fmt=n=>Math.round(n).toLocaleString('en-US'); const cnt=(v,k)=>fmt(v*eo(k));
+const scenes=[];S.forEach((l,i)=>{const p=scenes[scenes.length-1]; if(p&&p.scene===l.scene){p.lines.push(l)} else scenes.push({scene:l.scene,t0:i?l.t0-0.1:0,lines:[l]})});
+scenes.forEach((s,i)=>s.t1=scenes[i+1]?scenes[i+1].t0:TOTAL);
+function capAt(t){
+  const i=S.findIndex((x,j)=>t>=x.t0-0.05&&t<(S[j+1]?S[j+1].t0:TOTAL)); if(i<0)return ''; const l=S[i];
+  const W=l.show.split(' '); const wts=W.map(w=>Math.max(3,w.replace(/[^\w$%+,.]/g,'').length+(/\d/.test(w)?6:0)));
+  const tot=wts.reduce((a,b)=>a+b,0); const d=l.t1-l.t0; let acc=0,cur=0; const p=cl((t-l.t0)/d);
+  for(let j=0;j<W.length;j++){acc+=wts[j]/tot; cur=j; if(p<acc)break}
+  const chunks=[];let c=[];W.forEach((w,j)=>{c.push(j); if(c.length>=5||/[.?!:]$/.test(w)&&c.length>=2){chunks.push(c);c=[]}}); if(c.length)chunks.push(c);
+  const ch=chunks.find(c=>c.includes(cur));
+  return ch.map(j=>{const w=W[j];const on=j<=cur;const h=l.hi&&l.hi.includes(w);return `<span style="opacity:${on?1:.18}">${h?`<i>${w}</i>`:w}</span>`}).join(' ');
+}
+const glow=(c,x='50%',y='40%')=>`<div class="bg" style="background:radial-gradient(ellipse 85% 55% at ${x} ${y},${c} 0%,transparent 70%)"></div>`;
+const kb=(src,k,dur,{x0=0,x1=0,y0=0,y1=0,s0=1.08,s1=1.2,f=''}={})=>{const p=cl(k/dur);return `<img class="photo" src="${IMG}${src}" style="transform:translate(${x0+(x1-x0)*p}px,${y0+(y1-y0)*p}px) scale(${s0+(s1-s0)*p});filter:${f}">`};
+const cut=(src,css,k)=>`<img class="cut fade" src="${IMG}${src}" style="${css};opacity:${cl(k*1.6)};transform:translateY(${(1-eo(k))*140}px) scale(${1+0.04*cl(k/4)})">`;
+const sparks=(t,n=26)=>{let h='';for(let i=0;i<n;i++){const sd=(i*9301+49297)%233280/233280;const x=sd*1080;const sp=60+sd*120;const y=1900-((t*sp+i*137)%2000);h+=`<div class="spark" style="left:${x}px;top:${y}px;opacity:${0.3+0.7*sd}"></div>`}return h};
+const beams=t=>`<div class="beam" style="left:120px;transform:rotate(${18+3*Math.sin(t)}deg)"></div><div class="beam" style="left:420px;opacity:.8;transform:rotate(${2*Math.sin(t*.7)}deg)"></div><div class="beam" style="left:720px;transform:rotate(${-18-3*Math.sin(t)}deg)"></div>`;
+const letters=(txt,k,stag=0.05)=>[...txt].map((ch,i)=>`<span style="display:inline-block;opacity:${cl((k-i*stag)/.15)};transform:translateY(${(1-eo((k-i*stag)/.25))*60}px)">${ch===' '?'&nbsp;':ch}</span>`).join('');
+const shirt=(x,y,r,s,o)=>`<svg style="position:absolute;left:${x}px;top:${y}px;transform:rotate(${r}deg) scale(${s});opacity:${o}" width="160" height="150" viewBox="0 0 160 150"><path d="M50 8 L20 22 L2 58 L30 70 L36 52 L36 146 L124 146 L124 52 L130 70 L158 58 L140 22 L110 8 Q80 30 50 8Z" fill="#C8102E" stroke="#7a0a1c" stroke-width="3"/><text x="80" y="118" text-anchor="middle" font-family="Tanker" font-size="62" fill="#fff">7</text></svg>`;
+const R={
+hook(t,s){const k=t;let h='';
+  if(k<1.5){ // cold open: Ronaldo walking out at BMO
+    h+=kb('cr_070.jpg',k,1.5,{s0:1.0,s1:1.18,y0:0,y1:-40,x0:-90,x1:-110});
+    h+=`<div class="shade"></div><div style="position:absolute;left:60px;top:1260px;z-index:30"><div class="lab" style="color:var(--gold);font-size:30px">${letters('TORONTO · 2 JULY 2026',k*1.6,0.03)}</div><div class="big" style="font-size:170px;margin-top:16px;text-shadow:0 10px 40px #000">${letters('RONALDO',k*1.3,0.06)}</div></div>`;
+    if(k>1.3)h+=`<div style="position:absolute;inset:0;background:#fff;opacity:${(k-1.3)/.2};z-index:50"></div>`;
+  } else {const ct=1.3+(k-1.5);const f=Math.min(Math.max(1,Math.floor(ct*30)),G3-1);
+    h+=`<img src="G3F/${String(f).padStart(4,'0')}.jpg" class="photo" style="object-fit:fill;transform:scale(${1+0.02*(k-1.5)})">`;
+    if(k<1.7)h+=`<div style="position:absolute;inset:0;background:#fff;opacity:${1-(k-1.5)/.2};z-index:50"></div>`;}
+  return h},
+city(t,s){const k=t-s.t0;let h=kb('cr_154.jpg',k,s.t1-s.t0,{s0:1.55,s1:1.75,x0:-60,x1:-20,y0:120,y1:80})+'<div class="shade"></div>';
+  h+=`<div style="position:absolute;left:60px;top:250px;z-index:30;opacity:${cl(k/.3)}"><div class="lab" style="color:var(--gold);font-size:28px">College St · Dundas St · St Clair Ave</div><div class="big" style="font-size:120px;margin-top:10px">LITTLE PORTUGAL<br><span style="color:var(--red)">SHUTS DOWN</span></div></div>`;
+  const kd=t-s.lines[0].t0-1.9; if(kd>0)h+=`<div class="card" style="left:60px;top:900px;width:760px;z-index:31;opacity:${cl(kd/.3)};transform:translateY(${(1-eo(kd/.4))*50}px) rotate(-2deg)"><div class="lab">@champagnepapi · 3 Jul 2026</div><div style="font-weight:700;font-size:46px;margin-top:10px">"We are the same height I swear, vamos!!! My brother @cristiano"</div></div>`;
+  return h},
+reveal(t,s){const k=t-s.t0;let h=glow('#E31837aa','50%','45%')+beams(t)+sparks(t);
+  h+=`<div class="big" style="position:absolute;left:-40px;right:-40px;top:${380}px;text-align:center;font-size:340px;color:#ffffff10;letter-spacing:-6px">TORONTO</div>`;
+  const kr=(k-1.0);h+=`<img class="cut fade" src="${IMG}ronaldo_tfc_concept.png" style="left:50%;top:420px;height:1060px;transform:translateX(-50%) scale(${kr<0?0.6:1.18-0.18*eo(kr/.35)+0.03*cl(kr/3)});opacity:${cl(kr/.15)};z-index:20">`;
+  if(kr>0&&kr<.25)h+=`<div style="position:absolute;inset:0;background:#fff;opacity:${0.6*(1-kr/.25)};z-index:50"></div>`;
+  h+=`<div style="position:absolute;left:0;right:0;top:220px;text-align:center;z-index:30"><span class="chip" style="background:var(--gold);color:#111;transform:rotate(-3deg);font-size:52px;opacity:${cl(k/.2)}">WHAT IF</span></div>`;
+  const kn=k-1.6; if(kn>0)h+=`<div style="position:absolute;left:0;right:0;top:1180px;text-align:center;z-index:30"><div class="big" style="font-size:150px;text-shadow:0 10px 40px #000">${letters('CRISTIANO RONALDO',kn*1.4,0.04)}</div><div class="lab" style="margin-top:10px;opacity:${cl((kn-.8)/.3)}">Fan concept · kit edited by TNB</div></div>`;
+  return h},
+deal(t,s){const k=t-s.t0;let h=glow('#F4C54230','50%','30%');
+  const ev=[['JUN 2027','Al Nassr deal ends','#666',1.0],['JUL 2027','New MLS season','var(--gold)',4.2]];
+  ev.forEach((e,i)=>{const kk=(k-e[3])/.35;h+=`<div class="card" style="left:${60+i*500}px;top:300px;width:460px;opacity:${cl(kk)};transform:rotateX(${(1-eo(kk))*90}deg);transform-origin:top"><div class="lab">${e[1]}</div><div class="big" style="font-size:110px;color:${e[2]}">${e[0]}</div></div>`});
+  if(k>4.2)h+=`<div style="position:absolute;left:520px;top:380px;font-family:Tanker;font-size:70px;color:var(--gold);opacity:${cl((k-4.2)/.3)}">→</div>`;
+  const kd=k-6.6;if(kd>0){const dp=[['SARGENT','DP 1'],['MIHAILOVIC','DP 2']];
+   h+=`<div style="position:absolute;left:60px;right:60px;top:620px;display:flex;gap:20px">${dp.map((d,i)=>`<div class="card" style="position:relative;flex:1;opacity:${cl((kd-i*.25)/.3)}"><div class="lab">${d[1]}</div><div class="big" style="font-size:60px;margin-top:8px">${d[0]}</div></div>`).join('')}<div class="card" style="position:relative;flex:1.2;border:3px dashed var(--gold);opacity:${cl((kd-.5)/.3)};box-shadow:0 0 ${30+20*Math.sin(t*6)}px #F4C54288"><div class="lab">DP 3 · OPEN</div><div class="big" style="font-size:${kd>2.6?70:96}px;margin-top:8px;color:${kd>2.6?'var(--red)':'var(--gold)'}">${kd>2.6?'RONALDO':'?'}</div></div></div>`;
+   h+=cut('cut_087.png','left:120px;top:860px;height:1000px',(kd-1.0)/.6);}
+  return h},
+form(t,s){const k=t-s.t0;let h=kb('cr_097.jpg',k,s.t1-s.t0,{s0:1.0,s1:1.12,y0:-100,y1:-160})+'<div class="shade"></div>';
+  const cards=[['Saudi Pro League','CHAMPION','2025-26','var(--gold)',1.6],['League goals','7','2026-27 so far','#fff',3.0]];
+  cards.forEach((c,i)=>{const kk=(k-c[4])/.35;h+=`<div class="card" style="left:${i?560:60}px;top:${280}px;width:460px;opacity:${cl(kk)};transform:scale(${1.3-0.3*eo(kk)})"><div class="lab">${c[0]}</div><div class="big" style="font-size:${c[1].length>3?96:150}px;color:${c[3]}">${c[1]}</div><div class="lab">${c[2]}</div></div>`});
+  return h},
+goals(t,s){const k=t-s.t0;let h=glow('#E3183755','50%','40%')+sparks(t,14);
+  h+=cut('sargent.png','left:-40px;top:430px;height:720px;filter:brightness(.75)',(k-.3)/.5)+cut('mihailovic.png','right:-40px;top:430px;height:720px;filter:brightness(.75)',(k-1.6)/.5)+cut('cut_154.png','left:50%;margin-left:-330px;top:360px;width:660px;z-index:5',k/.5);
+  h+=`<div style="position:absolute;left:80px;top:${1000}px;width:200px;text-align:center;opacity:${cl((k-.6)/.3)}" class="big"><span style="font-size:44px">SARGENT</span></div><div style="position:absolute;right:80px;top:1000px;width:240px;text-align:center;opacity:${cl((k-1.9)/.3)}" class="big"><span style="font-size:44px">MIHAILOVIC</span></div>`;
+  const kc=k-3.6; if(kc>0){h+=`<div class="card" style="left:200px;right:200px;top:1030px;text-align:center;z-index:30;transform:scale(${1.4-0.4*eb(kc/.4)})"><div class="big" style="font-size:190px;color:var(--gold)">${Math.round(25*eo(kc/1.4))}</div><div class="lab">projected goals a season</div><div style="margin-top:10px">${Array.from({length:25},(_,i)=>`<span style="display:inline-block;width:20px;height:20px;border-radius:50%;margin:3px;background:${i<25*eo(kc/1.4)?'var(--gold)':'#2a2a33'}"></span>`).join('')}</div></div>`}
+  return h},
+playoffs(t,s){const k=t-s.t0;const l2=s.lines[1];let h=glow('#E3183730','50%','35%');
+  const up=cl((t-l2.t0+1.2)/1.0); // TFC jumps after "they're in"
+  const pts=Math.round(39+6*eo(up));
+  h+=`<div class="card" style="left:60px;right:60px;top:300px;height:820px;opacity:${cl(k/.3)}"><div class="lab">Eastern Conference 2026 · after 33 games</div>`;
+  h+=`<div style="position:absolute;left:30px;right:30px;top:120px;height:120px;display:flex;align-items:center;gap:20px;font-family:Tanker;font-size:64px;background:#1b1b22;border-radius:14px;padding:0 24px"><span style="color:#888;width:70px">9</span><span style="flex:1">ORLANDO CITY</span><span>43</span></div>`;
+  h+=`<div style="position:absolute;left:30px;right:30px;top:268px;border-top:5px dashed var(--gold)"></div><div class="lab" style="position:absolute;right:40px;top:280px;color:var(--gold)">Playoff line</div>`;
+  const y=560-(560-110)*eo(up);
+  h+=`<div style="position:absolute;left:30px;right:30px;top:${y}px;height:120px;display:flex;align-items:center;gap:20px;font-family:Tanker;font-size:64px;background:var(--red);border-radius:14px;padding:0 24px;z-index:3;box-shadow:0 0 ${40*up}px #E31837"><span style="width:70px">${up>0.5?'9':'12'}</span><span style="flex:1">TORONTO FC</span><span>${pts}</span></div>`;
+  if(up>0.6)h+=`<div style="position:absolute;left:30px;right:30px;top:560px;height:120px;display:flex;align-items:center;gap:20px;font-family:Tanker;font-size:64px;background:#1b1b22;border-radius:14px;padding:0 24px;opacity:${cl((up-.6)/.4)}"><span style="color:#888;width:70px">10</span><span style="flex:1">ORLANDO CITY</span><span>43</span></div>`;
+  const kd=k-3.5; if(kd>0)h+=`<div style="position:absolute;left:40px;bottom:60px;right:40px">${Array.from({length:12},(_,i)=>{const w=i<3&&up>0;return `<span style="display:inline-block;width:52px;height:52px;margin:5px;border-radius:10px;font-family:Tanker;font-size:34px;line-height:58px;text-align:center;background:${w?'var(--gold)':'#2a2a33'};color:${w?'#111':'#aaa'};opacity:${cl((kd-i*.08)/.2)}">${w?'W':'D'}</span>`}).join('')}<div class="lab" style="margin-top:8px">TFC's 12 draws · ${up>0?'3 become wins: +6 pts':'4 points short'}</div></div>`;
+  h+=`</div>`;
+  if(t>l2.t0)h+=`<div class="stamp" style="left:120px;top:1170px;font-size:120px;color:var(--gold);transform:rotate(-6deg) scale(${1.6-0.6*eo((t-l2.t0)/.3)})">+ RONALDO = IN</div>`;
+  return h},
+title(t,s){const k=t-s.t0;let h=glow('#F4C54240','50%','40%')+beams(t)+sparks(t);
+  h+=`<div class="big" style="position:absolute;left:0;right:0;top:300px;text-align:center;font-size:140px;transform:scale(${1.3-0.3*eo(k/.4)});opacity:${cl(k/.2)}">ANYTHING<br>CAN HAPPEN</div>`;
+  const rows=[['2017','TORONTO FC','var(--red)',2.0],['2025','INTER MIAMI','var(--pink)',3.4],['2028?','TORONTO FC + RONALDO','var(--gold)',5.6]];
+  rows.forEach((r,i)=>{const kk=(k-r[3])/.35;h+=`<div class="card" style="left:60px;right:60px;top:${640+i*190}px;display:flex;align-items:center;gap:30px;padding:20px 30px;opacity:${cl(kk)};transform:translateX(${(1-eo(kk))*-100}px);${i==2?'border:3px solid var(--gold);box-shadow:0 0 40px #F4C54266':''}"><span class="big" style="font-size:90px;color:${r[2]};width:240px">${r[0]}</span><span class="big" style="font-size:${i==2?60:70}px">🏆 ${r[1]}</span></div>`});
+  h+=`<div class="lab" style="position:absolute;left:60px;top:1230px;opacity:${cl((k-2)/.3)}">MLS Cup winners</div>`;
+  return h},
+merch(t,s){const k=t-s.t0;const l2=s.lines[1];const k2=t-l2.t0;let h=glow('#C8102E66','50%','45%');
+  for(let i=0;i<14;i++){const sd=((i*7919)%997)/997;const x=-40+((i*373+i*i*61)%1040);const y=-250+((t-s.t0)*(180+sd*120)+((i*541)%2300))%2300;h+=shirt(x,y,(sd-.5)*30,1.0+sd*0.5,0.55+0.35*sd)}
+  if(k2<0){h+=`<div class="card" style="left:120px;right:120px;top:560px;text-align:center;z-index:30;transform:scale(${1.4-0.4*eb((k-2.4)/.4)});opacity:${cl((k-2.4)/.2)}"><div class="lab">Juventus · first 24 hours · 2018 (reported)</div><div class="big" style="font-size:190px;color:var(--gold)">${cnt(520000,(k-2.4)/1.6)}</div><div class="lab">Ronaldo shirts sold</div></div>`}
+  else{h+=`<div class="card" style="left:120px;right:120px;top:560px;text-align:center;z-index:30;transform:scale(${1.3-0.3*eb(k2/.4)})"><div class="big" style="font-size:190px;color:var(--gold)">${cnt(300000,k2/1.4)}+</div><div class="lab">Ontarians with Portuguese roots</div></div>`;
+    if(k2>3.2)h+=shirt(380,980,-4,2.0*(1.4-0.4*eb((k2-3.2)/.4)),1)+`<div class="stamp" style="left:0;right:0;text-align:center;top:1300px;font-size:110px;color:#fff;opacity:${cl((k2-3.6)/.3)}">SELLS ITSELF</div>`}
+  return h},
+crowd(t,s){const k=t-s.t0;let h=kb('cr_070.jpg',k,s.t1-s.t0,{s0:1.6,s1:1.3,x0:-200,x1:-120,y0:-150,y1:-100,f:'brightness(.7)'})+'<div class="shade"></div>';
+  h+=`<div class="card" style="left:120px;right:120px;top:330px;text-align:center;z-index:30;opacity:${cl((k-1.4)/.3)}"><div class="lab">BMO Field v Messi · 9 May 2026</div><div class="big" style="font-size:190px;color:var(--pink)">${cnt(44828,(k-1.4)/1.6)}</div><div class="lab">Club record · TFC average 19,685</div></div>`;
+  if(k>4.4)h+=`<div class="stamp" style="left:0;right:0;text-align:center;top:840px;font-size:150px;color:var(--gold);transform:rotate(-5deg) scale(${1.6-0.6*eo((k-4.4)/.3)})">EVERY HOME GAME</div>`;
+  return h},
+stay(t,s){const k=t-s.t0;let h=glow('#E31837aa','50%','50%')+beams(t)+sparks(t);
+  h+=cut('ronaldo_tfc_concept.png','left:50%;margin-left:-440px;top:430px;height:1000px',k/.5);
+  h+=`<div style="position:absolute;left:0;right:0;top:250px;text-align:center;z-index:30"><span class="chip" style="background:#24242c;opacity:${cl(k/.2)}">SEASON 1</span><span class="big" style="font-size:60px;color:var(--gold);opacity:${cl((k-.6)/.2)}"> → </span><span class="chip" style="background:var(--red);opacity:${cl((k-.8)/.2)};transform:scale(${1.4-0.4*eb((k-.8)/.3)})">SEASON 2</span></div>`;
+  if(k>1.9)h+=`<div class="stamp" style="left:0;right:0;text-align:center;top:1200px;font-size:120px;color:#fff;transform:rotate(-4deg) scale(${1.5-0.5*eo((k-1.9)/.3)})">"DON'T GO"</div>`;
+  return h},
+record(t,s){const k=t-s.t0;const l2=s.lines[1];const k2=t-l2.t0;let h=glow('#F4C54230','50%','40%');
+  h+=`<div class="lab" style="position:absolute;left:0;right:0;text-align:center;top:280px;font-size:30px;color:var(--gold);opacity:${cl(k/.3)}">Most goals in one season</div>`;
+  h+=`<div class="card" style="left:60px;width:460px;top:380px;text-align:center;opacity:${cl((k-1.6)/.3)}"><div class="lab">MLS record</div><div class="big" style="font-size:300px">${Math.round(34*eo((k-1.6)/1.2))}</div><div class="lab">Carlos Vela · 2019</div></div>`;
+  if(k2>0)h+=`<div class="card" style="right:60px;width:460px;top:380px;text-align:center;border:3px solid var(--gold);box-shadow:0 0 50px #F4C54266;transform:scale(${1.3-0.3*eb(k2/.4)})"><div class="lab">Ronaldo · Saudi record</div><div class="big" style="font-size:300px;color:var(--gold)">${Math.round(35*eo(k2/1.2))}</div><div class="lab">Al Nassr · 2023-24</div></div>`;
+  h+=cut('cut_087.png','left:280px;top:900px;height:900px',(k-.2)/.6);
+  return h},
+end(t,s){const k=t-s.t0;let h=glow('#E31837cc','50%','45%')+beams(t)+sparks(t,34);
+  h+=`<img class="cut fade" src="${IMG}ronaldo_tfc_concept.png" style="left:50%;top:560px;height:1000px;transform:translateX(-50%) scale(${1.05+0.05*cl(k/4)});opacity:${cl(k/.3)}">`;
+  h+=`<div class="big" style="position:absolute;left:0;right:0;top:230px;text-align:center;font-size:330px;color:var(--gold);opacity:${cl((k-.4)/.2)};transform:scale(${1.6-0.6*eb((k-.4)/.4)});text-shadow:0 0 60px #F4C54288">34?</div>`;
+  if(k>2.0)h+=`<div style="position:absolute;left:0;right:0;top:1400px;text-align:center;z-index:30"><div class="big" style="font-size:120px;transform:scale(${1.5-0.5*eb((k-2)/.4)})">WOULD HE<br><span style="color:var(--gold)">BREAK IT?</span></div><div style="margin-top:20px;opacity:${cl((k-2.6)/.3)}"><span class="chip" style="background:var(--red)">COMMENT 👇</span></div></div>`;
+  return h}
+};
+window.renderAt=function(t){
+  const sc=scenes.find(s=>t>=s.t0&&t<s.t1)||scenes[scenes.length-1]; const dk=t-sc.t0;
+  let h=`<div id="sc">${R[sc.scene](t,sc)}</div>`;
+  if(sc.t0>0&&dk<0.12)h+=`<div style="position:absolute;inset:0;background:#fff;opacity:${0.5*(1-dk/.12)};z-index:55"></div>`;
+  if(sc.t0>0&&dk<0.5)h+=`<div style="position:absolute;inset:0;z-index:54;background:radial-gradient(ellipse at ${dk*2000-200}px 40%,#ffb34766,transparent 45%);mix-blend-mode:screen"></div>`;
+  if(sc.scene!=='end'&&!(sc.scene==='hook'&&t<1.5)){const c=capAt(t); if(c)h+=`<div class="cap"><span class="p">${c}</span></div>`}
+  h+=`<div class="prog" style="width:${1080*t/TOTAL}px"></div>`;
+  if(!(sc.scene==='hook'&&t>=1.5))h+=`<div class="foot"><span>Photos: Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)</span><span>TNBALLERS.COM</span></div>`;
+  const st=document.getElementById('stage'); st.innerHTML=h;
+  // whip transition: blur + slide in, plus shake
+  const sc_=document.getElementById('sc'); if(sc.t0>0&&dk<0.3){const p=eo(dk/.3);sc_.style.transform=`translateX(${(1-p)*220}px) scale(${1.08-0.08*p})`;sc_.style.filter=`blur(${(1-p)*18}px)`}
+  const sh=sc.t0>0&&dk<0.25?(1-dk/.25)*9:0; st.style.transform=`translate(${sh*Math.sin(t*90)}px,${sh*Math.cos(t*70)}px)`;
+};
+window.ready=true;
+</script></body></html>
