@@ -1,0 +1,223 @@
+[
+ {
+  "scene": "hook",
+  "say": "July second, twenty twenty-six. Ronaldo scores at B M O Field, and Little Portugal shuts down the streets.",
+  "show": "2 July 2026. Ronaldo scores at BMO Field and Little Portugal shuts down the streets.",
+  "hi": [
+   "Ronaldo",
+   "BMO",
+   "Portugal"
+  ],
+  "t0": 0.6,
+  "t1": 7.501
+ },
+ {
+  "scene": "hook",
+  "say": "Drake posts a photo with him. My brother.",
+  "show": "Drake posts a photo with him: \"My brother.\"",
+  "hi": [
+   "Drake",
+   "brother.\""
+  ],
+  "t0": 7.621,
+  "t1": 9.954
+ },
+ {
+  "scene": "question",
+  "say": "So what if he stayed? Could Ronaldo at Toronto F C top Messi at Miami?",
+  "show": "So what if he stayed? Could Ronaldo at Toronto FC top Messi at Miami?",
+  "hi": [
+   "stayed?",
+   "Toronto",
+   "Messi"
+  ],
+  "t0": 10.074,
+  "t1": 14.462
+ },
+ {
+  "scene": "series",
+  "say": "Scout, manager, owner, marketer. Let's break it down.",
+  "show": "Scout. Manager. Owner. Marketer. Let's break it down.",
+  "hi": [
+   "Scout.",
+   "Manager.",
+   "Owner.",
+   "Marketer."
+  ],
+  "t0": 14.582,
+  "t1": 17.411
+ },
+ {
+  "scene": "bar",
+  "title": "First, the <b>Messi bar</b>",
+  "say": "First, the bar. Before Messi, Miami had won nothing.",
+  "show": "First, the bar. Before Messi, Miami had won nothing.",
+  "hi": [
+   "nothing."
+  ],
+  "t0": 17.531,
+  "t1": 20.565
+ },
+ {
+  "scene": "bar",
+  "say": "Since then, four trophies, a hundred goals, and revenue up from fifty-six million to about two hundred million.",
+  "show": "Since then: 4 trophies, 100 goals, and revenue up from $56M to about $200M.",
+  "hi": [
+   "4",
+   "100",
+   "$56M",
+   "$200M."
+  ],
+  "t0": 20.685,
+  "t1": 26.909
+ },
+ {
+  "scene": "scout",
+  "title": "The <b>scout</b>",
+  "say": "The scout. Ronaldo is forty-one, a Saudi champion, and already has seven league goals this season.",
+  "show": "The scout. Ronaldo is 41, a Saudi champion, with 7 league goals already this season.",
+  "hi": [
+   "41,",
+   "champion,",
+   "7"
+  ],
+  "t0": 27.029,
+  "t1": 32.91
+ },
+ {
+  "scene": "scout",
+  "say": "He won't press. But in the box, he finishes. Zlatan scored fifty-three in fifty-eight M L S games in his late thirties.",
+  "show": "He won't press. But in the box, he finishes. Zlatan scored 53 in 58 MLS games in his late 30s.",
+  "hi": [
+   "press.",
+   "finishes.",
+   "53",
+   "58"
+  ],
+  "t0": 33.03,
+  "t1": 40.254
+ },
+ {
+  "scene": "owner",
+  "title": "The <b>owner</b>",
+  "say": "The owner. His Al Nassr deal ends in June twenty twenty-seven. A month later, M L S starts its new July to May season.",
+  "show": "The owner. His Al Nassr deal ends June 2027. A month later, MLS starts its new July-to-May season.",
+  "hi": [
+   "June",
+   "2027.",
+   "July-to-May"
+  ],
+  "t0": 40.374,
+  "t1": 48.203
+ },
+ {
+  "scene": "owner",
+  "say": "Toronto has a third Designated Player slot open. On the cap, he counts about eight hundred thousand dollars. The rest is a Messi style deal: revenue share, and a piece of the club.",
+  "show": "TFC has a 3rd DP slot open. On the cap he counts about $803K. The rest is a Messi-style deal: revenue share and a piece of the club.",
+  "hi": [
+   "3rd",
+   "$803K.",
+   "Messi-style",
+   "club."
+  ],
+  "t0": 48.323,
+  "t1": 58.984
+ },
+ {
+  "scene": "manager",
+  "title": "The <b>manager</b>",
+  "say": "The manager. Goals aren't Toronto's problem. Sixty-three conceded is. So the money goes behind him: two centre-backs, a midfield runner, and a new deal for captain Osorio.",
+  "show": "The manager. Goals aren't TFC's problem. 63 conceded is. So the money goes behind him: 2 centre-backs, a midfield runner, a new deal for captain Osorio.",
+  "hi": [
+   "63",
+   "conceded",
+   "centre-backs,",
+   "Osorio."
+  ],
+  "t0": 59.104,
+  "t1": 69.439
+ },
+ {
+  "scene": "manager",
+  "say": "Sargent does the running. Ronaldo does the finishing.",
+  "show": "Sargent does the running. Ronaldo does the finishing.",
+  "hi": [
+   "running.",
+   "finishing."
+  ],
+  "t0": 69.559,
+  "t1": 72.401
+ },
+ {
+  "scene": "marketer",
+  "title": "The <b>marketer</b>",
+  "say": "The marketer. Toronto's average crowd fell under twenty thousand this year. When Messi visited in May, forty-four thousand eight hundred came. A club record.",
+  "show": "The marketer. TFC's average crowd fell under 20,000 this year. When Messi visited in May: 44,828. A club record.",
+  "hi": [
+   "20,000",
+   "44,828.",
+   "record."
+  ],
+  "t0": 72.521,
+  "t1": 81.588
+ },
+ {
+  "scene": "followers",
+  "say": "Ronaldo has six hundred and sixty-five million Instagram followers. Messi, five hundred and six. And over three hundred thousand Ontarians have Portuguese roots.",
+  "show": "Ronaldo: 665M Instagram followers. Messi: 506M. And 300,000+ Ontarians have Portuguese roots.",
+  "hi": [
+   "665M",
+   "506M.",
+   "300,000+"
+  ],
+  "t0": 81.708,
+  "t1": 91.908
+ },
+ {
+  "scene": "player",
+  "title": "The <b>risk</b>",
+  "say": "The risk? In twenty twenty-three, he said the Saudi league was better than M L S. Here, he'd be judged in Messi's league.",
+  "show": "The risk? In 2023 he said the Saudi league was better than MLS. Here he'd be judged in Messi's league.",
+  "hi": [
+   "better",
+   "Messi's"
+  ],
+  "t0": 92.028,
+  "t1": 98.796
+ },
+ {
+  "scene": "verdict",
+  "title": "The <b>verdict</b>",
+  "say": "So, better than Messi? On trophies, probably not. Messi arrived at thirty-six. Ronaldo would be forty-two.",
+  "show": "So, better than Messi? On trophies, probably not. Messi arrived at 36. Ronaldo would be 42.",
+  "hi": [
+   "trophies,",
+   "36.",
+   "42."
+  ],
+  "t0": 98.916,
+  "t1": 105.339
+ },
+ {
+  "scene": "verdict",
+  "say": "But off the pitch, he could beat him. Messi built Miami. Ronaldo would wake Toronto up.",
+  "show": "But off the pitch, he could beat him. Messi built Miami. Ronaldo would wake Toronto up.",
+  "hi": [
+   "beat",
+   "built",
+   "wake"
+  ],
+  "t0": 105.459,
+  "t1": 110.364
+ },
+ {
+  "scene": "end",
+  "say": "Would you buy a ticket?",
+  "show": "Would you buy a ticket?",
+  "hi": [
+   "ticket?"
+  ],
+  "t0": 110.484,
+  "t1": 111.528
+ }
+]

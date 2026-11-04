@@ -1,0 +1,185 @@
+{
+ "player": "Cristiano Ronaldo",
+ "cutout": "ronaldo",
+ "club_colour": "#1aa59a",
+ "club_shorts": "#e8f1f0",
+ "club_socks": "#e8f1f0",
+ "opp_colour": "#d7192b",
+ "opp_shorts": "#ffffff",
+ "opp_socks": "#1b3a8f",
+ "gk_colour": "#222222",
+ "minute": "68'",
+ "comp": "World Cup \u00b7 Round of 32",
+ "home": "Portugal",
+ "away": "Croatia",
+ "score_after": "1\u20130",
+ "players": [
+  {
+   "id": "assist",
+   "label": "",
+   "x": 3,
+   "y": 40,
+   "num": "8"
+  },
+  {
+   "id": "scorer",
+   "label": "RONALDO",
+   "x": 47,
+   "y": 83.5,
+   "num": "7"
+  },
+  {
+   "id": "m1",
+   "label": "",
+   "x": 30,
+   "y": 81
+  },
+  {
+   "id": "m2",
+   "label": "",
+   "x": 64,
+   "y": 80.5
+  },
+  {
+   "id": "m3",
+   "label": "",
+   "x": 72,
+   "y": 79
+  },
+  {
+   "id": "gk",
+   "label": "",
+   "x": 50,
+   "y": 99.2,
+   "team": "opp",
+   "num": "1"
+  },
+  {
+   "id": "d1",
+   "label": "",
+   "x": 34,
+   "y": 82,
+   "team": "opp"
+  },
+  {
+   "id": "d2",
+   "label": "",
+   "x": 40,
+   "y": 80.5,
+   "team": "opp"
+  },
+  {
+   "id": "d3",
+   "label": "",
+   "x": 58,
+   "y": 80.5,
+   "team": "opp"
+  },
+  {
+   "id": "d4",
+   "label": "",
+   "x": 68,
+   "y": 81.5,
+   "team": "opp"
+  },
+  {
+   "id": "c1",
+   "label": "",
+   "x": 26,
+   "y": 79,
+   "team": "opp"
+  },
+  {
+   "id": "c2",
+   "label": "",
+   "x": 76,
+   "y": 80,
+   "team": "opp"
+  }
+ ],
+ "run": [
+  [
+   47,
+   83.5
+  ],
+  [
+   48.6,
+   87.4
+  ],
+  [
+   49.6,
+   89.2
+  ]
+ ],
+ "carry": [
+  [
+   50,
+   89.5
+  ],
+  [
+   50,
+   89.6
+  ]
+ ],
+ "shot": [
+  [
+   50,
+   89.6
+  ],
+  [
+   45.6,
+   100
+  ]
+ ],
+ "pass_height": 0.0,
+ "shot_height": 0.25,
+ "gk_dive": 5,
+ "timeline": {
+  "hook": 1.3,
+  "run0": 1.4,
+  "pass0": 0.0,
+  "pass1": 0.05,
+  "shot0": 3.3,
+  "shot1": 3.75,
+  "goal": 3.75,
+  "goal_wall": 4.6,
+  "end_wall": 8.2,
+  "total": 10
+ },
+ "slowmo": [
+  3.1,
+  4.6,
+  0.35
+ ],
+ "cameras": [
+  {
+   "type": "broadcast",
+   "t0": 1.3,
+   "t1": 2.4
+  },
+  {
+   "type": "follow",
+   "t0": 2.4,
+   "t1": 3.1
+  },
+  {
+   "type": "behind_goal",
+   "t0": 3.1,
+   "t1": 5.2
+  },
+  {
+   "type": "orbit",
+   "t0": 5.2,
+   "t1": 8.2
+  },
+  {
+   "type": "aerial",
+   "t0": 8.2,
+   "t1": 10
+  }
+ ],
+ "beats": [],
+ "end_line": "Portugal 2\u20131 Croatia \u00b7 BMO Field, Toronto",
+ "credit": "Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)",
+ "source_note": "TNB 3D illustration"
+}

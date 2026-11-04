@@ -1,0 +1,136 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Tanker;src:url(FONTS/tanker/Tanker-Regular.woff2)}
+@font-face{font-family:Switzer;src:url(FONTS/switzer/Switzer-Semibold.woff2);font-weight:600}
+@font-face{font-family:Switzer;src:url(FONTS/switzer/Switzer-Bold.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#E31837;--gold:#F4C542;--pink:#F7A8C8;--ink:#07070a}
+body{width:1080px;height:1920px;overflow:hidden;background:var(--ink);font-family:Switzer;color:#fff;position:relative}
+#stage{position:absolute;inset:0}
+.bg{position:absolute;inset:0}
+.grain{position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay;pointer-events:none;z-index:40;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.prog{position:absolute;top:0;left:0;height:8px;background:var(--gold);z-index:50}
+.ctitle{position:absolute;left:60px;top:150px;font-family:Tanker;font-size:80px;line-height:1;z-index:30;text-shadow:0 8px 30px #000}
+.ctitle b{font-weight:400;color:var(--gold)}
+.cap{position:absolute;left:0;right:0;top:1450px;text-align:center;z-index:35}
+.cap span.p{display:inline-block;background:#0b0b10e6;border:2px solid #ffffff1a;padding:18px 30px 14px;border-radius:18px;font-weight:700;font-size:54px;line-height:1.15;max-width:960px;box-shadow:0 20px 50px #000a}
+.cap i{font-style:normal;color:var(--gold)}
+.foot{position:absolute;left:44px;right:44px;bottom:60px;display:flex;justify-content:space-between;font-size:20px;color:#8d8d97;font-weight:600;letter-spacing:.05em;z-index:45}
+.card{position:absolute;background:#121218;border-radius:22px;border:2px solid #ffffff14;box-shadow:0 30px 60px #000b;padding:26px 30px}
+.lab{font-family:ui-monospace,Menlo,monospace;font-size:22px;letter-spacing:.16em;color:#a6a6b2;text-transform:uppercase}
+.big{font-family:Tanker;line-height:.9}
+.cut{position:absolute;filter:drop-shadow(0 30px 50px #000)}
+.fade{-webkit-mask-image:linear-gradient(#000 62%,transparent 94%)}
+.chip{display:inline-block;font-family:Tanker;font-size:40px;padding:12px 20px 6px;border-radius:12px;margin:8px}
+.stamp{position:absolute;font-family:Tanker;color:var(--red);text-shadow:4px 0 #00e5ff99,-4px 0 #ff00aa99;transform:rotate(-8deg)}
+</style></head><body><div id="stage"></div><div class="grain"></div>
+<script>
+const S=__SCRIPT__; const TOTAL=__TOTAL__; const HAS3D=__HAS3D__;
+const CUT='CUTS/';
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)); const eo=x=>1-Math.pow(1-cl(x),3); const eb=x=>{x=cl(x);const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+// scene spans
+const scenes=[];S.forEach((l,i)=>{const p=scenes[scenes.length-1]; if(p&&p.scene===l.scene){p.t1=(S[i+1]?S[i+1].t0:TOTAL);p.lines.push(l)} else scenes.push({scene:l.scene,title:l.title||'',t0:i?l.t0-0.05:0,t1:(S[i+1]?S[i+1].t0:TOTAL),lines:[l]})});
+scenes[scenes.length-1].t1=TOTAL;
+// chapter title persists until next titled line
+function chapterAt(t){let c='';for(const l of S){if(l.t0-0.05>t)break; if(l.title!==undefined)c=l.title; if(['hook','question','series','end'].includes(l.scene))c=l.title||''}return c}
+function capAt(t){
+  const l=S.find((x,i)=>t>=x.t0-0.05&&t<(S[i+1]?S[i+1].t0:TOTAL)); if(!l)return '';
+  const W=l.show.split(' '); const wts=W.map(w=>Math.max(3,w.replace(/[^\w$%+,.]/g,'').length+(/\d/.test(w)?6:0)));
+  const tot=wts.reduce((a,b)=>a+b,0); const d=l.t1-l.t0; let acc=0,cur=0;
+  const p=cl((t-l.t0)/d); for(let i=0;i<W.length;i++){acc+=wts[i]/tot; if(p<acc){cur=i;break} cur=i}
+  // chunk of up to 5 words containing cur, break chunks at punctuation
+  const chunks=[];let c=[];W.forEach((w,i)=>{c.push(i); if(c.length>=5||/[.?!:]$/.test(w)&&c.length>=2){chunks.push(c);c=[]}}); if(c.length)chunks.push(c);
+  const ch=chunks.find(c=>c.includes(cur));
+  return ch.map(i=>{const w=W[i];const on=i<=cur;const h=l.hi&&l.hi.includes(w);return `<span style="opacity:${on?1:.18}">${h?`<i>${w}</i>`:w}</span>`}).join(' ');
+}
+function glow(c,x='50%',y='40%'){return `<div class="bg" style="background:radial-gradient(ellipse 85% 55% at ${x} ${y},${c} 0%,transparent 70%)"></div>`}
+function cutImg(src,css,k){return `<img class="cut fade" src="${CUT}${src}.png" style="${css};opacity:${cl(k*1.5)};transform:translateY(${(1-eo(k))*120}px) scale(${1+0.03*k})">`}
+function counter(v,k){return fmt(v*eo(k))}
+const R={
+hook(t,s){let h='';
+  if(HAS3D){const f=Math.min(Math.floor((t)*30)+1,240);const z=t>8?1+(t-8)*0.04:1;h+=`<img src="G3/${String(f).padStart(4,'0')}.jpg" style="position:absolute;inset:0;width:1080px;height:1920px;transform:scale(${z})">`}
+  else{h+=glow('#1aa59a99')+cutImg('ronaldo','right:-40px;top:380px;height:1050px',(t-s.t0)/.6)}
+  const l2=S[1]; if(t>l2.t0){const k=(t-l2.t0)/.4;h+=`<div class="card" style="left:60px;top:330px;width:620px;opacity:${cl(k)};transform:translateY(${(1-eo(k))*40}px) rotate(-2deg);z-index:31"><div class="lab">@champagnepapi · 3 Jul 2026</div><div style="font-weight:700;font-size:44px;margin-top:10px">"We are the same height I swear, vamos!!! My brother @cristiano"</div></div>`}
+  return h},
+question(t,s){const k=(t-s.t0)/.5;return glow('#E3183755','25%','45%')+glow('#F7A8C855','75%','45%')+
+  cutImg('ronaldo','left:-60px;top:430px;height:960px',k)+cutImg('messi','right:-60px;top:430px;height:960px',k-0.3)+
+  `<div class="big" style="position:absolute;left:0;right:0;top:250px;text-align:center;font-size:150px;z-index:20;opacity:${cl(k)}">RONALDO <span style="color:var(--gold);font-size:90px">vs</span> MESSI</div>`+
+  `<div style="position:absolute;left:60px;top:1240px;z-index:31;opacity:${cl(k-.5)}"><span class="chip" style="background:var(--red)">TORONTO FC?</span></div><div style="position:absolute;right:60px;top:1240px;z-index:31;opacity:${cl(k-.8)}"><span class="chip" style="background:var(--pink);color:#111">INTER MIAMI</span></div>`},
+series(t,s){const k=(t-s.t0);const roles=['SCOUT','MANAGER','OWNER','MARKETER'];
+  return glow('#F4C54233')+`<div style="position:absolute;left:0;right:0;top:470px;text-align:center"><div class="lab" style="color:var(--gold);font-size:28px;opacity:${cl(k/.3)}">TNB · WHAT IF · DEEP DIVE</div><div class="big" style="font-size:190px;margin-top:20px;transform:scale(${1.6-0.6*eo(k/.4)});opacity:${cl(k/.3)}">RONALDO<br><span style="color:var(--red)">AT TFC</span></div></div>`+
+  `<div style="position:absolute;left:60px;right:60px;top:1010px;display:flex;flex-wrap:wrap;justify-content:center">${roles.map((r,i)=>`<span class="chip" style="background:${k>0.25+i*0.55?'var(--gold)':'#1b1b22'};color:${k>0.25+i*0.55?'#111':'#555'};transform:scale(${k>0.25+i*0.55?1:.9})">${r}</span>`).join('')}</div>`},
+bar(t,s){const k=t-s.t0;const l2=s.lines[1];const k2=t-l2.t0;let h=glow('#F7A8C844','70%','40%')+cutImg('messi','right:-120px;top:330px;height:900px;filter:brightness(.55)',k/.6);
+  const tro=['LEAGUES CUP 2023',"SUPPORTERS' SHIELD 2024",'MLS CUP 2025','CAMPEONES CUP 2026'];
+  h+=`<div class="card" style="left:60px;top:330px;width:520px"><div class="lab">Miami trophies</div><div class="big" style="font-size:200px;color:var(--pink)">${k2>0?Math.min(4,Math.floor(eo(k2/1.4)*4.99)):0}</div><div class="lab" style="margin-top:6px">${k2>0?'since Messi':'before Messi'}</div></div>`;
+  h+=`<div style="position:absolute;left:50px;top:720px;width:620px">${tro.map((x,i)=>`<div style="font-family:Tanker;font-size:38px;background:#1b1b22;border-left:8px solid var(--pink);padding:12px 18px 6px;margin:10px 0;opacity:${cl((k2-i*0.33)/.3)};transform:translateX(${(1-eo((k2-i*0.33)/.3))*-60}px)">🏆 ${x}</div>`).join('')}</div>`;
+  const k3=k2-2.6; if(k3>0){h+=`<div class="card" style="left:60px;right:60px;top:1080px;opacity:${cl(k3/.3)}"><div class="lab">Inter Miami revenue</div><div style="display:flex;align-items:flex-end;gap:30px;margin-top:14px;height:150px"><div style="width:180px;height:${42*eo(k3)}px;background:#555"></div><div style="width:180px;height:${150*eo((k3-.4)/.8)}px;background:var(--pink)"></div><div class="big" style="font-size:96px">$${counter(56,k3/.3)}M → <span style="color:var(--pink)">$${counter(200,(k3-.4)/1)}M</span></div></div><div class="lab" style="margin-top:8px">2022 → 2025 · ~100 goals in 115 games</div></div>`}
+  return h},
+scout(t,s){const k=t-s.t0;let h=glow('#E3183744','30%','40%')+cutImg('ronaldo','left:-80px;top:360px;height:1000px',k/.6);
+  const cards=[['Age','41','',0.3],['Saudi Pro League','CHAMPION','2025-26',1.0],['League goals','7','2026-27 so far',1.8]];
+  cards.forEach((c,i)=>{const kk=(k-c[3])/.35;h+=`<div class="card" style="left:560px;top:${330+i*235}px;width:460px;opacity:${cl(kk)};transform:translateX(${(1-eo(kk))*80}px)"><div class="lab">${c[0]}</div><div class="big" style="font-size:${c[1].length>3?84:120}px;color:${i==1?'var(--gold)':'#fff'}">${c[1]}</div><div class="lab">${c[2]}</div></div>`});
+  const l2=s.lines[1];const k2=t-l2.t0; if(k2>0){
+   const bars=[['Finishing',95],['In the air',90],['Pressing',25]];
+   h+=`<div class="card" style="left:60px;right:60px;top:1040px;z-index:31"><div class="lab">TNB scout read</div>${bars.map((b,i)=>`<div style="display:flex;align-items:center;gap:20px;margin-top:14px"><div style="width:210px;font-weight:700;font-size:30px">${b[0]}</div><div style="flex:1;height:26px;background:#24242c;border-radius:13px"><div style="height:26px;border-radius:13px;width:${b[1]*eo((k2-i*.25)/.8)}%;background:${b[1]<50?'var(--red)':'var(--gold)'}"></div></div></div>`).join('')}</div>`;
+   if(k2>3.0){const kz=(k2-3)/.35;h+=`<div class="card" style="left:560px;top:330px;width:460px;z-index:32;opacity:${cl(kz)};transform:scale(${1.3-0.3*eo(kz)})"><div class="lab">Zlatan · LA Galaxy 2018-19</div><div class="big" style="font-size:120px;color:var(--gold)">53 <span style="font-size:60px;color:#fff">in</span> 58</div><div class="lab">MLS games, aged 36-38</div></div>`}}
+  return h},
+owner(t,s){const k=t-s.t0;let h=glow('#F4C54222','50%','30%');const l2o=s.lines[1]; if(t<l2o.t0+0.3){h+=cutImg('ronaldo','left:50%;margin-left:-380px;top:640px;height:820px;filter:brightness(.8)',Math.min(k/.6,(l2o.t0+0.3-t)/.3))}
+  h+=`<div style="position:absolute;left:60px;right:60px;top:340px;height:6px;background:#2a2a33;top:470px"></div>`;
+  const ev=[['JUN 2027','Al Nassr deal ends',80,0.6],['JUL 2027','MLS 2027-28 kicks off',560,2.6]];
+  ev.forEach(e=>{const kk=(k-e[3])/.35;h+=`<div style="position:absolute;left:${e[2]}px;top:330px;width:440px;opacity:${cl(kk)}"><div class="big" style="font-size:84px;color:var(--gold)">${e[0]}</div><div style="width:28px;height:28px;border-radius:50%;background:var(--gold);margin:22px 0 18px;box-shadow:0 0 30px var(--gold)"></div><div style="font-weight:700;font-size:34px">${e[1]}</div></div>`});
+  const l2=s.lines[1];const k2=t-l2.t0; if(k2>-0.2){
+   const dp=[['SARGENT','DP 1'],['MIHAILOVIC','DP 2'],['?','DP 3 · OPEN']];
+   h+=`<div style="position:absolute;left:60px;right:60px;top:690px;display:flex;gap:20px">${dp.map((d,i)=>{const kk=(k2-i*.3)/.3;const op=i==2;return `<div class="card" style="position:relative;flex:1;padding:22px;opacity:${cl(kk)};border:${op?'3px dashed var(--gold)':'2px solid #ffffff14'};box-shadow:${op&&k2>1?'0 0 '+(30+20*Math.sin(t*6))+'px #F4C54288':'none'}"><div class="lab">${d[1]}</div><div class="big" style="font-size:${op?110:56}px;color:${op?'var(--gold)':'#fff'};margin-top:8px">${d[0]}</div></div>`}).join('')}</div>`;
+   const kc=(k2-2.2);if(kc>0)h+=`<div class="card" style="left:60px;right:60px;top:940px"><div class="lab">His salary-cap charge (max DP, 2026 rules)</div><div class="big" style="font-size:150px;color:var(--gold)">$${counter(803125,kc/1.2)}</div></div>`;
+   const kd=k2-5.2; if(kd>0){h+=`<div style="position:absolute;left:40px;right:40px;top:1180px;text-align:center;z-index:31">${['SALARY','REVENUE SHARE','EQUITY'].map((x,i)=>`<span class="chip" style="background:${i==2?'var(--gold)':'#24242c'};color:${i==2?'#111':'#fff'};opacity:${cl((kd-i*.4)/.3)};transform:scale(${1.4-0.4*eo((kd-i*.4)/.3)})">${x}</span>`).join('')}</div>`}}
+  return h},
+manager(t,s){const k=t-s.t0;let h='';
+  // pitch
+  h+=`<div style="position:absolute;left:90px;top:300px;width:900px;height:1020px;border:4px solid #ffffff30;border-radius:10px;background:linear-gradient(#0d3a1e,#0a2a16);opacity:${cl(k/.4)}"><div style="position:absolute;left:0;right:0;top:50%;border-top:4px solid #ffffff30"></div><div style="position:absolute;left:300px;width:300px;top:0;height:160px;border:4px solid #ffffff30;border-top:none"></div><div style="position:absolute;left:300px;width:300px;bottom:0;height:160px;border:4px solid #ffffff30;border-bottom:none"></div><div style="position:absolute;left:350px;top:410px;width:200px;height:200px;border:4px solid #ffffff30;border-radius:50%"></div></div>`;
+  const kc=k-0.6; if(kc>0&&kc<4.6){const o=kc<4.2?1:cl((4.6-kc)/.4);h+=`<div class="card" style="left:240px;right:240px;top:640px;text-align:center;z-index:31;opacity:${o};transform:scale(${1.4-0.4*eb(kc/.4)})"><div class="lab">Goals conceded 2026</div><div class="big" style="font-size:230px;color:var(--red)">${counter(63,kc/1.2)}</div><div class="lab">TFC · 33 games</div></div>`}
+  const P=[['RONALDO',420,400,'var(--red)',4.2,1],['SARGENT',660,400,'#fff',4.4,0],['MIHAILOVIC',540,620,'#fff',4.6,0],['RUNNER',540,860,'var(--gold)',5.2,2],['OSORIO',330,760,'#fff',6.6,0],['NEW CB',380,1120,'var(--gold)',5.6,2],['NEW CB',700,1120,'var(--gold)',5.9,2],['LARYEA',880,980,'#fff',6.2,0],['FB',200,980,'#fff',6.2,0],['GK',540,1270,'#fff',6.4,0]];
+  P.forEach(p=>{const kk=(k-p[4])/.3; if(kk<=0)return; const sz=p[5]==1?110:84; h+=`<div style="position:absolute;left:${p[1]-sz/2}px;top:${p[2]-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;${p[5]==2?'border:5px dashed var(--gold);background:#F4C54222':'background:'+p[3]};opacity:${cl(kk)};transform:scale(${eb(kk)});z-index:20;${p[5]==1?'box-shadow:0 0 50px #E31837':''}"></div><div style="position:absolute;left:${p[1]-150}px;width:300px;top:${p[2]+sz/2+6}px;text-align:center;font-family:Tanker;font-size:36px;color:${p[5]==2?'var(--gold)':'#fff'};opacity:${cl(kk)};z-index:20;text-shadow:0 4px 12px #000">${p[0]}</div>`});
+  return h},
+marketer(t,s){const k=t-s.t0;let h=glow('#E3183733','50%','45%');
+  const k1=k-0.9;const max=44828;
+  h+=`<div class="card" style="left:60px;right:60px;top:330px;height:930px;opacity:${cl(k/.3)}"><div class="lab">TFC crowds at BMO Field</div>
+  <div style="position:absolute;left:60px;right:60px;bottom:40px;display:flex;align-items:flex-end;gap:80px;height:720px">
+   <div style="flex:1;text-align:center"><div class="big" style="font-size:90px">${counter(19685,k1/1)}</div><div style="height:${560*19685/max*eo(k1/1)}px;background:#3a3a44;border-radius:12px 12px 0 0;margin-top:14px"></div><div class="lab" style="margin-top:12px">2026 average</div></div>
+   <div style="flex:1;text-align:center;opacity:${cl((k-3.4)/.3)}"><div class="big" style="font-size:90px;color:var(--pink)">${counter(44828,(k-3.4)/1.3)}</div><div style="height:${560*eo((k-3.4)/1.3)}px;background:var(--pink);border-radius:12px 12px 0 0;margin-top:14px;box-shadow:0 0 40px #F7A8C866"></div><div class="lab" style="margin-top:12px">v Messi · 9 May</div></div></div></div>`;
+  if(k>6.8){const kr=(k-6.8)/.3;h+=`<div class="stamp" style="right:70px;top:420px;font-size:110px;opacity:${cl(kr)};transform:rotate(-8deg) scale(${1.6-0.6*eo(kr)})">CLUB RECORD</div>`}
+  return h},
+followers(t,s){const k=t-s.t0;let h='';const kr=k/.5,km=(k-2.2)/.5;
+  const circ=(x,v,c,lab,kk,sz,img)=>`<div style="position:absolute;left:${x-sz/2}px;top:${700-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;border:10px solid ${c};background:#0e0e14;overflow:hidden;opacity:${cl(kk)};transform:scale(${eb(kk)});box-shadow:0 0 60px ${c}66"><img src="${CUT}${img}.png" style="position:absolute;left:50%;top:8%;height:130%;transform:translateX(-50%);opacity:.35"><div class="big" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${sz/3.3}px;color:#fff">${v}</div></div><div style="position:absolute;left:${x-200}px;width:400px;top:${700+sz/2+20}px;text-align:center;opacity:${cl(kk)}" class="lab">${lab}</div>`;
+  h+=`<div class="lab" style="position:absolute;left:60px;top:300px;font-size:28px">Instagram followers</div>`;
+  h+=circ(330,counter(665,kr)+'M','var(--red)','Ronaldo',kr,460,'ronaldo')+circ(790,counter(506,km)+'M','var(--pink)','Messi',km,400,'messi');
+  const k3=k-5.2; if(k3>0)h+=`<div class="card" style="left:60px;right:60px;top:1060px;text-align:center;opacity:${cl(k3/.3)};transform:translateY(${(1-eo(k3/.4))*60}px)"><div class="big" style="font-size:150px;color:var(--gold)">${counter(300000,k3/1.2)}+</div><div class="lab">Ontarians with Portuguese roots</div></div>`;
+  return h},
+player(t,s){const k=t-s.t0;let h=glow('#E3183744','50%','40%')+cutImg('ronaldo','right:-60px;top:500px;height:900px;filter:grayscale(.8) brightness(.6)',k/.6);
+  h+=`<div class="card" style="left:60px;top:340px;width:760px;z-index:31;opacity:${cl(k/.3)}"><div class="big" style="font-size:96px">"THE SAUDI LEAGUE IS BETTER THAN MLS."</div><div class="lab" style="margin-top:16px">Ronaldo · July 2023</div></div>`;
+  const l2=s.lines[0];if(k>3.4){const kk=(k-3.4)/.3;h+=`<div class="stamp" style="left:80px;top:900px;font-size:120px;opacity:${cl(kk)};transform:rotate(-8deg) scale(${1.6-0.6*eo(kk)})">MESSI'S LEAGUE</div>`}
+  return h},
+verdict(t,s){const k=t-s.t0;const l2=s.lines[1];const k2=t-l2.t0;let h=glow('#F4C54233','50%','35%');
+  const row=(y,lab,who,c,kk,img)=>`<div class="card" style="left:60px;right:60px;top:${y}px;display:flex;align-items:center;gap:30px;opacity:${cl(kk)};transform:translateX(${(1-eo(kk))*-80}px);overflow:hidden;height:300px"><img src="${CUT}${img}.png" style="height:330px;margin:-20px 0 -40px -10px"><div><div class="lab">${lab}</div><div class="big" style="font-size:120px;color:${c}">${who} ✓</div></div></div>`;
+  h+=row(330,'On trophies','MESSI','var(--pink)',(k-1.2)/.35,'messi');
+  h+=`<div class="card" style="left:60px;right:60px;top:670px;display:flex;justify-content:space-around;opacity:${cl((k-3)/.3)}"><div style="text-align:center"><div class="lab">Messi on arrival</div><div class="big" style="font-size:120px;color:var(--pink)">36</div></div><div style="text-align:center"><div class="lab">Ronaldo in 2027</div><div class="big" style="font-size:120px;color:var(--red)">42</div></div></div>`;
+  if(k2>0)h+=row(1010,'Off the pitch','RONALDO','var(--red)',k2/.35,'ronaldo');
+  return h},
+end(t,s){const k=t-s.t0;return glow('#E3183777','50%','45%')+cutImg('ronaldo_tfc_concept','left:50%;margin-left:-430px;top:420px;height:1000px',k/.5)+
+  `<div style="position:absolute;left:0;right:0;top:250px;text-align:center;z-index:31"><div class="big" style="font-size:150px;transform:scale(${1.5-0.5*eb(k/.4)});opacity:${cl(k/.2)}">WOULD YOU<br><span style="color:var(--gold)">BUY A TICKET?</span></div></div>`+
+  `<div style="position:absolute;left:0;right:0;top:1290px;text-align:center;z-index:31;opacity:${cl((k-.6)/.3)}"><span class="chip" style="background:var(--red)">COMMENT 👇</span><div class="lab" style="margin-top:14px">Fan concept · kit edited by TNB</div></div>`}
+};
+// hold end card for extra seconds
+window.renderAt=function(t){
+  const sc=scenes.find(s=>t>=s.t0&&t<s.t1)||scenes[scenes.length-1];
+  let h=R[sc.scene](t,sc);
+  // cut flash + slab wipe at every scene start
+  const dk=t-sc.t0; if(sc.t0>0&&dk<0.35){h+=`<div style="position:absolute;inset:-200px;background:linear-gradient(115deg,transparent 40%,var(--red) 40%,var(--red) 55%,var(--gold) 55%,var(--gold) 58%,transparent 58%);transform:translateX(${-1400+2800*eo(dk/.35)}px);z-index:60"></div><div style="position:absolute;inset:0;background:#fff;opacity:${0.25*(1-dk/.2)};z-index:59"></div>`}
+  const ct=chapterAt(t); if(ct&&sc.scene!=='hook')h+=`<div class="ctitle">${ct}</div>`;
+  if(sc.scene!=='end'&&!(sc.scene==='hook'&&HAS3D&&t<1.3)){const c=capAt(t); if(c)h+=`<div class="cap"><span class="p">${c}</span></div>`}
+  h+=`<div class="prog" style="width:${1080*t/TOTAL}px"></div>`;
+  if(!(sc.scene==='hook'&&HAS3D))h+=`<div class="foot"><span>${''}Photos: Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0)</span><span>TNBALLERS.COM</span></div>`;
+  // shake on scene start
+  const sh=sc.t0>0&&dk<0.25?(1-dk/.25)*10:0; document.getElementById('stage').style.transform=`translate(${sh*Math.sin(t*90)}px,${sh*Math.cos(t*70)}px)`;
+  document.getElementById('stage').innerHTML=h;
+};
+window.ready=true;
+</script></body></html>
