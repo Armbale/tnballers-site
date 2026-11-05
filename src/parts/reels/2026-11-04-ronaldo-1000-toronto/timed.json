@@ -164,5 +164,16 @@
   ],
   "t0": 63.684,
   "t1": 66.598
+ },
+ {
+  "scene": "end",
+  "say": "Fifteen to go. And we're counting every single one.",
+  "show": "15 to go. And we're counting every single one.",
+  "hi": [
+   "15",
+   "every"
+  ],
+  "t0": 67.298,
+  "t1": 70.59
  }
 ]

@@ -119,6 +119,10 @@ def main():
     ap.add_argument('--ymax', type=float, default=1.0, help='ignore shirt pixels below this fraction of the height (shorts)')
     ap.add_argument('--chest', type=float, default=0.33, help='wordmark centre as a fraction down the shirt box')
     ap.add_argument('--badge', type=float, default=1.0)
+    ap.add_argument('--hoops', type=float, default=0.055, help='tonal hoop strength (0 = plain shirt)')
+    ap.add_argument('--texture', type=float, default=0.0, help='knit texture strength, e.g. 0.04')
+    ap.add_argument('--blur', type=float, default=0.018, help='shade blur as a fraction of the width (bigger hides more of the old print)')
+    ap.add_argument('--contrast', type=float, default=1.7, help='fold shading exponent (higher = deeper folds)')
     ap.add_argument('--debug', action='store_true')
     a = ap.parse_args()
 
@@ -140,20 +144,25 @@ def main():
     for cls in [m & (Sx >= 0.2), m & (L < 0.35)]:
         if cls.sum() > 50:
             L = np.where(cls, np.clip(L * lw / max(np.median(L[cls]), 1e-3), 0, 1), L)
-    sig = max(6, 0.018 * m.shape[1])
+    sig = max(6, a.blur * m.shape[1])
     Lm = np.where(m, L, 0); W = cv2.GaussianBlur(m.astype(np.float32), (0, 0), sig) + 1e-4
     Lb = cv2.GaussianBlur(Lm, (0, 0), sig) / W
     ref = np.percentile(Lb[m], 85)
     shade = np.clip(Lb / ref, 0.25, 1.15)
-    shade = 0.22 + 0.78 * shade ** 1.7  # compress so red never goes black
+    shade = 0.18 + 0.82 * shade ** a.contrast  # compress so red never goes black
     red, trim = hexrgb(a.colour), hexrgb(a.trim)
 
     # base colour + subtle tonal diagonal pinstripes
     yy, xx = np.mgrid[0:m.shape[0], 0:m.shape[1]]
     # tonal hoops: slightly darker bands, like a modern home shirt
     band = (np.sin(yy / (0.045 * m.shape[0]) * np.pi) > 0.55).astype(np.float32)
-    band = cv2.GaussianBlur(band, (0, 0), 1.5) * 0.055
+    band = cv2.GaussianBlur(band, (0, 0), 1.5) * a.hoops
     base = red[None, None, :] * (1 - band[..., None])
+    if a.texture > 0:  # fine knit: tiny diagonal mesh + noise so the shirt doesn't look like plastic
+        rng = np.random.default_rng(1)
+        knit = (np.sin((xx + yy) * 1.9) * np.sin((xx - yy) * 1.9)) * 0.5 + rng.standard_normal(m.shape) * 0.5
+        knit = cv2.GaussianBlur(knit.astype(np.float32), (0, 0), 0.6)
+        base = base * (1 + a.texture * knit[..., None])
     # collar + cuff trim: shirt pixels that touch skin
     sk_d = cv2.dilate(skin.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (int(0.035 * (x1 - x0)) | 1,) * 2)).astype(bool)
     trimz = m & sk_d

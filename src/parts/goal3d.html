@@ -180,8 +180,11 @@ function animateFigure(f,vel,t,run,kick=0){
   u.mixer.update(0);
   u.model.position.set(0,0,0); // root motion off
   const B=u.bones;
-  if(kick>0 && B.RightUpLeg){const k=Math.sin(Math.min(1,kick)*Math.PI);
-    B.RightUpLeg.rotation.x+= -1.5*k; B.RightLeg.rotation.x+= .9*(1-k); B.LeftArm&&(B.LeftArm.rotation.z+=.9*k); B.Spine&&(B.Spine.rotation.x+=-.15*k);}
+  if(kick>0 && kick<1 && B.RightUpLeg){ // backswing -> strike (contact at ~0.42) -> follow-through
+    const k=kick, thigh = -(k<.3 ? -.75*eout(k/.3) : (k<.55 ? lerp(-.75,1.35,eout((k-.3)/.25)) : lerp(1.35,.25,clamp((k-.55)/.45))));  // this rig: +x swings the leg back
+    const knee = k<.3 ? 1.3*eout(k/.3) : lerp(1.3,.05,clamp((k-.3)/.15));
+    B.RightUpLeg.rotation.x=thigh; B.RightLeg.rotation.x=knee*(B.__kneeSign||1);
+    B.LeftArm&&(B.LeftArm.rotation.z+=.8*Math.sin(k*Math.PI)); B.Spine&&(B.Spine.rotation.x+=-.12*Math.sin(k*Math.PI));}
 }
 // cameras: list of shots {t0,t1,from(t)->pos,look}
 function camAt(t,at){
@@ -206,27 +209,33 @@ function renderAt(t){
   // players
   for(const id in players){const {f,p}=players[id]; let pos=P(p.x,p.y), run=false, vel=0;
     if(id==='scorer'){pos=scorerPos(at); run=at>T.run0&&at<T.shot1+.2; vel=1;}
-    else if(id==='gk'){const k=clamp((at-T.pass1)/(T.shot1-T.pass1)); const out=P(p.x,p.y).lerp(scorerPos(at),.22); pos=P(p.x,p.y).lerp(out,eout(clamp(k*1.6))); if(at>T.shot0){pos.x+=-(S.gk_dive||6)/100*68*clamp((at-T.shot0)/.4)*.35;} run=k>0&&k<1; vel=.6;
-      f.userData.dive=at>T.shot0? clamp((at-T.shot0)/.4)*1.25*Math.sign(S.gk_dive||1):0; f.position.y=0;}
+    else if(id==='gk'){const k=clamp((at-T.pass1)/(T.shot1-T.pass1)); const out=P(p.x,p.y).lerp(scorerPos(at),.22); pos=P(p.x,p.y).lerp(out,eout(clamp(k*1.6))); const dir=Math.sign(P(...S.shot[1]).x-P(p.x,p.y).x)||1; const kd=clamp((at-(T.shot0+(S.gk_react??.15)))/.45); if(kd>0){pos.x+=dir*2.4*eout(kd);} run=k>0&&k<1; vel=.6;
+      f.userData.dive=-dir*1.3*eout(kd); f.position.y=0;}
     else if(p.team==='opp'){const k=clamp((at-T.run0)/(T.shot0-T.run0)); const s=along(S.run,1); pos=P(p.x,p.y).lerp(s,k*.18); run=k>0&&k<1; vel=.5;}
     else if(id==='assist'){pos=P(p.x,p.y); }
     f.position.x=pos.x; f.position.z=pos.z;
-    const look=ballPos(at); f.lookAt(look.x,f.position.y,look.z);
-    if(id==='gk'){animateFigure(f,0,at,false); const d=f.userData.dive||0; f.userData.body.rotation.z=d; f.userData.body.position.y=Math.abs(d)*.4; const B=f.userData.bones; if(B.LeftArm&&d){B.LeftArm.rotation.z+=1.8*Math.abs(d)/1.25; B.RightArm.rotation.z-=1.8*Math.abs(d)/1.25;}}
-    if(id==='scorer'&&S.style==='bicycle'&&at>T.shot0-.55){
-      const k=clamp((at-(T.shot0-.55))/.55), fall=clamp((at-T.shot0-.1)/.55);
-      f.lookAt(f.position.x,f.position.y,f.position.z-10);            // back to goal
-      animateFigure(f,0,at,false);
-      const u=f.userData,B=u.bones, lean=eout(k)*1.45;
-      u.model.position.y=-1.0; u.body.rotation.x=lean; u.body.position.y=1.0+Math.sin(Math.min(1,k)*Math.PI*.5)*.75*(1-fall)-fall*.55;  // rotate about the hips
-      if(B.RightUpLeg){B.RightUpLeg.rotation.x=2.7*clamp((at-(T.shot0-.18))/.22); B.LeftUpLeg.rotation.x=.9*k; B.RightLeg.rotation.x=.2; B.LeftLeg.rotation.x=.8*k;}
-      if(B.LeftArm){B.LeftArm.rotation.z=1.2*k; B.RightArm.rotation.z=-1.2*k;}
-      if(at>T.goal+.3){const g=clamp((at-T.goal-.3)/.4); u.body.rotation.x=lean*(1-g); u.body.position.y=lerp(.45,1.0,g); u.model.position.y=-1.0;}
+    const look=ballPos(at); if(id==='gk') f.lookAt(lerp(f.position.x,look.x,.3),f.position.y,f.position.z-10); else f.lookAt(look.x,f.position.y,look.z);
+    if(id==='gk'){animateFigure(f,0,at,false); const d=f.userData.dive||0; f.userData.body.rotation.z=d; f.userData.body.position.y=Math.abs(d)*.55; const B=f.userData.bones; if(B.LeftArm&&d){B.LeftArm.rotation.z+=1.8*Math.abs(d)/1.25; B.RightArm.rotation.z-=1.8*Math.abs(d)/1.25;}}
+    if(id==='scorer'&&S.style==='bicycle'&&at>T.shot0-.9){
+      const C=T.shot0, u=f.userData, B=u.bones;
+      const w=clamp((at-(C-.9))/.45); const lk=ballPos(at), away=new THREE.Vector3(f.position.x,0,f.position.z-10);
+      f.lookAt(lerp(lk.x,away.x,eout(w)),f.position.y,lerp(lk.z,away.z,eout(w)));   // turn the back to goal
+      animateFigure(f,at<C-.5?1:0,at,at<C-.5);
+      // keyframes (time from contact): lean (rad, back), hip height (m), left thigh, right thigh, arms
+      const K=[[-.5,0,1.0,0,0,0],[-.3,.35,1.25,1.2,0,.4],[0,1.35,1.8,.2,2.6,1.1],[.5,1.55,.35,.3,1.0,1.4],[1.3,1.55,.32,.2,.3,1.2],[1.8,0,1.0,0,0,0]];
+      const r=at-C; let a=K[0],b=K[K.length-1];
+      for(let j=0;j<K.length-1;j++) if(r>=K[j][0]&&r<=K[j+1][0]){a=K[j];b=K[j+1];break;}
+      const q=a===b?1:ease(clamp((r-a[0])/(b[0]-a[0]))); const L=n=>lerp(a[n],b[n],q);
+      if(r<-.5||r>1.8){u.body.rotation.x=0; u.body.position.y=0;} else {
+        u.model.position.y=-1.0; u.body.rotation.x=L(1); u.body.position.y=L(2);
+        if(B.RightUpLeg){B.LeftUpLeg.rotation.x=L(3); B.RightUpLeg.rotation.x=L(4); B.LeftLeg.rotation.x=0; B.RightLeg.rotation.x=0;}
+        if(B.LeftArm){B.LeftArm.rotation.z=L(5); B.RightArm.rotation.z=-L(5);}
+      }
     } else if(id!=='gk') animateFigure(f,vel,at,run, id==='scorer'&&at>T.shot0-.25&&at<T.shot0+.35 ? (at-(T.shot0-.25))/.6 : 0);
     if(f.userData.ring){f.userData.ring.scale.setScalar(1+.15*Math.sin(t*6));}
   }
   // celebrate
-  if(at>T.goal+.3){const f=players.scorer.f; f.position.y=Math.abs(Math.sin((at-T.goal)*5))*.45; const B=f.userData.bones; if(B.LeftArm){B.LeftArm.rotation.set(0,0,2.6); B.RightArm.rotation.set(0,0,-2.6); B.LeftForeArm.rotation.set(0,0,0); B.RightForeArm.rotation.set(0,0,0);}}
+  if(at>(S.style==='bicycle'?T.shot0+1.8:T.goal+.3)){const f=players.scorer.f; f.position.y=Math.abs(Math.sin((at-T.goal)*5))*.45; const B=f.userData.bones; if(B.LeftArm){B.LeftArm.rotation.set(0,0,2.6); B.RightArm.rotation.set(0,0,-2.6); B.LeftForeArm.rotation.set(0,0,0); B.RightForeArm.rotation.set(0,0,0);}}
   // ball, trail, net ripple
   const bp=ballPos(at); ball.position.copy(bp); ball.rotation.x+=.3; glow.position.copy(bp);
   hist.push(bp.clone()); while(hist.length>TRAIL) hist.shift();
