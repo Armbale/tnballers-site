@@ -56,6 +56,40 @@
   "t1": 23.735
  },
  {
+  "scene": "iconic",
+  "say": "And some of them were unreal.",
+  "show": "And some of them were unreal.",
+  "hi": [
+   "unreal."
+  ],
+  "t0": 24.235,
+  "t1": 25.78
+ },
+ {
+  "scene": "iconic",
+  "say": "The bicycle kick in Turin. Even the Juventus fans stood up and applauded.",
+  "show": "The bicycle kick in Turin. Even Juventus fans stood up and applauded.",
+  "hi": [
+   "bicycle",
+   "Turin.",
+   "applauded."
+  ],
+  "t0": 26.28,
+  "t1": 30.861
+ },
+ {
+  "scene": "iconic",
+  "say": "The forty-yard rocket against Porto. It won the first ever Puskás Award.",
+  "show": "The 40-yard rocket vs Porto. It won the first-ever Puskás Award.",
+  "hi": [
+   "40-yard",
+   "Porto.",
+   "Puskás"
+  ],
+  "t0": 31.16,
+  "t1": 35.617
+ },
+ {
   "scene": "pace",
   "say": "This year alone, he's scored twenty-seven. At that pace, he gets there by the spring.",
   "show": "This year alone: 27. At that pace, he gets there by spring.",
@@ -63,8 +97,8 @@
    "27.",
    "spring."
   ],
-  "t0": 24.235,
-  "t1": 28.806
+  "t0": 38.21,
+  "t1": 42.781
  },
  {
   "scene": "pace",
@@ -74,8 +108,8 @@
    "dream.",
    "999."
   ],
-  "t0": 29.306,
-  "t1": 33.974
+  "t0": 43.281,
+  "t1": 47.949
  },
  {
   "scene": "stage",
@@ -86,8 +120,8 @@
    "45,000",
    "World"
   ],
-  "t0": 34.474,
-  "t1": 39.426
+  "t0": 48.449,
+  "t1": 53.401
  },
  {
   "scene": "moment",
@@ -97,8 +131,8 @@
    "Penalty",
    "999."
   ],
-  "t0": 39.926,
-  "t1": 43.386
+  "t0": 53.901,
+  "t1": 57.361
  },
  {
   "scene": "moment",
@@ -107,8 +141,8 @@
   "hi": [
    "1,000!"
   ],
-  "t0": 43.886,
-  "t1": 44.779
+  "t0": 57.861,
+  "t1": 58.754
  },
  {
   "scene": "siuu",
@@ -117,8 +151,8 @@
   "hi": [
    "SIUUU!"
   ],
-  "t0": 46.879,
-  "t1": 47.809
+  "t0": 60.854,
+  "t1": 61.784
  },
  {
   "scene": "end",
@@ -128,7 +162,7 @@
    "History.",
    "red."
   ],
-  "t0": 49.709,
-  "t1": 52.623
+  "t0": 63.684,
+  "t1": 66.598
  }
 ]

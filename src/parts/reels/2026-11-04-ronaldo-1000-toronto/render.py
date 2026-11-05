@@ -12,7 +12,7 @@ html = (D / 'reel.html').read_text(encoding='utf-8')
 html = (html.replace('__SCRIPT__', json.dumps(S, ensure_ascii=False)).replace('__TOTAL__', f'{total:.3f}')
         .replace('__HAS3D__', str(len(g3)))
         .replace('FONTS/', (ROOT / 'site/fonts').as_uri() + '/').replace("'IMG/'", repr((D.parent / '2026-11-04-ronaldo-tfc-v3/img').as_uri() + '/'))
-        .replace('G3F/', (D / 'g3/frames').as_uri() + '/'))
+        .replace('G3F/', (D / 'g3').resolve().as_uri() + '/'))
 (D / 'built.html').write_text(html, encoding='utf-8')
 from playwright.sync_api import sync_playwright
 with sync_playwright() as p:
@@ -30,7 +30,7 @@ with sync_playwright() as p:
                            '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '19', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', tmp], stdin=subprocess.PIPE)
     for i in range(n):
         pg.evaluate(f'renderAt({i / fps})')
-        if i / fps < 9: pg.wait_for_function('[...document.images].every(i=>i.complete)', timeout=5000)
+        pg.wait_for_function('[...document.images].every(i=>i.complete)', timeout=5000)
         ff.stdin.write(pg.screenshot(type='jpeg', quality=90))
         if i % 300 == 0: print('frame', i, '/', n, flush=True)
     ff.stdin.close(); ff.wait(); b.close()

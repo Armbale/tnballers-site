@@ -1,0 +1,145 @@
+{
+ "minute": "6'",
+ "comp": "Champions League · Quarter-final",
+ "home": "Porto",
+ "away": "Porto",
+ "score_after": "0–1",
+ "beats": [],
+ "end_line": "",
+ "credit": "TNB 3D illustration",
+ "source_note": "Recreation based on match reports",
+ "player": "Cristiano Ronaldo",
+ "cutout": "ronaldo",
+ "style": "longshot",
+ "club_colour": "#d4151b",
+ "club_shorts": "#f2f2f2",
+ "club_socks": "#111111",
+ "opp_colour": "#1f4fa8",
+ "opp_shorts": "#f2f2f2",
+ "opp_socks": "#1f4fa8",
+ "gk_colour": "#222222",
+ "players": [
+  {
+   "id": "assist",
+   "label": "",
+   "x": 50,
+   "y": 55,
+   "num": "8"
+  },
+  {
+   "id": "scorer",
+   "label": "RONALDO",
+   "x": 58,
+   "y": 57,
+   "num": "7"
+  },
+  {
+   "id": "d1",
+   "team": "opp",
+   "label": "",
+   "x": 54,
+   "y": 74
+  },
+  {
+   "id": "d2",
+   "team": "opp",
+   "label": "",
+   "x": 44,
+   "y": 77
+  },
+  {
+   "id": "d3",
+   "team": "opp",
+   "label": "",
+   "x": 63,
+   "y": 70
+  },
+  {
+   "id": "gk",
+   "team": "opp",
+   "label": "",
+   "x": 50,
+   "y": 98.5
+  }
+ ],
+ "run": [
+  [
+   58,
+   57
+  ],
+  [
+   57.5,
+   61
+  ],
+  [
+   57,
+   63
+  ]
+ ],
+ "carry": [
+  [
+   57,
+   63
+  ],
+  [
+   56.8,
+   64.6
+  ]
+ ],
+ "shot": [
+  [
+   56.8,
+   64.6
+  ],
+  [
+   45.3,
+   100
+  ]
+ ],
+ "pass_height": 0.0,
+ "shot_height": 2.25,
+ "shot_arc": 1.4,
+ "gk_dive": -7,
+ "timeline": {
+  "hook": 0,
+  "run0": 0.15,
+  "pass0": 0.45,
+  "pass1": 1.25,
+  "shot0": 2.0,
+  "shot1": 3.3,
+  "goal": 3.3,
+  "goal_wall": 4.8,
+  "end_wall": 99,
+  "total": 7.0
+ },
+ "slowmo": [
+  1.8,
+  4.6,
+  0.5
+ ],
+ "cameras": [
+  {
+   "type": "broadcast",
+   "t0": 0,
+   "t1": 1.5
+  },
+  {
+   "type": "side",
+   "t0": 1.5,
+   "t1": 2.6,
+   "a0": 2.6,
+   "a1": 2.2,
+   "label": "THE STRIKE"
+  },
+  {
+   "type": "behind_goal",
+   "t0": 2.6,
+   "t1": 5.6
+  },
+  {
+   "type": "aerial",
+   "t0": 5.6,
+   "t1": 7.0
+  }
+ ]
+}

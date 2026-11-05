@@ -132,7 +132,7 @@ function figure(colour,shorts,isScorer,opts={}){
   const joints=new THREE.MeshStandardMaterial({color:shorts,roughness:.6,metalness:.1});
   m.traverse(o=>{ if(o.isSkinnedMesh||o.isMesh){ o.castShadow=true; o.frustumCulled=false;
       o.material = /Joint/i.test(o.material.name) ? joints : kit; } });
-  const bones={}; m.traverse(o=>{ if(o.isBone) bones[o.name.replace('mixamorig:','')]=o; });
+  const bones={}; m.traverse(o=>{ if(o.isBone) bones[o.name.replace('mixamorig:','').replace('mixamorig','')]=o; });
   const mixer=new THREE.AnimationMixer(m);
   const clip=n=>GLTF.animations.find(c=>c.name===n);
   const run=mixer.clipAction(clip('run')), idle=mixer.clipAction(clip('idle'));
@@ -166,9 +166,9 @@ function scorerPos(t){
 function ballPos(t){
   const sp=scorerPos(t), a=P(S.players.find(p=>p.id==='assist').x,S.players.find(p=>p.id==='assist').y);
   if(t<T.pass0) return a.clone().add(new THREE.Vector3(0,.16,.4));
-  if(t<T.pass1){const k=eout(clamp((t-T.pass0)/(T.pass1-T.pass0))); const to=along(S.run,1); const v=a.clone().lerp(to,k); v.y=.16+Math.sin(k*Math.PI)*S.pass_height; return v;}
-  if(t<T.shot0){const v=sp.clone(); v.z+=.45; v.y=.16; return v;}
-  const k=clamp((t-T.shot0)/(T.shot1-T.shot0)); const from=sp.clone(); from.z+=.45; const to=P(...S.shot[1]); to.y=S.shot_height; const v=from.lerp(to,eout(k)); v.y=lerp(.16,S.shot_height,k)+Math.sin(k*Math.PI)*.4;
+  if(t<T.pass1){const k=S.style==='bicycle'?clamp((t-T.pass0)/(T.pass1-T.pass0)):eout(clamp((t-T.pass0)/(T.pass1-T.pass0))); const to=along(S.run,1); const v=a.clone().lerp(to,k); v.y=lerp(.16,S.contact_h||.16,k)+Math.sin(k*Math.PI)*S.pass_height; return v;}
+  if(t<T.shot0){const v=sp.clone(); v.z+=.45; v.y=S.contact_h||.16; return v;}
+  const k=clamp((t-T.shot0)/(T.shot1-T.shot0)); const from=sp.clone(); from.z+=.45; const to=P(...S.shot[1]); to.y=S.shot_height; const v=from.lerp(to,S.style==='longshot'?k:eout(k)); v.y=lerp(S.contact_h||.16,S.shot_height,k)+Math.sin(k*Math.PI)*(S.shot_arc??.4);
   if(t>T.shot1){v.z=GZ+1.4; v.y=Math.max(.16,S.shot_height-.3);}
   return v;
 }
@@ -193,6 +193,7 @@ function camAt(t,at){
     if(c.type==='follow') return [sp.clone().add(new THREE.Vector3(3.5,2.2,-6+k)), sp.clone().lerp(G,.35).setY(1), 'THE RUN'];
     if(c.type==='behind_goal') return [new THREE.Vector3(lerp(sp.x*.7,sp.x*.35,k),1.9+k*.4,GZ+6.5), sp.clone().lerp(bp,.45).setY(.8), 'THE FINISH', 58];
     if(c.type==='orbit'){const ang=lerp(-.9,.6,k); return [sp.clone().add(new THREE.Vector3(Math.sin(ang)*9,4+k,Math.cos(ang)*-9)), sp.clone().setY(1.3), 'REPLAY'];}
+    if(c.type==='side'){const ang=lerp(c.a0??1.35,c.a1??1.75,k); return [sp.clone().add(new THREE.Vector3(Math.sin(ang)*6.5,1.5+k*.4,Math.cos(ang)*6.5)), sp.clone().setY(1.5), c.label||'THE KICK', 50];}
     if(c.type==='aerial') return [new THREE.Vector3(0,62-k*8,GZ-26-k*4), new THREE.Vector3(0,0,GZ-24), 'OVERVIEW'];
   }}
   return [new THREE.Vector3(44,22,sp.z),new THREE.Vector3(0,0,sp.z+6),''];
@@ -212,7 +213,16 @@ function renderAt(t){
     f.position.x=pos.x; f.position.z=pos.z;
     const look=ballPos(at); f.lookAt(look.x,f.position.y,look.z);
     if(id==='gk'){animateFigure(f,0,at,false); const d=f.userData.dive||0; f.userData.body.rotation.z=d; f.userData.body.position.y=Math.abs(d)*.4; const B=f.userData.bones; if(B.LeftArm&&d){B.LeftArm.rotation.z+=1.8*Math.abs(d)/1.25; B.RightArm.rotation.z-=1.8*Math.abs(d)/1.25;}}
-    if(id!=='gk') animateFigure(f,vel,at,run, id==='scorer'&&at>T.shot0-.25&&at<T.shot0+.35 ? (at-(T.shot0-.25))/.6 : 0);
+    if(id==='scorer'&&S.style==='bicycle'&&at>T.shot0-.55){
+      const k=clamp((at-(T.shot0-.55))/.55), fall=clamp((at-T.shot0-.1)/.55);
+      f.lookAt(f.position.x,f.position.y,f.position.z-10);            // back to goal
+      animateFigure(f,0,at,false);
+      const u=f.userData,B=u.bones, lean=eout(k)*1.45;
+      u.model.position.y=-1.0; u.body.rotation.x=lean; u.body.position.y=1.0+Math.sin(Math.min(1,k)*Math.PI*.5)*.75*(1-fall)-fall*.55;  // rotate about the hips
+      if(B.RightUpLeg){B.RightUpLeg.rotation.x=2.7*clamp((at-(T.shot0-.18))/.22); B.LeftUpLeg.rotation.x=.9*k; B.RightLeg.rotation.x=.2; B.LeftLeg.rotation.x=.8*k;}
+      if(B.LeftArm){B.LeftArm.rotation.z=1.2*k; B.RightArm.rotation.z=-1.2*k;}
+      if(at>T.goal+.3){const g=clamp((at-T.goal-.3)/.4); u.body.rotation.x=lean*(1-g); u.body.position.y=lerp(.45,1.0,g); u.model.position.y=-1.0;}
+    } else if(id!=='gk') animateFigure(f,vel,at,run, id==='scorer'&&at>T.shot0-.25&&at<T.shot0+.35 ? (at-(T.shot0-.25))/.6 : 0);
     if(f.userData.ring){f.userData.ring.scale.setScalar(1+.15*Math.sin(t*6));}
   }
   // celebrate
