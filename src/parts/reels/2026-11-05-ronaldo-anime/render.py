@@ -6,6 +6,9 @@ D = pathlib.Path(__file__).resolve().parent; ROOT = D.parents[3]
 ap = argparse.ArgumentParser(); ap.add_argument('out'); ap.add_argument('--g3', required=True); ap.add_argument('--frames'); ap.add_argument('--secs', type=float, default=58.5)
 a = ap.parse_args()
 html = (D / 'anime.html').read_text().replace('FONTS/', (ROOT / 'site/fonts').as_uri() + '/').replace("'IMG/'", repr((D / 'img').as_uri() + '/')).replace("'G3F/'", repr(pathlib.Path(a.g3).resolve().as_uri() + '/'))
+import json
+vo = json.load(open(D / 'vo_timed.json')) if (D / 'vo_timed.json').exists() else []
+html = html.replace('__VO__', json.dumps(vo))
 (D / '_built.html').write_text(html)
 with sync_playwright() as p:
     b = p.chromium.launch(args=['--allow-file-access-from-files']); pg = b.new_page(viewport={'width': 1080, 'height': 1920})

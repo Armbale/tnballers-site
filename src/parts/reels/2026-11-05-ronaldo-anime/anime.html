@@ -40,7 +40,9 @@ function petals(t,n,col){const r=rnd(3);let h='';for(let i=0;i<n;i++){const x=(r
 function confetti(k,n){const r=rnd(11),C=['#ffcf5a','#d0102a','#fff','#0f6b3a'];let h='';for(let i=0;i<n;i++){const a=r(),b=r();const x=540+(a-.5)*1500*eo(k/1.4)+Math.sin(k*3+i)*40,y=-80+k*(300+b*420)-500*Math.max(0,.6-k)*b;h+=`<div class="L" style="left:${x}px;top:${y}px;width:${14+a*10}px;height:${8+b*8}px;background:${C[i%4]};transform:rotate(${k*360*(a-.5)*2+i*37}deg)"></div>`}return h;}
 function fireworks(t,seed){const r=rnd(seed);let h='';for(let f=0;f<5;f++){const t0=f*1.2+r()*.6,k=((t-t0)%6+6)%6;if(k>2)continue;const cx=150+r()*780,cy=250+r()*500,col=['#ffcf5a','#ff6b8a','#fff','#7fd4ff'][f%4];
   for(let i=0;i<26;i++){const a=i/26*Math.PI*2,rad=eo(k/1.2)*230;h+=`<div class="L" style="left:${cx+Math.cos(a)*rad}px;top:${cy+Math.sin(a)*rad+k*k*30}px;width:6px;height:6px;border-radius:50%;background:${col};box-shadow:0 0 14px ${col};opacity:${cl(1.6-k)}"></div>`}}return h;}
-function frames(dir,k,n){const i=Math.max(1,Math.min(n,1+Math.floor(k*30)));return `<img class="L" src="${G3}${dir}/${String(i).padStart(4,'0')}.jpg" style="inset:0;width:1080px;height:1920px">`;}
+function frames(dir,k,n){const i=Math.max(1,Math.min(n,1+Math.floor(k*30)));
+  return `<div class="L" style="inset:0;background:var(--paper)"></div><div class="L" style="left:26px;top:26px;right:26px;bottom:26px;overflow:hidden;border:9px solid var(--ink)"><img class="L" src="${G3}${dir}/${String(i).padStart(4,'0')}.jpg" style="left:-35px;top:-35px;width:1080px;height:1920px"><div class="L" style="inset:0;background-image:radial-gradient(#0d0a0f 28%,transparent 31%);background-size:9px 9px;opacity:.10;mix-blend-mode:multiply"></div></div>`;}
+function sfx(txt,k,x,y,rot,size,col){if(k<0||k>.9)return '';return `<div class="L T" style="left:${x}px;top:${y}px;font-size:${size}px;color:${col};-webkit-text-stroke:12px var(--ink);paint-order:stroke;transform:rotate(${rot}deg) scale(${1.7-.7*eb(k/.25)});opacity:${cl((.9-k)/.25)};z-index:30;letter-spacing:-.02em;text-shadow:10px 10px 0 #0d0a0f">${txt}</div>`;}
 function inkWipe(k){ // black diagonal slash crossing the screen (scene transition)
   if(k<0||k>.5)return '';const p=k/.5;return `<div class="L" style="left:-600px;top:-200px;width:2400px;height:2400px;background:var(--ink);transform:rotate(-24deg) translateX(${-2400+4600*eio(p)}px);z-index:85"></div>`;}
 const flash=(k,d=.12)=>k>=0&&k<d?`<div class="L" style="inset:0;background:#fff;opacity:${1-k/d};z-index:84"></div>`:'';
@@ -69,7 +71,7 @@ const SC=[
    return h}],
  [FK,21.1,(t)=>{const k=t-FK;let h=frames('freekick',k,FKN);
    h+=`<div class="L" style="left:40px;top:120px;z-index:20"><span class="lab" style="background:var(--red);padding:10px 16px;font-size:24px">SOCHI · 2018 · 88'</span></div>`;
-   const g=k-5.54;if(g>0)h+=flash(g)+`<div class="L T" style="left:0;right:0;top:640px;text-align:center;font-size:300px;color:#fff;-webkit-text-stroke:12px var(--red);paint-order:stroke;z-index:20;${pop(g,.3,2)}">3–3</div>`;
+   h+=sfx('BOOM!',k-2.455,90,560,-12,210,'#ffcf5a');const g=k-5.54;if(g>0)h+=flash(g)+`<div class="L T" style="left:0;right:0;top:640px;text-align:center;font-size:300px;color:#fff;-webkit-text-stroke:12px var(--red);paint-order:stroke;z-index:20;${pop(g,.3,2)}">3–3</div>`;
    return h}],
  [21.1,HD,(t)=>{const k=t-21.1;let h=`<div class="L" style="inset:0;background:var(--paper)"></div><div class="tone"></div>`+speed(540,900,80,300,'#0d0a0f',.9,9);
    h+=`<div class="L T" style="left:0;right:0;top:560px;text-align:center;font-size:230px;color:var(--red);-webkit-text-stroke:10px var(--ink);paint-order:stroke;transform:rotate(-5deg);${pop(k,.35,1.8)}">HAT-TRICK</div>`;
@@ -79,7 +81,7 @@ const SC=[
  [HD,32.9,(t)=>{const k=t-HD;let h=frames('header',k,HDN);
    h+=`<div class="L" style="left:40px;top:120px;z-index:20"><span class="lab" style="background:var(--red);padding:10px 16px;font-size:24px">LYON · EURO 2016 · SEMI-FINAL</span></div>`;
    const c=k-4.075;if(c>-.6&&c<0)h+=`<div class="cap" style="top:1500px"><span>THE LEAP</span></div>`;
-   const g=k-5.825;if(g>0)h+=flash(g)+`<div class="L T" style="left:0;right:0;top:620px;text-align:center;font-size:150px;z-index:20;-webkit-text-stroke:8px var(--ink);paint-order:stroke;${pop(g,.3,2)}">PORTUGAL 1–0<br>WALES</div>`;
+   h+=sfx('WHAM!',k-4.075,120,420,10,220,'#ffcf5a');const g=k-5.825;if(g>0)h+=flash(g)+`<div class="L T" style="left:0;right:0;top:620px;text-align:center;font-size:150px;z-index:20;-webkit-text-stroke:8px var(--ink);paint-order:stroke;${pop(g,.3,2)}">PORTUGAL 1–0<br>WALES</div>`;
    return h}],
  [32.9,36.4,(t)=>{const k=t-32.9;let h=`<div class="L" style="inset:0;background:#0d0a0f"></div>`;
    h+=cutPanel(60,300,960,900,2,'m_ronaldo_look.png','var(--red)','width:130%;height:auto;left:-15%;top:12%;object-fit:contain',k+1,0);
@@ -110,8 +112,11 @@ const SC=[
    if(k>7.4)h+=`<div class="L" style="inset:0;background:#000;opacity:${cl((k-7.4)/1)};z-index:88"></div>`;
    return h}],
 ];
+const VO=__VO__;const HITS=[FK+2.455,FK+5.54,HD+4.075,HD+5.825,36.4+3.3];
 window.renderAt=function(t){const s=SC.find(x=>t>=x[0]&&t<x[1])||SC[SC.length-1];
   let h=s[2](t);
+  const v=VO.find(v=>t>=v.at&&t<v.at+v.dur+.35);if(v){const kk=t-v.at;h+=`<div class="L" style="left:60px;right:60px;bottom:150px;z-index:92;text-align:center;opacity:${cl(kk/.2)*cl((v.dur+.35-kk)/.25)}"><span style="display:inline-block;background:#fff;color:#0d0a0f;border:6px solid #0d0a0f;border-radius:40px;padding:16px 30px 12px;font-weight:700;font-size:44px;line-height:1.2;box-shadow:8px 8px 0 #0d0a0f">${v.say}</span></div>`;}
+  let sh=0;HITS.forEach(b=>{const d=t-b;if(d>=0&&d<.4)sh=Math.max(sh,(1-d/.4)*18)});document.getElementById('st').style.transform=`translate(${sh*Math.sin(t*90)}px,${sh*Math.cos(t*73)}px)`;
   h+=`<div class="foot"><span>Photos: Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0) · stylised 3D, based on match reports</span><span>TNBALLERS.COM</span></div>`;
   document.getElementById('st').innerHTML=h;};
 window.ready=true;

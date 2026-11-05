@@ -81,7 +81,7 @@ const net=new THREE.Mesh(netGeo,netM);net.position.set(0,1.22,GZ+1.8);sc.add(net
  for(const x of [-3.66,3.66]){const s=new THREE.Mesh(new THREE.PlaneGeometry(1.8,2.44,9,12),netM);s.rotation.y=Math.PI/2;s.position.set(x,1.22,GZ+.9);sc.add(s);}}
 // ---------- players: Xbot rig, toon kit + inverted-hull ink outline ----------
 function outlineMat(w){const m=new THREE.MeshBasicMaterial({color:0x120c10,side:THREE.BackSide});
-  m.onBeforeCompile=s=>{s.vertexShader=s.vertexShader.replace('#include <skinning_vertex>','#include <skinning_vertex>\n transformed += normalize(objectNormal) * '+w.toFixed(3)+';');};return m;}
+  m.onBeforeCompile=s=>{s.vertexShader=s.vertexShader.replace('#include <project_vertex>','transformed += normalize(objectNormal) * '+w.toFixed(3)+';\n#include <project_vertex>');};return m;}
 function label(text,color){const c=document.createElement('canvas');c.width=512;c.height=128;const g=c.getContext('2d');g.font='bold 70px Arial Black, Arial';g.textAlign='center';g.lineWidth=14;g.strokeStyle='#120c10';g.strokeText(text,256,90);g.fillStyle=color;g.fillText(text,256,90);
   const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthTest:false,sizeAttenuation:false}));s.scale.set(.22,.055,1);return s;}
 function figure(kit,trim,o={}){
@@ -90,9 +90,14 @@ function figure(kit,trim,o={}){
   const kitM=toon(kit),trimM=toon(trim);
   const add=[];
   m.traverse(x=>{if(x.isSkinnedMesh){x.frustumCulled=false;x.material=/Joint/i.test(x.material.name)?trimM:kitM;
-    const ol=new THREE.SkinnedMesh(x.geometry,outlineMat(o.ow||2.0));ol.bind(x.skeleton,x.bindMatrix);ol.frustumCulled=false;add.push([x.parent,ol]);}});
+    const ol=new THREE.SkinnedMesh(x.geometry,outlineMat(o.ow||1.6));ol.bind(x.skeleton,x.bindMatrix);ol.frustumCulled=false;add.push([x.parent,ol]);}});
   add.forEach(([p,ol])=>p.add(ol));
   const bones={};m.traverse(x=>{if(x.isBone)bones[x.name.replace('mixamorig:','').replace('mixamorig','')]=x;});
+  if(bones.Spine2){bones.Spine2.scale.set(1.22,1.05,1.12);bones.Neck&&bones.Neck.scale.set(1/1.22,1/1.05,1/1.12);}
+  if(bones.LeftUpLeg){bones.LeftUpLeg.scale.set(.86,1,.88);bones.RightUpLeg.scale.set(.86,1,.88);}
+  if(o.num){const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');g.font='bold 190px Arial Black, Arial';g.textAlign='center';g.lineWidth=16;g.strokeStyle='#120c10';g.strokeText(o.num,128,200);g.fillStyle=o.numCol||'#ffffff';g.fillText(o.num,128,200);
+    const pl=new THREE.Mesh(new THREE.PlaneGeometry(28,28),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,side:THREE.DoubleSide}));
+    pl.position.set(0,2,-14);pl.rotation.y=Math.PI;(bones.Spine2||m).add(pl);}
   const mixer=new THREE.AnimationMixer(m),clip=n=>GLTF.animations.find(c=>c.name===n);
   const run=mixer.clipAction(clip('run')),idle=mixer.clipAction(clip('idle'));run.play();idle.play();
   g.userData={body,model:m,bones,mixer,run,idle,phase:o.phase??Math.random()*3};return g;}
@@ -105,9 +110,9 @@ function stance(f){const B=f.userData.bones;if(!B.LeftUpLeg)return;B.LeftUpLeg.r
   B.LeftArm&&(B.LeftArm.rotation.z+=.25);B.RightArm&&(B.RightArm.rotation.z-=.25);}
 function arms(f,a){const B=f.userData.bones;if(B.LeftArm){B.LeftArm.rotation.set(0,0,a);B.RightArm.rotation.set(0,0,-a);}}
 const POR=0xd0102a, POR2=0x0f6b3a;
-const OPP = MODE==='freekick' ? [0xf4f4f4,0x1c2a6b] : [0xcf1b2b,0xffffff];  // stylised: Spain light kit / Wales red
+const OPP = MODE==='freekick' ? [0xf4f4f4,0x1c2a6b] : [0xf2f2f2,0x1f1f1f];  // stylised light kits so the two sides read apart
 const OPPC = MODE==='freekick' ? 0xf4f4f4 : 0x2b2b2b;
-const ron=figure(POR,POR2,{ow:2.6,phase:0});const tag=label('RONALDO 7','#ffd27a');tag.position.y=2.55;ron.add(tag);sc.add(ron);
+const ron=figure(POR,POR2,{ow:2.2,phase:0,num:'7',numCol:'#ffd27a'});const tag=label('RONALDO 7','#ffd27a');tag.position.y=2.55;ron.add(tag);sc.add(ron);
 const gk=figure(0x1b1b1b,0x3a3a3a);sc.add(gk);
 const ball=new THREE.Mesh(new THREE.SphereGeometry(.17,24,16),toon(0xffffff));sc.add(ball);
 const ballOl=new THREE.Mesh(new THREE.SphereGeometry(.2,24,16),new THREE.MeshBasicMaterial({color:0x120c10,side:THREE.BackSide}));ball.add(ballOl);
@@ -130,7 +135,7 @@ if(MODE==='freekick'){
      ronAt(a){if(a<this.run0)return RS.clone();const k=cl((a-this.run0)/(this.contact-this.run0));return RS.clone().lerp(B0.clone().add(dir.clone().multiplyScalar(-.55)).add(new THREE.Vector3(.35,0,0)),eio(k));},
      cams:[
       [0,1.15,(k)=>[S.RS.clone().add(S.dir.clone().multiplyScalar(-7)).add(new THREE.Vector3(1.5,3.2-k*.6,0)),S.B0.clone().add(S.dir.clone().multiplyScalar(14)).setY(1),40]],   // behind him: ball, wall, goal
-      [1.15,2.08,(k)=>[S.B0.clone().add(S.dir.clone().multiplyScalar(2.6)).add(new THREE.Vector3(1.1,.35,0)),ron.position.clone().setY(1.0),44]],                                      // low on the ball as he runs in
+      [1.15,2.08,(k)=>{const sd=new THREE.Vector3(S.dir.z,0,-S.dir.x);const mid=ron.position.clone().lerp(S.B0,.55);return [mid.clone().add(sd.multiplyScalar(-10.5)).add(S.dir.clone().multiplyScalar(-1.2+k*.8)).setY(1.4),mid.clone().setY(1.0),46]}],                                      // low on the ball as he runs in
       [2.08,3.9,(k,a)=>{const b=S.ballAt(a);return [b.clone().add(S.dir.clone().multiplyScalar(-4.5)).add(new THREE.Vector3(1.4,1.2,0)),b.clone().add(S.dir.clone().multiplyScalar(6)),48]}],
       [3.9,5.8,(k,a)=>[new THREE.Vector3(-1.2,1.6,GZ+5.2),S.ballAt(a).clone().lerp(new THREE.Vector3(-3,1.8,GZ),.4),55]],
       [5.8,7.4,(k)=>{const an=lerp(-.6,.4,k);return [new THREE.Vector3(Math.sin(an)*16,9+k*2,GZ-14+Math.cos(an)*-6),new THREE.Vector3(-2,0,GZ-6),46]}]]};
