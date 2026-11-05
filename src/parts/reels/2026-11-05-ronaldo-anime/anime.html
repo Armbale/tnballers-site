@@ -1,0 +1,118 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Tanker;src:url(FONTS/tanker/Tanker-Regular.woff2)}
+@font-face{font-family:Switzer;src:url(FONTS/switzer/Switzer-Bold.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#d0102a;--gold:#ffcf5a;--ink:#0d0a0f;--paper:#f3ede2}
+body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Switzer;color:#fff;position:relative}
+#st{position:absolute;inset:0;overflow:hidden}
+.L{position:absolute}
+.T{font-family:Tanker;line-height:.88;text-transform:uppercase}
+.lab{font-family:ui-monospace,Menlo,monospace;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.panel{position:absolute;overflow:hidden;border:10px solid var(--ink);background:var(--paper);box-shadow:12px 14px 0 #000a}
+.panel img{position:absolute;width:100%;height:100%;object-fit:cover}
+.tone{position:absolute;inset:0;background-image:radial-gradient(#0003 30%,transparent 32%);background-size:14px 14px}
+.grain{position:absolute;inset:0;z-index:90;opacity:.12;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.foot{position:absolute;left:36px;right:36px;bottom:40px;z-index:95;display:flex;justify-content:space-between;font-size:17px;color:#ffffffa0;font-weight:700;letter-spacing:.04em;text-shadow:0 2px 6px #000}
+.cap{position:absolute;left:0;right:0;z-index:80;text-align:center}
+.cap span{display:inline-block;background:var(--ink);color:#fff;padding:16px 30px 10px;font-family:Tanker;font-size:66px;line-height:1;transform:skewX(-8deg);box-shadow:8px 8px 0 var(--red)}
+</style></head><body><div id="st"></div><div class="grain"></div>
+<script>
+const IMG='IMG/', G3='G3F/';
+const TOTAL=58.5, FK=13.7, HD=24.5, FKN=222, HDN=252;
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), eo=x=>1-Math.pow(1-cl(x),3), eio=x=>{x=cl(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const eb=x=>{x=cl(x);const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const rnd=s=>{let v=s;return()=>(v=(v*16807)%2147483647)/2147483647};
+const pop=(k,d=.35,s=1.6)=>`transform:scale(${s-(s-1)*eb(k/d)});opacity:${cl(k/.12)}`;
+const letters=(txt,k,stag=.05)=>[...txt].map((c,i)=>`<span style="display:inline-block;opacity:${cl((k-i*stag)/.12)};transform:translateY(${(1-eo((k-i*stag)/.3))*70}px) scale(${1+.4*(1-eo((k-i*stag)/.25))})">${c===' '?'&nbsp;':c}</span>`).join('');
+// painted anime sky: night or sunset
+function sky(t,mode){const r=rnd(7);let h='';
+  if(mode==='night'){h+=`<div class="L" style="inset:0;background:linear-gradient(#05061a,#16123d 40%,#3b1f5c 70%,#7a2c5e 88%,#c2496a)"></div>`;
+    for(let i=0;i<160;i++){const x=r()*1080,y=r()*1300,s=r()*3+1,tw=.4+.6*Math.abs(Math.sin(t*2+i));h+=`<div class="L" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px;border-radius:50%;background:#fff;opacity:${tw};box-shadow:0 0 ${s*3}px #fff"></div>`}}
+  else {h+=`<div class="L" style="inset:0;background:linear-gradient(#2a2a6e,#7b3f8c 30%,#e0607a 52%,#ff9f6b 64%,#ffd08a 74%,#ffe6b8 80%,#7a3b55 81%,#3a1d33)"></div>`;
+    h+=`<div class="L" style="left:540px;top:1200px;width:620px;height:620px;margin:-310px;border-radius:50%;background:radial-gradient(#fffbe8,#ffe6a8 40%,#ffb36b00 70%)"></div>`;
+    for(let i=0;i<14;i++){const a=-80+i*12+Math.sin(t*.3+i)*2;h+=`<div class="L" style="left:540px;top:1200px;width:10px;height:1400px;transform-origin:top;transform:rotate(${a}deg);background:linear-gradient(#fff6,transparent 70%);opacity:.35;filter:blur(6px)"></div>`}}
+  // drifting clouds (flat, layered, anime style)
+  for(let i=0;i<7;i++){const y=(mode==='night'?980:880)+i*55+r()*40,w=360+r()*420,x=((r()*1400+t*(18+i*6))%1700)-400;
+    h+=`<div class="L" style="left:${x}px;top:${y}px;width:${w}px;height:${46+r()*30}px;border-radius:60px;background:${mode==='night'?'#ff8fb055':'#fff1d9cc'};box-shadow:0 10px 0 ${mode==='night'?'#7a2c5e55':'#f7a07ccc'}"></div>`}
+  return h;}
+function speed(cx,cy,n,inner,col,op,seed){const r=rnd(seed);let s='';for(let i=0;i<n;i++){const a=r()*360,w=.3+r()*1.2,r0=inner+r()*200;s+=`<div class="L" style="left:${cx}px;top:${cy}px;width:1600px;height:${w*6}px;transform-origin:0 50%;transform:rotate(${a}deg) translateX(${r0}px);background:linear-gradient(90deg,${col},transparent 80%);opacity:${op}"></div>`}return s;}
+function petals(t,n,col){const r=rnd(3);let h='';for(let i=0;i<n;i++){const x=(r()*1180+Math.sin(t*.8+i)*60+t*40)%1180-50,y=(r()*2000+t*(70+r()*80))%2000-40,s=10+r()*14;h+=`<div class="L" style="left:${x}px;top:${y}px;width:${s}px;height:${s*.6}px;border-radius:50% 0;background:${col};transform:rotate(${t*90+i*40}deg);opacity:.85"></div>`}return h;}
+function confetti(k,n){const r=rnd(11),C=['#ffcf5a','#d0102a','#fff','#0f6b3a'];let h='';for(let i=0;i<n;i++){const a=r(),b=r();const x=540+(a-.5)*1500*eo(k/1.4)+Math.sin(k*3+i)*40,y=-80+k*(300+b*420)-500*Math.max(0,.6-k)*b;h+=`<div class="L" style="left:${x}px;top:${y}px;width:${14+a*10}px;height:${8+b*8}px;background:${C[i%4]};transform:rotate(${k*360*(a-.5)*2+i*37}deg)"></div>`}return h;}
+function fireworks(t,seed){const r=rnd(seed);let h='';for(let f=0;f<5;f++){const t0=f*1.2+r()*.6,k=((t-t0)%6+6)%6;if(k>2)continue;const cx=150+r()*780,cy=250+r()*500,col=['#ffcf5a','#ff6b8a','#fff','#7fd4ff'][f%4];
+  for(let i=0;i<26;i++){const a=i/26*Math.PI*2,rad=eo(k/1.2)*230;h+=`<div class="L" style="left:${cx+Math.cos(a)*rad}px;top:${cy+Math.sin(a)*rad+k*k*30}px;width:6px;height:6px;border-radius:50%;background:${col};box-shadow:0 0 14px ${col};opacity:${cl(1.6-k)}"></div>`}}return h;}
+function frames(dir,k,n){const i=Math.max(1,Math.min(n,1+Math.floor(k*30)));return `<img class="L" src="${G3}${dir}/${String(i).padStart(4,'0')}.jpg" style="inset:0;width:1080px;height:1920px">`;}
+function inkWipe(k){ // black diagonal slash crossing the screen (scene transition)
+  if(k<0||k>.5)return '';const p=k/.5;return `<div class="L" style="left:-600px;top:-200px;width:2400px;height:2400px;background:var(--ink);transform:rotate(-24deg) translateX(${-2400+4600*eio(p)}px);z-index:85"></div>`;}
+const flash=(k,d=.12)=>k>=0&&k<d?`<div class="L" style="inset:0;background:#fff;opacity:${1-k/d};z-index:84"></div>`:'';
+function cutPanel(x,y,w,h,rot,img,bg,ipos,k,from){return `<div class="panel" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;transform:rotate(${rot}deg) translateX(${(1-eo(k/.45))*from}px);background:${bg}">${speed(w/2,h*.35,50,120,bg==='var(--red)'?'#0d0a0f55':'#0d0a0f33',1,w|0)}<div class="tone"></div><img src="${IMG}${img}" style="${ipos}"></div>`;}
+const SC=[
+ [0,3.43,(t)=>{let h=sky(t,'night');const k=t;
+   h+=`<div class="L" style="left:540px;top:820px;width:760px;height:760px;margin:-380px;border-radius:50%;background:var(--red);opacity:${cl(k/1.2)};transform:scale(${.85+.15*eo(k/2)})"></div>`;
+   h+=`<img class="L" src="${IMG}m_ronaldo.png" style="left:50%;top:${460+60*(1-eo(k/2.5))}px;height:1500px;transform:translateX(-50%);opacity:${cl((k-.3)/1)};filter:drop-shadow(0 0 0 #000)">`;
+   h+=`<div class="L" style="left:0;right:0;bottom:0;height:520px;background:linear-gradient(transparent,#05061a)"></div>`;
+   h+=`<div class="L T" style="left:0;right:0;top:170px;text-align:center;font-size:150px;text-shadow:0 0 30px #d0102a">${letters('2003 – 2026',(k-1.1)*1.3,.07)}</div>`;
+   return h}],
+ [3.43,6.86,(t)=>{const k=t-3.43;let h=`<div class="L" style="inset:0;background:var(--paper)"></div><div class="tone"></div>`;
+   h+=cutPanel(-40,140,760,700,-4,'m_ronaldo.png','var(--red)','width:120%;height:auto;left:-10%;top:-4%;object-fit:contain',k,-900);
+   h+=cutPanel(380,760,740,760,3,'m_ronaldo_walk.png','var(--paper)','width:auto;height:118%;left:8%;top:2%;object-fit:contain',k-.35,900);
+   h+=cutPanel(-30,1400,800,520,-2,'m_back.png','var(--red)','width:70%;height:auto;left:15%;top:6%;object-fit:contain',k-.7,-900);
+   h+=`<div class="L T" style="left:60px;top:${640}px;font-size:250px;color:var(--red);-webkit-text-stroke:8px var(--ink);paint-order:stroke;transform:rotate(-6deg);${pop(k-1.1)}">23</div><div class="L T" style="left:80px;top:860px;font-size:110px;color:var(--ink);transform:rotate(-6deg);opacity:${cl((k-1.4)/.2)}">YEARS</div>`;
+   return h+inkWipe(k-3.0)}],
+ [6.86,10.3,(t)=>{const k=t-6.86;let h=`<div class="L" style="inset:0;background:var(--red)"></div>`+speed(700,700,60,200,'#0003',1,5);
+   h+=`<img class="L" src="${IMG}m_ronaldo_look.png" style="right:-120px;top:${640+40*(1-eo(k))}px;width:1150px;filter:drop-shadow(14px 14px 0 #000a)">`;
+   h+=`<div class="L" style="left:56px;top:190px"><div class="lab" style="font-size:28px;color:#fff">20 August 2003 · first cap</div><div class="T" style="font-size:420px;color:#fff;-webkit-text-stroke:10px var(--ink);paint-order:stroke;${pop(k-.4,.4,1.8)}">18</div><div class="T" style="font-size:90px;color:var(--ink);opacity:${cl((k-.8)/.2)}">YEARS OLD</div></div>`;
+   return h}],
+ [10.3,FK,(t)=>{const k=t-10.3;let h=`<div class="L" style="inset:0;background:#0d0a0f"></div>`+speed(540,960,90,260,'#d0102a55',1,(t*8|0)+2);
+   h+=`<div class="panel" style="left:-20px;top:620px;width:1120px;height:430px;transform:rotate(-3deg);border-color:#fff"><img src="${IMG}m_ronaldo.png" style="object-fit:cover;object-position:50% 14%;transform:scale(${1.9+.15*k}) translateY(${18}%)"></div>`;
+   h+=`<div class="L" style="left:56px;top:240px"><div class="lab" style="font-size:28px;color:var(--gold)">World Cup 2018 · Sochi</div><div class="T" style="font-size:120px;margin-top:10px">SPAIN 3–2 PORTUGAL</div></div>`;
+   h+=`<div class="L T" style="left:0;right:0;top:1180px;text-align:center;font-size:130px;color:var(--gold);${pop(k-1.3)}">88'</div><div class="L T" style="left:0;right:0;top:1330px;text-align:center;font-size:84px;opacity:${cl((k-1.9)/.2)}">ONE FREE KICK LEFT</div>`;
+   return h}],
+ [FK,21.1,(t)=>{const k=t-FK;let h=frames('freekick',k,FKN);
+   h+=`<div class="L" style="left:40px;top:120px;z-index:20"><span class="lab" style="background:var(--red);padding:10px 16px;font-size:24px">SOCHI · 2018 · 88'</span></div>`;
+   const g=k-5.54;if(g>0)h+=flash(g)+`<div class="L T" style="left:0;right:0;top:640px;text-align:center;font-size:300px;color:#fff;-webkit-text-stroke:12px var(--red);paint-order:stroke;z-index:20;${pop(g,.3,2)}">3–3</div>`;
+   return h}],
+ [21.1,HD,(t)=>{const k=t-21.1;let h=`<div class="L" style="inset:0;background:var(--paper)"></div><div class="tone"></div>`+speed(540,900,80,300,'#0d0a0f',.9,9);
+   h+=`<div class="L T" style="left:0;right:0;top:560px;text-align:center;font-size:230px;color:var(--red);-webkit-text-stroke:10px var(--ink);paint-order:stroke;transform:rotate(-5deg);${pop(k,.35,1.8)}">HAT-TRICK</div>`;
+   h+=`<div class="L T" style="left:0;right:0;top:820px;text-align:center;font-size:96px;color:var(--ink);opacity:${cl((k-.5)/.2)}">AGAINST SPAIN. AT A WORLD CUP.</div>`;
+   for(let i=0;i<3;i++){const kk=k-.9-i*.25;h+=`<div class="L" style="left:${300+i*170}px;top:1020px;width:130px;height:130px;border-radius:50%;background:#fff;border:10px solid var(--ink);${pop(kk,.25,2)}"></div>`}
+   return h+inkWipe(k-2.95)}],
+ [HD,32.9,(t)=>{const k=t-HD;let h=frames('header',k,HDN);
+   h+=`<div class="L" style="left:40px;top:120px;z-index:20"><span class="lab" style="background:var(--red);padding:10px 16px;font-size:24px">LYON · EURO 2016 · SEMI-FINAL</span></div>`;
+   const c=k-4.075;if(c>-.6&&c<0)h+=`<div class="cap" style="top:1500px"><span>THE LEAP</span></div>`;
+   const g=k-5.825;if(g>0)h+=flash(g)+`<div class="L T" style="left:0;right:0;top:620px;text-align:center;font-size:150px;z-index:20;-webkit-text-stroke:8px var(--ink);paint-order:stroke;${pop(g,.3,2)}">PORTUGAL 1–0<br>WALES</div>`;
+   return h}],
+ [32.9,36.4,(t)=>{const k=t-32.9;let h=`<div class="L" style="inset:0;background:#0d0a0f"></div>`;
+   h+=cutPanel(60,300,960,900,2,'m_ronaldo_look.png','var(--red)','width:130%;height:auto;left:-15%;top:12%;object-fit:contain',k+1,0);
+   h+=`<div class="L" style="left:60px;top:1260px"><div class="lab" style="color:var(--gold);font-size:28px">Lyon · 2–0</div><div class="T" style="font-size:150px">INTO THE<br><span style="color:var(--red)">FINAL</span></div></div>`;
+   return h+inkWipe(k-3.0)}],
+ [36.4,43.3,(t)=>{const k=t-36.4;let h=sky(t,'night')+fireworks(t,4);
+   h+=`<div class="L" style="left:540px;top:1100px;width:900px;height:900px;margin:-450px;border-radius:50%;background:radial-gradient(#ffcf5aaa,#ffcf5a00 65%)"></div>`;
+   h+=`<img class="L" src="${IMG}ronaldo_look.png" style="left:50%;top:${820+80*(1-eo(k/1.5))}px;width:1250px;transform:translateX(-50%);filter:drop-shadow(0 0 40px #ffcf5a88) saturate(1.2) contrast(1.1)">`;
+   h+=`<div class="L" style="left:0;right:0;bottom:0;height:600px;background:linear-gradient(transparent,#05061a)"></div>`;
+   h+=`<div class="L" style="left:0;right:0;top:200px;text-align:center"><div class="lab" style="font-size:30px;color:var(--gold);opacity:${cl(k/.4)}">Paris · 10 July 2016</div>`;
+   if(k<3.3)h+=`<div class="T" style="font-size:96px;margin-top:20px;opacity:${cl((k-.4)/.3)}">INJURED IN THE FINAL.<br>STILL LEADING FROM<br>THE TOUCHLINE.</div>`;
+   else h+=`<div class="T" style="font-size:170px;margin-top:20px;color:var(--gold);text-shadow:0 0 40px #ffcf5a;${pop(k-3.3,.4,1.8)}">CHAMPIONS<br>OF EUROPE</div>`;
+   h+=`</div>`+(k>3.3?confetti(k-3.3,90)+flash(k-3.3):'');
+   return h+inkWipe(k-6.4)}],
+ [43.3,46.7,(t)=>{const k=t-43.3;let h=`<div class="L" style="inset:0;background:var(--red)"></div>`+speed(540,860,100,240,'#0d0a0f',.8,(t*10|0)+4);
+   const n=Math.round(146*eo(k/1.6));h+=`<div class="L" style="left:0;right:0;top:420px;text-align:center"><div class="T" style="font-size:430px;color:#fff;-webkit-text-stroke:12px var(--ink);paint-order:stroke">${n}</div><div class="T" style="font-size:110px;color:var(--ink)">GOALS FOR PORTUGAL</div></div>`;
+   h+=`<div class="L" style="left:0;right:0;top:1180px;text-align:center;opacity:${cl((k-1.4)/.3)}"><div class="T" style="font-size:150px;color:#fff">234 CAPS</div><div class="lab" style="font-size:28px;color:var(--ink);margin-top:14px">No man has scored more for his country</div></div>`;
+   return h}],
+ [46.7,50.1,(t)=>{const k=t-46.7;let h=`<div class="L" style="inset:0;background:var(--paper)"></div><div class="tone"></div>`;
+   h+=cutPanel(-20,180,1120,1080,-2,'m_ronaldo_walk.png','var(--red)','width:auto;height:112%;left:18%;top:3%;object-fit:contain',k+1,0);
+   h+=`<div class="L" style="left:56px;top:1300px"><div class="lab" style="color:var(--red);font-size:28px">Toronto · 2 July 2026 · World Cup</div><div class="T" style="font-size:170px;color:var(--ink)">AT <span style="color:var(--red)">41</span></div><div class="T" style="font-size:72px;color:var(--ink);opacity:${cl((k-.9)/.2)}">OLDEST WORLD CUP<br>KNOCKOUT SCORER EVER</div></div>`;
+   return h+inkWipe(k-3.0)}],
+ [50.1,TOTAL+1,(t)=>{const k=t-50.1;let h=sky(t,'sunset')+petals(t,26,'#ffd5e0');
+   const s=1-.35*eio(k/7);h+=`<img class="L" src="${IMG}back.png" style="left:50%;top:${700+260*(1-s)}px;height:${1250*s}px;transform:translateX(-50%);filter:drop-shadow(0 0 30px #ffe6a8) brightness(${1-.25*eio(k/7)})">`;
+   h+=`<div class="L" style="left:0;right:0;bottom:0;height:520px;background:linear-gradient(transparent,#3a1d33)"></div>`;
+   if(k<4.2)h+=`<div class="L T" style="left:60px;right:60px;top:240px;text-align:center;font-size:104px;color:#fff;text-shadow:0 6px 30px #7a2c5e;opacity:${cl(k/.6)*cl((4.2-k)/.4)}">“PORTUGAL ESTARÁ<br>SEMPRE EM MIM”</div><div class="L lab" style="left:0;right:0;top:500px;text-align:center;font-size:24px;opacity:${cl((k-.8)/.5)*cl((4.2-k)/.4)}">Portugal will always be in me</div>`;
+   else h+=`<div class="L" style="left:0;right:0;top:220px;text-align:center"><div class="T" style="font-size:190px;color:#fff;text-shadow:0 8px 40px #7a2c5e">${letters('OBRIGADO,',(k-4.2)*1.4,.06)}</div><div class="T" style="font-size:250px;color:var(--gold);text-shadow:0 0 50px #fff6;${pop(k-5.0,.5,1.5)}">CR7</div></div>`;
+   if(k>7.4)h+=`<div class="L" style="inset:0;background:#000;opacity:${cl((k-7.4)/1)};z-index:88"></div>`;
+   return h}],
+];
+window.renderAt=function(t){const s=SC.find(x=>t>=x[0]&&t<x[1])||SC[SC.length-1];
+  let h=s[2](t);
+  h+=`<div class="foot"><span>Photos: Bryan Berlin / Wikimedia Commons (CC BY-SA 4.0) · stylised 3D, based on match reports</span><span>TNBALLERS.COM</span></div>`;
+  document.getElementById('st').innerHTML=h;};
+window.ready=true;
+</script></body></html>
