@@ -1,0 +1,12 @@
+[
+ {"scene":"hook","say":"Twenty-three years. It's over.","show":"23 years. It's over.","hi":["23","over."]},
+ {"scene":"hook","say":"Cristiano Ronaldo has retired from international football.","show":"Cristiano Ronaldo has retired from international football.","hi":["retired"]},
+ {"scene":"kid","say":"He was eighteen when he first pulled on that shirt.","show":"He was 18 when he first pulled on that shirt.","hi":["18"]},
+ {"scene":"count","say":"Two hundred and thirty-four games. One hundred and forty-six goals.","show":"234 games. 146 goals.","hi":["234","146"]},
+ {"scene":"count","say":"No man has ever scored more for his country.","show":"No man has ever scored more for his country.","hi":["No","more"]},
+ {"scene":"paris","say":"Paris, twenty sixteen. Injured in the final, he led them from the touchline. Portugal, champions of Europe.","show":"Paris, 2016. Injured in the final, he led them from the touchline. Portugal: champions of Europe.","hi":["2016.","champions"]},
+ {"scene":"paris","say":"Then two Nations League titles.","show":"Then two Nations League titles.","hi":["two"]},
+ {"scene":"last","say":"And at forty-one, a World Cup knockout goal. The oldest ever to do it.","show":"And at 41, a World Cup knockout goal. The oldest ever to do it.","hi":["41,","oldest"]},
+ {"scene":"end","say":"Portugal will always be in him.","show":"\"Portugal will always be in me.\"","hi":["always"]},
+ {"scene":"end","say":"Obrigado, Cristiano.","show":"Obrigado, Cristiano.","hi":["Obrigado,"]}
+]

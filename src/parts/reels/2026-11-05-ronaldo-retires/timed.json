@@ -1,0 +1,107 @@
+[
+ {
+  "scene": "hook",
+  "say": "Twenty-three years. It's over.",
+  "show": "23 years. It's over.",
+  "hi": [
+   "23",
+   "over."
+  ],
+  "t0": 0.35,
+  "t1": 2.62
+ },
+ {
+  "scene": "hook",
+  "say": "Cristiano Ronaldo has retired from international football.",
+  "show": "Cristiano Ronaldo has retired from international football.",
+  "hi": [
+   "retired"
+  ],
+  "t0": 3.12,
+  "t1": 6.322
+ },
+ {
+  "scene": "kid",
+  "say": "He was eighteen when he first pulled on that shirt.",
+  "show": "He was 18 when he first pulled on that shirt.",
+  "hi": [
+   "18"
+  ],
+  "t0": 6.822,
+  "t1": 8.907
+ },
+ {
+  "scene": "count",
+  "say": "Two hundred and thirty-four games. One hundred and forty-six goals.",
+  "show": "234 games. 146 goals.",
+  "hi": [
+   "234",
+   "146"
+  ],
+  "t0": 9.407,
+  "t1": 13.144
+ },
+ {
+  "scene": "count",
+  "say": "No man has ever scored more for his country.",
+  "show": "No man has ever scored more for his country.",
+  "hi": [
+   "No",
+   "more"
+  ],
+  "t0": 13.644,
+  "t1": 16.104
+ },
+ {
+  "scene": "paris",
+  "say": "Paris, twenty sixteen. Injured in the final, he led them from the touchline. Portugal, champions of Europe.",
+  "show": "Paris, 2016. Injured in the final, he led them from the touchline. Portugal: champions of Europe.",
+  "hi": [
+   "2016.",
+   "champions"
+  ],
+  "t0": 16.604,
+  "t1": 23.399
+ },
+ {
+  "scene": "paris",
+  "say": "Then two Nations League titles.",
+  "show": "Then two Nations League titles.",
+  "hi": [
+   "two"
+  ],
+  "t0": 23.899,
+  "t1": 26.397
+ },
+ {
+  "scene": "last",
+  "say": "And at forty-one, a World Cup knockout goal. The oldest ever to do it.",
+  "show": "And at 41, a World Cup knockout goal. The oldest ever to do it.",
+  "hi": [
+   "41,",
+   "oldest"
+  ],
+  "t0": 26.897,
+  "t1": 31.44
+ },
+ {
+  "scene": "end",
+  "say": "Portugal will always be in him.",
+  "show": "\"Portugal will always be in me.\"",
+  "hi": [
+   "always"
+  ],
+  "t0": 31.94,
+  "t1": 33.827
+ },
+ {
+  "scene": "end",
+  "say": "Obrigado, Cristiano.",
+  "show": "Obrigado, Cristiano.",
+  "hi": [
+   "Obrigado,"
+  ],
+  "t0": 34.327,
+  "t1": 35.923
+ }
+]
