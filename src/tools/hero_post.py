@@ -61,7 +61,7 @@ def build(a, tmp, anim, vw, vh):
 <div class="player"><img src="player.png"></div>
 <div class="kicker"><i></i>{e(a.comp)}</div>
 <div class="ft">{e(a.badge)}</div>
-<div class="who"><div class="flag">🇨🇦 {e(a.flag)}</div>
+<div class="who"><div class="flag">{'🇨🇦 ' if a.flag.strip().lower()=='canada' else ''}{e(a.flag)}</div>
 <div class="name"><span class="f">{e(first)}</span><span class="l">{e(last)}</span></div>
 {f'<div class="tag">{e(a.tag)}</div>' if a.tag else ''}</div>
 <div class="board">
